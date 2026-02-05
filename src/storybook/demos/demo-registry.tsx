@@ -270,7 +270,7 @@ export function getDemoCode(component: ComponentItem) {
       "  threshold={0.2}",
       '  rootMargin="-50px"',
       "/>",
-    ].join("\\n");
+    ].join("\n");
   }
 
   if (slug.includes("gradient-text") || title.includes("gradient text")) {
