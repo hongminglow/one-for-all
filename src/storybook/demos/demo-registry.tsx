@@ -6,8 +6,6 @@ import type { ComponentItem } from "../components.generated";
 import SplitText from "../../components/reactbits/SplitText";
 import CircularText from "../../components/reactbits/CircularText";
 import ShinyText from "../../components/reactbits/ShinyText";
-  );
-}
 
 function TypewriterDemo(props: { text: string }) {
   return (
