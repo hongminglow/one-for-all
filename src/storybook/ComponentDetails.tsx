@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 import type { ComponentItem } from "./components.generated";
 import { STORYBOOK } from "./storybook-constants";
@@ -8,20 +8,42 @@ import {
   getDemoCode,
   renderDemo,
   getApiReference,
+  getDemoControls,
+  type DemoControl,
 } from "./demos/demo-registry";
 
 type TabKey = "preview" | "code";
 
 export function ComponentDetails(props: { component: ComponentItem }) {
   const [tab, setTab] = useState<TabKey>("preview");
+  const [controls, setControls] = useState<DemoControl[] | null>(null);
+  const [controlValues, setControlValues] = useState<Record<string, any>>({});
+
+  useEffect(() => {
+    const defaultControls = getDemoControls(props.component);
+    setControls(defaultControls);
+    if (defaultControls) {
+      const initialValues: Record<string, any> = {};
+      defaultControls.forEach((c) => {
+        initialValues[c.param] = c.defaultValue;
+      });
+      setControlValues(initialValues);
+    } else {
+      setControlValues({});
+    }
+  }, [props.component]);
+
+  const handleControlChange = (param: string, value: any) => {
+    setControlValues((prev) => ({ ...prev, [param]: value }));
+  };
 
   const codeSnippet = useMemo(
     () => getDemoCode(props.component),
     [props.component],
   );
   const previewNode = useMemo(
-    () => renderDemo(props.component),
-    [props.component],
+    () => renderDemo(props.component, controlValues),
+    [props.component, controlValues],
   );
   const apiReference = useMemo(
     () => getApiReference(props.component),
@@ -75,7 +97,7 @@ export function ComponentDetails(props: { component: ComponentItem }) {
         <div className="px-6 pb-6 pt-4">
           <div className="rounded-[16px] border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-6">
             {tab === "preview" ? (
-              <div className="relative flex min-h-[220px] items-center justify-center overflow-hidden">
+              <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden">
                 <div className="w-full text-center">{previewNode}</div>
               </div>
             ) : tab === "code" ? (
@@ -103,6 +125,102 @@ export function ComponentDetails(props: { component: ComponentItem }) {
           </div>
         </div>
       </section>
+
+      {/* Customization Controls */}
+      {controls && controls.length > 0 && (
+        <section className="mt-6 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <div className="mb-4 text-[14px] font-black text-[var(--sb-text-strong)]">
+            Customize
+          </div>
+          <div className="grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3">
+            {controls.map((control) => (
+              <div key={control.param} className="flex flex-col gap-2">
+                <label className="text-[12px] font-bold text-[var(--sb-text-muted)]">
+                  {control.label}
+                </label>
+                {control.type === "text" && (
+                  <input
+                    type="text"
+                    value={controlValues[control.param] || ""}
+                    onChange={(e) =>
+                      handleControlChange(control.param, e.target.value)
+                    }
+                    className="h-9 rounded-lg border border-[var(--sb-border-2)] bg-[var(--sb-bg)] px-3 text-[13px] text-[var(--sb-text-strong)] focus:border-[var(--sb-accent)] focus:outline-none"
+                  />
+                )}
+                {control.type === "number" && (
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="range"
+                      min={control.min}
+                      max={control.max}
+                      step={control.step || 1}
+                      value={controlValues[control.param] || 0}
+                      onChange={(e) =>
+                        handleControlChange(
+                          control.param,
+                          parseFloat(e.target.value),
+                        )
+                      }
+                      className="flex-1 accent-[var(--sb-accent)]"
+                    />
+                    <span className="w-12 text-right text-[12px] font-mono text-[var(--sb-text-muted)]">
+                      {controlValues[control.param]}
+                    </span>
+                  </div>
+                )}
+                {control.type === "boolean" && (
+                  <button
+                    onClick={() =>
+                      handleControlChange(
+                        control.param,
+                        !controlValues[control.param],
+                      )
+                    }
+                    className={`h-9 w-full rounded-lg border text-[13px] font-bold transition-colors ${
+                      controlValues[control.param]
+                        ? "border-[var(--sb-accent)] bg-[var(--sb-accent)] text-white"
+                        : "border-[var(--sb-border-2)] bg-[var(--sb-bg)] text-[var(--sb-text-muted)] hover:border-[var(--sb-border-1)]"
+                    }`}
+                  >
+                    {controlValues[control.param] ? "Enabled" : "Disabled"}
+                  </button>
+                )}
+                {control.type === "select" && (
+                  <select
+                    value={controlValues[control.param] || ""}
+                    onChange={(e) =>
+                      handleControlChange(control.param, e.target.value)
+                    }
+                    className="h-9 rounded-lg border border-[var(--sb-border-2)] bg-[var(--sb-bg)] px-3 text-[13px] text-[var(--sb-text-strong)] focus:border-[var(--sb-accent)] focus:outline-none"
+                  >
+                    {control.options.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                )}
+                {control.type === "color" && (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      value={controlValues[control.param] || "#000000"}
+                      onChange={(e) =>
+                        handleControlChange(control.param, e.target.value)
+                      }
+                      className="h-9 w-full cursor-pointer rounded-lg border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-1"
+                    />
+                    <span className="w-16 text-[12px] font-mono text-[var(--sb-text-muted)]">
+                      {controlValues[control.param]}
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Installation */}
       <section className="mt-5 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">

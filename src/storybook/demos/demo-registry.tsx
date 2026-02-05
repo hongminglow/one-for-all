@@ -183,56 +183,65 @@ function ScrollRevealDemo() {
   );
 }
 
-export function renderDemo(component: ComponentItem) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function renderDemo(component: ComponentItem, props?: any) {
   const title = component.title.toLowerCase();
   const slug = component.slug.toLowerCase();
   const url = component.url.toLowerCase();
 
-  if (slug.includes("split-text") || title.includes("split text")) {
-    return (
-      <SplitText
-        text="Elevate Your Web Experience"
-        className="text-[32px] font-black text-center leading-tight text-[var(--sb-text-strong)]"
-        delay={50}
-        animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
-        animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-        easing="easeOutCubic"
-        threshold={0.2}
-        rootMargin="-50px"
-      />
-    );
-  }
-
-  if (slug.includes("circular-text") || title.includes("circular text")) {
-    return (
-      <CircularText
-        text="REACT*BITS*COMPONENTS*"
-        onHover="speedUp"
-        spinDuration={20}
-        className="custom-class text-[var(--sb-text-strong)]"
-      />
-    );
-  }
-
-  if (slug.includes("shiny-text") || title.includes("shiny text")) {
-    return (
-      <div className="text-[28px] font-black tracking-tight">
-        <ShinyText
-          text="✨ Shiny Text Effect"
-          speed={2}
-          delay={0}
-          color="var(--sb-text-muted)"
-          shineColor="var(--sb-text-strong)"
-          spread={120}
-          direction="left"
-          yoyo={false}
-          pauseOnHover={false}
-          disabled={false}
+  switch (true) {
+    case slug.includes("split-text") || title.includes("split text"):
+      return (
+        <SplitText
+          text="Elevate Your Web Experience"
+          className="text-[32px] font-black text-center leading-tight text-[var(--sb-text-strong)]"
+          delay={50}
+          animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+          animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+          easing="easeOutCubic"
+          threshold={0.2}
+          rootMargin="-50px"
+          {...props}
         />
-      </div>
-    );
+      );
+
+    case slug.includes("circular-text") || title.includes("circular text"):
+      return (
+        <CircularText
+          text="REACT*BITS*COMPONENTS*"
+          onHover="speedUp"
+          spinDuration={20}
+          className="custom-class text-[var(--sb-text-strong)]"
+          {...props}
+        />
+      );
+
+    case slug.includes("shiny-text") || title.includes("shiny text"):
+      return (
+        <div
+          className="text-[28px] font-black tracking-tight"
+          style={{ width: "100%" }}
+        >
+          <ShinyText
+            text="✨ Shiny Text Effect"
+            speed={2}
+            delay={0}
+            color="var(--sb-text-muted)"
+            shineColor="var(--sb-text-strong)"
+            spread={120}
+            direction="left"
+            yoyo={false}
+            pauseOnHover={false}
+            disabled={false}
+            {...props}
+          />
+        </div>
+      );
+
+    // ... other cases fallback to generic
   }
 
+  // Fallback for older simpler demos
   if (slug.includes("gradient-text") || title.includes("gradient text")) {
     return <GradientTextDemo label={component.title} />;
   }
@@ -281,6 +290,119 @@ export function renderDemo(component: ComponentItem) {
       </div>
     </div>
   );
+}
+
+export type DemoControl =
+  | { type: "text"; param: string; label: string; defaultValue: string }
+  | {
+      type: "number";
+      param: string;
+      label: string;
+      defaultValue: number;
+      min?: number;
+      max?: number;
+      step?: number;
+    }
+  | { type: "boolean"; param: string; label: string; defaultValue: boolean }
+  | {
+      type: "select";
+      param: string;
+      label: string;
+      defaultValue: string;
+      options: string[];
+    }
+  | { type: "color"; param: string; label: string; defaultValue: string };
+
+export function getDemoControls(
+  component: ComponentItem,
+): DemoControl[] | null {
+  const slug = component.slug.toLowerCase();
+  const title = component.title.toLowerCase();
+
+  if (slug.includes("circular-text") || title.includes("circular text")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "REACT*BITS*COMPONENTS*",
+      },
+      {
+        type: "number",
+        param: "spinDuration",
+        label: "Spin Duration (s)",
+        defaultValue: 20,
+        min: 1,
+        max: 60,
+        step: 1,
+      },
+      {
+        type: "select",
+        param: "onHover",
+        label: "On Hover",
+        defaultValue: "speedUp",
+        options: ["speedUp", "slowDown", "pause", "goBonkers"],
+      },
+    ];
+  }
+
+  if (slug.includes("shiny-text") || title.includes("shiny text")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "✨ Shiny Text Effect",
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 2,
+        min: 0.1,
+        max: 10,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "delay",
+        label: "Delay",
+        defaultValue: 0,
+        min: 0,
+        max: 10,
+        step: 0.1,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Base Color",
+        defaultValue: "#b5b5b5",
+      },
+      {
+        type: "color",
+        param: "shineColor",
+        label: "Shine Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "number",
+        param: "spread",
+        label: "Spread",
+        defaultValue: 120,
+        min: 0,
+        max: 360,
+        step: 1,
+      },
+      {
+        type: "boolean",
+        param: "disabled",
+        label: "Disabled",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  return null;
 }
 
 export function getDemoCode(component: ComponentItem) {
