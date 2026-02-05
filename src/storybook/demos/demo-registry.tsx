@@ -6,6 +6,9 @@ import type { ComponentItem } from "../components.generated";
 import SplitText from "../../components/reactbits/SplitText";
 import CircularText from "../../components/reactbits/CircularText";
 import ShinyText from "../../components/reactbits/ShinyText";
+import CurvedLoop from "../../components/reactbits/CurvedLoop";
+import FuzzyText from "../../components/reactbits/FuzzyText";
+import GradientText from "../../components/reactbits/GradientText";
 
 function TypewriterDemo(props: { text: string }) {
   return (
@@ -440,67 +443,18 @@ export function getDemoCode(component: ComponentItem) {
   const slug = component.slug.toLowerCase();
   const url = component.url;
 
-  if (slug.includes("split-text") || title.includes("split text")) {
-    return [
-      "import SplitText from './SplitText';",
-      "",
-      "<SplitText",
-      '  text="Elevate Your Web Experience"',
-      '  className="text-4xl font-black text-center"',
-      "  delay={50}",
-      "  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}",
-      "  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}",
-      '  easing="easeOutCubic"',
-      "  threshold={0.2}",
-      '  rootMargin="-50px"',
-      "/>",
-    ].join("\n");
-  }
-
-  if (slug.includes("circular-text") || title.includes("circular text")) {
-    return [
-      "import CircularText from './CircularText';",
-      "",
-      "<CircularText",
-      '  text="REACT*BITS*COMPONENTS*"',
-      '  onHover="speedUp"',
-      "  spinDuration={20}",
-      '  className="custom-class"',
-      "/>",
-    ].join("\n");
-  }
-
-  if (slug.includes("shiny-text") || title.includes("shiny text")) {
-    return [
-      "import ShinyText from './ShinyText';",
-      "",
-      "<ShinyText",
-      '  text="✨ Shiny Text Effect"',
-      "  speed={2}",
-      "  delay={0}",
-      '  color="#b5b5b5"',
-      '  shineColor="#ffffff"',
-      "  spread={120}",
-      '  direction="left"',
-      "  yoyo={false}",
-      "  pauseOnHover={false}",
-      "  disabled={false}",
-      "/>",
-    ].join("\n");
-  }
-
-  if (slug.includes("gradient-text") || title.includes("gradient text")) {
-    return [
-      "// Gradient text (local demo)",
-      "export function GradientTextDemo({ label }: { label: string }) {",
-      "  return (",
-      '    <span className="bg-gradient-to-r from-[var(--sb-accent)] via-[#a78bfa] to-[var(--sb-accent-2)] bg-clip-text text-transparent">',
-      "      {label}",
-      "    </span>",
-      "  );",
-      "}",
-    ].join("\n");
-  }
+  if (slug.includes("split-text") || title.includes("split text"))
+    return splitTextCode;
+  if (slug.includes("circular-text") || title.includes("circular text"))
+    return circularTextCode;
+  if (slug.includes("shiny-text") || title.includes("shiny text"))
+    return shinyTextCode;
+  if (slug.includes("curved-marquee") || title.includes("curved marquee"))
+    return curvedLoopCode;
+  if (slug.includes("fuzzy-text") || title.includes("fuzzy text"))
+    return fuzzyTextCode;
+  if (slug.includes("gradient-text") || title.includes("gradient text"))
+    return gradientTextCode;
 
   if (title.includes("typewriter")) {
     return [
