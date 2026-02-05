@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 import type { ComponentItem } from "../components.generated";
 import SplitText from "../../components/reactbits/SplitText";
+import CircularText from "../../components/reactbits/CircularText";
+import ShinyText from "../../components/reactbits/ShinyText";
 
 function GradientTextDemo(props: { label: string }) {
   return (
@@ -201,6 +203,36 @@ export function renderDemo(component: ComponentItem) {
     );
   }
 
+  if (slug.includes("circular-text") || title.includes("circular text")) {
+    return (
+      <CircularText
+        text="REACT*BITS*COMPONENTS*"
+        onHover="speedUp"
+        spinDuration={20}
+        className="custom-class text-[var(--sb-text-strong)]"
+      />
+    );
+  }
+
+  if (slug.includes("shiny-text") || title.includes("shiny text")) {
+    return (
+      <div className="text-[28px] font-black tracking-tight">
+        <ShinyText
+          text="✨ Shiny Text Effect"
+          speed={2}
+          delay={0}
+          color="var(--sb-text-muted)"
+          shineColor="var(--sb-text-strong)"
+          spread={120}
+          direction="left"
+          yoyo={false}
+          pauseOnHover={false}
+          disabled={false}
+        />
+      </div>
+    );
+  }
+
   if (slug.includes("gradient-text") || title.includes("gradient text")) {
     return <GradientTextDemo label={component.title} />;
   }
@@ -269,6 +301,38 @@ export function getDemoCode(component: ComponentItem) {
       '  easing="easeOutCubic"',
       "  threshold={0.2}",
       '  rootMargin="-50px"',
+      "/>",
+    ].join("\n");
+  }
+
+  if (slug.includes("circular-text") || title.includes("circular text")) {
+    return [
+      "import CircularText from './CircularText';",
+      "",
+      "<CircularText",
+      '  text="REACT*BITS*COMPONENTS*"',
+      '  onHover="speedUp"',
+      "  spinDuration={20}",
+      '  className="custom-class"',
+      "/>",
+    ].join("\n");
+  }
+
+  if (slug.includes("shiny-text") || title.includes("shiny text")) {
+    return [
+      "import ShinyText from './ShinyText';",
+      "",
+      "<ShinyText",
+      '  text="✨ Shiny Text Effect"',
+      "  speed={2}",
+      "  delay={0}",
+      '  color="#b5b5b5"',
+      '  shineColor="#ffffff"',
+      "  spread={120}",
+      '  direction="left"',
+      "  yoyo={false}",
+      "  pauseOnHover={false}",
+      "  disabled={false}",
       "/>",
     ].join("\n");
   }

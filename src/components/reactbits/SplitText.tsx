@@ -52,8 +52,8 @@ const SplitText: React.FC<SplitTextProps> = ({
     letters.map((_, i) => ({
       from: animationFrom,
       to: inView
-        ? async (next: any) => {
-            await next(animationTo);
+        ? async (next: (props: Record<string, unknown>) => Promise<void>) => {
+            await next(animationTo as Record<string, unknown>);
             animatedCount.current += 1;
             if (
               animatedCount.current === letters.length &&

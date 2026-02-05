@@ -67,8 +67,8 @@ export function ComponentDetails(props: { component: ComponentItem }) {
         <div className="px-6 pb-6 pt-4">
           <div className="rounded-[16px] border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-6">
             {tab === "preview" ? (
-              <div className="flex min-h-[220px] items-center justify-center">
-                <div className="w-full">{previewNode}</div>
+              <div className="relative flex min-h-[220px] items-center justify-center overflow-hidden">
+                <div className="w-full text-center">{previewNode}</div>
               </div>
             ) : tab === "code" ? (
               <pre className="sb-scroll max-h-[520px] overflow-auto whitespace-pre text-[12px] font-semibold leading-5 text-[var(--sb-code)]">
