@@ -178,7 +178,44 @@ export function ComponentDetails(props: { component: ComponentItem }) {
         </div>
       </section>
 
-      {/* API intentionally omitted unless we can source real props from upstream docs */}
+      {/* API Reference */}
+      <section className="mt-10 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+        <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+          API Reference
+        </div>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-left text-[13px]">
+            <thead>
+              <tr className="border-b border-[var(--sb-border-2)]">
+                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                  Prop
+                </th>
+                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                  Type
+                </th>
+                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                  Default
+                </th>
+                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[var(--sb-text-muted)]">
+              {/* This table body should ideally be populated dynamically.
+                   For now, it acts as a placeholder or we can hardcode for known components if needed.
+                   Since we don't have a centralized prop definition system yet, we will show a generic message or just the header.
+               */}
+              <tr>
+                <td colSpan={4} className="py-4 text-center italic opacity-60">
+                  Refer to the component source code or official documentation
+                  for detailed API usage.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 }
