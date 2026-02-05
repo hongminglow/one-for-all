@@ -4,7 +4,11 @@ import { useMemo, useState } from "react";
 
 import type { ComponentItem } from "./components.generated";
 import { STORYBOOK } from "./storybook-constants";
-import { getDemoCode, renderDemo } from "./demos/demo-registry";
+import {
+  getDemoCode,
+  renderDemo,
+  getApiReference,
+} from "./demos/demo-registry";
 
 type TabKey = "preview" | "code";
 
@@ -17,6 +21,10 @@ export function ComponentDetails(props: { component: ComponentItem }) {
   );
   const previewNode = useMemo(
     () => renderDemo(props.component),
+    [props.component],
+  );
+  const apiReference = useMemo(
+    () => getApiReference(props.component),
     [props.component],
   );
 
@@ -202,16 +210,35 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               </tr>
             </thead>
             <tbody className="text-[var(--sb-text-muted)]">
-              {/* This table body should ideally be populated dynamically.
-                   For now, it acts as a placeholder or we can hardcode for known components if needed.
-                   Since we don't have a centralized prop definition system yet, we will show a generic message or just the header.
-               */}
-              <tr>
-                <td colSpan={4} className="py-4 text-center italic opacity-60">
-                  Refer to the component source code or official documentation
-                  for detailed API usage.
-                </td>
-              </tr>
+              {apiReference ? (
+                apiReference.map((prop, i) => (
+                  <tr
+                    key={i}
+                    className="border-b border-[var(--sb-border-1)] last:border-0"
+                  >
+                    <td className="py-3 font-mono text-[12px] font-semibold text-[var(--sb-code)]">
+                      {prop.prop}
+                    </td>
+                    <td className="py-3 font-mono text-[12px] opacity-80">
+                      {prop.type}
+                    </td>
+                    <td className="py-3 font-mono text-[12px] opacity-80">
+                      {prop.default}
+                    </td>
+                    <td className="py-3 opacity-90">{prop.description}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="py-4 text-center italic opacity-60"
+                  >
+                    Refer to the component source code or official documentation
+                    for detailed API usage.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

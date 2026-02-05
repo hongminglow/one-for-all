@@ -412,3 +412,113 @@ export function getDemoCode(component: ComponentItem) {
     "}",
   ].join("\n");
 }
+
+export type ApiProp = {
+  prop: string;
+  type: string;
+  default: string;
+  description: string;
+};
+
+export function getApiReference(component: ComponentItem): ApiProp[] | null {
+  const slug = component.slug.toLowerCase();
+  const title = component.title.toLowerCase();
+
+  if (slug.includes("circular-text") || title.includes("circular text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "''",
+        description: "The text to display in a circular layout.",
+      },
+      {
+        prop: "spinDuration",
+        type: "number",
+        default: "20",
+        description: "The duration (in seconds) for one full rotation.",
+      },
+      {
+        prop: "onHover",
+        type: "'slowDown' | 'speedUp' | 'pause' | 'goBonkers'",
+        default: "undefined",
+        description: "Specifies the hover behavior variant.",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "''",
+        description:
+          "Optional additional CSS classes to apply to the component.",
+      },
+    ];
+  }
+
+  if (slug.includes("shiny-text") || title.includes("shiny text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "'-'",
+        description: "The text to be displayed with the shiny effect.",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: '"#b5b5b5"',
+        description: "The base color of the text.",
+      },
+      {
+        prop: "shineColor",
+        type: "string",
+        default: '"#ffffff"',
+        description: "The color of the shine/highlight effect.",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "2",
+        description: "Duration of one animation cycle in seconds.",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "0",
+        description: "Pause duration (in seconds) between animation cycles.",
+      },
+      {
+        prop: "spread",
+        type: "number",
+        default: "120",
+        description: "The angle (in degrees) of the gradient spread.",
+      },
+      {
+        prop: "yoyo",
+        type: "boolean",
+        default: "false",
+        description:
+          "If true, the animation reverses direction instead of looping.",
+      },
+      {
+        prop: "pauseOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Pauses the animation when the user hovers over the text.",
+      },
+      {
+        prop: "direction",
+        type: "'left' | 'right'",
+        default: '"left"',
+        description: "The direction the shine moves across the text.",
+      },
+      {
+        prop: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Disables the shiny effect when set to true.",
+      },
+    ];
+  }
+
+  return null;
+}
