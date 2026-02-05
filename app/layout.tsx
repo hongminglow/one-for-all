@@ -16,7 +16,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "One For All UI",
+  title: "One For All",
   description:
     "A Storybook-style catalog of interesting UI components from around the web.",
 };

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import type { ComponentItem } from "../components.generated";
+import SplitText from "../../components/reactbits/SplitText";
 
 function GradientTextDemo(props: { label: string }) {
   return (
@@ -185,6 +186,21 @@ export function renderDemo(component: ComponentItem) {
   const slug = component.slug.toLowerCase();
   const url = component.url.toLowerCase();
 
+  if (slug.includes("split-text") || title.includes("split text")) {
+    return (
+      <SplitText
+        text="Elevate Your Web Experience"
+        className="text-[32px] font-black text-center leading-tight text-[var(--sb-text-strong)]"
+        delay={50}
+        animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+        animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+        easing="easeOutCubic"
+        threshold={0.2}
+        rootMargin="-50px"
+      />
+    );
+  }
+
   if (slug.includes("gradient-text") || title.includes("gradient text")) {
     return <GradientTextDemo label={component.title} />;
   }
@@ -239,6 +255,23 @@ export function getDemoCode(component: ComponentItem) {
   const title = component.title.toLowerCase();
   const slug = component.slug.toLowerCase();
   const url = component.url;
+
+  if (slug.includes("split-text") || title.includes("split text")) {
+    return [
+      "import SplitText from './SplitText';",
+      "",
+      "<SplitText",
+      '  text="Elevate Your Web Experience"',
+      '  className="text-4xl font-black text-center"',
+      "  delay={50}",
+      "  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}",
+      "  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}",
+      '  easing="easeOutCubic"',
+      "  threshold={0.2}",
+      '  rootMargin="-50px"',
+      "/>",
+    ].join("\\n");
+  }
 
   if (slug.includes("gradient-text") || title.includes("gradient text")) {
     return [

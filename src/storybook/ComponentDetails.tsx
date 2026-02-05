@@ -6,7 +6,7 @@ import type { ComponentItem } from "./components.generated";
 import { STORYBOOK } from "./storybook-constants";
 import { getDemoCode, renderDemo } from "./demos/demo-registry";
 
-type TabKey = "preview" | "code" | "docs";
+type TabKey = "preview" | "code";
 
 export function ComponentDetails(props: { component: ComponentItem }) {
   const [tab, setTab] = useState<TabKey>("preview");
@@ -44,8 +44,8 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               onClick={() => setTab("preview")}
               className={
                 tab === "preview"
-                  ? "h-8 px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)]"
-                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)]"
+                  ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-colors"
+                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
               }
             >
               {STORYBOOK.componentPage.tabs.preview}
@@ -55,22 +55,11 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               onClick={() => setTab("code")}
               className={
                 tab === "code"
-                  ? "h-8 px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)]"
-                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)]"
+                  ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-colors"
+                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
               }
             >
               {STORYBOOK.componentPage.tabs.code}
-            </button>
-            <button
-              type="button"
-              onClick={() => setTab("docs")}
-              className={
-                tab === "docs"
-                  ? "h-8 px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)]"
-                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)]"
-              }
-            >
-              Docs
             </button>
           </div>
         </div>
