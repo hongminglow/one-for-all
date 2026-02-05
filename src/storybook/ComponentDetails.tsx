@@ -305,31 +305,31 @@ export function ComponentDetails(props: { component: ComponentItem }) {
       </section>
 
       {/* API Reference */}
-      <section className="mt-10 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
-        <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
-          API Reference
-        </div>
-        <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-left text-[13px]">
-            <thead>
-              <tr className="border-b border-[var(--sb-border-2)]">
-                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
-                  Prop
-                </th>
-                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
-                  Type
-                </th>
-                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
-                  Default
-                </th>
-                <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="text-[var(--sb-text-muted)]">
-              {apiReference ? (
-                apiReference.map((prop, i) => (
+      {apiReference && apiReference.length > 0 && (
+        <section className="mt-10 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+            API Reference
+          </div>
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-left text-[13px]">
+              <thead>
+                <tr className="border-b border-[var(--sb-border-2)]">
+                  <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                    Prop
+                  </th>
+                  <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                    Type
+                  </th>
+                  <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                    Default
+                  </th>
+                  <th className="pb-2 font-bold text-[var(--sb-text-strong)]">
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-[var(--sb-text-muted)]">
+                {apiReference.map((prop, i) => (
                   <tr
                     key={i}
                     className="border-b border-[var(--sb-border-1)] last:border-0"
@@ -345,22 +345,12 @@ export function ComponentDetails(props: { component: ComponentItem }) {
                     </td>
                     <td className="py-3 opacity-90">{prop.description}</td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan={4}
-                    className="py-4 text-center italic opacity-60"
-                  >
-                    Refer to the component source code or official documentation
-                    for detailed API usage.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </section>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

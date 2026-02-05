@@ -6,14 +6,6 @@ import type { ComponentItem } from "../components.generated";
 import SplitText from "../../components/reactbits/SplitText";
 import CircularText from "../../components/reactbits/CircularText";
 import ShinyText from "../../components/reactbits/ShinyText";
-
-function GradientTextDemo(props: { label: string }) {
-  return (
-    <div className="text-[26px] font-black tracking-tight">
-      <span className="bg-gradient-to-r from-[var(--sb-accent)] via-[#a78bfa] to-[var(--sb-accent-2)] bg-clip-text text-transparent">
-        {props.label}
-      </span>
-    </div>
   );
 }
 
@@ -238,13 +230,53 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
+    case slug.includes("curved-marquee") || title.includes("curved marquee"):
+      return (
+        <div className="w-full h-[300px] relative overflow-hidden">
+          <CurvedLoop
+            marqueeText="CURVED LOOP • CURVED LOOP •"
+            curveAmount={400}
+            speed={2}
+            direction="left"
+            interactive={true}
+            className="text-[32px] font-black text-[var(--sb-text-strong)]"
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("fuzzy-text") || title.includes("fuzzy text"):
+      return (
+        <FuzzyText
+          baseIntensity={0.18}
+          hoverIntensity={0.5}
+          enableHover={true}
+          className="text-[40px] font-black text-[var(--sb-text-strong)]"
+          {...props}
+        >
+          Fuzzy Text
+        </FuzzyText>
+      );
+
+    case slug.includes("gradient-text") || title.includes("gradient text"):
+      return (
+        <div className="text-[32px] font-black">
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="custom-class"
+            {...props}
+          >
+            Gradient Text
+          </GradientText>
+        </div>
+      );
+
     // ... other cases fallback to generic
   }
 
   // Fallback for older simpler demos
-  if (slug.includes("gradient-text") || title.includes("gradient text")) {
-    return <GradientTextDemo label={component.title} />;
-  }
   if (title.includes("typewriter")) {
     return <TypewriterDemo text="Typewriter text demo" />;
   }
@@ -638,6 +670,178 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         type: "boolean",
         default: "false",
         description: "Disables the shiny effect when set to true.",
+      },
+    ];
+  }
+
+  if (slug.includes("split-text") || title.includes("split text")) {
+    return [
+      {
+        prop: "tag",
+        type: "string",
+        default: '"p"',
+        description:
+          'HTML tag to render: "h1", "h2", "h3", "h4", "h5", "h6", "p"',
+      },
+      {
+        prop: "text",
+        type: "string",
+        default: '""',
+        description: "The text content to animate.",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: '""',
+        description: "Additional class names to style the component.",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "50",
+        description: "Delay between animations for each letter (in ms).",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "1.25",
+        description: "Duration of each letter animation (in seconds).",
+      },
+      {
+        prop: "ease",
+        type: "string",
+        default: '"power3.out"',
+        description: "GSAP easing function for the animation.",
+      },
+      {
+        prop: "splitType",
+        type: "string",
+        default: '"chars"',
+        description:
+          'Split type: "chars", "words", "lines", or "words, chars".',
+      },
+      {
+        prop: "from",
+        type: "object",
+        default: "{ opacity: 0, y: 40 }",
+        description: "Initial GSAP properties for each letter/word.",
+      },
+      {
+        prop: "to",
+        type: "object",
+        default: "{ opacity: 1, y: 0 }",
+        description: "Target GSAP properties for each letter/word.",
+      },
+      {
+        prop: "threshold",
+        type: "number",
+        default: "0.1",
+        description: "Intersection threshold to trigger the animation (0-1).",
+      },
+    ];
+  }
+
+  if (slug.includes("curved-marquee") || title.includes("curved marquee")) {
+    return [
+      {
+        prop: "marqueeText",
+        type: "string",
+        default: '""',
+        description: "The text to display in the curved marquee",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "2",
+        description: "Animation speed of the marquee text",
+      },
+      {
+        prop: "curveAmount",
+        type: "number",
+        default: "400",
+        description: "Amount of curve in the text path",
+      },
+      {
+        prop: "direction",
+        type: '"left" | "right"',
+        default: '"left"',
+        description: "Initial direction of the marquee animation",
+      },
+      {
+        prop: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Whether the marquee can be dragged by the user",
+      },
+    ];
+  }
+
+  if (slug.includes("fuzzy-text") || title.includes("fuzzy text")) {
+    return [
+      {
+        prop: "fontSize",
+        type: "number | string",
+        default: '"clamp(2rem, 8vw, 8rem)"',
+        description: "Font size of the text.",
+      },
+      {
+        prop: "baseIntensity",
+        type: "number",
+        default: "0.18",
+        description: "Fuzz intensity when not hovered.",
+      },
+      {
+        prop: "hoverIntensity",
+        type: "number",
+        default: "0.5",
+        description: "Fuzz intensity when hovered.",
+      },
+      {
+        prop: "fuzzRange",
+        type: "number",
+        default: "30",
+        description: "Maximum pixel displacement.",
+      },
+      {
+        prop: "direction",
+        type: "'horizontal' | 'vertical' | 'both'",
+        default: "'horizontal'",
+        description: "Axis for displacement effect.",
+      },
+      {
+        prop: "glitchMode",
+        type: "boolean",
+        default: "false",
+        description: "Enables periodic random intensity spikes.",
+      },
+    ];
+  }
+
+  if (slug.includes("gradient-text") || title.includes("gradient text")) {
+    return [
+      {
+        prop: "colors",
+        type: "string[]",
+        default: '["#40ffaa", "#4079ff", ...]',
+        description: "Colors of the gradient.",
+      },
+      {
+        prop: "animationSpeed",
+        type: "number",
+        default: "8",
+        description: "Duration of one animation cycle.",
+      },
+      {
+        prop: "showBorder",
+        type: "boolean",
+        default: "false",
+        description: "Shows a border around the text.",
+      },
+      {
+        prop: "direction",
+        type: "'horizontal' | 'vertical' | 'diagonal'",
+        default: "'horizontal'",
+        description: "Direction of the animation.",
       },
     ];
   }
