@@ -9,6 +9,14 @@ import ShinyText from "../../components/reactbits/ShinyText";
 import CurvedLoop from "../../components/reactbits/CurvedLoop";
 import FuzzyText from "../../components/reactbits/FuzzyText";
 import GradientText from "../../components/reactbits/GradientText";
+import {
+  circularTextCode,
+  curvedLoopCode,
+  fuzzyTextCode,
+  gradientTextCode,
+  shinyTextCode,
+  splitTextCode,
+} from "./code-snippets";
 
 function TypewriterDemo(props: { text: string }) {
   return (

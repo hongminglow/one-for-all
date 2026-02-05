@@ -934,3 +934,1020 @@ export default function GradientText({
     </motion.div>
   );
 }`;
+
+export const fallingTextCode = `import { useRef, useState, useEffect } from 'react';
+import Matter from 'matter-js';
+import './FallingText.css';
+
+interface FallingTextProps {
+  text?: string;
+  highlightWords?: string[];
+  highlightClass?: string;
+  trigger?: 'auto' | 'scroll' | 'click' | 'hover';
+  backgroundColor?: string;
+  wireframes?: boolean;
+  gravity?: number;
+  mouseConstraintStiffness?: number;
+  fontSize?: string;
+}
+
+const FallingText: React.FC<FallingTextProps> = ({
+  text = '',
+  highlightWords = [],
+  highlightClass = 'highlighted',
+  trigger = 'auto',
+  backgroundColor = 'transparent',
+  wireframes = false,
+  gravity = 1,
+  mouseConstraintStiffness = 0.2,
+  fontSize = '1rem'
+}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const canvasContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const [effectStarted, setEffectStarted] = useState(false);
+
+  useEffect(() => {
+    if (!textRef.current) return;
+    const words = text.split(' ');
+    const newHTML = words
+      .map(word => {
+        const isHighlighted = highlightWords.some(hw => word.startsWith(hw));
+        return \`<span class="word \${isHighlighted ? highlightClass : ''}">\${word}</span>\`;
+      })
+      .join(' ');
+    textRef.current.innerHTML = newHTML;
+  }, [text, highlightWords, highlightClass]);
+
+  useEffect(() => {
+    if (trigger === 'auto') {
+      setEffectStarted(true);
+      return;
+    }
+    if (trigger === 'scroll' && containerRef.current) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setEffectStarted(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(containerRef.current);
+      return () => observer.disconnect();
+    }
+  }, [trigger]);
+
+  useEffect(() => {
+    if (!effectStarted) return;
+
+    const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } = Matter;
+
+    if (!containerRef.current || !canvasContainerRef.current || !textRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const width = containerRect.width;
+    const height = containerRect.height;
+
+    if (width <= 0 || height <= 0) {
+      return;
+    }
+
+    const engine = Engine.create();
+    engine.world.gravity.y = gravity;
+
+    const render = Render.create({
+      element: canvasContainerRef.current,
+      engine,
+      options: {
+        width,
+        height,
+        background: backgroundColor,
+        wireframes
+      }
+    });
+
+    const boundaryOptions = {
+      isStatic: true,
+      render: { fillStyle: 'transparent' }
+    };
+    const floor = Bodies.rectangle(width / 2, height + 25, width, 50, boundaryOptions);
+    const leftWall = Bodies.rectangle(-25, height / 2, 50, height, boundaryOptions);
+    const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, boundaryOptions);
+    const ceiling = Bodies.rectangle(width / 2, -25, width, 50, boundaryOptions);
+
+    const wordSpans = textRef.current.querySelectorAll<HTMLSpanElement>('.word');
+    const wordBodies = Array.from(wordSpans).map(elem => {
+      const rect = elem.getBoundingClientRect();
+
+      const x = rect.left - containerRect.left + rect.width / 2;
+      const y = rect.top - containerRect.top + rect.height / 2;
+
+      const body = Bodies.rectangle(x, y, rect.width, rect.height, {
+        render: { fillStyle: 'transparent' },
+        restitution: 0.8,
+        frictionAir: 0.01,
+        friction: 0.2
+      });
+
+      Matter.Body.setVelocity(body, {
+        x: (Math.random() - 0.5) * 5,
+        y: 0
+      });
+      Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05);
+      return { elem, body };
+    });
+
+    wordBodies.forEach(({ elem, body }) => {
+      elem.style.position = 'absolute';
+      elem.style.left = \`\${body.position.x - body.bounds.max.x + body.bounds.min.x / 2}px\`;
+      elem.style.top = \`\${body.position.y - body.bounds.max.y + body.bounds.min.y / 2}px\`;
+      elem.style.transform = 'none';
+    });
+
+    const mouse = Mouse.create(containerRef.current);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse,
+      constraint: {
+        stiffness: mouseConstraintStiffness,
+        render: { visible: false }
+      }
+    });
+    render.mouse = mouse;
+
+    World.add(engine.world, [floor, leftWall, rightWall, ceiling, mouseConstraint, ...wordBodies.map(wb => wb.body)]);
+
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+    Render.run(render);
+
+    const updateLoop = () => {
+      wordBodies.forEach(({ body, elem }) => {
+        const { x, y } = body.position;
+        elem.style.left = \`\${x}px\`;
+        elem.style.top = \`\${y}px\`;
+        elem.style.transform = \`translate(-50%, -50%) rotate(\${body.angle}rad)\`;
+      });
+      Matter.Engine.update(engine);
+      requestAnimationFrame(updateLoop);
+    };
+    updateLoop();
+
+    return () => {
+      Render.stop(render);
+      Runner.stop(runner);
+      if (render.canvas && canvasContainerRef.current) {
+        canvasContainerRef.current.removeChild(render.canvas);
+      }
+      World.clear(engine.world, false);
+      Engine.clear(engine);
+    };
+  }, [effectStarted, gravity, wireframes, backgroundColor, mouseConstraintStiffness]);
+
+  const handleTrigger = () => {
+    if (!effectStarted && (trigger === 'click' || trigger === 'hover')) {
+      setEffectStarted(true);
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="falling-text-container"
+      onClick={trigger === 'click' ? handleTrigger : undefined}
+      onMouseEnter={trigger === 'hover' ? handleTrigger : undefined}
+      style={{
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      <div
+        ref={textRef}
+        className="falling-text-target"
+        style={{
+          fontSize: fontSize,
+          lineHeight: 1.4
+        }}
+      />
+      <div ref={canvasContainerRef} className="falling-text-canvas" />
+    </div>
+  );
+};
+
+export default FallingText;`;
+
+export const textCursorCode = `import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import './TextCursor.css';
+
+interface TextCursorProps {
+  text: string;
+  spacing?: number;
+  followMouseDirection?: boolean;
+  randomFloat?: boolean;
+  exitDuration?: number;
+  removalInterval?: number;
+  maxPoints?: number;
+}
+
+interface TrailItem {
+  id: number;
+  x: number;
+  y: number;
+  angle: number;
+  randomX?: number;
+  randomY?: number;
+  randomRotate?: number;
+}
+
+const TextCursor: React.FC<TextCursorProps> = ({
+  text = '⚛️',
+  spacing = 100,
+  followMouseDirection = true,
+  randomFloat = true,
+  exitDuration = 0.5,
+  removalInterval = 30,
+  maxPoints = 5
+}) => {
+  const [trail, setTrail] = useState<TrailItem[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lastMoveTimeRef = useRef<number>(Date.now());
+  const idCounter = useRef<number>(0);
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    setTrail(prev => {
+      const newTrail = [...prev];
+
+      const createRandomData = () =>
+        randomFloat
+          ? {
+              randomX: Math.random() * 10 - 5,
+              randomY: Math.random() * 10 - 5,
+              randomRotate: Math.random() * 10 - 5
+            }
+          : {};
+
+      if (newTrail.length === 0) {
+        newTrail.push({
+          id: idCounter.current++,
+          x: mouseX,
+          y: mouseY,
+          angle: 0,
+          ...createRandomData()
+        });
+      } else {
+        const last = newTrail[newTrail.length - 1];
+        const dx = mouseX - last.x;
+        const dy = mouseY - last.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance >= spacing) {
+          let rawAngle = (Math.atan2(dy, dx) * 180) / Math.PI;
+
+          const computedAngle = followMouseDirection ? rawAngle : 0;
+          const steps = Math.floor(distance / spacing);
+
+          for (let i = 1; i <= steps; i++) {
+            const t = (spacing * i) / distance;
+            const newX = last.x + dx * t;
+            const newY = last.y + dy * t;
+
+            newTrail.push({
+              id: idCounter.current++,
+              x: newX,
+              y: newY,
+              angle: computedAngle,
+              ...createRandomData()
+            });
+          }
+        }
+      }
+
+      if (newTrail.length > maxPoints) {
+        return newTrail.slice(newTrail.length - maxPoints);
+      }
+      return newTrail;
+    });
+
+    lastMoveTimeRef.current = Date.now();
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    container.addEventListener('mousemove', handleMouseMove);
+    return () => container.removeEventListener('mousemove', handleMouseMove);
+  }, [containerRef.current]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() - lastMoveTimeRef.current > 100) {
+        setTrail(prev => (prev.length > 0 ? prev.slice(1) : prev));
+      }
+    }, removalInterval);
+    return () => clearInterval(interval);
+  }, [removalInterval]);
+
+  return (
+    <div ref={containerRef} className="text-cursor-container">
+      <div className="text-cursor-inner">
+        <AnimatePresence>
+          {trail.map(item => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, scale: 1, rotate: item.angle }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                x: randomFloat ? [0, item.randomX || 0, 0] : 0,
+                y: randomFloat ? [0, item.randomY || 0, 0] : 0,
+                rotate: randomFloat ? [item.angle, item.angle + (item.randomRotate || 0), item.angle] : item.angle
+              }}
+              exit={{ opacity: 0, scale: 0 }}
+              transition={{
+                opacity: { duration: exitDuration, ease: 'easeOut' },
+                ...(randomFloat && {
+                  x: { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' },
+                  y: { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' },
+                  rotate: { duration: 2, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' }
+                })
+              }}
+              className="text-cursor-item"
+              style={{ left: item.x, top: item.y }}
+            >
+              {text}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+export default TextCursor;`;
+
+export const decryptedTextCode = `import { useEffect, useState, useRef } from 'react';
+import { motion } from 'motion/react';
+import type { HTMLMotionProps } from 'motion/react';
+
+const styles = {
+  wrapper: {
+    display: 'inline-block',
+    whiteSpace: 'pre-wrap'
+  },
+  srOnly: {
+    position: 'absolute' as const,
+    width: '1px',
+    height: '1px',
+    padding: 0,
+    margin: '-1px',
+    overflow: 'hidden',
+    clip: 'rect(0,0,0,0)',
+    border: 0
+  }
+};
+
+interface DecryptedTextProps extends HTMLMotionProps<'span'> {
+  text: string;
+  speed?: number;
+  maxIterations?: number;
+  sequential?: boolean;
+  revealDirection?: 'start' | 'end' | 'center';
+  useOriginalCharsOnly?: boolean;
+  characters?: string;
+  className?: string;
+  parentClassName?: string;
+  encryptedClassName?: string;
+  animateOn?: 'view' | 'hover' | 'both';
+}
+
+export default function DecryptedText({
+  text,
+  speed = 50,
+  maxIterations = 10,
+  sequential = false,
+  revealDirection = 'start',
+  useOriginalCharsOnly = false,
+  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+',
+  className = '',
+  parentClassName = '',
+  encryptedClassName = '',
+  animateOn = 'hover',
+  ...props
+}: DecryptedTextProps) {
+  const [displayText, setDisplayText] = useState<string>(text);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isScrambling, setIsScrambling] = useState<boolean>(false);
+  const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set());
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const containerRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    let currentIteration = 0;
+
+    const getNextIndex = (revealedSet: Set<number>): number => {
+      const textLength = text.length;
+      switch (revealDirection) {
+        case 'start':
+          return revealedSet.size;
+        case 'end':
+          return textLength - 1 - revealedSet.size;
+        case 'center': {
+          const middle = Math.floor(textLength / 2);
+          const offset = Math.floor(revealedSet.size / 2);
+          const nextIndex = revealedSet.size % 2 === 0 ? middle + offset : middle - offset - 1;
+
+          if (nextIndex >= 0 && nextIndex < textLength && !revealedSet.has(nextIndex)) {
+            return nextIndex;
+          }
+
+          for (let i = 0; i < textLength; i++) {
+            if (!revealedSet.has(i)) return i;
+          }
+          return 0;
+        }
+        default:
+          return revealedSet.size;
+      }
+    };
+
+    const availableChars = useOriginalCharsOnly
+      ? Array.from(new Set(text.split(''))).filter(char => char !== ' ')
+      : characters.split('');
+
+    const shuffleText = (originalText: string, currentRevealed: Set<number>): string => {
+      if (useOriginalCharsOnly) {
+        const positions = originalText.split('').map((char, i) => ({
+          char,
+          isSpace: char === ' ',
+          index: i,
+          isRevealed: currentRevealed.has(i)
+        }));
+
+        const nonSpaceChars = positions.filter(p => !p.isSpace && !p.isRevealed).map(p => p.char);
+
+        for (let i = nonSpaceChars.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [nonSpaceChars[i], nonSpaceChars[j]] = [nonSpaceChars[j], nonSpaceChars[i]];
+        }
+
+        let charIndex = 0;
+        return positions
+          .map(p => {
+            if (p.isSpace) return ' ';
+            if (p.isRevealed) return originalText[p.index];
+            return nonSpaceChars[charIndex++];
+          })
+          .join('');
+      } else {
+        return originalText
+          .split('')
+          .map((char, i) => {
+            if (char === ' ') return ' ';
+            if (currentRevealed.has(i)) return originalText[i];
+            return availableChars[Math.floor(Math.random() * availableChars.length)];
+          })
+          .join('');
+      }
+    };
+
+    if (isHovering) {
+      setIsScrambling(true);
+      interval = setInterval(() => {
+        setRevealedIndices(prevRevealed => {
+          if (sequential) {
+            if (prevRevealed.size < text.length) {
+              const nextIndex = getNextIndex(prevRevealed);
+              const newRevealed = new Set(prevRevealed);
+              newRevealed.add(nextIndex);
+              setDisplayText(shuffleText(text, newRevealed));
+              return newRevealed;
+            } else {
+              clearInterval(interval);
+              setIsScrambling(false);
+              return prevRevealed;
+            }
+          } else {
+            setDisplayText(shuffleText(text, prevRevealed));
+            currentIteration++;
+            if (currentIteration >= maxIterations) {
+              clearInterval(interval);
+              setIsScrambling(false);
+              setDisplayText(text);
+            }
+            return prevRevealed;
+          }
+        });
+      }, speed);
+    } else {
+      setDisplayText(text);
+      setRevealedIndices(new Set());
+      setIsScrambling(false);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly]);
+
+  useEffect(() => {
+    if (animateOn !== 'view' && animateOn !== 'both') return;
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setIsHovering(true);
+          setHasAnimated(true);
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const currentRef = containerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [animateOn, hasAnimated]);
+
+  const hoverProps =
+    animateOn === 'hover' || animateOn === 'both'
+      ? {
+          onMouseEnter: () => setIsHovering(true),
+          onMouseLeave: () => setIsHovering(false)
+        }
+      : {};
+
+  return (
+    <motion.span className={parentClassName} ref={containerRef} style={styles.wrapper} {...hoverProps} {...props}>
+      <span style={styles.srOnly}>{displayText}</span>
+
+      <span aria-hidden="true">
+        {displayText.split('').map((char, index) => {
+          const isRevealedOrDone = revealedIndices.has(index) || !isScrambling || !isHovering;
+
+          return (
+            <span key={index} className={isRevealedOrDone ? className : encryptedClassName}>
+              {char}
+            </span>
+          );
+        })}
+      </span>
+    </motion.span>
+  );
+}`;
+
+export const scrollFloatCode = `import React, { useEffect, useMemo, useRef, ReactNode, RefObject } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import './ScrollFloat.css';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ScrollFloatProps {
+  children: ReactNode;
+  scrollContainerRef?: RefObject<HTMLElement>;
+  containerClassName?: string;
+  textClassName?: string;
+  animationDuration?: number;
+  ease?: string;
+  scrollStart?: string;
+  scrollEnd?: string;
+  stagger?: number;
+}
+
+const ScrollFloat: React.FC<ScrollFloatProps> = ({
+  children,
+  scrollContainerRef,
+  containerClassName = '',
+  textClassName = '',
+  animationDuration = 1,
+  ease = 'back.inOut(2)',
+  scrollStart = 'center bottom+=50%',
+  scrollEnd = 'bottom bottom-=40%',
+  stagger = 0.03
+}) => {
+  const containerRef = useRef<HTMLHeadingElement>(null);
+
+  const splitText = useMemo(() => {
+    const text = typeof children === 'string' ? children : '';
+    return text.split('').map((char, index) => (
+      <span className="char" key={index}>
+        {char === ' ' ? '\\u00A0' : char}
+      </span>
+    ));
+  }, [children]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+
+    const charElements = el.querySelectorAll('.char');
+
+    gsap.fromTo(
+      charElements,
+      {
+        willChange: 'opacity, transform',
+        opacity: 0,
+        yPercent: 120,
+        scaleY: 2.3,
+        scaleX: 0.7,
+        transformOrigin: '50% 0%'
+      },
+      {
+        duration: animationDuration,
+        ease: ease,
+        opacity: 1,
+        yPercent: 0,
+        scaleY: 1,
+        scaleX: 1,
+        stagger: stagger,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: scrollStart,
+          end: scrollEnd,
+          scrub: true
+        }
+      }
+    );
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
+
+  return (
+    <h2 ref={containerRef} className={\`scroll-float \${containerClassName}\`}>
+      <span className={\`scroll-float-text \${textClassName}\`}>{splitText}</span>
+    </h2>
+  );
+};
+
+export default ScrollFloat;\`;
+
+export const scrollRevealCode = \`import React, { useEffect, useRef, useMemo, ReactNode, RefObject } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './ScrollReveal.css';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ScrollRevealProps {
+  children: ReactNode;
+  scrollContainerRef?: RefObject<HTMLElement>;
+  enableBlur?: boolean;
+  baseOpacity?: number;
+  baseRotation?: number;
+  blurStrength?: number;
+  containerClassName?: string;
+  textClassName?: string;
+  rotationEnd?: string;
+  wordAnimationEnd?: string;
+}
+
+const ScrollReveal: React.FC<ScrollRevealProps> = ({
+  children,
+  scrollContainerRef,
+  enableBlur = true,
+  baseOpacity = 0.1,
+  baseRotation = 3,
+  blurStrength = 4,
+  containerClassName = '',
+  textClassName = '',
+  rotationEnd = 'bottom bottom',
+  wordAnimationEnd = 'bottom bottom'
+}) => {
+  const containerRef = useRef<HTMLHeadingElement>(null);
+
+  const splitText = useMemo(() => {
+    const text = typeof children === 'string' ? children : '';
+    return text.split(/(\\s+)/).map((word, index) => {
+      if (word.match(/^\\s+$/)) return word;
+      return (
+        <span className="word" key={index}>
+          {word}
+        </span>
+      );
+    });
+  }, [children]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+
+    gsap.fromTo(
+      el,
+      { transformOrigin: '0% 50%', rotate: baseRotation },
+      {
+        ease: 'none',
+        rotate: 0,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: 'top bottom',
+          end: rotationEnd,
+          scrub: true
+        }
+      }
+    );
+
+    const wordElements = el.querySelectorAll<HTMLElement>('.word');
+
+    gsap.fromTo(
+      wordElements,
+      { opacity: baseOpacity, willChange: 'opacity' },
+      {
+        ease: 'none',
+        opacity: 1,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: 'top bottom-=20%',
+          end: wordAnimationEnd,
+          scrub: true
+        }
+      }
+    );
+
+    if (enableBlur) {
+      gsap.fromTo(
+        wordElements,
+        { filter: \`blur(\${blurStrength}px)\` },
+        {
+          ease: 'none',
+          filter: 'blur(0px)',
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: 'top bottom-=20%',
+            end: wordAnimationEnd,
+            scrub: true
+          }
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
+
+  return (
+    <h2 ref={containerRef} className={\`scroll-reveal \${containerClassName}\`}>
+      <p className={\`scroll-reveal-text \${textClassName}\`}>{splitText}</p>
+    </h2>
+  );
+};
+
+export default ScrollReveal;\`;
+
+export const rotatingTextCode = \`'use client';
+
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
+import {
+  motion,
+  AnimatePresence,
+  Transition,
+  type VariantLabels,
+  type Target,
+  type TargetAndTransition
+} from 'motion/react';
+
+import './RotatingText.css';
+
+function cn(...classes: (string | undefined | null | boolean)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
+
+export interface RotatingTextRef {
+  next: () => void;
+  previous: () => void;
+  jumpTo: (index: number) => void;
+  reset: () => void;
+}
+
+export interface RotatingTextProps
+  extends Omit<
+    React.ComponentPropsWithoutRef<typeof motion.span>,
+    'children' | 'transition' | 'initial' | 'animate' | 'exit'
+  > {
+  texts: string[];
+  transition?: Transition;
+  initial?: boolean | Target | VariantLabels;
+  animate?: boolean | VariantLabels | TargetAndTransition;
+  exit?: Target | VariantLabels;
+  animatePresenceMode?: 'sync' | 'wait';
+  animatePresenceInitial?: boolean;
+  rotationInterval?: number;
+  staggerDuration?: number;
+  staggerFrom?: 'first' | 'last' | 'center' | 'random' | number;
+  loop?: boolean;
+  auto?: boolean;
+  splitBy?: string;
+  onNext?: (index: number) => void;
+  mainClassName?: string;
+  splitLevelClassName?: string;
+  elementLevelClassName?: string;
+}
+
+const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
+  const {
+    texts,
+    transition = { type: 'spring', damping: 25, stiffness: 300 },
+    initial = { y: '100%', opacity: 0 },
+    animate = { y: 0, opacity: 1 },
+    exit = { y: '-120%', opacity: 0 },
+    animatePresenceMode = 'wait',
+    animatePresenceInitial = false,
+    rotationInterval = 2000,
+    staggerDuration = 0,
+    staggerFrom = 'first',
+    loop = true,
+    auto = true,
+    splitBy = 'characters',
+    onNext,
+    mainClassName,
+    splitLevelClassName,
+    elementLevelClassName,
+    ...rest
+  } = props;
+
+  const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+
+  const splitIntoCharacters = (text: string): string[] => {
+    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+      const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+      return Array.from(segmenter.segment(text), segment => segment.segment);
+    }
+    return Array.from(text);
+  };
+
+  const elements = useMemo(() => {
+    const currentText: string = texts[currentTextIndex];
+    if (splitBy === 'characters') {
+      const words = currentText.split(' ');
+      return words.map((word, i) => ({
+        characters: splitIntoCharacters(word),
+        needsSpace: i !== words.length - 1
+      }));
+    }
+    if (splitBy === 'words') {
+      return currentText.split(' ').map((word, i, arr) => ({
+        characters: [word],
+        needsSpace: i !== arr.length - 1
+      }));
+    }
+    if (splitBy === 'lines') {
+      return currentText.split('\\n').map((line, i, arr) => ({
+        characters: [line],
+        needsSpace: i !== arr.length - 1
+      }));
+    }
+
+    return currentText.split(splitBy).map((part, i, arr) => ({
+      characters: [part],
+      needsSpace: i !== arr.length - 1
+    }));
+  }, [texts, currentTextIndex, splitBy]);
+
+  const getStaggerDelay = useCallback(
+    (index: number, totalChars: number): number => {
+      const total = totalChars;
+      if (staggerFrom === 'first') return index * staggerDuration;
+      if (staggerFrom === 'last') return (total - 1 - index) * staggerDuration;
+      if (staggerFrom === 'center') {
+        const center = Math.floor(total / 2);
+        return Math.abs(center - index) * staggerDuration;
+      }
+      if (staggerFrom === 'random') {
+        const randomIndex = Math.floor(Math.random() * total);
+        return Math.abs(randomIndex - index) * staggerDuration;
+      }
+      return Math.abs((staggerFrom as number) - index) * staggerDuration;
+    },
+    [staggerFrom, staggerDuration]
+  );
+
+  const handleIndexChange = useCallback(
+    (newIndex: number) => {
+      setCurrentTextIndex(newIndex);
+      if (onNext) onNext(newIndex);
+    },
+    [onNext]
+  );
+
+  const next = useCallback(() => {
+    const nextIndex = currentTextIndex === texts.length - 1 ? (loop ? 0 : currentTextIndex) : currentTextIndex + 1;
+    if (nextIndex !== currentTextIndex) {
+      handleIndexChange(nextIndex);
+    }
+  }, [currentTextIndex, texts.length, loop, handleIndexChange]);
+
+  const previous = useCallback(() => {
+    const prevIndex = currentTextIndex === 0 ? (loop ? texts.length - 1 : currentTextIndex) : currentTextIndex - 1;
+    if (prevIndex !== currentTextIndex) {
+      handleIndexChange(prevIndex);
+    }
+  }, [currentTextIndex, texts.length, loop, handleIndexChange]);
+
+  const jumpTo = useCallback(
+    (index: number) => {
+      const validIndex = Math.max(0, Math.min(index, texts.length - 1));
+      if (validIndex !== currentTextIndex) {
+        handleIndexChange(validIndex);
+      }
+    },
+    [texts.length, currentTextIndex, handleIndexChange]
+  );
+
+  const reset = useCallback(() => {
+    if (currentTextIndex !== 0) {
+      handleIndexChange(0);
+    }
+  }, [currentTextIndex, handleIndexChange]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      next,
+      previous,
+      jumpTo,
+      reset
+    }),
+    [next, previous, jumpTo, reset]
+  );
+
+  useEffect(() => {
+    if (!auto) return;
+    const intervalId = setInterval(next, rotationInterval);
+    return () => clearInterval(intervalId);
+  }, [next, rotationInterval, auto]);
+
+  return (
+    <motion.span className={cn('text-rotate', mainClassName)} {...rest} layout transition={transition}>
+      <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
+      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+        <motion.span
+          key={currentTextIndex}
+          className={cn(splitBy === 'lines' ? 'text-rotate-lines' : 'text-rotate')}
+          layout
+          aria-hidden="true"
+        >
+          {elements.map((wordObj, wordIndex, array) => {
+            const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
+            return (
+              <span key={wordIndex} className={cn('text-rotate-word', splitLevelClassName)}>
+                {wordObj.characters.map((char, charIndex) => (
+                  <motion.span
+                    key={charIndex}
+                    initial={initial}
+                    animate={animate}
+                    exit={exit}
+                    transition={{
+                      ...transition,
+                      delay: getStaggerDelay(
+                        previousCharsCount + charIndex,
+                        array.reduce((sum, word) => sum + word.characters.length, 0)
+                      )
+                    }}
+                    className={cn('text-rotate-element', elementLevelClassName)}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                {wordObj.needsSpace && <span className="text-rotate-space"> </span>}
+              </span>
+            );
+          })}
+        </motion.span>
+      </AnimatePresence>
+    </motion.span>
+  );
+});
+
+RotatingText.displayName = 'RotatingText';
+export default RotatingText;`;
