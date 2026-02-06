@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "One For All",
   description:
     "A Storybook-style catalog of interesting UI components from around the web.",
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

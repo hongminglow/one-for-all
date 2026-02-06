@@ -2,22 +2,49 @@
 
 import { useMemo, useState, useEffect } from "react";
 
-import type { ComponentItem } from "./components.generated";
-import { STORYBOOK } from "./storybook-constants";
+import type { ComponentItem } from "@/storybook/components.generated";
+import { COMPONENT_DOCS } from "@/storybook/component-docs.generated";
+import { STORYBOOK } from "@/storybook/storybook-constants";
 import {
   getDemoCode,
   renderDemo,
   getApiReference,
   getDemoControls,
   type DemoControl,
-} from "./demos/demo-registry";
+} from "@/storybook/demos/demo-registry";
 
 type TabKey = "preview" | "code";
+
+function formatCodeForDisplay(raw: string): string {
+  if (!raw || typeof raw !== "string") return raw;
+  let text = raw
+    .replace(/<\/span>\s*/gi, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&#x3C;/g, "<")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n\s*\n/g, "\n")
+    .trim();
+  if (text.length > 120 && !text.includes("\n")) {
+    text = text
+      .replace(/\s*;\s*/g, ";\n")
+      .replace(/\s*\}\s*/g, "}\n")
+      .replace(/\s*\{\s*/g, "{\n");
+  }
+  return text;
+}
 
 export function ComponentDetails(props: { component: ComponentItem }) {
   const [tab, setTab] = useState<TabKey>("preview");
   const [controls, setControls] = useState<DemoControl[] | null>(null);
   const [controlValues, setControlValues] = useState<Record<string, any>>({});
+
+  const doc = useMemo(
+    () => COMPONENT_DOCS[props.component.slug],
+    [props.component.slug],
+  );
 
   useEffect(() => {
     const defaultControls = getDemoControls(props.component);
@@ -37,21 +64,33 @@ export function ComponentDetails(props: { component: ComponentItem }) {
     setControlValues((prev) => ({ ...prev, [param]: value }));
   };
 
-  const codeSnippet = useMemo(
-    () => getDemoCode(props.component),
-    [props.component],
-  );
+  const codeSnippet = useMemo(() => {
+    const raw =
+      doc?.code ??
+      getDemoCode(props.component) ??
+      `See official docs for code:\n${props.component.url}`;
+    return formatCodeForDisplay(raw);
+  }, [props.component, doc?.code]);
+
+  const apiReference = useMemo(() => {
+    const fromDoc = doc?.api;
+    if (fromDoc && fromDoc.length > 0)
+      return fromDoc.map((r) => ({
+        prop: r.prop,
+        type: r.type,
+        default: r.default,
+        description: r.description,
+      }));
+    return getApiReference(props.component);
+  }, [props.component, doc?.api]);
+
+  const [copied, setCopied] = useState(false);
+  const installText = props.component.url;
+
   const previewNode = useMemo(
     () => renderDemo(props.component, controlValues),
     [props.component, controlValues],
   );
-  const apiReference = useMemo(
-    () => getApiReference(props.component),
-    [props.component],
-  );
-
-  const [copied, setCopied] = useState(false);
-  const installText = STORYBOOK.demo.installCommand(props.component);
 
   return (
     <div>
@@ -100,38 +139,27 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden">
                 <div className="w-full text-center">{previewNode}</div>
               </div>
-            ) : tab === "code" ? (
+            ) : (
               <pre className="sb-scroll max-h-[520px] overflow-auto whitespace-pre text-[12px] font-semibold leading-5 text-[var(--sb-code)]">
                 {codeSnippet}
               </pre>
-            ) : (
-              <div>
-                <div className="mb-3 text-[12px] font-bold text-[var(--sb-text-muted)]">
-                  Embedded docs (if the site allows iframes)
-                </div>
-                <div className="sb-scroll h-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
-                  <iframe
-                    title={`${props.component.title} docs`}
-                    src={props.component.url}
-                    className="h-full w-full"
-                  />
-                </div>
-                <div className="mt-3 text-[12px] font-medium text-[var(--sb-text-muted)]">
-                  If the embed is blank, the docs site is blocking iframes. Use
-                  the “Open docs” button.
-                </div>
-              </div>
             )}
           </div>
         </div>
       </section>
 
-      {/* Customization Controls */}
-      {controls && controls.length > 0 && (
+      {/* Customize (from official docs when available) */}
+      {(doc?.customizeHint || (controls && controls.length > 0)) && (
         <section className="mt-6 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
           <div className="mb-4 text-[14px] font-black text-[var(--sb-text-strong)]">
             Customize
           </div>
+          {doc?.customizeHint && (
+            <p className="text-[13px] font-medium text-[var(--sb-text-muted)]">
+              {doc.customizeHint}
+            </p>
+          )}
+          {controls && controls.length > 0 && (
           <div className="grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-3">
             {controls.map((control) => (
               <div key={control.param} className="flex flex-col gap-2">
@@ -219,6 +247,7 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               </div>
             ))}
           </div>
+          )}
         </section>
       )}
 

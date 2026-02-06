@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { COMPONENTS } from "../components";
-import { STORYBOOK } from "../storybook-constants";
-import { scoreMatch } from "../fuzzy";
+import { COMPONENTS } from "@/storybook/components";
+import { STORYBOOK } from "@/storybook/storybook-constants";
+import { scoreMatch } from "@/storybook/fuzzy";
 
 export function SearchModal(props: {
   open: boolean;

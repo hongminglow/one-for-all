@@ -1,1 +1,1 @@
-export * from "./components.generated";
+export * from "@/storybook/components.generated";

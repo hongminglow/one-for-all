@@ -2,21 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import type { ComponentItem } from "../components.generated";
-import SplitText from "../../components/reactbits/SplitText";
-import CircularText from "../../components/reactbits/CircularText";
-import ShinyText from "../../components/reactbits/ShinyText";
-import CurvedLoop from "../../components/reactbits/CurvedLoop";
-import FuzzyText from "../../components/reactbits/FuzzyText";
-import GradientText from "../../components/reactbits/GradientText";
+import type { ComponentItem } from "@/storybook/components.generated";
+import SplitText from "@/components/reactbits/SplitText";
+import CircularText from "@/components/reactbits/CircularText";
+import ShinyText from "@/components/reactbits/ShinyText";
+import CurvedLoop from "@/components/reactbits/CurvedLoop";
+import FuzzyText from "@/components/reactbits/FuzzyText";
+import GradientText from "@/components/reactbits/GradientText";
+import FallingText from "@/components/reactbits/FallingText";
 import {
   circularTextCode,
   curvedLoopCode,
+  fallingTextCode,
   fuzzyTextCode,
   gradientTextCode,
   shinyTextCode,
   splitTextCode,
-} from "./code-snippets";
+} from "@/storybook/demos/code-snippets";
 
 function TypewriterDemo(props: { text: string }) {
   return (
@@ -282,6 +284,36 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
+    case slug.includes("falling-text") || title.includes("falling text"): {
+      const rawHighlight = props?.highlightWords;
+      const highlightWords =
+        typeof rawHighlight === "string"
+          ? rawHighlight.split(",").map((s: string) => s.trim()).filter(Boolean)
+          : Array.isArray(rawHighlight)
+            ? rawHighlight
+            : ["physics.", "Drag"];
+      return (
+        <div
+          className="w-full min-h-[320px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-4 flex items-start justify-center"
+          style={{ minHeight: 320 }}
+        >
+          <div className="w-full max-w-[520px] text-[var(--sb-text-strong)]">
+            <FallingText
+              text={props?.text ?? "Words fall with physics. Drag to play."}
+              highlightWords={highlightWords}
+              highlightClass="highlighted"
+              trigger={props?.trigger ?? "auto"}
+              backgroundColor={props?.backgroundColor ?? "transparent"}
+              wireframes={props?.wireframes ?? false}
+              gravity={props?.gravity ?? 1}
+              mouseConstraintStiffness={props?.mouseConstraintStiffness ?? 0.2}
+              fontSize={props?.fontSize ?? "1.25rem"}
+            />
+          </div>
+        </div>
+      );
+    }
+
     // ... other cases fallback to generic
   }
 
@@ -443,6 +475,60 @@ export function getDemoControls(
     ];
   }
 
+  if (slug.includes("falling-text") || title.includes("falling text")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "Words fall with physics. Drag to play.",
+      },
+      {
+        type: "text",
+        param: "highlightWords",
+        label: "Highlight words (comma-separated)",
+        defaultValue: "physics., Drag",
+      },
+      {
+        type: "select",
+        param: "trigger",
+        label: "Trigger",
+        defaultValue: "auto",
+        options: ["auto", "scroll", "click", "hover"],
+      },
+      {
+        type: "number",
+        param: "gravity",
+        label: "Gravity",
+        defaultValue: 1,
+        min: 0.1,
+        max: 3,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "mouseConstraintStiffness",
+        label: "Mouse stiffness",
+        defaultValue: 0.2,
+        min: 0.01,
+        max: 1,
+        step: 0.01,
+      },
+      {
+        type: "text",
+        param: "fontSize",
+        label: "Font size",
+        defaultValue: "1.25rem",
+      },
+      {
+        type: "boolean",
+        param: "wireframes",
+        label: "Wireframes (debug)",
+        defaultValue: false,
+      },
+    ];
+  }
+
   return null;
 }
 
@@ -463,6 +549,8 @@ export function getDemoCode(component: ComponentItem) {
     return fuzzyTextCode;
   if (slug.includes("gradient-text") || title.includes("gradient text"))
     return gradientTextCode;
+  if (slug.includes("falling-text") || title.includes("falling text"))
+    return fallingTextCode;
 
   if (title.includes("typewriter")) {
     return [
@@ -802,6 +890,67 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         type: "'horizontal' | 'vertical' | 'diagonal'",
         default: "'horizontal'",
         description: "Direction of the animation.",
+      },
+    ];
+  }
+
+  if (slug.includes("falling-text") || title.includes("falling text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: '""',
+        description: "The sentence or phrase; each word becomes a physics body.",
+      },
+      {
+        prop: "highlightWords",
+        type: "string[]",
+        default: "[]",
+        description:
+          "Words that start with these strings get the highlight class.",
+      },
+      {
+        prop: "highlightClass",
+        type: "string",
+        default: '"highlighted"',
+        description: "CSS class applied to highlighted words.",
+      },
+      {
+        prop: "trigger",
+        type: "'auto' | 'scroll' | 'click' | 'hover'",
+        default: '"auto"',
+        description:
+          "When the physics effect starts: auto immediately, scroll when in view, click or hover on the container.",
+      },
+      {
+        prop: "backgroundColor",
+        type: "string",
+        default: '"transparent"',
+        description: "Background of the Matter.js canvas.",
+      },
+      {
+        prop: "wireframes",
+        type: "boolean",
+        default: "false",
+        description: "Show Matter.js debug wireframes.",
+      },
+      {
+        prop: "gravity",
+        type: "number",
+        default: "1",
+        description: "World gravity (y-axis).",
+      },
+      {
+        prop: "mouseConstraintStiffness",
+        type: "number",
+        default: "0.2",
+        description: "Stiffness of the mouse-drag constraint.",
+      },
+      {
+        prop: "fontSize",
+        type: "string",
+        default: '"1rem"',
+        description: "CSS font size of the text.",
       },
     ];
   }
