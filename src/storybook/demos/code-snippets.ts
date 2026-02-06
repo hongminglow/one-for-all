@@ -150,3 +150,34 @@ export const scrollVelocityCode = `import ScrollVelocity from './ScrollVelocity'
   velocity={100}
   className="custom-class"
 />`;
+
+export const variableProximityCode = `import { useRef } from 'react';
+import VariableProximity from './VariableProximity';
+
+const containerRef = useRef(null);
+
+<div
+  ref={containerRef}
+  style={{position: 'relative'}}
+>
+  <VariableProximity
+    label={'Hover me! And then star React Bits on GitHub, or else...'}
+    className={'variable-proximity-demo'}
+    fromFontVariationSettings="'wght' 400, 'opsz' 9"
+    toFontVariationSettings="'wght' 1000, 'opsz' 40"
+    containerRef={containerRef}
+    radius={100}
+    falloff='linear'
+  />
+</div>`;
+
+export const countUpCode = `import CountUp from './CountUp'
+
+<CountUp
+  from={0}
+  to={100}
+  separator=","
+  direction="up"
+  duration={1}
+  className="count-up-text"
+/>`;

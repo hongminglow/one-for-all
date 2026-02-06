@@ -17,6 +17,8 @@ import ScrollReveal from "@/components/reactbits/ScrollReveal";
 import RotatingText from "@/components/reactbits/RotatingText";
 import GlitchText from "@/components/reactbits/GlitchText";
 import ScrollVelocity from "@/components/reactbits/ScrollVelocity";
+import VariableProximity from "@/components/reactbits/VariableProximity";
+import CountUp from "@/components/reactbits/CountUp";
 import {
 	circularTextCode,
 	curvedLoopCode,
@@ -32,6 +34,8 @@ import {
 	rotatingTextCode,
 	glitchTextCode,
 	scrollVelocityCode,
+	variableProximityCode,
+	countUpCode,
 } from "@/storybook/demos/code-snippets";
 
 function TypewriterDemo(props: { text: string }) {
@@ -192,6 +196,27 @@ function ScrollRevealWrapper(props: any) {
 				</ScrollReveal>
 				<div style={{ height: "400px", flexShrink: 0 }} />
 			</div>
+		</div>
+	);
+}
+
+function VariableProximityWrapper(props: any) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	return (
+		<div
+			ref={containerRef}
+			className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] flex items-center justify-center overflow-hidden"
+		>
+			<VariableProximity
+				label={props?.label ?? "Hover me! And then star React Bits on GitHub, or else..."}
+				fromFontVariationSettings={props?.fromFontVariationSettings ?? "'wght' 400, 'opsz' 9"}
+				toFontVariationSettings={props?.toFontVariationSettings ?? "'wght' 1000, 'opsz' 40"}
+				containerRef={containerRef}
+				radius={props?.radius ?? 100}
+				falloff={props?.falloff ?? "linear"}
+				className={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.className ?? ""}`}
+				{...props}
+			/>
 		</div>
 	);
 }
@@ -456,15 +481,30 @@ export function renderDemo(component: ComponentItem, props?: any) {
 				</div>
 			);
 
+		case slug.includes("variable-proximity") || title.includes("variable proximity"):
+			return <VariableProximityWrapper {...props} />;
+
+		case slug.includes("count-up") || title.includes("count up") || title.includes("counter"):
+			return (
+				<div className="flex items-center justify-center w-full h-full min-h-[200px]">
+					<CountUp
+						from={props?.from ?? 0}
+						to={props?.to ?? 100}
+						separator={props?.separator ?? ","}
+						direction={props?.direction ?? "up"}
+						duration={props?.duration ?? 1}
+						className={`text-[64px] font-black text-[var(--sb-text-strong)] ${props?.className ?? ""}`}
+						{...props}
+					/>
+				</div>
+			);
+
 		// ... other cases fallback to generic
 	}
 
 	// Fallback for older simpler demos
 	if (title.includes("typewriter")) {
 		return <TypewriterDemo text="Typewriter text demo" />;
-	}
-	if (title.includes("count up") || title.includes("counter") || title.includes("number counter")) {
-		return <CountUpDemo to={1250} />;
 	}
 	if (title.includes("glitch")) {
 		return <GlitchTextDemo label={component.title} />;
@@ -928,6 +968,92 @@ export function getDemoControls(component: ComponentItem): DemoControl[] | null 
 			},
 		];
 	}
+	if (slug.includes("variable-proximity") || title.includes("variable proximity")) {
+		return [
+			{
+				type: "text",
+				param: "label",
+				label: "Text",
+				defaultValue: "Hover me! And then star React Bits on GitHub, or else...",
+			},
+			{
+				type: "number",
+				param: "radius",
+				label: "Radius",
+				defaultValue: 100,
+				min: 50,
+				max: 500,
+				step: 10,
+			},
+			{
+				type: "select",
+				param: "falloff",
+				label: "Falloff",
+				defaultValue: "linear",
+				options: ["linear", "exponential", "gaussian"],
+			},
+			{
+				type: "text",
+				param: "fromFontVariationSettings",
+				label: "From Settings",
+				defaultValue: "'wght' 400, 'opsz' 9",
+			},
+			{
+				type: "text",
+				param: "toFontVariationSettings",
+				label: "To Settings",
+				defaultValue: "'wght' 1000, 'opsz' 40",
+			},
+		];
+	}
+
+	if (slug.includes("count-up") || title.includes("count up") || title.includes("counter")) {
+		return [
+			{
+				type: "number",
+				param: "to",
+				label: "To",
+				defaultValue: 100,
+			},
+			{
+				type: "number",
+				param: "from",
+				label: "From",
+				defaultValue: 0,
+			},
+			{
+				type: "number",
+				param: "duration",
+				label: "Duration (s)",
+				defaultValue: 2,
+				min: 0.1,
+				max: 10,
+				step: 0.1,
+			},
+			{
+				type: "number",
+				param: "delay",
+				label: "Delay (s)",
+				defaultValue: 0,
+				min: 0,
+				max: 5,
+				step: 0.1,
+			},
+			{
+				type: "text",
+				param: "separator",
+				label: "Separator",
+				defaultValue: ",",
+			},
+			{
+				type: "select",
+				param: "direction",
+				label: "Direction",
+				defaultValue: "up",
+				options: ["up", "down"],
+			},
+		];
+	}
 
 	return null;
 }
@@ -952,6 +1078,14 @@ export function getDemoCode(component: ComponentItem) {
 	if (slug.includes("rotating-text") || title.includes("rotating text")) return rotatingTextCode;
 	if (slug.includes("glitch-text") || title.includes("glitch text")) return glitchTextCode;
 	if (slug.includes("scroll-velocity") || title.includes("scroll velocity")) return scrollVelocityCode;
+	if (slug.includes("variable-proximity") || title.includes("variable proximity")) return variableProximityCode;
+	if (
+		slug.includes("count-up") ||
+		title.includes("count up") ||
+		title.includes("counter") ||
+		title.includes("number counter")
+	)
+		return countUpCode;
 
 	if (title.includes("typewriter")) {
 		return [
@@ -963,15 +1097,6 @@ export function getDemoCode(component: ComponentItem) {
 			"    </span>",
 			"  );",
 			"}",
-		].join("\n");
-	}
-
-	if (title.includes("count up") || title.includes("counter") || title.includes("number counter")) {
-		return [
-			"// Count up (local demo)",
-			"// Uses requestAnimationFrame to animate 0 → target.",
-			"const durationMs = 900;",
-			"requestAnimationFrame(function tick(t) { /* ... */ });",
 		].join("\n");
 	}
 
