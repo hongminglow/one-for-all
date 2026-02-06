@@ -145,6 +145,57 @@ function BackgroundPanelDemo(props: { title: string }) {
 	);
 }
 
+function ScrollFloatWrapper(props: any) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	return (
+		<div
+			ref={containerRef}
+			className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-y-auto overflow-x-hidden sb-scroll"
+		>
+			<div className="flex flex-col items-center justify-center p-8" style={{ height: "1000px" }}>
+				<div style={{ height: "400px", flexShrink: 0 }} />
+				<ScrollFloat
+					scrollContainerRef={containerRef}
+					animationDuration={props?.animationDuration ?? 1}
+					ease={props?.ease ?? "back.inOut(2)"}
+					stagger={props?.stagger ?? 0.03}
+					containerClassName={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.containerClassName ?? ""}`}
+					{...props}
+				>
+					{props?.children ?? "React Bits"}
+				</ScrollFloat>
+				<div style={{ height: "400px", flexShrink: 0 }} />
+			</div>
+		</div>
+	);
+}
+
+function ScrollRevealWrapper(props: any) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	return (
+		<div
+			ref={containerRef}
+			className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-y-auto overflow-x-hidden sb-scroll"
+		>
+			<div className="flex flex-col items-center justify-center p-8 text-center" style={{ height: "1000px" }}>
+				<div style={{ height: "400px", flexShrink: 0 }} />
+				<ScrollReveal
+					scrollContainerRef={containerRef}
+					baseOpacity={props?.baseOpacity ?? 0.1}
+					enableBlur={props?.enableBlur ?? true}
+					baseRotation={props?.baseRotation ?? 3}
+					blurStrength={props?.blurStrength ?? 4}
+					containerClassName={`text-[28px] font-bold text-[var(--sb-text-strong)] ${props?.containerClassName ?? ""}`}
+					{...props}
+				>
+					{props?.children ?? "Scroll down to reveal the beauty of React Bits."}
+				</ScrollReveal>
+				<div style={{ height: "400px", flexShrink: 0 }} />
+			</div>
+		</div>
+	);
+}
+
 function ScrollRevealDemo() {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [visible, setVisible] = useState(false);
@@ -292,20 +343,19 @@ export function renderDemo(component: ComponentItem, props?: any) {
 						: ["physics.", "Drag"];
 			return (
 				<div
-					className="w-full min-h-[320px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-4 flex items-start justify-center"
+					className="w-full min-h-[320px] rounded-2xl bg-[var(--sb-panel)] p-2 flex justify-center"
 					style={{ minHeight: 320 }}
 				>
-					<div className="w-full max-w-[520px] text-[var(--sb-text-strong)]">
+					<div className="w-full text-[var(--sb-text-strong)]">
 						<FallingText
-							text={props?.text ?? "Words fall with physics. Drag to play."}
-							highlightWords={highlightWords}
-							highlightClass="highlighted"
-							trigger={props?.trigger ?? "auto"}
-							backgroundColor={props?.backgroundColor ?? "transparent"}
-							wireframes={props?.wireframes ?? false}
-							gravity={props?.gravity ?? 1}
-							mouseConstraintStiffness={props?.mouseConstraintStiffness ?? 0.2}
-							fontSize={props?.fontSize ?? "1.25rem"}
+							text={`React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow.`}
+							highlightWords={["React", "Bits", "animated", "components", "simplify"]}
+							trigger="hover"
+							backgroundColor="transparent"
+							wireframes={false}
+							gravity={0.56}
+							fontSize="2rem"
+							mouseConstraintStiffness={0.9}
 						/>
 					</div>
 				</div>
@@ -314,10 +364,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
 		case slug.includes("text-cursor") || title.includes("text cursor"):
 			return (
-				<div
-					className="w-full min-h-[320px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-4 flex items-center justify-center"
-					style={{ minHeight: 320 }}
-				>
+				<div className="w-full h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-hidden">
 					<TextCursor
 						text={props?.text ?? "⚛️"}
 						spacing={props?.spacing ?? 80}
@@ -352,39 +399,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
 			);
 
 		case slug.includes("scroll-float") || title.includes("scroll float"):
-			return (
-				<div
-					className="w-full min-h-[320px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center overflow-auto"
-					style={{ minHeight: 320 }}
-				>
-					<ScrollFloat
-						animationDuration={props?.animationDuration ?? 1}
-						ease={props?.ease ?? "back.inOut(2)"}
-						stagger={props?.stagger ?? 0.03}
-						containerClassName="text-[32px] font-black text-[var(--sb-text-strong)]"
-					>
-						{props?.children ?? "React Bits"}
-					</ScrollFloat>
-				</div>
-			);
+			return <ScrollFloatWrapper {...props} />;
 
 		case slug.includes("scroll-reveal") || title.includes("scroll reveal"):
-			return (
-				<div
-					className="w-full min-h-[320px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center overflow-auto"
-					style={{ minHeight: 320 }}
-				>
-					<ScrollReveal
-						baseOpacity={props?.baseOpacity ?? 0.1}
-						enableBlur={props?.enableBlur ?? true}
-						baseRotation={props?.baseRotation ?? 3}
-						blurStrength={props?.blurStrength ?? 4}
-						containerClassName="text-[18px] font-medium text-[var(--sb-text-strong)]"
-					>
-						{props?.children ?? "Scroll to reveal this text word by word."}
-					</ScrollReveal>
-				</div>
-			);
+			return <ScrollRevealWrapper {...props} />;
 
 		case slug.includes("rotating-text") || title.includes("rotating text"):
 			return (
@@ -676,11 +694,20 @@ export function getDemoControls(component: ComponentItem): DemoControl[] | null 
 			},
 			{
 				type: "number",
+				param: "removalInterval",
+				label: "Removal Interval (ms)",
+				defaultValue: 20,
+				min: 10,
+				max: 100,
+				step: 10,
+			},
+			{
+				type: "number",
 				param: "maxPoints",
 				label: "Max Points",
 				defaultValue: 10,
 				min: 1,
-				max: 30,
+				max: 50,
 				step: 1,
 			},
 		];

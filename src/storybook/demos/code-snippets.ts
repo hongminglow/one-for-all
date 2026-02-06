@@ -70,10 +70,11 @@ export const gradientTextCode = `import GradientText from './GradientText'
 export const fallingTextCode = `import FallingText from './FallingText';
 
 <FallingText
-  text="React Bits is a library of animated and interactive React components."
-  highlightWords={["React", "Bits", "animated", "components"]}
-  highlightClass="highlighted"
+  text="React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow."
+  highlightWords={["React", "Bits", "animated", "components", "simplify"]}
   trigger="hover"
+  backgroundColor="transparent"
+  wireframes={false}
   gravity={0.56}
   fontSize="2rem"
   mouseConstraintStiffness={0.9}
