@@ -107,9 +107,9 @@ const SplitText: React.FC<SplitTextProps> = ({
       ))}
     </p>
   );
-};
+}\`;
 
-export default SplitText;`;
+export default SplitText;\`;`;
 
 export const circularTextCode = `import { useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "motion/react";
@@ -235,9 +235,9 @@ const CircularText: React.FC<CircularTextProps> = ({
       })}
     </motion.div>
   );
-};
+}\`;
 
-export default CircularText;`;
+export default CircularText;\`;`;
 
 export const shinyTextCode = `import { useState, useCallback, useEffect, useRef, CSSProperties } from "react";
 import {
@@ -367,9 +367,9 @@ const ShinyText: React.FC<ShinyTextProps> = ({
       {text}
     </motion.span>
   );
-};
+}\`;
 
-export default ShinyText;`;
+export default ShinyText;\`;`;
 
 export const curvedLoopCode = `import { useRef, useEffect, useState, useMemo, useId, FC, PointerEvent } from 'react';
 import './CurvedLoop.css';
@@ -507,9 +507,9 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
       </svg>
     </div>
   );
-};
+}\`;
 
-export default CurvedLoop;`;
+export default CurvedLoop;\`;`;
 
 export const fuzzyTextCode = `import React, { useEffect, useRef } from 'react';
 
@@ -823,9 +823,9 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
   ]);
 
   return <canvas ref={canvasRef} className={className} />;
-};
+}\`;
 
-export default FuzzyText;`;
+export default FuzzyText;\`;`;
 
 export const gradientTextCode = `import { useState, useCallback, useEffect, useRef, ReactNode } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
@@ -933,7 +933,7 @@ export default function GradientText({
       </motion.div>
     </motion.div>
   );
-}`;
+}\`;`;
 
 export const fallingTextCode = `import { useRef, useState, useEffect } from 'react';
 import Matter from 'matter-js';
@@ -1134,9 +1134,9 @@ const FallingText: React.FC<FallingTextProps> = ({
       <div ref={canvasContainerRef} className="falling-text-canvas" />
     </div>
   );
-};
+}\`;
 
-export default FallingText;`;
+export default FallingText;\`;`;
 
 export const textCursorCode = `import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -1290,9 +1290,9 @@ const TextCursor: React.FC<TextCursorProps> = ({
       </div>
     </div>
   );
-};
+}\`;
 
-export default TextCursor;`;
+export default TextCursor;\`;`;
 
 export const decryptedTextCode = `import { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
@@ -1515,7 +1515,7 @@ export default function DecryptedText({
       </span>
     </motion.span>
   );
-}`;
+}\`;\`;`;
 
 export const scrollFloatCode = `import React, { useEffect, useMemo, useRef, ReactNode, RefObject } from 'react';
 import { gsap } from 'gsap';
@@ -1601,11 +1601,11 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
       <span className={\`scroll-float-text \${textClassName}\`}>{splitText}</span>
     </h2>
   );
-};
+}\`;
 
-export default ScrollFloat;\`;
+export default ScrollFloat;\`;`;
 
-export const scrollRevealCode = \`import React, { useEffect, useRef, useMemo, ReactNode, RefObject } from 'react';
+export const scrollRevealCode = `import React, { useEffect, useRef, useMemo, ReactNode, RefObject } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ScrollReveal.css';
@@ -1721,11 +1721,11 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       <p className={\`scroll-reveal-text \${textClassName}\`}>{splitText}</p>
     </h2>
   );
-};
+}\`;
 
-export default ScrollReveal;\`;
+export default ScrollReveal;\`;`;
 
-export const rotatingTextCode = \`'use client';
+export const rotatingTextCode = `'use client';
 
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import {
@@ -1822,7 +1822,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
       }));
     }
     if (splitBy === 'lines') {
-      return currentText.split('\\n').map((line, i, arr) => ({
+      return currentText.split('\\\\n').map((line, i, arr) => ({
         characters: [line],
         needsSpace: i !== arr.length - 1
       }));
@@ -1950,4 +1950,220 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
 });
 
 RotatingText.displayName = 'RotatingText';
-export default RotatingText;`;
+export default RotatingText;\`;
+
+\`;\`;`;
+
+export const glitchTextCode = `import { CSSProperties, FC } from 'react';
+import './GlitchText.css';
+
+interface GlitchTextProps {
+  children: string;
+  speed?: number;
+  enableShadows?: boolean;
+  enableOnHover?: boolean;
+  className?: string;
+}
+
+const GlitchText: FC<GlitchTextProps> = ({
+  children,
+  speed = 1,
+  enableShadows = true,
+  enableOnHover = true,
+  className = ''
+}) => {
+  const inlineStyles: CSSProperties & { [key: string]: string } = {
+    '--after-duration': \`\${speed * 3}s\`,
+    '--before-duration': \`\${speed * 2}s\`,
+    '--after-shadow': enableShadows ? '-5px 0 red' : 'none',
+    '--before-shadow': enableShadows ? '5px 0 cyan' : 'none'
+  };
+
+  const hoverClass = enableOnHover ? 'enable-on-hover' : '';
+
+  return (
+    <div
+      className={\`glitch \${hoverClass} \${className}\`}
+      style={inlineStyles}
+      data-text={children}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default GlitchText;\`;`;
+
+export const scrollVelocityCode = `import React, { useRef, useLayoutEffect, useState, RefObject } from 'react';
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useMotionValue,
+  useVelocity,
+  useAnimationFrame
+} from 'motion/react';
+import './ScrollVelocity.css';
+
+function useElementWidth(ref: RefObject<HTMLElement>) {
+  const [width, setWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    function updateWidth() {
+      if (ref.current) {
+        setWidth(ref.current.offsetWidth);
+      }
+    }
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, [ref]);
+
+  return width;
+}
+
+interface ScrollVelocityProps {
+  scrollContainerRef?: RefObject<HTMLElement>;
+  texts: string[];
+  velocity?: number;
+  className?: string;
+  damping?: number;
+  stiffness?: number;
+  numCopies?: number;
+  velocityMapping?: { input: number[]; output: number[] };
+  parallaxClassName?: string;
+  scrollerClassName?: string;
+  parallaxStyle?: React.CSSProperties;
+  scrollerStyle?: React.CSSProperties;
+}
+
+interface VelocityTextProps {
+  children: React.ReactNode;
+  baseVelocity: number;
+  scrollContainerRef?: RefObject<HTMLElement>;
+  className?: string;
+  damping?: number;
+  stiffness?: number;
+  numCopies?: number;
+  velocityMapping?: { input: number[]; output: number[] };
+  parallaxClassName?: string;
+  scrollerClassName?: string;
+  parallaxStyle?: React.CSSProperties;
+  scrollerStyle?: React.CSSProperties;
+}
+
+function VelocityText({
+  children,
+  baseVelocity = 100,
+  scrollContainerRef,
+  className = '',
+  damping = 50,
+  stiffness = 400,
+  numCopies = 6,
+  velocityMapping = { input: [0, 1000], output: [0, 5] },
+  parallaxClassName = 'parallax',
+  scrollerClassName = 'scroller',
+  parallaxStyle,
+  scrollerStyle
+}: VelocityTextProps) {
+  const baseX = useMotionValue(0);
+  const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
+  const { scrollY } = useScroll(scrollOptions);
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: damping ?? 50,
+    stiffness: stiffness ?? 400
+  });
+  const velocityFactor = useTransform(
+    smoothVelocity,
+    velocityMapping?.input || [0, 1000],
+    velocityMapping?.output || [0, 5],
+    { clamp: false }
+  );
+
+  const copyRef = useRef<HTMLSpanElement>(null);
+  const copyWidth = useElementWidth(copyRef);
+
+  function wrap(min: number, max: number, v: number) {
+    const range = max - min;
+    const mod = (((v - min) % range) + range) % range;
+    return mod + min;
+  }
+
+  const x = useTransform(baseX, v => {
+    if (copyWidth === 0) return '0px';
+    return \\\`\\\${wrap(-copyWidth, 0, v)}px\\\`;
+  });
+
+  const directionFactor = useRef<number>(1);
+  useAnimationFrame((t, delta) => {
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+    if (velocityFactor.get() < 0) {
+      directionFactor.current = -1;
+    } else if (velocityFactor.get() > 0) {
+      directionFactor.current = 1;
+    }
+
+    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  const spans = [];
+  for (let i = 0; i < numCopies; i++) {
+    spans.push(
+      <span className={className} key={i} ref={i === 0 ? copyRef : null}>
+        {children}
+      </span>
+    );
+  }
+
+  return (
+    <div className={parallaxClassName} style={parallaxStyle}>
+      <motion.div className={scrollerClassName} style={{ x, ...scrollerStyle }}>
+        {spans}
+      </motion.div>
+    </div>
+  );
+}
+
+export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
+  scrollContainerRef,
+  texts = [],
+  velocity = 100,
+  className = '',
+  damping = 50,
+  stiffness = 400,
+  numCopies = 6,
+  velocityMapping = { input: [0, 1000], output: [0, 5] },
+  parallaxClassName = 'parallax',
+  scrollerClassName = 'scroller',
+  parallaxStyle,
+  scrollerStyle
+}) => {
+  return (
+    <section>
+      {texts.map((text, index) => (
+        <VelocityText
+          key={index}
+          className={className}
+          baseVelocity={index % 2 !== 0 ? -velocity : velocity}
+          scrollContainerRef={scrollContainerRef}
+          damping={damping}
+          stiffness={stiffness}
+          numCopies={numCopies}
+          velocityMapping={velocityMapping}
+          parallaxClassName={parallaxClassName}
+          scrollerClassName={scrollerClassName}
+          parallaxStyle={parallaxStyle}
+          scrollerStyle={scrollerStyle}
+        >
+          {text}&nbsp;
+        </VelocityText>
+      ))}
+    </section>
+  );
+};
+
+export default ScrollVelocity;`;
