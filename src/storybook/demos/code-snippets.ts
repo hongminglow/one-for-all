@@ -48,10 +48,10 @@ export const curvedLoopCode = `import CurvedLoop from './CurvedLoop';
 
 export const fuzzyTextCode = `import FuzzyText from './FuzzyText';
 
-<FuzzyText 
-  baseIntensity={0.2} 
-  hoverIntensity={0.5} 
-  enableHover 
+<FuzzyText
+  baseIntensity={0.2}
+  hoverIntensity={0.5}
+  enableHover
 >
   404
 </FuzzyText>`;
@@ -181,3 +181,131 @@ export const countUpCode = `import CountUp from './CountUp'
   duration={1}
   className="count-up-text"
 />`;
+
+export const electricBorderCode = `import ElectricBorder from './ElectricBorder';
+
+<ElectricBorder
+  color="#7df9ff"
+  speed={1}
+  chaos={0.12}
+  borderRadius={16}
+>
+  <div style={{ padding: '24px', background: '#111', color: '#fff' }}>
+    <p>A glowing, animated border wrapper.</p>
+  </div>
+</ElectricBorder>`;
+
+export const antigravityCode = `import Antigravity from './Antigravity';
+
+<div style={{ width: '100%', height: '400px', position: 'relative' }}>
+  <Antigravity
+    count={300}
+    magnetRadius={6}
+    ringRadius={7}
+    waveSpeed={0.4}
+    waveAmplitude={1}
+    particleSize={1.5}
+    lerpSpeed={0.05}
+    color="#5227FF"
+    autoAnimate
+    particleVariance={1}
+    rotationSpeed={0}
+    depthFactor={1}
+    pulseSpeed={3}
+    particleShape="capsule"
+    fieldStrength={10}
+  />
+</div>`;
+
+export const logoLoopCode = `import LogoLoop from './LogoLoop';
+
+const techLogos = [
+  { src: "https://reactbits.dev/logos/react.svg", alt: "React", href: "https://react.dev" },
+  { src: "https://reactbits.dev/logos/nextjs.svg", alt: "Next.js", href: "https://nextjs.org" },
+  { src: "https://reactbits.dev/logos/typescript.svg", alt: "TypeScript", href: "https://www.typescriptlang.org" },
+  { src: "https://reactbits.dev/logos/tailwindcss.svg", alt: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
+
+<div style={{ height: '120px', width: '100%', position: 'relative' }}>
+  <LogoLoop
+    logos={techLogos}
+    speed={100}
+    direction="left"
+    logoHeight={40}
+    gap={40}
+    hoverSpeed={0}
+    scaleOnHover={true}
+    fadeOut={true}
+  />
+</div>`;
+
+export const targetCursorCode = `import TargetCursor from './TargetCursor';
+
+<TargetCursor
+  targetSelector=".cursor-target"
+  spinDuration={2}
+  hideDefaultCursor={true}
+  hoverDuration={0.2}
+  parallaxOn={true}
+/>
+
+<div
+  className="cursor-target"
+  style={{ padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}
+>
+  Hover over me to see the target cursor lock in!
+</div>`;
+
+export const laserFlowCode = `import LaserFlow from './LaserFlow';
+
+<div style={{ width: '100%', height: '400px', background: '#000', position: 'relative' }}>
+  <LaserFlow
+    color="#FF79C6"
+    wispDensity={1}
+    fogIntensity={0.45}
+    horizontalSizing={0.5}
+    verticalSizing={2.0}
+  />
+</div>`;
+
+export const magnetLinesCode = `import MagnetLines from './MagnetLines';
+
+<div style={{ width: '100%', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <MagnetLines
+    rows={9}
+    columns={9}
+    containerSize="40vmin"
+    lineColor="#efefef"
+    lineWidth="1vmin"
+    lineHeight="6vmin"
+    baseAngle={-10}
+  />
+</div>`;
+
+export const ghostCursorCode = `import GhostCursor from './GhostCursor';
+
+<div style={{ width: '100%', height: '400px', background: '#000', position: 'relative', overflow: 'hidden' }}>
+  <GhostCursor
+    color="#B19EEF"
+    brightness={2}
+    trailLength={50}
+    grainIntensity={0.05}
+  />
+  <div style={{ padding: '2rem', color: '#fff' }}>
+    Move your mouse to see the ghost cursor!
+  </div>
+</div>`;
+
+export const clickSparkCode = `import ClickSpark from './ClickSpark';
+
+<ClickSpark
+  sparkColor='#fff'
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
+  <div style={{ width: '100%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#111', borderRadius: '12px' }}>
+    <h2 style={{ color: '#fff' }}>Click anywhere!</h2>
+  </div>
+</ClickSpark>`;

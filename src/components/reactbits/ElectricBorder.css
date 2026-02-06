@@ -1,0 +1,39 @@
+.electric-border {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+.eb-canvas {
+  display: block;
+}
+.eb-content {
+  position: relative;
+  z-index: 1;
+}
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.eb-glow-1,
+.eb-glow-2 {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid;
+}
+.eb-glow-1 {
+  filter: blur(1px);
+}
+.eb-glow-2 {
+  filter: blur(4px);
+}
