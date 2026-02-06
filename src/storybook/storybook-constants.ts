@@ -187,6 +187,7 @@ export const STORYBOOK = {
 		shortcutLabel: "Ctrl K",
 	},
 	componentPage: {
+		previewTitle: "Preview / Code",
 		tabs: { preview: "Preview", code: "Code" },
 		installTitle: "Installation",
 		installHint: "Open the upstream docs to see the original API + examples.",
