@@ -98,6 +98,18 @@ import QrCode from "@/components/shadcn/QrCode";
 import StatusIndicator from "@/components/shadcn/StatusIndicator";
 import Terminal from "@/components/shadcn/Terminal";
 import VideoPlayer from "@/components/shadcn/VideoPlayer";
+import { Confetti } from "@/components/shadcn/Confetti";
+import { Fireworks } from "@/components/shadcn/Fireworks";
+import { Meteors } from "@/components/shadcn/Meteors";
+import { Orbits } from "@/components/shadcn/Orbits";
+import { Rain } from "@/components/shadcn/Rain";
+import { Snow } from "@/components/shadcn/Snow";
+import { Vortex } from "@/components/shadcn/Vortex";
+import AreaGradient from "@/components/shadcn/AreaGradient";
+import BarHorizontal from "@/components/shadcn/BarHorizontal";
+import BarInteractive from "@/components/shadcn/BarInteractive";
+import PieDonut from "@/components/shadcn/PieDonut";
+import RadarDots from "@/components/shadcn/RadarDots";
 import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
 import BorderBeam from "@/components/magicui/BorderBeam";
@@ -266,6 +278,11 @@ import Antigravity from "@/components/reactbits/Antigravity";
 import LaserFlow from "@/components/reactbits/LaserFlow";
 import { NumberCounter } from "@/components/jolyui/NumberCounter";
 import { GridScan } from "@/components/reactbits/GridScan";
+import CalendarInput from "@/components/jolyui/CalendarInput";
+import { DraggableCard } from "@/components/aceternityui/DraggableCard";
+import { Lens } from "@/components/aceternityui/Lens";
+import { ImageCompare } from "@/components/aceternityui/ImageCompare";
+import { HeroParallax } from "@/components/aceternityui/HeroParallax";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -1962,50 +1979,79 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("dot-grid") || title.includes("dot grid"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
+        <div style={{ width: "100%", height: "600px", position: "relative" }}>
           <DotGrid
-            dotSize={props?.dotSize ?? 16}
-            gap={props?.gap ?? 32}
-            baseColor={props?.baseColor ?? "#5227FF"}
-            activeColor={props?.activeColor ?? "#5227FF"}
-            proximity={props?.proximity ?? 150}
-            speedTrigger={props?.speedTrigger ?? 100}
-            shockRadius={props?.shockRadius ?? 250}
-            shockStrength={props?.shockStrength ?? 5}
-            maxSpeed={props?.maxSpeed ?? 5000}
-            resistance={props?.resistance ?? 750}
-            returnDuration={props?.returnDuration ?? 1.5}
-            {...props}
+            dotSize={5}
+            gap={15}
+            baseColor="#271E37"
+            activeColor="#5227FF"
+            proximity={120}
+            shockRadius={250}
+            shockStrength={5}
+            resistance={750}
+            returnDuration={1.5}
           />
         </div>
       );
 
     case slug.includes("hyperspeed") || title.includes("hyperspeed"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
-          <Hyperspeed
-            effectOptions={{
-              distortion: props?.distortion ?? "turbulentDistortion",
-              length: props?.length ?? 400,
-              roadWidth: props?.roadWidth ?? 10,
-              islandWidth: props?.islandWidth ?? 2,
-              lanesPerRoad: props?.lanesPerRoad ?? 3,
-              ...props,
-            }}
-          />
-        </div>
+        <Hyperspeed
+          effectOptions={{
+            distortion: "turbulentDistortion",
+            length: 400,
+            roadWidth: 10,
+            islandWidth: 2,
+            lanesPerRoad: 3,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 20,
+            lightPairsPerRoadWay: 40,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5],
+            lightStickHeight: [1.3, 1.7],
+            movingAwaySpeed: [60, 80],
+            movingCloserSpeed: [-120, -160],
+            carLightsLength: [12, 80],
+            carLightsRadius: [0.05, 0.14],
+            carWidthPercentage: [0.3, 0.5],
+            carShiftX: [-0.8, 0.8],
+            carFloorSeparation: [0, 5],
+            colors: {
+              roadColor: 526344,
+              islandColor: 657930,
+              background: 0,
+              shoulderLines: 1250072,
+              brokenLines: 1250072,
+              leftCars: [14177983, 6770850, 12732332],
+              rightCars: [242627, 941733, 3294549],
+              sticks: 242627,
+            },
+          }}
+        />
       );
 
     case slug.includes("ballpit") || title.includes("ballpit"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            minHeight: "500px",
+            maxHeight: "500px",
+            width: "100%",
+          }}
+        >
           <Ballpit
-            count={props?.count ?? 200}
-            gravity={props?.gravity ?? 0.5}
+            count={props?.count ?? 100}
+            gravity={props?.gravity ?? 0.01}
             friction={props?.friction ?? 0.9975}
             wallBounce={props?.wallBounce ?? 0.95}
-            followCursor={props?.followCursor ?? true}
-            {...props}
+            followCursor={props?.followCursor ?? false}
           />
         </div>
       );
@@ -2494,14 +2540,18 @@ console.log(fibonacci(10));`}
         </div>
       );
 
-    case slug.includes("android") || title.includes("android"):
+    case slug.includes("android") ||
+      title.includes("android") ||
+      slug === "device-mock":
       return (
         <div className="w-full flex items-center justify-center p-8">
           <AndroidMock />
         </div>
       );
 
-    case slug.includes("iphone") || title.includes("iphone"):
+    case slug.includes("iphone") ||
+      title.includes("iphone") ||
+      slug === "device-mock-2":
       return (
         <div className="w-full flex items-center justify-center p-8">
           <IPhoneMock />
@@ -2648,7 +2698,9 @@ console.log(fibonacci(10));`}
         </div>
       );
 
-    case slug.includes("tabs-premium") || title.includes("tabs premium"):
+    case slug.includes("tabs-premium") ||
+      title.includes("tabs premium") ||
+      slug === "tabs":
       return (
         <div className="w-full py-10">
           <TabsPremium
@@ -3181,6 +3233,240 @@ console.log(fibonacci(10));`}
       );
 
     // ... other cases fallback to generic
+
+    case slug.includes("confetti") || title.includes("confetti"):
+      return <Confetti {...props} />;
+
+    case slug.includes("fireworks") || title.includes("fireworks"):
+      return <Fireworks {...props} />;
+
+    case slug.includes("meteors") || title.includes("meteors"):
+      return <Meteors {...props} />;
+
+    case slug.includes("orbits") || title.includes("orbits"):
+      return <Orbits {...props} />;
+
+    case slug.includes("rain") || title.includes("rain"):
+      return <Rain {...props} />;
+
+    case slug.includes("snow") || title.includes("snow"):
+      return <Snow {...props} />;
+
+    case slug.includes("vortex") || title.includes("vortex"):
+      return <Vortex {...props} />;
+
+    case slug.includes("area-gradient") ||
+      title.includes("area gradient") ||
+      slug.includes("gradient-area-chart"):
+      return (
+        <div className="w-full max-w-[600px] p-4">
+          <AreaGradient />
+        </div>
+      );
+
+    case slug.includes("bar-horizontal") ||
+      title.includes("bar horizontal") ||
+      slug.includes("horizontal-bar"):
+      return (
+        <div className="w-full max-w-[600px] p-4">
+          <BarHorizontal />
+        </div>
+      );
+
+    case slug.includes("bar-interactive") ||
+      title.includes("bar interactive") ||
+      slug.includes("interactive-bar"):
+      return (
+        <div className="w-full max-w-[600px] p-4">
+          <BarInteractive />
+        </div>
+      );
+
+    case slug.includes("pie-donut") || title.includes("pie donut"):
+      return (
+        <div className="w-full max-w-[400px] p-4">
+          <PieDonut />
+        </div>
+      );
+
+    case slug.includes("calendar-input") || title.includes("calendar input"):
+      return (
+        <div className="flex items-center justify-center p-8 min-h-[400px]">
+          <CalendarInput />
+        </div>
+      );
+
+    case slug.includes("draggable-card") || title.includes("draggable card"):
+      return (
+        <div className="flex items-center justify-center p-8 h-[400px] relative overflow-hidden">
+          <DraggableCard className="w-40 h-40 bg-blue-500 rounded-xl flex items-center justify-center text-white font-bold cursor-grab active:cursor-grabbing shadow-2xl">
+            Drag me!
+          </DraggableCard>
+        </div>
+      );
+
+    case slug.includes("hero-parallax") || title.includes("hero parallax"):
+      return (
+        <div className="w-full h-[600px] overflow-auto">
+          <HeroParallax
+            products={[
+              {
+                title: "Moonbeam",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+              },
+              {
+                title: "Cursor",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+              },
+              {
+                title: "Rogue",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+              },
+              {
+                title: "Editorially",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/editorially.png",
+              },
+              {
+                title: "Editrix AI",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/editrix.png",
+              },
+              {
+                title: "Pixel Perfect",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+              },
+              {
+                title: "Algochurn",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+              },
+              {
+                title: "Aceternity UI",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+              },
+              {
+                title: "Tailwind Master Kit",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+              },
+              {
+                title: "SmartBridge",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
+              },
+              {
+                title: "Renderwork Studio",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+              },
+              {
+                title: "Creme Digital",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+              },
+              {
+                title: "Golden Bells Academy",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+              },
+              {
+                title: "Invoker Labs",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/invoker.png",
+              },
+              {
+                title: "E Free Invoice",
+                link: "#",
+                thumbnail:
+                  "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
+              },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("image-compare") || title.includes("image compare"):
+      return (
+        <div className="w-full max-w-[600px] p-4">
+          <ImageCompare
+            beforeImage="https://assets.aceternity.com/demos/aceternity-before.webp"
+            afterImage="https://assets.aceternity.com/demos/aceternity-after.webp"
+          />
+        </div>
+      );
+
+    case slug.includes("lens") || title.includes("lens"):
+      return (
+        <div className="w-full flex items-center justify-center p-8 bg-[#1e1e1e] rounded-xl">
+          <Lens>
+            <div className="w-[400px] relative rounded-lg overflow-hidden shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80"
+                alt="Lens Demo"
+                className="w-full h-auto"
+              />
+            </div>
+          </Lens>
+        </div>
+      );
+
+    case slug.includes("image-stack") || title.includes("image stack"):
+      return (
+        <div className="w-full h-[600px] flex items-center justify-center">
+          <Stack
+            randomRotation={true}
+            sensitivity={180}
+            cardDimensions={{ width: 200, height: 200 }}
+            cards={[
+              {
+                id: 1,
+                img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=400&q=80",
+              },
+              {
+                id: 2,
+                img: "https://images.unsplash.com/photo-1449824913929-79821eda29cb?w=400&q=80",
+              },
+              {
+                id: 3,
+                img: "https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&q=80",
+              },
+              {
+                id: 4,
+                img: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&q=80",
+              },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("radar-dots") ||
+      title.includes("radar dots") ||
+      slug.includes("radar-chart"):
+      return (
+        <div className="w-full max-w-[400px] p-4">
+          <RadarDots />
+        </div>
+      );
   }
 
   // Fallback for older simpler demos
@@ -6093,6 +6379,212 @@ export function getDemoControls(
         min: 400,
         max: 4000,
         step: 100,
+      },
+    ];
+  }
+
+  if (slug.includes("confetti") || title.includes("confetti")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Particle Count",
+        defaultValue: 25,
+        min: 10,
+        max: 100,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "gravity",
+        label: "Gravity",
+        defaultValue: 0.03,
+        min: 0.01,
+        max: 0.1,
+        step: 0.01,
+      },
+      {
+        type: "number",
+        param: "wind",
+        label: "Wind",
+        defaultValue: 0.005,
+        min: 0,
+        max: 0.05,
+        step: 0.001,
+      },
+    ];
+  }
+
+  if (slug.includes("fireworks") || title.includes("fireworks")) {
+    return [
+      {
+        type: "number",
+        param: "autoLaunchInterval",
+        label: "Launch Interval (ms)",
+        defaultValue: 600,
+        min: 100,
+        max: 2000,
+        step: 100,
+      },
+      {
+        type: "number",
+        param: "particleCount",
+        label: "Particle Count",
+        defaultValue: 80,
+        min: 20,
+        max: 200,
+        step: 10,
+      },
+    ];
+  }
+
+  if (slug.includes("meteors") || title.includes("meteors")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Count",
+        defaultValue: 20,
+        min: 5,
+        max: 100,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "angle",
+        label: "Angle",
+        defaultValue: 215,
+        min: 0,
+        max: 360,
+        step: 5,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#64748b",
+      },
+    ];
+  }
+
+  if (slug.includes("orbits") || title.includes("orbits")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Count",
+        defaultValue: 5,
+        min: 1,
+        max: 10,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0.1,
+        max: 3,
+        step: 0.1,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#06b6d4",
+      },
+    ];
+  }
+
+  if (slug.includes("rain") || title.includes("rain")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Count",
+        defaultValue: 150,
+        min: 50,
+        max: 500,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "intensity",
+        label: "Intensity",
+        defaultValue: 1,
+        min: 0.1,
+        max: 2,
+        step: 0.1,
+      },
+      {
+        type: "boolean",
+        param: "lightning",
+        label: "Lightning",
+        defaultValue: true,
+      },
+    ];
+  }
+
+  if (slug.includes("snow") || title.includes("snow")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Count",
+        defaultValue: 150,
+        min: 50,
+        max: 500,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "intensity",
+        label: "Intensity",
+        defaultValue: 1,
+        min: 0.1,
+        max: 2,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "wind",
+        label: "Wind",
+        defaultValue: 0.3,
+        min: -1,
+        max: 1,
+        step: 0.1,
+      },
+    ];
+  }
+
+  if (slug.includes("vortex") || title.includes("vortex")) {
+    return [
+      {
+        type: "number",
+        param: "particleCount",
+        label: "Particle Count",
+        defaultValue: 700,
+        min: 100,
+        max: 1500,
+        step: 50,
+      },
+      {
+        type: "number",
+        param: "baseSpeed",
+        label: "Base Speed",
+        defaultValue: 0,
+        min: 0,
+        max: 5,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "rangeSpeed",
+        label: "Range Speed",
+        defaultValue: 1.5,
+        min: 0.1,
+        max: 5,
+        step: 0.1,
       },
     ];
   }

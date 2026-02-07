@@ -39,6 +39,11 @@ uniform bool uTransparent;
 
 varying vec2 vUv;
 
+const float MAT45 = 0.70710678;
+const float STAR_COLOR_CUTOFF = 0.3;
+const float NUM_LAYER = 4.0;
+const float PERIOD = 3.0;
+
 float Hash21(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
   p += dot(p, p + 45.32);
@@ -223,6 +228,7 @@ export default function Galaxy({
       premultipliedAlpha: false,
     });
     const gl = renderer.gl;
+    if (!gl) return;
 
     if (transparent) {
       gl.enable(gl.BLEND);

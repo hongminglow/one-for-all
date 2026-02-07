@@ -1,99 +1,312 @@
-"use client";
+import React, { useRef, useEffect } from "react";
 import {
-  AmbientLight,
-  Color,
-  InstancedMesh,
-  MeshPhysicalMaterial,
-  Object3D,
-  Plane,
-  PMREMGenerator,
-  PointLight,
-  Raycaster,
+  Clock,
+  PerspectiveCamera,
   Scene,
-  SphereGeometry,
+  WebGLRenderer,
+  WebGLRendererParameters,
+  SRGBColorSpace,
+  MathUtils,
   Vector2,
   Vector3,
-  WebGLRenderer,
-  MathUtils,
-  ACESFilmicToneMapping,
+  MeshPhysicalMaterial,
   ShaderChunk,
+  Color,
+  Object3D,
+  InstancedMesh,
+  PMREMGenerator,
+  SphereGeometry,
+  AmbientLight,
+  PointLight,
+  ACESFilmicToneMapping,
+  Raycaster,
+  Plane,
 } from "three";
-import React, { useRef, useEffect } from "react";
-import { RoomEnvironment } from "three/examples/jsm/Addons.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { Observer } from "gsap/Observer";
+import { gsap } from "gsap";
 
-class X {
-  canvas: HTMLCanvasElement;
-  renderer: WebGLRenderer;
-  camera: any;
-  scene: Scene;
-  cameraMaxAspect: number;
+gsap.registerPlugin(Observer);
+
+interface XConfig {
+  canvas?: HTMLCanvasElement;
+  id?: string;
+  rendererOptions?: Partial<WebGLRendererParameters>;
+  size?: "parent" | { width: number; height: number };
+}
+
+interface SizeData {
   width: number;
   height: number;
+  wWidth: number;
+  wHeight: number;
+  ratio: number;
   pixelRatio: number;
-  onBeforeRender: (delta: { delta: number }) => void;
-  onAfterResize: (size: {
-    width: number;
-    height: number;
-    wWidth: number;
-    wHeight: number;
-    pixelRatio: number;
-  }) => void;
-  size: {
-    width: number;
-    height: number;
-    wWidth: number;
-    wHeight: number;
-    pixelRatio: number;
+}
+
+class X {
+  #config: XConfig;
+  #postprocessing: any;
+  #resizeObserver?: ResizeObserver;
+  #intersectionObserver?: IntersectionObserver;
+  #resizeTimer?: number;
+  #animationFrameId: number = 0;
+  #clock: Clock = new Clock();
+  #animationState = { elapsed: 0, delta: 0 };
+  #isAnimating: boolean = false;
+  #isVisible: boolean = false;
+
+  canvas!: HTMLCanvasElement;
+  camera!: PerspectiveCamera;
+  cameraMinAspect?: number;
+  cameraMaxAspect?: number;
+  cameraFov!: number;
+  maxPixelRatio?: number;
+  minPixelRatio?: number;
+  scene!: Scene;
+  renderer!: WebGLRenderer;
+  size: SizeData = {
+    width: 0,
+    height: 0,
+    wWidth: 0,
+    wHeight: 0,
+    ratio: 0,
+    pixelRatio: 0,
   };
 
-  constructor({ canvas, rendererOptions }: any) {
-    this.canvas = canvas;
-    this.renderer = new WebGLRenderer({ canvas, ...rendererOptions });
-    this.scene = new Scene();
-    this.cameraMaxAspect = 1.5;
-    this.width = 0;
-    this.height = 0;
-    this.pixelRatio = 0;
-    this.onBeforeRender = () => {};
-    this.onAfterResize = () => {};
-    this.size = { width: 0, height: 0, wWidth: 0, wHeight: 0, pixelRatio: 0 };
+  render: () => void = this.#render.bind(this);
+  onBeforeRender: (state: { elapsed: number; delta: number }) => void =
+    () => {};
+  onAfterRender: (state: { elapsed: number; delta: number }) => void = () => {};
+  onAfterResize: (size: SizeData) => void = () => {};
+  isDisposed: boolean = false;
 
-    // Minimal camera setup - using internal three.js perspective camera
-    // We import it dynamically or assume standard THREE usage
-    const THREE = require("three");
-    this.camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+  constructor(config: XConfig) {
+    this.#config = { ...config };
+    this.#initCamera();
+    this.#initScene();
+    this.#initRenderer();
+    this.resize();
+    this.#initObservers();
+  }
+
+  #initCamera() {
+    this.camera = new PerspectiveCamera();
+    this.cameraFov = this.camera.fov;
+  }
+
+  #initScene() {
+    this.scene = new Scene();
+  }
+
+  #initRenderer() {
+    if (this.#config.canvas) {
+      this.canvas = this.#config.canvas;
+    } else if (this.#config.id) {
+      const elem = document.getElementById(this.#config.id);
+      if (elem instanceof HTMLCanvasElement) {
+        this.canvas = elem;
+      } else {
+        console.error("Three: Missing canvas or id parameter");
+      }
+    } else {
+      console.error("Three: Missing canvas or id parameter");
+    }
+    this.canvas!.style.display = "block";
+    const rendererOptions: WebGLRendererParameters = {
+      canvas: this.canvas,
+      powerPreference: "high-performance",
+      ...(this.#config.rendererOptions ?? {}),
+    };
+    this.renderer = new WebGLRenderer(rendererOptions);
+    this.renderer.outputColorSpace = SRGBColorSpace;
+  }
+
+  #initObservers() {
+    if (!(this.#config.size instanceof Object)) {
+      window.addEventListener("resize", this.#onResize.bind(this));
+      if (this.#config.size === "parent" && this.canvas.parentNode) {
+        this.#resizeObserver = new ResizeObserver(this.#onResize.bind(this));
+        this.#resizeObserver.observe(this.canvas.parentNode as Element);
+      }
+    }
+    this.#intersectionObserver = new IntersectionObserver(
+      this.#onIntersection.bind(this),
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0,
+      },
+    );
+    this.#intersectionObserver.observe(this.canvas);
+    document.addEventListener(
+      "visibilitychange",
+      this.#onVisibilityChange.bind(this),
+    );
+  }
+
+  #onResize() {
+    if (this.#resizeTimer) clearTimeout(this.#resizeTimer);
+    this.#resizeTimer = window.setTimeout(this.resize.bind(this), 100);
   }
 
   resize() {
-    const parent = this.canvas.parentElement;
-    if (parent) {
-      this.width = parent.clientWidth;
-      this.height = parent.clientHeight;
-      this.renderer.setSize(this.width, this.height);
-      this.camera.aspect = this.width / this.height;
-      this.camera.updateProjectionMatrix();
+    let w: number, h: number;
+    if (this.#config.size instanceof Object) {
+      w = this.#config.size.width;
+      h = this.#config.size.height;
+    } else if (this.#config.size === "parent" && this.canvas.parentNode) {
+      w = (this.canvas.parentNode as HTMLElement).offsetWidth;
+      h = (this.canvas.parentNode as HTMLElement).offsetHeight;
+    } else {
+      w = window.innerWidth;
+      h = window.innerHeight;
+    }
+    this.size.width = w;
+    this.size.height = h;
+    this.size.ratio = w / h;
+    this.#updateCamera();
+    this.#updateRenderer();
+    this.onAfterResize(this.size);
+  }
 
+  #updateCamera() {
+    this.camera.aspect = this.size.width / this.size.height;
+    if (this.camera.isPerspectiveCamera && this.cameraFov) {
+      if (this.cameraMinAspect && this.camera.aspect < this.cameraMinAspect) {
+        this.#adjustFov(this.cameraMinAspect);
+      } else if (
+        this.cameraMaxAspect &&
+        this.camera.aspect > this.cameraMaxAspect
+      ) {
+        this.#adjustFov(this.cameraMaxAspect);
+      } else {
+        this.camera.fov = this.cameraFov;
+      }
+    }
+    this.camera.updateProjectionMatrix();
+    this.updateWorldSize();
+  }
+
+  #adjustFov(aspect: number) {
+    const tanFov = Math.tan(MathUtils.degToRad(this.cameraFov / 2));
+    const newTan = tanFov / (this.camera.aspect / aspect);
+    this.camera.fov = 2 * MathUtils.radToDeg(Math.atan(newTan));
+  }
+
+  updateWorldSize() {
+    if (this.camera.isPerspectiveCamera) {
       const fovRad = (this.camera.fov * Math.PI) / 180;
-      const wHeight = 2 * Math.tan(fovRad / 2) * this.camera.position.length();
-      const wWidth = wHeight * this.camera.aspect;
-
-      this.size = {
-        width: this.width,
-        height: this.height,
-        wWidth,
-        wHeight,
-        pixelRatio: this.renderer.getPixelRatio(),
-      };
-      this.onAfterResize(this.size);
+      this.size.wHeight =
+        2 * Math.tan(fovRad / 2) * this.camera.position.length();
+      this.size.wWidth = this.size.wHeight * this.camera.aspect;
+    } else if ((this.camera as any).isOrthographicCamera) {
+      const cam = this.camera as any;
+      this.size.wHeight = cam.top - cam.bottom;
+      this.size.wWidth = cam.right - cam.left;
     }
   }
 
+  #updateRenderer() {
+    this.renderer.setSize(this.size.width, this.size.height);
+    this.#postprocessing?.setSize(this.size.width, this.size.height);
+    let pr = window.devicePixelRatio;
+    if (this.maxPixelRatio && pr > this.maxPixelRatio) {
+      pr = this.maxPixelRatio;
+    } else if (this.minPixelRatio && pr < this.minPixelRatio) {
+      pr = this.minPixelRatio;
+    }
+    this.renderer.setPixelRatio(pr);
+    this.size.pixelRatio = pr;
+  }
+
+  get postprocessing() {
+    return this.#postprocessing;
+  }
+  set postprocessing(value: any) {
+    this.#postprocessing = value;
+    this.render = value.render.bind(value);
+  }
+
+  #onIntersection(entries: IntersectionObserverEntry[]) {
+    this.#isAnimating = entries[0].isIntersecting;
+    this.#isAnimating ? this.#startAnimation() : this.#stopAnimation();
+  }
+
+  #onVisibilityChange() {
+    if (this.#isAnimating) {
+      document.hidden ? this.#stopAnimation() : this.#startAnimation();
+    }
+  }
+
+  #startAnimation() {
+    if (this.#isVisible) return;
+    const animateFrame = () => {
+      this.#animationFrameId = requestAnimationFrame(animateFrame);
+      this.#animationState.delta = this.#clock.getDelta();
+      this.#animationState.elapsed += this.#animationState.delta;
+      this.onBeforeRender(this.#animationState);
+      this.render();
+      this.onAfterRender(this.#animationState);
+    };
+    this.#isVisible = true;
+    this.#clock.start();
+    animateFrame();
+  }
+
+  #stopAnimation() {
+    if (this.#isVisible) {
+      cancelAnimationFrame(this.#animationFrameId);
+      this.#isVisible = false;
+      this.#clock.stop();
+    }
+  }
+
+  #render() {
+    this.renderer.render(this.scene, this.camera);
+  }
+
   clear() {
+    this.scene.traverse((obj) => {
+      if (
+        (obj as any).isMesh &&
+        typeof (obj as any).material === "object" &&
+        (obj as any).material !== null
+      ) {
+        Object.keys((obj as any).material).forEach((key) => {
+          const matProp = (obj as any).material[key];
+          if (
+            matProp &&
+            typeof matProp === "object" &&
+            typeof matProp.dispose === "function"
+          ) {
+            matProp.dispose();
+          }
+        });
+        (obj as any).material.dispose();
+        (obj as any).geometry.dispose();
+      }
+    });
     this.scene.clear();
   }
 
   dispose() {
+    this.#onResizeCleanup();
+    this.#stopAnimation();
+    this.clear();
+    this.#postprocessing?.dispose();
     this.renderer.dispose();
+    this.isDisposed = true;
+  }
+
+  #onResizeCleanup() {
+    window.removeEventListener("resize", this.#onResize.bind(this));
+    this.#resizeObserver?.disconnect();
+    this.#intersectionObserver?.disconnect();
+    document.removeEventListener(
+      "visibilitychange",
+      this.#onVisibilityChange.bind(this),
+    );
   }
 }
 
@@ -125,6 +338,7 @@ class W {
     this.positionData = new Float32Array(3 * config.count).fill(0);
     this.velocityData = new Float32Array(3 * config.count).fill(0);
     this.sizeData = new Float32Array(config.count).fill(1);
+    this.center = new Vector3();
     this.#initializePositions();
     this.setSizes();
   }
@@ -287,8 +501,10 @@ class Y extends MeshPhysicalMaterial {
         "#include <lights_fragment_begin>",
         lightsChunk,
       );
+      if (this.onBeforeCompile2) this.onBeforeCompile2(shader);
     };
   }
+  onBeforeCompile2?: (shader: any) => void;
 }
 
 const XConfig = {
@@ -353,77 +569,76 @@ function createPointerData(
   if (!pointerMap.has(options.domElement)) {
     pointerMap.set(options.domElement, defaultData);
     if (!globalPointerActive) {
-      if (typeof window !== "undefined") {
-        document.body.addEventListener(
-          "pointermove",
-          onPointerMove as EventListener,
-        );
-        document.body.addEventListener(
-          "pointerleave",
-          onPointerLeave as EventListener,
-        );
-        document.body.addEventListener(
-          "click",
-          onPointerClick as EventListener,
-        );
-        document.body.addEventListener(
-          "touchstart",
-          onTouchStart as EventListener,
-          { passive: false },
-        );
-        document.body.addEventListener(
-          "touchmove",
-          onTouchMove as EventListener,
-          { passive: false },
-        );
-        document.body.addEventListener(
-          "touchend",
-          onTouchEnd as EventListener,
-          { passive: false },
-        );
-        document.body.addEventListener(
-          "touchcancel",
-          onTouchEnd as EventListener,
-          { passive: false },
-        );
-        globalPointerActive = true;
-      }
+      document.body.addEventListener(
+        "pointermove",
+        onPointerMove as EventListener,
+      );
+      document.body.addEventListener(
+        "pointerleave",
+        onPointerLeave as EventListener,
+      );
+      document.body.addEventListener("click", onPointerClick as EventListener);
+
+      document.body.addEventListener(
+        "touchstart",
+        onTouchStart as EventListener,
+        {
+          passive: false,
+        },
+      );
+      document.body.addEventListener(
+        "touchmove",
+        onTouchMove as EventListener,
+        {
+          passive: false,
+        },
+      );
+      document.body.addEventListener("touchend", onTouchEnd as EventListener, {
+        passive: false,
+      });
+      document.body.addEventListener(
+        "touchcancel",
+        onTouchEnd as EventListener,
+        {
+          passive: false,
+        },
+      );
+      globalPointerActive = true;
     }
   }
   defaultData.dispose = () => {
     pointerMap.delete(options.domElement);
     if (pointerMap.size === 0) {
-      if (typeof window !== "undefined") {
-        document.body.removeEventListener(
-          "pointermove",
-          onPointerMove as EventListener,
-        );
-        document.body.removeEventListener(
-          "pointerleave",
-          onPointerLeave as EventListener,
-        );
-        document.body.removeEventListener(
-          "click",
-          onPointerClick as EventListener,
-        );
-        document.body.removeEventListener(
-          "touchstart",
-          onTouchStart as EventListener,
-        );
-        document.body.removeEventListener(
-          "touchmove",
-          onTouchMove as EventListener,
-        );
-        document.body.removeEventListener(
-          "touchend",
-          onTouchEnd as EventListener,
-        );
-        document.body.removeEventListener(
-          "touchcancel",
-          onTouchEnd as EventListener,
-        );
-        globalPointerActive = false;
-      }
+      document.body.removeEventListener(
+        "pointermove",
+        onPointerMove as EventListener,
+      );
+      document.body.removeEventListener(
+        "pointerleave",
+        onPointerLeave as EventListener,
+      );
+      document.body.removeEventListener(
+        "click",
+        onPointerClick as EventListener,
+      );
+
+      document.body.removeEventListener(
+        "touchstart",
+        onTouchStart as EventListener,
+      );
+      document.body.removeEventListener(
+        "touchmove",
+        onTouchMove as EventListener,
+      );
+      document.body.removeEventListener(
+        "touchend",
+        onTouchEnd as EventListener,
+      );
+      document.body.removeEventListener(
+        "touchcancel",
+        onTouchEnd as EventListener,
+      );
+      globalPointerActive = false;
     }
   };
   return defaultData;
@@ -745,13 +960,7 @@ const Ballpit: React.FC<BallpitProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <canvas
-      className={className}
-      ref={canvasRef}
-      style={{ width: "100%", height: "100%" }}
-    />
-  );
+  return <canvas className={`${className} w-full h-full`} ref={canvasRef} />;
 };
 
 export default Ballpit;

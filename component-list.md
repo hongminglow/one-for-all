@@ -130,7 +130,7 @@
 118. Typewriter Text : https://www.jolyui.dev/docs/components/text-animations/typewritter-text
 119. AI prompt box : https://www.jolyui.dev/docs/components/inputs/ai-prompt-box
 120. Animated Theme Toggle : https://www.jolyui.dev/docs/components/inputs/animated-theme-toggle
-121. Calendar Inout : https://www.jolyui.dev/docs/components/inputs/calendar
+121. Calendar Input : https://www.jolyui.dev/docs/components/inputs/calendar
 122. Date Wheel Picker : https://www.jolyui.dev/docs/components/inputs/date-wheel-picker
 123. Feedback Widget : https://www.jolyui.dev/docs/components/inputs/feedback-widget
 124. File Tree : https://www.jolyui.dev/docs/components/navigation/file-tree
@@ -145,7 +145,7 @@
 133. Copy Button : https://animate-ui.com/docs/components/buttons/copy
 134. Flip Button : https://animate-ui.com/docs/components/buttons/flip
 135. Ripple Button : https://animate-ui.com/docs/components/buttons/ripple
-136. Hole Backgrond : https://animate-ui.com/docs/components/backgrounds/hole
+136. Hole Background : https://animate-ui.com/docs/components/backgrounds/hole
 137. Flip Card : https://animate-ui.com/docs/components/community/flip-card
 138. Management Bar : https://animate-ui.com/docs/components/community/management-bar
 139. Motion Carousel : https://animate-ui.com/docs/components/community/motion-carousel

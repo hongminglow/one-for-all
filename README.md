@@ -161,6 +161,18 @@ This repository contains a collection of 158+ UI components from various librari
 - Terminal
 - Textarea
 - Video Player
+- Confetti
+- Fireworks
+- Meteors
+- Orbits
+- Rain
+- Snow
+- Vortex
+- Area Gradient Chart
+- Bar Horizontal Chart
+- Bar Interactive Chart
+- Pie Donut Chart
+- Radar Dots Chart
 
 ## SOP for Adding New Components
 

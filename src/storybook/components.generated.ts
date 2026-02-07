@@ -1949,12 +1949,12 @@ export const COMPONENTS: ComponentItem[] = [
   {
     "id": "cmp_121",
     "order": 121,
-    "slug": "calendar-inout",
-    "title": "Calendar Inout",
-    "description": "Input/form component: Calendar Inout.",
+    "slug": "calendar-input",
+    "title": "Calendar Input",
+    "description": "Input/form component: Calendar Input.",
     "tags": [
       "calendar",
-      "inout",
+      "input",
       "docs",
       "inputs",
       "joly"
@@ -2206,15 +2206,16 @@ export const COMPONENTS: ComponentItem[] = [
   {
     "id": "cmp_136",
     "order": 136,
-    "slug": "hole-backgrond",
-    "title": "Hole Backgrond",
-    "description": "Animated background preset: Hole Backgrond (drop into a section/hero).",
+    "slug": "hole-background",
+    "title": "Hole Background",
+    "description": "Animated background preset: Hole Background (drop into a section/hero).",
     "tags": [
       "hole",
-      "backgrond",
+      "background",
       "docs",
       "backgrounds",
-      "animated"
+      "animated",
+      "hero"
     ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/backgrounds/hole",
