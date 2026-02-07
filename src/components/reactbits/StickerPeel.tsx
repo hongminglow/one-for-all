@@ -1,9 +1,6 @@
 import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
-import { Draggable } from "gsap/Draggable";
 import "./StickerPeel.css";
-
-gsap.registerPlugin(Draggable);
 
 interface StickerPeelProps {
   imageSrc: string;
@@ -36,9 +33,9 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dragTargetRef = useRef<HTMLDivElement>(null);
-  const pointLightRef = useRef<SVGPointLightElement>(null);
-  const pointLightFlippedRef = useRef<SVGPointLightElement>(null);
-  const draggableInstanceRef = useRef<Draggable[] | null>(null);
+  const pointLightRef = useRef<SVGFEPointLightElement>(null);
+  const pointLightFlippedRef = useRef<SVGFEPointLightElement>(null);
+  const draggableInstanceRef = useRef<any[] | null>(null);
 
   const defaultPadding = 10;
 
@@ -69,6 +66,12 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
     const target = dragTargetRef.current;
     if (!target || !target.parentNode) return;
     const boundsEl = target.parentNode as HTMLElement;
+
+    // Load GSAP Draggable on the client to avoid TS file-casing conflicts
+    // in GSAP's type declarations on Windows.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Draggable } = require("gsap/Draggable");
+    gsap.registerPlugin(Draggable);
 
     draggableInstanceRef.current = Draggable.create(target, {
       type: "x,y",

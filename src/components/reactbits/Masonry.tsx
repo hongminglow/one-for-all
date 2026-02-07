@@ -14,19 +14,30 @@ const useMedia = (
   values: number[],
   defaultValue: number,
 ): number => {
-  const get = () =>
-    values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
+  const canMatch =
+    typeof window !== "undefined" && typeof window.matchMedia === "function";
+
+  const get = () => {
+    if (!canMatch) return defaultValue;
+    return (
+      values[queries.findIndex((q) => window.matchMedia(q).matches)] ??
+      defaultValue
+    );
+  };
 
   const [value, setValue] = useState<number>(get);
 
   useEffect(() => {
+    if (!canMatch) return;
     const handler = () => setValue(get);
-    queries.forEach((q) => matchMedia(q).addEventListener("change", handler));
+    queries.forEach((q) =>
+      window.matchMedia(q).addEventListener("change", handler),
+    );
     return () =>
       queries.forEach((q) =>
-        matchMedia(q).removeEventListener("change", handler),
+        window.matchMedia(q).removeEventListener("change", handler),
       );
-  }, [queries]);
+  }, [queries, canMatch]);
 
   return value;
 };

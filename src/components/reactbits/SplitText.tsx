@@ -1,4 +1,4 @@
-import { useSprings, animated } from "@react-spring/web";
+import { useSprings, animated, easings } from "@react-spring/web";
 import { useEffect, useRef, useState } from "react";
 
 interface SplitTextProps {
@@ -31,6 +31,12 @@ const SplitText: React.FC<SplitTextProps> = ({
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
   const animatedCount = useRef(0);
+  const completedRef = useRef<boolean[]>([]);
+
+  const easingFn =
+    easing && easing in easings
+      ? (easings as unknown as Record<string, (t: number) => number>)[easing]
+      : easings.easeOutCubic;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,24 +53,31 @@ const SplitText: React.FC<SplitTextProps> = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
+  useEffect(() => {
+    if (!inView) return;
+    animatedCount.current = 0;
+    completedRef.current = new Array(letters.length).fill(false);
+  }, [inView, letters.length]);
+
   const springs = useSprings(
     letters.length,
     letters.map((_, i) => ({
       from: animationFrom,
-      to: inView
-        ? async (next: (props: Record<string, unknown>) => Promise<void>) => {
-            await next(animationTo as Record<string, unknown>);
-            animatedCount.current += 1;
-            if (
-              animatedCount.current === letters.length &&
-              onLetterAnimationComplete
-            ) {
-              onLetterAnimationComplete();
-            }
-          }
-        : animationFrom,
+      to: inView ? animationTo : animationFrom,
       delay: i * delay,
-      config: { easing: easing as string },
+      config: { easing: easingFn },
+      onRest: () => {
+        if (!inView) return;
+        if (completedRef.current[i]) return;
+        completedRef.current[i] = true;
+        animatedCount.current += 1;
+        if (
+          animatedCount.current === letters.length &&
+          onLetterAnimationComplete
+        ) {
+          onLetterAnimationComplete();
+        }
+      },
     })),
   );
 

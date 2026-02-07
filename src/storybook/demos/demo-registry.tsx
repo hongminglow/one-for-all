@@ -34,6 +34,36 @@ import LightPillar from "@/components/reactbits/LightPillar";
 import FloatingLines from "@/components/reactbits/FloatingLines";
 import LightRays from "@/components/reactbits/LightRays";
 import ColorBends from "@/components/reactbits/ColorBends";
+import Particles from "@/components/reactbits/Particles";
+import GridScan from "@/components/reactbits/GridScan";
+import Lightning from "@/components/reactbits/Lightning";
+import Galaxy from "@/components/reactbits/Galaxy";
+import DotGrid from "@/components/reactbits/DotGrid";
+import Hyperspeed from "@/components/reactbits/Hyperspeed";
+import Ballpit from "@/components/reactbits/Ballpit";
+import Orb from "@/components/reactbits/Orb";
+import LetterGlitch from "@/components/reactbits/LetterGlitch";
+import GridMotion from "@/components/reactbits/GridMotion";
+import RainbowButton from "@/components/jolyui/RainbowButton";
+import GooeyTextMorphing from "@/components/jolyui/GooeyTextMorphing";
+import HighlightText from "@/components/jolyui/HighlightText";
+import NumberCounter from "@/components/jolyui/NumberCounter";
+import RotateText from "@/components/jolyui/RotateText";
+import TypewriterText from "@/components/jolyui/TypewriterText";
+import AIPromptBox from "@/components/jolyui/AIPromptBox";
+import AnimatedThemeToggle from "@/components/jolyui/AnimatedThemeToggle";
+import DateWheelPicker from "@/components/jolyui/DateWheelPicker";
+import FeedbackWidget from "@/components/jolyui/FeedbackWidget";
+import FileTree, { type FileTreeNode } from "@/components/jolyui/FileTree";
+import AnimatedBeam from "@/components/jolyui/AnimatedBeam";
+import ExpandedMap from "@/components/jolyui/ExpandedMap";
+import GitHubStarButton from "@/components/jolyui/GitHubStarButton";
+import {
+  HoverPreviewLink,
+  HoverPreviewProvider,
+} from "@/components/jolyui/HoverPreview";
+import ImageSphere from "@/components/jolyui/ImageSphere";
+import Calendar from "@/components/shadcn/Calendar";
 import {
   circularTextCode,
   curvedLoopCode,
@@ -66,6 +96,16 @@ import {
   floatingLinesCode,
   lightRaysCode,
   colorBendsCode,
+  particlesCode,
+  gridScanCode,
+  lightningCode,
+  galaxyCode,
+  dotGridCode,
+  hyperspeedCode,
+  ballpitCode,
+  orbCode,
+  letterGlitchCode,
+  gridMotionCode,
   electricBorderCode,
   antigravityCode,
   logoLoopCode,
@@ -86,6 +126,23 @@ import {
   fluidGlassCode,
   masonryCode,
   modelViewerCode,
+  rainbowButtonCode,
+  gooeyTextMorphingCode,
+  highlightTextCode,
+  numberCounterCode,
+  rotateTextCode,
+  typewriterTextJolyCode,
+  aiPromptBoxCode,
+  animatedThemeToggleCode,
+  dateWheelPickerCode,
+  feedbackWidgetCode,
+  fileTreeCode,
+  animatedBeamCode,
+  expandedMapCode,
+  githubStarCode,
+  hoverPreviewCode,
+  imageSphereCode,
+  shadcnCalendarCode,
 } from "@/storybook/demos/code-snippets";
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 import Antigravity from "@/components/reactbits/Antigravity";
@@ -108,6 +165,121 @@ import FluidGlass from "@/components/reactbits/FluidGlass";
 import Masonry from "@/components/reactbits/Masonry";
 import ModelViewer from "@/components/reactbits/ModelViewer";
 import Lanyard from "@/components/reactbits/Lanyard";
+
+const DEFAULT_FILE_TREE: FileTreeNode[] = [
+  {
+    type: "folder",
+    name: "src",
+    children: [
+      {
+        type: "folder",
+        name: "components",
+        children: [
+          { type: "file", name: "RainbowButton.tsx" },
+          { type: "file", name: "Calendar.tsx" },
+          { type: "file", name: "ImageSphere.tsx" },
+        ],
+      },
+      { type: "file", name: "app.tsx" },
+    ],
+  },
+];
+
+const DEMO_IMAGES = [
+  {
+    id: "1",
+    src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&auto=format&fit=crop&q=60",
+    alt: "Team",
+  },
+  {
+    id: "2",
+    src: "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?w=400&auto=format&fit=crop&q=60",
+    alt: "City",
+  },
+  {
+    id: "3",
+    src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&auto=format&fit=crop&q=60",
+    alt: "Mountains",
+  },
+  {
+    id: "4",
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop&q=60",
+    alt: "Sunset",
+  },
+  {
+    id: "5",
+    src: "https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=400&auto=format&fit=crop&q=60",
+    alt: "Code",
+  },
+];
+
+function AnimatedBeamDemo(props: {
+  curvature: number;
+  duration: number;
+  reverse: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const fromRef = useRef<HTMLDivElement | null>(null);
+  const toRef = useRef<HTMLDivElement | null>(null);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex items-center justify-between rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6"
+      style={{ height: 220, width: "100%" }}
+    >
+      <div
+        ref={fromRef}
+        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-[var(--sb-text-strong)]"
+      >
+        A
+      </div>
+      <div
+        ref={toRef}
+        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-[var(--sb-text-strong)]"
+      >
+        B
+      </div>
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={fromRef}
+        toRef={toRef}
+        curvature={props.curvature}
+        duration={props.duration}
+        reverse={props.reverse}
+      />
+    </div>
+  );
+}
+
+function CalendarDemo() {
+  const [selected, setSelected] = useState<Date>(new Date());
+  return <Calendar value={selected} onChange={setSelected} />;
+}
+
+function HoverPreviewDemo() {
+  return (
+    <div className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+      <HoverPreviewProvider
+        data={{
+          one: {
+            image:
+              "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop&q=60",
+            title: "Hover Preview",
+            subtitle: "Tooltip-style card",
+          },
+        }}
+      >
+        <div className="text-[13px] font-semibold text-[var(--sb-text-muted)]">
+          Hover over:
+        </div>
+        <div className="mt-2 text-[18px] font-black">
+          <HoverPreviewLink previewKey="one">this link</HoverPreviewLink>
+        </div>
+      </HoverPreviewProvider>
+    </div>
+  );
+}
 
 function TypewriterDemo(props: { text: string }) {
   return (
@@ -1412,6 +1584,370 @@ export function renderDemo(component: ComponentItem, props?: any) {
             noise={props?.noise ?? 0.1}
             {...props}
           />
+        </div>
+      );
+
+    case slug.includes("particles") || title.includes("particles"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Particles
+            count={props?.count ?? 70}
+            speed={props?.speed ?? 0.6}
+            radius={props?.radius ?? 2}
+            color={props?.color ?? "#ffffff"}
+            linkDistance={props?.linkDistance ?? 120}
+            linkOpacity={props?.linkOpacity ?? 0.22}
+            interactive={props?.interactive ?? true}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("grid-scan") || title.includes("grid scan"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <GridScan
+            size={props?.size ?? 44}
+            opacity={props?.opacity ?? 0.12}
+            scanOpacity={props?.scanOpacity ?? 0.55}
+            scanSpeed={props?.scanSpeed ?? 2.2}
+            gridColor={props?.gridColor ?? "#ffffff"}
+            scanColor={props?.scanColor ?? "var(--sb-accent)"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("lightning") || title.includes("lightning"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Lightning
+            frequency={props?.frequency ?? 1.1}
+            speed={props?.speed ?? 1}
+            color={props?.color ?? "#ffffff"}
+            glow={props?.glow ?? 10}
+            thickness={props?.thickness ?? 2}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("galaxy") || title.includes("galaxy"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Galaxy
+            stars={props?.stars ?? 900}
+            rotationSpeed={props?.rotationSpeed ?? 0.25}
+            colorA={props?.colorA ?? "#ffffff"}
+            colorB={props?.colorB ?? "var(--sb-accent)"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("dot-grid") || title.includes("dot grid"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <DotGrid
+            spacing={props?.spacing ?? 22}
+            dotSize={props?.dotSize ?? 2}
+            opacity={props?.opacity ?? 0.18}
+            dotColor={props?.dotColor ?? "#ffffff"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("hyperspeed") || title.includes("hyperspeed"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Hyperspeed
+            streaks={props?.streaks ?? 260}
+            speed={props?.speed ?? 1}
+            color={props?.color ?? "#ffffff"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("ballpit") || title.includes("ballpit"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Ballpit
+            balls={props?.balls ?? 18}
+            gravity={props?.gravity ?? 0.45}
+            bounce={props?.bounce ?? 0.86}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("orb") || title.includes("orb"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Orb
+            color={props?.color ?? "var(--sb-accent)"}
+            speed={props?.speed ?? 1}
+            glow={props?.glow ?? 0.85}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("letter-glitch") || title.includes("letter glitch"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <LetterGlitch
+            text={props?.text ?? "LETTER GLITCH"}
+            speed={props?.speed ?? 22}
+            glitchChance={props?.glitchChance ?? 0.18}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("grid-motion") || title.includes("grid motion"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <GridMotion
+            gridSize={props?.gridSize ?? 28}
+            speed={props?.speed ?? 1}
+            amplitude={props?.amplitude ?? 8}
+            color={props?.color ?? "#ffffff"}
+            opacity={props?.opacity ?? 0.14}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("rainbow-button") || title.includes("rainbow button"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 160 }}
+        >
+          <RainbowButton
+            duration={props?.duration ?? 2}
+            borderWidth={props?.borderWidth ?? 2}
+            animated={props?.animated ?? true}
+          >
+            {props?.text ?? "Rainbow Button"}
+          </RainbowButton>
+        </div>
+      );
+
+    case slug.includes("gooey-text-morphing") || title.includes("gooey"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 200 }}
+        >
+          <GooeyTextMorphing
+            texts={["Joly UI", "One-for-all", "Storybook"]}
+            duration={props?.duration ?? 1.2}
+            pauseDuration={props?.pauseDuration ?? 1.2}
+          />
+        </div>
+      );
+
+    case slug.includes("highlight-text") || title.includes("highlight text"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+            <HighlightText
+              duration={props?.duration ?? 0.5}
+              delay={props?.delay ?? 0.1}
+            >
+              {props?.text ?? "Highlight me"}
+            </HighlightText>
+          </div>
+        </div>
+      );
+
+    case slug.includes("number-counter") || title.includes("number counter"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <div className="text-[54px] font-black text-[var(--sb-text-strong)]">
+            <NumberCounter
+              value={props?.value ?? 1234.56}
+              precision={props?.precision ?? 2}
+              durationMs={props?.durationMs ?? 700}
+            />
+          </div>
+        </div>
+      );
+
+    case slug.includes("rotate-text") || title.includes("rotate text"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+            <span>Build </span>
+            <span className="inline-block text-[var(--sb-accent)]">
+              <RotateText
+                words={["fast", "simple", "polished"]}
+                duration={props?.duration ?? 0.5}
+                pauseDuration={props?.pauseDuration ?? 1.2}
+              />
+            </span>
+          </div>
+        </div>
+      );
+
+    case slug.includes("typewriter-text") || title.includes("typewriter text"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+            <TypewriterText
+              words={["Typewriter", "Animation", "Effect"]}
+              typingSpeed={props?.typingSpeed ?? 90}
+              deletingSpeed={props?.deletingSpeed ?? 50}
+              pauseDuration={props?.pauseDuration ?? 1200}
+            />
+          </div>
+        </div>
+      );
+
+    case slug.includes("ai-prompt-box") || title.includes("ai prompt"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 240 }}
+        >
+          <AIPromptBox
+            placeholder={props?.placeholder ?? "Ask me anything…"}
+            isLoading={props?.isLoading ?? false}
+            onSubmit={() => {}}
+          />
+        </div>
+      );
+
+    case slug.includes("animated-theme-toggle") ||
+      title.includes("theme toggle"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <AnimatedThemeToggle />
+        </div>
+      );
+
+    case slug.includes("date-wheel-picker") || title.includes("date wheel"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <DateWheelPicker
+            value={new Date()}
+            onChange={() => {}}
+            size={props?.size ?? "md"}
+            disabled={props?.disabled ?? false}
+          />
+        </div>
+      );
+
+    case slug.includes("feedback-widget") || title.includes("feedback"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 270 }}
+        >
+          <FeedbackWidget title={props?.title ?? "How was this demo?"} />
+        </div>
+      );
+
+    case slug.includes("file-tree") || title.includes("file tree"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 300 }}
+        >
+          <FileTree tree={DEFAULT_FILE_TREE} />
+        </div>
+      );
+
+    case slug.includes("animated-beam") || title.includes("animated beam"):
+      return (
+        <AnimatedBeamDemo
+          curvature={props?.curvature ?? 0.2}
+          duration={props?.duration ?? 2}
+          reverse={props?.reverse ?? false}
+        />
+      );
+
+    case slug.includes("expanded-map") || title.includes("expanded map"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 320 }}
+        >
+          <ExpandedMap tileProvider={props?.tileProvider ?? "carto-light"} />
+        </div>
+      );
+
+    case slug.includes("github-star") || title.includes("github star"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 180 }}
+        >
+          <GitHubStarButton
+            owner={props?.owner ?? "vercel"}
+            repo={props?.repo ?? "next.js"}
+            stars={
+              typeof props?.stars === "number" && props.stars > 0
+                ? props.stars
+                : undefined
+            }
+          />
+        </div>
+      );
+
+    case slug.includes("hover-preview") || title.includes("hover preview"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 260 }}
+        >
+          <HoverPreviewDemo />
+        </div>
+      );
+
+    case slug.includes("image-sphere") || title.includes("image sphere"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 420 }}
+        >
+          <ImageSphere
+            images={DEMO_IMAGES}
+            autoRotate={props?.autoRotate ?? true}
+            sphereRadius={props?.sphereRadius ?? 160}
+            containerSize={props?.containerSize ?? 360}
+          />
+        </div>
+      );
+
+    case slug === "calendar":
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 360 }}
+        >
+          <CalendarDemo />
         </div>
       );
 
@@ -3259,6 +3795,667 @@ export function getDemoControls(
     ];
   }
 
+  if (slug.includes("particles") || title.includes("particles")) {
+    return [
+      {
+        type: "number",
+        param: "count",
+        label: "Count",
+        defaultValue: 70,
+        min: 10,
+        max: 220,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 0.6,
+        min: 0,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "linkDistance",
+        label: "Link Distance",
+        defaultValue: 120,
+        min: 40,
+        max: 240,
+        step: 5,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "boolean",
+        param: "interactive",
+        label: "Interactive",
+        defaultValue: true,
+      },
+    ];
+  }
+
+  if (slug.includes("grid-scan") || title.includes("grid scan")) {
+    return [
+      {
+        type: "number",
+        param: "size",
+        label: "Grid Size",
+        defaultValue: 44,
+        min: 12,
+        max: 120,
+        step: 2,
+      },
+      {
+        type: "number",
+        param: "opacity",
+        label: "Grid Opacity",
+        defaultValue: 0.12,
+        min: 0,
+        max: 0.6,
+        step: 0.01,
+      },
+      {
+        type: "number",
+        param: "scanSpeed",
+        label: "Scan Speed",
+        defaultValue: 2.2,
+        min: 0.4,
+        max: 8,
+        step: 0.1,
+      },
+      {
+        type: "color",
+        param: "gridColor",
+        label: "Grid Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("lightning") || title.includes("lightning")) {
+    return [
+      {
+        type: "number",
+        param: "frequency",
+        label: "Frequency",
+        defaultValue: 1.1,
+        min: 0.1,
+        max: 6,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "glow",
+        label: "Glow",
+        defaultValue: 10,
+        min: 0,
+        max: 30,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "thickness",
+        label: "Thickness",
+        defaultValue: 2,
+        min: 1,
+        max: 8,
+        step: 1,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("galaxy") || title.includes("galaxy")) {
+    return [
+      {
+        type: "number",
+        param: "stars",
+        label: "Stars",
+        defaultValue: 900,
+        min: 200,
+        max: 2200,
+        step: 50,
+      },
+      {
+        type: "number",
+        param: "rotationSpeed",
+        label: "Rotation Speed",
+        defaultValue: 0.25,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("dot-grid") || title.includes("dot grid")) {
+    return [
+      {
+        type: "number",
+        param: "spacing",
+        label: "Spacing",
+        defaultValue: 22,
+        min: 8,
+        max: 80,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "dotSize",
+        label: "Dot Size",
+        defaultValue: 2,
+        min: 1,
+        max: 8,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "opacity",
+        label: "Opacity",
+        defaultValue: 0.18,
+        min: 0,
+        max: 0.8,
+        step: 0.01,
+      },
+      {
+        type: "color",
+        param: "dotColor",
+        label: "Dot Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("hyperspeed") || title.includes("hyperspeed")) {
+    return [
+      {
+        type: "number",
+        param: "streaks",
+        label: "Streaks",
+        defaultValue: 260,
+        min: 60,
+        max: 900,
+        step: 20,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0.2,
+        max: 4,
+        step: 0.1,
+      },
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("ballpit") || title.includes("ballpit")) {
+    return [
+      {
+        type: "number",
+        param: "balls",
+        label: "Balls",
+        defaultValue: 18,
+        min: 6,
+        max: 60,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "gravity",
+        label: "Gravity",
+        defaultValue: 0.45,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "bounce",
+        label: "Bounce",
+        defaultValue: 0.86,
+        min: 0.2,
+        max: 0.98,
+        step: 0.01,
+      },
+    ];
+  }
+
+  if (slug.includes("orb") || title.includes("orb")) {
+    return [
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0,
+        max: 4,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "glow",
+        label: "Glow",
+        defaultValue: 0.85,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+    ];
+  }
+
+  if (slug.includes("letter-glitch") || title.includes("letter glitch")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "LETTER GLITCH",
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 22,
+        min: 1,
+        max: 60,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "glitchChance",
+        label: "Glitch Chance",
+        defaultValue: 0.18,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+    ];
+  }
+
+  if (slug.includes("grid-motion") || title.includes("grid motion")) {
+    return [
+      {
+        type: "number",
+        param: "gridSize",
+        label: "Grid Size",
+        defaultValue: 28,
+        min: 10,
+        max: 80,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "amplitude",
+        label: "Amplitude",
+        defaultValue: 8,
+        min: 0,
+        max: 30,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0,
+        max: 4,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("rainbow-button") || title.includes("rainbow button")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "Rainbow Button",
+      },
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 2,
+        min: 0.5,
+        max: 8,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "borderWidth",
+        label: "Border Width",
+        defaultValue: 2,
+        min: 1,
+        max: 6,
+        step: 1,
+      },
+      {
+        type: "boolean",
+        param: "animated",
+        label: "Animated",
+        defaultValue: true,
+      },
+    ];
+  }
+
+  if (slug.includes("gooey-text-morphing") || title.includes("gooey")) {
+    return [
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 1.2,
+        min: 0.4,
+        max: 3,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "pauseDuration",
+        label: "Pause",
+        defaultValue: 1.2,
+        min: 0,
+        max: 3,
+        step: 0.1,
+      },
+    ];
+  }
+
+  if (slug.includes("highlight-text") || title.includes("highlight text")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "Highlight me",
+      },
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 0.5,
+        min: 0.1,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "delay",
+        label: "Delay",
+        defaultValue: 0.1,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("number-counter") || title.includes("number counter")) {
+    return [
+      {
+        type: "number",
+        param: "value",
+        label: "Value",
+        defaultValue: 1235,
+        min: -5000,
+        max: 5000,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "precision",
+        label: "Precision",
+        defaultValue: 0,
+        min: 0,
+        max: 4,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "durationMs",
+        label: "Duration (ms)",
+        defaultValue: 700,
+        min: 150,
+        max: 2000,
+        step: 50,
+      },
+    ];
+  }
+
+  if (slug.includes("rotate-text") || title.includes("rotate text")) {
+    return [
+      {
+        type: "number",
+        param: "duration",
+        label: "Anim Duration",
+        defaultValue: 0.5,
+        min: 0.1,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "pauseDuration",
+        label: "Pause",
+        defaultValue: 1.2,
+        min: 0,
+        max: 3,
+        step: 0.1,
+      },
+    ];
+  }
+
+  if (slug.includes("typewriter-text") || title.includes("typewriter text")) {
+    return [
+      {
+        type: "number",
+        param: "typingSpeed",
+        label: "Typing (ms)",
+        defaultValue: 90,
+        min: 20,
+        max: 250,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "deletingSpeed",
+        label: "Deleting (ms)",
+        defaultValue: 50,
+        min: 20,
+        max: 250,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "pauseDuration",
+        label: "Pause (ms)",
+        defaultValue: 1200,
+        min: 0,
+        max: 3000,
+        step: 50,
+      },
+    ];
+  }
+
+  if (slug.includes("ai-prompt-box") || title.includes("ai prompt")) {
+    return [
+      {
+        type: "text",
+        param: "placeholder",
+        label: "Placeholder",
+        defaultValue: "Ask me anything…",
+      },
+      {
+        type: "boolean",
+        param: "isLoading",
+        label: "Loading",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (
+    slug.includes("animated-theme-toggle") ||
+    title.includes("theme toggle")
+  ) {
+    return [];
+  }
+
+  if (slug.includes("date-wheel-picker") || title.includes("date wheel")) {
+    return [
+      {
+        type: "select",
+        param: "size",
+        label: "Size",
+        defaultValue: "md",
+        options: ["sm", "md", "lg"],
+      },
+      {
+        type: "boolean",
+        param: "disabled",
+        label: "Disabled",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (slug.includes("feedback-widget") || title.includes("feedback")) {
+    return [
+      {
+        type: "text",
+        param: "title",
+        label: "Title",
+        defaultValue: "How was this demo?",
+      },
+    ];
+  }
+
+  if (slug.includes("file-tree") || title.includes("file tree")) {
+    return [];
+  }
+
+  if (slug.includes("animated-beam") || title.includes("animated beam")) {
+    return [
+      {
+        type: "number",
+        param: "curvature",
+        label: "Curvature",
+        defaultValue: 0.2,
+        min: -0.8,
+        max: 0.8,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 2,
+        min: 0.5,
+        max: 8,
+        step: 0.1,
+      },
+      {
+        type: "boolean",
+        param: "reverse",
+        label: "Reverse",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (slug.includes("expanded-map") || title.includes("expanded map")) {
+    return [
+      {
+        type: "select",
+        param: "tileProvider",
+        label: "Tiles",
+        defaultValue: "carto-light",
+        options: ["carto-light", "carto-dark", "openstreetmap"],
+      },
+    ];
+  }
+
+  if (slug.includes("github-star") || title.includes("github star")) {
+    return [
+      {
+        type: "text",
+        param: "owner",
+        label: "Owner",
+        defaultValue: "vercel",
+      },
+      {
+        type: "text",
+        param: "repo",
+        label: "Repo",
+        defaultValue: "next.js",
+      },
+      {
+        type: "number",
+        param: "stars",
+        label: "Stars override (0=fetch)",
+        defaultValue: 0,
+        min: 0,
+        max: 200000,
+        step: 1000,
+      },
+    ];
+  }
+
+  if (slug.includes("hover-preview") || title.includes("hover preview")) {
+    return [];
+  }
+
+  if (slug.includes("image-sphere") || title.includes("image sphere")) {
+    return [
+      {
+        type: "boolean",
+        param: "autoRotate",
+        label: "Auto rotate",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "sphereRadius",
+        label: "Radius",
+        defaultValue: 160,
+        min: 80,
+        max: 240,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "containerSize",
+        label: "Size",
+        defaultValue: 360,
+        min: 260,
+        max: 520,
+        step: 10,
+      },
+    ];
+  }
+
+  if (slug === "calendar") {
+    return [];
+  }
+
   if (slug.includes("circular-gallery") || title.includes("circular gallery")) {
     return [
       {
@@ -3363,6 +4560,58 @@ export function getDemoCode(component: ComponentItem) {
     return lightRaysCode;
   if (slug.includes("color-bends") || title.includes("color bends"))
     return colorBendsCode;
+
+  if (slug.includes("particles") || title.includes("particles"))
+    return particlesCode;
+  if (slug.includes("grid-scan") || title.includes("grid scan"))
+    return gridScanCode;
+  if (slug.includes("lightning") || title.includes("lightning"))
+    return lightningCode;
+  if (slug.includes("galaxy") || title.includes("galaxy")) return galaxyCode;
+  if (slug.includes("dot-grid") || title.includes("dot grid"))
+    return dotGridCode;
+  if (slug.includes("hyperspeed") || title.includes("hyperspeed"))
+    return hyperspeedCode;
+  if (slug.includes("ballpit") || title.includes("ballpit")) return ballpitCode;
+  if (slug.includes("orb") || title.includes("orb")) return orbCode;
+  if (slug.includes("letter-glitch") || title.includes("letter glitch"))
+    return letterGlitchCode;
+  if (slug.includes("grid-motion") || title.includes("grid motion"))
+    return gridMotionCode;
+
+  if (slug.includes("rainbow-button") || title.includes("rainbow button"))
+    return rainbowButtonCode;
+  if (slug.includes("gooey-text-morphing") || title.includes("gooey"))
+    return gooeyTextMorphingCode;
+  if (slug.includes("highlight-text") || title.includes("highlight text"))
+    return highlightTextCode;
+  if (slug.includes("number-counter") || title.includes("number counter"))
+    return numberCounterCode;
+  if (slug.includes("rotate-text") || title.includes("rotate text"))
+    return rotateTextCode;
+  if (slug.includes("typewriter-text") || title.includes("typewriter text"))
+    return typewriterTextJolyCode;
+  if (slug.includes("ai-prompt-box") || title.includes("ai prompt"))
+    return aiPromptBoxCode;
+  if (slug.includes("animated-theme-toggle") || title.includes("theme toggle"))
+    return animatedThemeToggleCode;
+  if (slug.includes("date-wheel-picker") || title.includes("date wheel"))
+    return dateWheelPickerCode;
+  if (slug.includes("feedback-widget") || title.includes("feedback"))
+    return feedbackWidgetCode;
+  if (slug.includes("file-tree") || title.includes("file tree"))
+    return fileTreeCode;
+  if (slug.includes("animated-beam") || title.includes("animated beam"))
+    return animatedBeamCode;
+  if (slug.includes("expanded-map") || title.includes("expanded map"))
+    return expandedMapCode;
+  if (slug.includes("github-star") || title.includes("github star"))
+    return githubStarCode;
+  if (slug.includes("hover-preview") || title.includes("hover preview"))
+    return hoverPreviewCode;
+  if (slug.includes("image-sphere") || title.includes("image sphere"))
+    return imageSphereCode;
+  if (slug === "calendar") return shadcnCalendarCode;
 
   if (slug.includes("electric-border") || title.includes("electric border"))
     return electricBorderCode;
@@ -5449,6 +6698,520 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         type: "boolean",
         default: "true",
         description: "Whether the canvas background is transparent.",
+      },
+    ];
+  }
+
+  if (slug.includes("rainbow-button") || title.includes("rainbow button")) {
+    return [
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "(preset)",
+        description: "Conic-gradient color stops",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "2",
+        description: "Rotation duration (seconds)",
+      },
+      {
+        prop: "borderWidth",
+        type: "number",
+        default: "2",
+        description: "Border thickness (px)",
+      },
+      {
+        prop: "animated",
+        type: "boolean",
+        default: "true",
+        description: "Enable gradient rotation",
+      },
+      {
+        prop: "...buttonProps",
+        type: "ButtonHTMLAttributes",
+        default: "",
+        description: "Standard button props",
+      },
+    ];
+  }
+
+  if (slug.includes("gooey-text-morphing") || title.includes("gooey")) {
+    return [
+      {
+        prop: "texts",
+        type: "string[]",
+        default: "[]",
+        description: "Text items to morph between",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "1.5",
+        description: "Animation duration (seconds)",
+      },
+      {
+        prop: "pauseDuration",
+        type: "number",
+        default: "2",
+        description: "Pause between words (seconds)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("highlight-text") || title.includes("highlight text")) {
+    return [
+      {
+        prop: "children",
+        type: "string",
+        default: "",
+        description: "Text content",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "0.5",
+        description: "Highlight expand duration",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "0.2",
+        description: "Delay before highlight animates",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+      {
+        prop: "highlightClassName",
+        type: "string",
+        default: "",
+        description: "Highlight span className",
+      },
+    ];
+  }
+
+  if (slug.includes("number-counter") || title.includes("number counter")) {
+    return [
+      {
+        prop: "value",
+        type: "number",
+        default: "0",
+        description: "Target number",
+      },
+      {
+        prop: "precision",
+        type: "number",
+        default: "0",
+        description: "Digits after decimal",
+      },
+      {
+        prop: "durationMs",
+        type: "number",
+        default: "700",
+        description: "Animation duration (ms)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Text className",
+      },
+    ];
+  }
+
+  if (slug.includes("rotate-text") || title.includes("rotate text")) {
+    return [
+      {
+        prop: "words",
+        type: "string[]",
+        default: "[]",
+        description: "Words to rotate",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "0.5",
+        description: "Transition duration (seconds)",
+      },
+      {
+        prop: "pauseDuration",
+        type: "number",
+        default: "2",
+        description: "Pause between words (seconds)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("typewriter-text") || title.includes("typewriter text")) {
+    return [
+      {
+        prop: "words",
+        type: "string[]",
+        default: "[]",
+        description: "Words to type/delete",
+      },
+      {
+        prop: "typingSpeed",
+        type: "number",
+        default: "100",
+        description: "Typing speed (ms/char)",
+      },
+      {
+        prop: "deletingSpeed",
+        type: "number",
+        default: "50",
+        description: "Deleting speed (ms/char)",
+      },
+      {
+        prop: "pauseDuration",
+        type: "number",
+        default: "1500",
+        description: "Pause when word completes (ms)",
+      },
+      {
+        prop: "cursorClassName",
+        type: "string",
+        default: "",
+        description: "Cursor className",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("ai-prompt-box") || title.includes("ai prompt")) {
+    return [
+      {
+        prop: "placeholder",
+        type: "string",
+        default: "Ask something…",
+        description: "Textarea placeholder",
+      },
+      {
+        prop: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Disable input",
+      },
+      {
+        prop: "isLoading",
+        type: "boolean",
+        default: "false",
+        description: "Show loading state",
+      },
+      {
+        prop: "onSubmit",
+        type: "(value: string) => void",
+        default: "",
+        description: "Called when submitting",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (
+    slug.includes("animated-theme-toggle") ||
+    title.includes("theme toggle")
+  ) {
+    return [
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Button className",
+      },
+    ];
+  }
+
+  if (slug.includes("date-wheel-picker") || title.includes("date wheel")) {
+    return [
+      {
+        prop: "value",
+        type: "Date",
+        default: "new Date()",
+        description: "Current value",
+      },
+      {
+        prop: "onChange",
+        type: "(date: Date) => void",
+        default: "",
+        description: "Called when date changes",
+      },
+      {
+        prop: "minYear",
+        type: "number",
+        default: "1970",
+        description: "Minimum year",
+      },
+      {
+        prop: "maxYear",
+        type: "number",
+        default: "(current+10)",
+        description: "Maximum year",
+      },
+      {
+        prop: "size",
+        type: "'sm' | 'md' | 'lg'",
+        default: "md",
+        description: "Control size",
+      },
+      {
+        prop: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Disable all selects",
+      },
+      {
+        prop: "locale",
+        type: "string",
+        default: "",
+        description: "Intl locale for month names",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("feedback-widget") || title.includes("feedback")) {
+    return [
+      {
+        prop: "title",
+        type: "string",
+        default: "How was this demo?",
+        description: "Widget title",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("file-tree") || title.includes("file tree")) {
+    return [
+      {
+        prop: "tree",
+        type: "FileTreeNode[]",
+        default: "[]",
+        description: "Tree data",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug.includes("animated-beam") || title.includes("animated beam")) {
+    return [
+      {
+        prop: "containerRef",
+        type: "RefObject<HTMLElement>",
+        default: "",
+        description: "Common parent container",
+      },
+      {
+        prop: "fromRef",
+        type: "RefObject<HTMLElement>",
+        default: "",
+        description: "Start node ref",
+      },
+      {
+        prop: "toRef",
+        type: "RefObject<HTMLElement>",
+        default: "",
+        description: "End node ref",
+      },
+      {
+        prop: "curvature",
+        type: "number",
+        default: "0",
+        description: "Path curvature",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "2",
+        description: "Dash animation duration (seconds)",
+      },
+      {
+        prop: "reverse",
+        type: "boolean",
+        default: "false",
+        description: "Reverse dash direction",
+      },
+    ];
+  }
+
+  if (slug.includes("expanded-map") || title.includes("expanded map")) {
+    return [
+      {
+        prop: "location",
+        type: "string",
+        default: "San Francisco, CA",
+        description: "Label shown in the card",
+      },
+      {
+        prop: "latitude",
+        type: "number",
+        default: "37.7749",
+        description: "Latitude",
+      },
+      {
+        prop: "longitude",
+        type: "number",
+        default: "-122.4194",
+        description: "Longitude",
+      },
+      {
+        prop: "zoom",
+        type: "number",
+        default: "14",
+        description: "Tile zoom level",
+      },
+      {
+        prop: "tileProvider",
+        type: "'openstreetmap' | 'carto-light' | 'carto-dark'",
+        default: "carto-light",
+        description: "Map tile provider",
+      },
+    ];
+  }
+
+  if (slug.includes("github-star") || title.includes("github star")) {
+    return [
+      {
+        prop: "owner",
+        type: "string",
+        default: "",
+        description: "GitHub repo owner",
+      },
+      {
+        prop: "repo",
+        type: "string",
+        default: "",
+        description: "GitHub repo name",
+      },
+      {
+        prop: "stars",
+        type: "number",
+        default: "(fetch if undefined)",
+        description: "Override stars count",
+      },
+    ];
+  }
+
+  if (slug.includes("hover-preview") || title.includes("hover preview")) {
+    return [
+      {
+        prop: "data",
+        type: "Record<string, PreviewData>",
+        default: "{}",
+        description: "Preview content per key",
+      },
+      {
+        prop: "cursorOffset",
+        type: "number",
+        default: "18",
+        description: "Distance from cursor",
+      },
+      {
+        prop: "preloadImages",
+        type: "boolean",
+        default: "true",
+        description: "Preload preview images",
+      },
+    ];
+  }
+
+  if (slug.includes("image-sphere") || title.includes("image sphere")) {
+    return [
+      {
+        prop: "images",
+        type: "{id,src,alt}[]",
+        default: "[]",
+        description: "Images on the sphere",
+      },
+      {
+        prop: "containerSize",
+        type: "number",
+        default: "360",
+        description: "Container size (px)",
+      },
+      {
+        prop: "sphereRadius",
+        type: "number",
+        default: "160",
+        description: "TranslateZ radius (px)",
+      },
+      {
+        prop: "autoRotate",
+        type: "boolean",
+        default: "true",
+        description: "Auto rotate",
+      },
+      {
+        prop: "autoRotateSpeed",
+        type: "number",
+        default: "0.25",
+        description: "Degrees per frame",
+      },
+    ];
+  }
+
+  if (slug === "calendar") {
+    return [
+      {
+        prop: "value",
+        type: "Date",
+        default: "new Date()",
+        description: "Selected date",
+      },
+      {
+        prop: "onChange",
+        type: "(value: Date) => void",
+        default: "",
+        description: "Called on selection",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper className",
       },
     ];
   }

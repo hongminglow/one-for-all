@@ -163,6 +163,182 @@ export const colorBendsCode = `import ColorBends from './ColorBends';
   <ColorBends rotation={45} speed={0.2} transparent={true} />
 </div>`;
 
+export const particlesCode = `import Particles from './Particles';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Particles count={70} speed={0.6} linkDistance={120} />
+</div>`;
+
+export const gridScanCode = `import GridScan from './GridScan';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <GridScan size={44} opacity={0.12} scanSpeed={2.2} />
+</div>`;
+
+export const lightningCode = `import Lightning from './Lightning';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Lightning frequency={1.1} speed={1} glow={10} />
+</div>`;
+
+export const galaxyCode = `import Galaxy from './Galaxy';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Galaxy stars={900} rotationSpeed={0.25} />
+</div>`;
+
+export const dotGridCode = `import DotGrid from './DotGrid';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <DotGrid spacing={22} dotSize={2} opacity={0.18} />
+</div>`;
+
+export const hyperspeedCode = `import Hyperspeed from './Hyperspeed';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Hyperspeed streaks={260} speed={1} />
+</div>`;
+
+export const ballpitCode = `import Ballpit from './Ballpit';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Ballpit balls={18} gravity={0.45} bounce={0.86} />
+</div>`;
+
+export const orbCode = `import Orb from './Orb';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Orb speed={1} glow={0.85} />
+</div>`;
+
+export const letterGlitchCode = `import LetterGlitch from './LetterGlitch';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <LetterGlitch text="LETTER GLITCH" speed={22} glitchChance={0.18} />
+</div>`;
+
+export const gridMotionCode = `import GridMotion from './GridMotion';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <GridMotion gridSize={28} speed={1} amplitude={8} />
+</div>`;
+
+export const rainbowButtonCode = `import RainbowButton from './RainbowButton';
+
+<RainbowButton duration={2} borderWidth={2}>
+  Rainbow Button
+</RainbowButton>`;
+
+export const gooeyTextMorphingCode = `import GooeyTextMorphing from './GooeyTextMorphing';
+
+<GooeyTextMorphing
+  texts={['Joly UI', 'One-for-all', 'Storybook']}
+  duration={1.2}
+  pauseDuration={1.2}
+/>`;
+
+export const highlightTextCode = `import HighlightText from './HighlightText';
+
+<HighlightText duration={0.5} delay={0.1}>
+  Highlight me
+</HighlightText>`;
+
+export const numberCounterCode = `import NumberCounter from './NumberCounter';
+
+<NumberCounter value={1234.56} precision={2} />`;
+
+export const rotateTextCode = `import RotateText from './RotateText';
+
+<RotateText words={['Fast', 'Simple', 'Polished']} pauseDuration={1.2} />`;
+
+export const typewriterTextJolyCode = `import TypewriterText from './TypewriterText';
+
+<TypewriterText
+  words={['Typewriter', 'Animation', 'Effect']}
+  typingSpeed={90}
+  deletingSpeed={50}
+  pauseDuration={1200}
+/>`;
+
+export const aiPromptBoxCode = `import AIPromptBox from './AIPromptBox';
+
+<AIPromptBox
+  placeholder="Ask me anything…"
+  onSubmit={(value) => console.log(value)}
+/>`;
+
+export const animatedThemeToggleCode = `import AnimatedThemeToggle from './AnimatedThemeToggle';
+
+<AnimatedThemeToggle />`;
+
+export const dateWheelPickerCode = `import DateWheelPicker from './DateWheelPicker';
+
+<DateWheelPicker
+  value={new Date()}
+  onChange={(d) => console.log(d)}
+  size="md"
+/>`;
+
+export const feedbackWidgetCode = `import FeedbackWidget from './FeedbackWidget';
+
+<FeedbackWidget title="How was this?" />`;
+
+export const fileTreeCode = `import FileTree from './FileTree';
+
+<FileTree
+  tree={[
+    { type: 'folder', name: 'src', children: [
+      { type: 'folder', name: 'components', children: [
+        { type: 'file', name: 'Button.tsx' },
+        { type: 'file', name: 'Card.tsx' },
+      ]},
+      { type: 'file', name: 'app.tsx' },
+    ]},
+  ]}
+/>`;
+
+export const animatedBeamCode = `import AnimatedBeam from './AnimatedBeam';
+
+// Use refs to connect two nodes inside a shared container.
+// See demo-registry for a working example.`;
+
+export const expandedMapCode = `import ExpandedMap from './ExpandedMap';
+
+<ExpandedMap
+  location="San Francisco, CA"
+  latitude={37.7749}
+  longitude={-122.4194}
+  tileProvider="carto-light"
+/>`;
+
+export const githubStarCode = `import GitHubStarButton from './GitHubStarButton';
+
+<GitHubStarButton owner="vercel" repo="next.js" />`;
+
+export const hoverPreviewCode = `import { HoverPreviewProvider, HoverPreviewLink } from './HoverPreview';
+
+<HoverPreviewProvider
+  data={{
+    one: { image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop&q=60', title: 'Preview', subtitle: 'Hover me' },
+  }}
+>
+  <HoverPreviewLink previewKey="one">Hover Preview</HoverPreviewLink>
+</HoverPreviewProvider>`;
+
+export const imageSphereCode = `import ImageSphere from './ImageSphere';
+
+<ImageSphere
+  images={[
+    { id: '1', src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&auto=format&fit=crop&q=60', alt: 'One' },
+    { id: '2', src: 'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?w=400&auto=format&fit=crop&q=60', alt: 'Two' },
+    { id: '3', src: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?w=400&auto=format&fit=crop&q=60', alt: 'Three' },
+  ]}
+/>`;
+
+export const shadcnCalendarCode = `import Calendar from './Calendar';
+
+<Calendar value={new Date()} onChange={(d) => console.log(d)} />`;
+
 export const shinyTextCode = `import ShinyText from './ShinyText';
 
 <ShinyText

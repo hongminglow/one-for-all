@@ -1,0 +1,59 @@
+.rb-grid-scan {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(
+          in srgb,
+          var(--rb-grid-color) calc(var(--rb-grid-opacity) * 100%),
+          transparent
+        )
+        1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(
+          in srgb,
+          var(--rb-grid-color) calc(var(--rb-grid-opacity) * 100%),
+          transparent
+        )
+        1px,
+      transparent 1px
+    );
+  background-size: var(--rb-grid-size) var(--rb-grid-size);
+  overflow: hidden;
+}
+
+.rb-grid-scan::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(
+        in srgb,
+        var(--rb-scan-color) calc(var(--rb-scan-opacity) * 100%),
+        transparent
+      )
+      0%,
+    transparent 55%
+  );
+  filter: blur(6px);
+  animation: rb-grid-scan var(--rb-scan-duration) linear infinite;
+}
+
+@keyframes rb-grid-scan {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30%);
+    opacity: 0.2;
+  }
+}

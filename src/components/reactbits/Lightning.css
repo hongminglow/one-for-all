@@ -1,0 +1,10 @@
+.rb-lightning {
+  position: absolute;
+  inset: 0;
+}
+
+.rb-lightning__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

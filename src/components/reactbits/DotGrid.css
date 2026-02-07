@@ -1,0 +1,15 @@
+.rb-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    color-mix(
+        in srgb,
+        var(--rb-dot-color) calc(var(--rb-dot-opacity) * 100%),
+        transparent
+      )
+      var(--rb-dot-size),
+    transparent calc(var(--rb-dot-size) + 0.5px)
+  );
+  background-size: var(--rb-dot-spacing) var(--rb-dot-spacing);
+}

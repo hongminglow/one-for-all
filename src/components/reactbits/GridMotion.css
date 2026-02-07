@@ -1,0 +1,10 @@
+.rb-grid-motion {
+  position: absolute;
+  inset: 0;
+}
+
+.rb-grid-motion__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
