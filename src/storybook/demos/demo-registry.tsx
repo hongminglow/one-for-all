@@ -77,6 +77,29 @@ import CreditCard from "@/components/shadcn/CreditCard";
 import ColorPicker from "@/components/shadcn/ColorPicker";
 import ComboboxDemo from "@/components/shadcn/ComboboxDemo";
 import Dropzone from "@/components/shadcn/Dropzone";
+import ImageZoom from "@/components/shadcn/ImageZoom";
+import ImageCrop from "@/components/shadcn/ImageCrop";
+import ThreeDCard from "@/components/shadcn/ThreeDCard";
+import ThreeDMarquee from "@/components/shadcn/ThreeDMarquee";
+import AnimatedCursor from "@/components/shadcn/AnimatedCursor";
+import AnimatedTestimonials from "@/components/shadcn/AnimatedTestimonials";
+import AnimatedTooltip from "@/components/shadcn/AnimatedTooltip";
+import Glimpse from "@/components/shadcn/Glimpse";
+import PinList from "@/components/shadcn/PinList";
+import Spinner from "@/components/shadcn/Spinner";
+import TabsPremium from "@/components/shadcn/TabsPremium";
+import Banner from "@/components/shadcn/Banner";
+import Marquee from "@/components/shadcn/Marquee";
+import AvatarGroup from "@/components/shadcn/AvatarGroup";
+import Tags from "@/components/shadcn/Tags";
+import MiniCalendar from "@/components/shadcn/MiniCalendar";
+import ComparisonSlider from "@/components/shadcn/ComparisonSlider";
+import Kbd from "@/components/shadcn/Kbd";
+import QrCode from "@/components/shadcn/QrCode";
+import StatusIndicator from "@/components/shadcn/StatusIndicator";
+import Terminal from "@/components/shadcn/Terminal";
+import VideoPlayer from "@/components/shadcn/VideoPlayer";
+import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
 import BorderBeam from "@/components/magicui/BorderBeam";
 import ShineBorder from "@/components/magicui/ShineBorder";
@@ -569,7 +592,7 @@ function ScrollFloatWrapper(props: any) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-y-auto overflow-x-hidden sb-scroll"
+      className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-(--sb-panel) overflow-y-auto overflow-x-hidden sb-scroll"
     >
       <div
         className="flex flex-col items-center justify-center p-8"
@@ -597,7 +620,7 @@ function ScrollRevealWrapper(props: any) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-y-auto overflow-x-hidden sb-scroll"
+      className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-(--sb-panel) overflow-y-auto overflow-x-hidden sb-scroll"
     >
       <div
         className="flex flex-col items-center justify-center p-8 text-center"
@@ -1084,7 +1107,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             : ["physics.", "Drag"];
       return (
         <div
-          className="w-full min-h-[320px] rounded-2xl bg-[var(--sb-panel)] p-2 flex justify-center"
+          className="w-full min-h-[320px] rounded-2xl bg-(--sb-panel) p-2 flex justify-center"
           style={{ minHeight: 320 }}
         >
           <div className="w-full text-(--sb-text-strong)">
@@ -1134,7 +1157,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("text-cursor") || title.includes("text cursor"):
       return (
-        <div className="w-full h-[320px] rounded-2xl bg-[var(--sb-panel)] overflow-hidden">
+        <div className="w-full h-[320px] rounded-2xl bg-(--sb-panel) overflow-hidden">
           <TextCursor
             text={props?.text ?? "⚛️"}
             spacing={props?.spacing ?? 80}
@@ -1153,7 +1176,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       title.includes("decrypted"):
       return (
         <div
-          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center"
+          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-panel) p-8 flex items-center justify-center"
           style={{ minHeight: 200 }}
         >
           <div className="text-[28px] font-black text-(--sb-text-strong)">
@@ -1179,7 +1202,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("rotating-text") || title.includes("rotating text"):
       return (
         <div
-          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center"
+          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-panel) p-8 flex items-center justify-center"
           style={{ minHeight: 200 }}
         >
           <div className="text-[28px] font-black text-(--sb-text-strong) flex items-center gap-2">
@@ -1198,7 +1221,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("glitch-text") || title.includes("glitch text"):
       return (
         <div
-          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center"
+          className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-panel) p-8 flex items-center justify-center"
           style={{ minHeight: 200 }}
         >
           <GlitchText
@@ -1216,7 +1239,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("scroll-velocity") || title.includes("scroll velocity"):
       return (
         <div
-          className="w-full min-h-[300px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-4 flex flex-col justify-center overflow-hidden"
+          className="w-full min-h-[300px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-panel) p-4 flex flex-col justify-center overflow-hidden"
           style={{ minHeight: 300 }}
         >
           <ScrollVelocity
@@ -2529,6 +2552,270 @@ console.log(fibonacci(10));`}
       return (
         <div className="w-full max-w-[800px]">
           <Dropzone />
+        </div>
+      );
+
+    case slug.includes("image-zoom") || title.includes("image zoom"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <ImageZoom
+            src={
+              props?.src ??
+              "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80"
+            }
+            alt="Demo Image"
+            className="h-64 w-96"
+          />
+        </div>
+      );
+
+    case slug.includes("image-crop") || title.includes("image crop"):
+      return (
+        <div className="w-full max-w-[800px]">
+          <ImageCrop
+            src={
+              props?.src ??
+              "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
+            }
+          />
+        </div>
+      );
+
+    case slug.includes("3d-card") || title.includes("3d card"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <ThreeDCard />
+        </div>
+      );
+
+    case slug.includes("3d-marquee") || title.includes("3d marquee"):
+      return (
+        <div className="w-full overflow-hidden">
+          <ThreeDMarquee />
+        </div>
+      );
+
+    case slug.includes("animated-cursor") || title.includes("animated cursor"):
+      return (
+        <div className="w-full py-10">
+          <AnimatedCursor />
+        </div>
+      );
+
+    case slug.includes("animated-testimonials") ||
+      title.includes("animated testimonials"):
+      return (
+        <div className="w-full py-10">
+          <AnimatedTestimonials />
+        </div>
+      );
+
+    case slug.includes("animated-tooltip") ||
+      title.includes("animated tooltip"):
+      return (
+        <div className="w-full py-10">
+          <AnimatedTooltip />
+        </div>
+      );
+
+    case slug.includes("glimpse") || title.includes("glimpse"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <Glimpse />
+        </div>
+      );
+
+    case slug.includes("pin-list") || title.includes("pin list"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <PinList />
+        </div>
+      );
+
+    case slug.includes("spinner") || title.includes("spinner"):
+      return (
+        <div className="w-full flex items-center justify-center py-10 bg-black/20 rounded-2xl">
+          <Spinner
+            size={props?.size ?? "md"}
+            variant={props?.variant ?? "spin"}
+          />
+        </div>
+      );
+
+    case slug.includes("tabs-premium") || title.includes("tabs premium"):
+      return (
+        <div className="w-full py-10">
+          <TabsPremium
+            tabs={[
+              { id: "1", label: "Analytics" },
+              { id: "2", label: "Performance" },
+              { id: "3", label: "Reports" },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("banner") || title.includes("banner"):
+      return (
+        <div className="w-full py-10">
+          <Banner
+            title="New v4.0 is out!"
+            description="Explore the latest features and improved performance."
+            cta="What's new"
+          />
+        </div>
+      );
+
+    case slug.includes("marquee") || title.includes("marquee"):
+      return (
+        <div className="w-full py-10">
+          <Marquee
+            items={[
+              <div
+                key="1"
+                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
+              >
+                LOGO 1
+              </div>,
+              <div
+                key="2"
+                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
+              >
+                LOGO 2
+              </div>,
+              <div
+                key="3"
+                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
+              >
+                LOGO 3
+              </div>,
+              <div
+                key="4"
+                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
+              >
+                LOGO 4
+              </div>,
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("avatar-group") || title.includes("avatar group"):
+      return (
+        <div className="w-full py-10">
+          <AvatarGroup
+            avatars={[
+              {
+                src: "https://i.pravatar.cc/150?u=1",
+                alt: "User 1",
+                name: "Alex",
+              },
+              {
+                src: "https://i.pravatar.cc/150?u=2",
+                alt: "User 2",
+                name: "Sarah",
+              },
+              {
+                src: "https://i.pravatar.cc/150?u=3",
+                alt: "User 3",
+                name: "James",
+              },
+              {
+                src: "https://i.pravatar.cc/150?u=4",
+                alt: "User 4",
+                name: "Maria",
+              },
+              {
+                src: "https://i.pravatar.cc/150?u=5",
+                alt: "User 5",
+                name: "Kevin",
+              },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("tags") || title.includes("tags"):
+      return (
+        <div className="w-full py-10">
+          <Tags />
+        </div>
+      );
+
+    case slug.includes("mini-calendar") || title.includes("mini calendar"):
+      return (
+        <div className="w-full py-10">
+          <MiniCalendar />
+        </div>
+      );
+
+    case slug.includes("comparison") || title.includes("comparison"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <ComparisonSlider
+            beforeImg="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80"
+            afterImg="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
+          />
+        </div>
+      );
+
+    case slug.includes("kbd") || title.includes("kbd"):
+      return (
+        <div className="w-full py-10">
+          <Kbd keys={["COMMAND", "K"]} />
+        </div>
+      );
+
+    case slug.includes("qr-code") || title.includes("qr code"):
+      return (
+        <div className="w-full py-10">
+          <QrCode />
+        </div>
+      );
+
+    case slug.includes("status") || title.includes("status"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <StatusIndicator status={props?.status ?? "online"} />
+        </div>
+      );
+
+    case slug.includes("terminal") || title.includes("terminal"):
+      return (
+        <div className="w-full py-10">
+          <Terminal
+            commands={[
+              {
+                command: "npm install @shadcn/ui",
+                output: [
+                  "Checking registries...",
+                  "Resolving dependencies...",
+                  "Installed 15 components.",
+                ],
+              },
+              {
+                command: "npm run dev",
+                output: "Starting development server at http://localhost:3000",
+              },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("video-player") || title.includes("video player"):
+      return (
+        <div className="w-full py-10">
+          <VideoPlayer
+            src="https://framerusercontent.com/assets/p2Vf958fId7c65H2p4x856p6eU.mp4"
+            poster="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80"
+          />
+        </div>
+      );
+
+    case slug.includes("beam-collision") || title.includes("beam collision"):
+      return (
+        <div className="w-full overflow-hidden rounded-3xl border border-white/5 shadow-2xl">
+          <BeamCollision />
         </div>
       );
 

@@ -124,6 +124,12 @@ This repository contains a collection of 158+ UI components from various librari
 
 ### UI (Shadcn/Base)
 
+- 3D Card
+- 3D Marquee
+- Animated Cursor
+- Animated Testimonials
+- Animated Tooltip
+- Beam Collision
 - Button
 - CodeBlock
 - CodeEditor
@@ -135,18 +141,26 @@ This repository contains a collection of 158+ UI components from various librari
 - DraggableCard
 - Dropzone
 - GanttChart
+- Glimpse
 - HeroParallax
+- Image Crop
+- Image Zoom
 - InputGroup
 - Input
 - iPhone & Android Mockups
 - Kanban
 - Lens
 - MacOS Dock
+- Pin List
 - Rating
 - Sandbox
 - Sparkles
+- Spinner
+- Status Indicator
 - Tabs
+- Terminal
 - Textarea
+- Video Player
 
 ## SOP for Adding New Components
 
