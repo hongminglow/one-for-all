@@ -14,6 +14,103 @@ function slugify(value) {
     .slice(0, 80);
 }
 
+function toWords(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+const TAG_STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "or",
+  "the",
+  "of",
+  "to",
+  "in",
+  "for",
+  "with",
+  "from",
+  "on",
+  "at",
+  "by",
+  "your",
+  "web",
+  "ui",
+  "component",
+  "components",
+]);
+
+function uniqLimit(values, limit = 8) {
+  const out = [];
+  const seen = new Set();
+  for (const v of values) {
+    if (!v) continue;
+    if (TAG_STOPWORDS.has(v)) continue;
+    if (v.length < 2) continue;
+    if (seen.has(v)) continue;
+    seen.add(v);
+    out.push(v);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
+const TAG_OVERRIDES = {
+  "electric-border": ["electric", "border", "card"],
+  "sticker-peel": ["sticker", "peel", "drag"],
+  dock: ["dock", "navigation", "toolbar"],
+  calendar: ["calendar", "date", "picker"],
+  "magic-card": ["card", "hover", "gradient"],
+  "neon-gradient-card": ["card", "neon", "gradient"],
+  "border-beam": ["border", "beam", "card"],
+  "shine-border": ["border", "shine", "card"],
+  "icon-cloud": ["icons", "cloud", "canvas"],
+  "compact-confetti": ["confetti", "celebration", "canvas"],
+};
+
+function generateTags({ title, slug, url, library }) {
+  const direct = TAG_OVERRIDES[slug];
+  if (Array.isArray(direct) && direct.length) return direct;
+
+  const words = [];
+
+  // slug + title are the most useful
+  words.push(...toWords(slug).flatMap((w) => w.split("-")));
+  words.push(...toWords(title));
+
+  // URL path/category hints
+  try {
+    const u = new URL(String(url || ""));
+    const parts = u.pathname
+      .split("/")
+      .map((p) => p.trim())
+      .filter(Boolean);
+    words.push(...parts.flatMap((p) => toWords(p)));
+  } catch {
+    // ignore
+  }
+
+  // library hints (lets user type "magic" / "shadcn" etc)
+  if (library) words.push(...toWords(library));
+
+  // a few semantic enrichments
+  if (slug.includes("button")) words.push("cta");
+  if (slug.includes("menu") || slug.includes("nav")) words.push("navigation");
+  if (slug.includes("background")) words.push("hero");
+  if (slug.includes("cursor")) words.push("pointer");
+  if (slug.includes("carousel")) words.push("slider");
+  if (slug.includes("progress")) words.push("loading");
+
+  return uniqLimit(words, 10);
+}
+
 function detectLibrary(url) {
   try {
     const u = new URL(url);
@@ -122,7 +219,7 @@ function parseComponentLines(md) {
       library,
       url,
       description: describeComponent(title, url, library),
-      tags: [],
+      tags: generateTags({ title, slug: slugify(title) || "", url, library }),
       apiReferenceUrl: null,
     });
   }

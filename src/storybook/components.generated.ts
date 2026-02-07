@@ -18,7 +18,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "split-text",
     "title": "Split Text",
     "description": "Splits a heading into segments so you can animate parts independently.",
-    "tags": [],
+    "tags": [
+      "split",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/split-text",
     "apiReferenceUrl": null
@@ -29,7 +35,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "circular-text",
     "title": "Circular Text",
     "description": "Renders text around a circle for badges, stamps, and hero accents.",
-    "tags": [],
+    "tags": [
+      "circular",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/circular-text",
     "apiReferenceUrl": null
@@ -40,7 +52,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "shiny-text",
     "title": "Shiny Text",
     "description": "Adds a moving highlight / shimmer effect across text.",
-    "tags": [],
+    "tags": [
+      "shiny",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/shiny-text",
     "apiReferenceUrl": null
@@ -51,7 +69,15 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "curved-marquee",
     "title": "Curved Marquee",
     "description": "Animated text effect: Curved Marquee.",
-    "tags": [],
+    "tags": [
+      "curved",
+      "marquee",
+      "text",
+      "animations",
+      "loop",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/curved-loop",
     "apiReferenceUrl": null
@@ -62,7 +88,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "fuzzy-text",
     "title": "Fuzzy Text",
     "description": "Animated text effect: Fuzzy Text.",
-    "tags": [],
+    "tags": [
+      "fuzzy",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/fuzzy-text",
     "apiReferenceUrl": null
@@ -73,7 +105,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "gradient-text",
     "title": "Gradient Text",
     "description": "Applies a multi-color gradient fill to text (great for headings).",
-    "tags": [],
+    "tags": [
+      "gradient",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/gradient-text",
     "apiReferenceUrl": null
@@ -84,7 +122,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "falling-text",
     "title": "Falling Text",
     "description": "Animated text effect: Falling Text.",
-    "tags": [],
+    "tags": [
+      "falling",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/falling-text",
     "apiReferenceUrl": null
@@ -95,7 +139,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "text-cursor",
     "title": "Text Cursor",
     "description": "Animated text effect: Text Cursor.",
-    "tags": [],
+    "tags": [
+      "text",
+      "cursor",
+      "animations",
+      "react",
+      "bits",
+      "pointer"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/text-cursor",
     "apiReferenceUrl": null
@@ -106,7 +157,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "decrypted-text",
     "title": "Decrypted Text",
     "description": "Reveals text by cycling through random characters (decryption effect).",
-    "tags": [],
+    "tags": [
+      "decrypted",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/decrypted-text",
     "apiReferenceUrl": null
@@ -117,7 +174,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "scroll-float",
     "title": "Scroll Float",
     "description": "Gently offsets elements based on scroll position for depth.",
-    "tags": [],
+    "tags": [
+      "scroll",
+      "float",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/scroll-float",
     "apiReferenceUrl": null
@@ -128,7 +192,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "scroll-reveal",
     "title": "Scroll Reveal",
     "description": "Reveals content as it enters the viewport while scrolling.",
-    "tags": [],
+    "tags": [
+      "scroll",
+      "reveal",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/scroll-reveal",
     "apiReferenceUrl": null
@@ -139,7 +210,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "rotating-text",
     "title": "Rotating Text",
     "description": "Animated text effect: Rotating Text.",
-    "tags": [],
+    "tags": [
+      "rotating",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/rotating-text",
     "apiReferenceUrl": null
@@ -150,7 +227,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "glitch-text",
     "title": "Glitch Text",
     "description": "Creates a glitchy, distorted text effect for cyber/retro styles.",
-    "tags": [],
+    "tags": [
+      "glitch",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/glitch-text",
     "apiReferenceUrl": null
@@ -161,7 +244,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "scroll-velocity",
     "title": "Scroll Velocity",
     "description": "Animated text effect: Scroll Velocity.",
-    "tags": [],
+    "tags": [
+      "scroll",
+      "velocity",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/scroll-velocity",
     "apiReferenceUrl": null
@@ -172,7 +262,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "variable-proximity",
     "title": "Variable Proximity",
     "description": "Animated text effect: Variable Proximity.",
-    "tags": [],
+    "tags": [
+      "variable",
+      "proximity",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/variable-proximity",
     "apiReferenceUrl": null
@@ -183,7 +280,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "count-up",
     "title": "Count Up",
     "description": "Animates a number from 0 to a target value (stats/metrics).",
-    "tags": [],
+    "tags": [
+      "count",
+      "up",
+      "text",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/text-animations/count-up",
     "apiReferenceUrl": null
@@ -194,7 +298,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "electric-border",
     "title": "Electric Border",
     "description": "Electric Border — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "electric",
+      "border",
+      "card"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/electric-border",
     "apiReferenceUrl": null
@@ -205,7 +313,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "antigravity",
     "title": "Antigravity",
     "description": "Antigravity — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "antigravity",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/antigravity",
     "apiReferenceUrl": null
@@ -216,7 +329,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "logo-loop",
     "title": "Logo Loop",
     "description": "Logo Loop — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "logo",
+      "loop",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/logo-loop",
     "apiReferenceUrl": null
@@ -227,7 +346,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "target-cursor",
     "title": "Target Cursor",
     "description": "Target Cursor — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "target",
+      "cursor",
+      "animations",
+      "react",
+      "bits",
+      "pointer"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/target-cursor",
     "apiReferenceUrl": null
@@ -238,7 +364,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "laser-flow",
     "title": "Laser Flow",
     "description": "Laser Flow — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "laser",
+      "flow",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/laser-flow",
     "apiReferenceUrl": null
@@ -249,7 +381,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "magnet-lines",
     "title": "Magnet Lines",
     "description": "Magnet Lines — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "magnet",
+      "lines",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/magnet-lines",
     "apiReferenceUrl": null
@@ -260,7 +398,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "ghost-cursor",
     "title": "Ghost Cursor",
     "description": "Ghost Cursor — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "ghost",
+      "cursor",
+      "animations",
+      "react",
+      "bits",
+      "pointer"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/ghost-cursor",
     "apiReferenceUrl": null
@@ -271,7 +416,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "click-spark",
     "title": "Click Spark",
     "description": "Click Spark — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "click",
+      "spark",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/click-spark",
     "apiReferenceUrl": null
@@ -282,7 +433,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "sticker-peel",
     "title": "Sticker Peel",
     "description": "Sticker Peel — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "sticker",
+      "peel",
+      "drag"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/sticker-peel",
     "apiReferenceUrl": null
@@ -293,9 +448,16 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-trail",
     "title": "Image Trail",
     "description": "Image Trail — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "image",
+      "trail",
+      "animations",
+      "imawge",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
-    "url": "https://reactbits.dev/animations/image-trail",
+    "url": "https://reactbits.dev/animations/imawge-trail",
     "apiReferenceUrl": null
   },
   {
@@ -304,7 +466,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "splash-cursor",
     "title": "Splash Cursor",
     "description": "Splash Cursor — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "splash",
+      "cursor",
+      "animations",
+      "react",
+      "bits",
+      "pointer"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/splash-cursor",
     "apiReferenceUrl": null
@@ -315,7 +484,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "star-border",
     "title": "Star Border",
     "description": "Star Border — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "star",
+      "border",
+      "animations",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/animations/star-border",
     "apiReferenceUrl": null
@@ -326,7 +501,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-list",
     "title": "Animated List",
     "description": "Animated List — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "list",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/animated-list",
     "apiReferenceUrl": null
@@ -337,7 +517,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "scroll-stack",
     "title": "Scroll Stack",
     "description": "Scroll Stack — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "scroll",
+      "stack",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/scroll-stack",
     "apiReferenceUrl": null
@@ -348,7 +533,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "magic-bento",
     "title": "Magic Bento",
     "description": "Magic Bento — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "magic",
+      "bento",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/magic-bento",
     "apiReferenceUrl": null
@@ -359,7 +549,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "circular-gallery",
     "title": "Circular Gallery",
     "description": "Circular Gallery — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "circular",
+      "gallery",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/circular-gallery",
     "apiReferenceUrl": null
@@ -370,7 +565,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-stack",
     "title": "Image Stack",
     "description": "Image Stack — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "image",
+      "stack",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/stack",
     "apiReferenceUrl": null
@@ -381,7 +581,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "fluid-glass",
     "title": "Fluid Glass",
     "description": "Fluid Glass — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "fluid",
+      "glass",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/fluid-glass",
     "apiReferenceUrl": null
@@ -392,7 +597,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "masonry",
     "title": "Masonry",
     "description": "Masonry — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "masonry",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/masonry",
     "apiReferenceUrl": null
@@ -403,7 +612,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "modal-viewer",
     "title": "Modal Viewer",
     "description": "Modal Viewer — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "modal",
+      "viewer",
+      "model",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/model-viewer",
     "apiReferenceUrl": null
@@ -414,7 +629,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "lanyard",
     "title": "Lanyard",
     "description": "Lanyard — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "lanyard",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/lanyard",
     "apiReferenceUrl": null
@@ -425,7 +644,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "dock",
     "title": "Dock",
     "description": "Dock — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "dock",
+      "navigation",
+      "toolbar"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/dock",
     "apiReferenceUrl": null
@@ -436,7 +659,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "carousel",
     "title": "Carousel",
     "description": "Carousel — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "carousel",
+      "react",
+      "bits",
+      "slider"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/carousel",
     "apiReferenceUrl": null
@@ -447,7 +675,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "spolight-card",
     "title": "Spolight Card",
     "description": "Spolight Card — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "spolight",
+      "card",
+      "spotlight",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/spotlight-card",
     "apiReferenceUrl": null
@@ -458,7 +692,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "flowing-menu",
     "title": "Flowing Menu",
     "description": "Navigation component: Flowing Menu.",
-    "tags": [],
+    "tags": [
+      "flowing",
+      "menu",
+      "react",
+      "bits",
+      "navigation"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/flowing-menu",
     "apiReferenceUrl": null
@@ -469,7 +709,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "elastic-slider",
     "title": "Elastic Slider",
     "description": "Elastic Slider — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "elastic",
+      "slider",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/elastic-slider",
     "apiReferenceUrl": null
@@ -480,7 +725,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "counter",
     "title": "Counter",
     "description": "Animates a number from 0 to a target value (stats/metrics).",
-    "tags": [],
+    "tags": [
+      "counter",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/counter",
     "apiReferenceUrl": null
@@ -491,7 +740,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "infinite-menu",
     "title": "Infinite Menu",
     "description": "Navigation component: Infinite Menu.",
-    "tags": [],
+    "tags": [
+      "infinite",
+      "menu",
+      "react",
+      "bits",
+      "navigation"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/infinite-menu",
     "apiReferenceUrl": null
@@ -502,7 +757,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "stepper",
     "title": "Stepper",
     "description": "Stepper — a UI component reference from React-Bits.",
-    "tags": [],
+    "tags": [
+      "stepper",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/components/stepper",
     "apiReferenceUrl": null
@@ -513,7 +772,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "liquid-ether",
     "title": "Liquid Ether",
     "description": "Animated background preset: Liquid Ether (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "liquid",
+      "ether",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/liquid-ether",
     "apiReferenceUrl": null
@@ -524,7 +789,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "prism",
     "title": "Prism",
     "description": "Animated background preset: Prism (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "prism",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/prism",
     "apiReferenceUrl": null
@@ -535,7 +805,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "dark-veil",
     "title": "Dark Veil",
     "description": "Animated background preset: Dark Veil (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "dark",
+      "veil",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/dark-veil",
     "apiReferenceUrl": null
@@ -546,7 +822,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "light-pillar",
     "title": "Light Pillar",
     "description": "Animated background preset: Light Pillar (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "light",
+      "pillar",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/light-pillar",
     "apiReferenceUrl": null
@@ -557,7 +839,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "floating-lines",
     "title": "Floating Lines",
     "description": "Animated background preset: Floating Lines (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "floating",
+      "lines",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/floating-lines",
     "apiReferenceUrl": null
@@ -568,7 +856,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "light-rays",
     "title": "Light Rays",
     "description": "Animated background preset: Light Rays (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "light",
+      "rays",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/light-rays",
     "apiReferenceUrl": null
@@ -579,7 +873,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "color-bends",
     "title": "Color Bends",
     "description": "Animated background preset: Color Bends (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "color",
+      "bends",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/color-bends",
     "apiReferenceUrl": null
@@ -590,7 +890,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "particles",
     "title": "Particles",
     "description": "Animated background preset: Particles (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "particles",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/particles",
     "apiReferenceUrl": null
@@ -601,7 +906,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "grid-scan",
     "title": "Grid Scan",
     "description": "Animated background preset: Grid Scan (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "grid",
+      "scan",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/grid-scan",
     "apiReferenceUrl": null
@@ -612,7 +923,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "lightning",
     "title": "Lightning",
     "description": "Animated background preset: Lightning (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "lightning",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/lightning",
     "apiReferenceUrl": null
@@ -623,7 +939,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "galaxy",
     "title": "Galaxy",
     "description": "Animated background preset: Galaxy (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "galaxy",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/galaxy",
     "apiReferenceUrl": null
@@ -634,7 +955,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "dot-grid",
     "title": "Dot Grid",
     "description": "Animated background preset: Dot Grid (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "dot",
+      "grid",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/dot-grid",
     "apiReferenceUrl": null
@@ -645,7 +972,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "hyperspeed",
     "title": "Hyperspeed",
     "description": "Animated background preset: Hyperspeed (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "hyperspeed",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/hyperspeed",
     "apiReferenceUrl": null
@@ -656,7 +988,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "ballpit",
     "title": "Ballpit",
     "description": "Animated background preset: Ballpit (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "ballpit",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/ballpit",
     "apiReferenceUrl": null
@@ -667,7 +1004,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "orb",
     "title": "Orb",
     "description": "Animated background preset: Orb (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "orb",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/orb",
     "apiReferenceUrl": null
@@ -678,7 +1020,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "letter-glitch",
     "title": "Letter Glitch",
     "description": "Creates a glitchy, distorted text effect for cyber/retro styles.",
-    "tags": [],
+    "tags": [
+      "letter",
+      "glitch",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/letter-glitch",
     "apiReferenceUrl": null
@@ -689,7 +1037,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "grid-motion",
     "title": "Grid Motion",
     "description": "Animated background preset: Grid Motion (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "grid",
+      "motion",
+      "backgrounds",
+      "react",
+      "bits"
+    ],
     "library": "React-Bits",
     "url": "https://reactbits.dev/backgrounds/grid-motion",
     "apiReferenceUrl": null
@@ -700,7 +1054,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "code-block",
     "title": "Code Block",
     "description": "Code Block — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "code",
+      "block",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/code-block",
     "apiReferenceUrl": null
@@ -711,7 +1069,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "code-editor",
     "title": "Code Editor",
     "description": "Code Editor — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "code",
+      "editor",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/code-editor",
     "apiReferenceUrl": null
@@ -722,7 +1084,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "code-tabs",
     "title": "Code Tabs",
     "description": "Code Tabs — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "code",
+      "tabs",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/code-tabs",
     "apiReferenceUrl": null
@@ -733,7 +1099,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "sandbox",
     "title": "Sandbox",
     "description": "Sandbox — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "sandbox",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/sandbox",
     "apiReferenceUrl": null
@@ -744,7 +1113,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "ganttchart",
     "title": "GanttChart",
     "description": "GanttChart — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "ganttchart",
+      "gantt",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/gantt",
     "apiReferenceUrl": null
@@ -755,7 +1128,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "kanban",
     "title": "Kanban",
     "description": "Kanban — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "kanban",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/kanban",
     "apiReferenceUrl": null
@@ -766,7 +1142,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "device-mock",
     "title": "Device Mock(Android)",
     "description": "Device Mock(Android) — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "device",
+      "mock",
+      "android",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/android",
     "apiReferenceUrl": null
@@ -777,7 +1158,15 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "device-mock-2",
     "title": "Device Mock(IOS)",
     "description": "Device Mock(IOS) — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "device",
+      "mock",
+      "ios",
+      "iphone",
+      "15",
+      "pro",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/iphone-15-pro",
     "apiReferenceUrl": null
@@ -788,7 +1177,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "macos-dock",
     "title": "MacOS Dock",
     "description": "MacOS Dock — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "macos",
+      "dock",
+      "mac",
+      "os",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/mac-os-dock",
     "apiReferenceUrl": null
@@ -799,7 +1194,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "rating",
     "title": "Rating",
     "description": "Rating — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "rating",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/rating",
     "apiReferenceUrl": null
@@ -810,7 +1208,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "credit-card",
     "title": "Credit Card",
     "description": "Credit Card — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "credit",
+      "card",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/credit-card",
     "apiReferenceUrl": null
@@ -821,7 +1223,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "color-picker",
     "title": "Color Picker",
     "description": "Color Picker — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "color",
+      "picker",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/color-picker",
     "apiReferenceUrl": null
@@ -832,7 +1238,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "combobox",
     "title": "Combobox",
     "description": "Combobox — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "combobox",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/combobox",
     "apiReferenceUrl": null
@@ -843,7 +1252,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "dropzone",
     "title": "Dropzone",
     "description": "Dropzone — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "dropzone",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/dropzone",
     "apiReferenceUrl": null
@@ -854,7 +1266,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-zoom",
     "title": "Image Zoom",
     "description": "Image Zoom — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "image",
+      "zoom",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/image-zoom",
     "apiReferenceUrl": null
@@ -865,7 +1281,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-crop",
     "title": "Image Crop",
     "description": "Image Crop — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "image",
+      "crop",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/image-crop",
     "apiReferenceUrl": null
@@ -876,7 +1296,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "3d-card",
     "title": "3D Card",
     "description": "3D Card — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "3d",
+      "card",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/3d-card",
     "apiReferenceUrl": null
@@ -887,7 +1311,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "3d-marquee",
     "title": "3D Marquee",
     "description": "3D Marquee — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "3d",
+      "marquee",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/3d-marquee",
     "apiReferenceUrl": null
@@ -898,7 +1326,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-cursor",
     "title": "Animated Cursor",
     "description": "Animated Cursor — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "cursor",
+      "3d",
+      "marquee",
+      "shadcn",
+      "pointer"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/3d-marquee",
     "apiReferenceUrl": null
@@ -909,7 +1344,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-testimonials",
     "title": "Animated Testimonials",
     "description": "Animated Testimonials — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "testimonials",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/animated-testimonials",
     "apiReferenceUrl": null
@@ -920,7 +1359,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-tooltip",
     "title": "Animated Tooltip",
     "description": "Animated Tooltip — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "tooltip",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/animated-tooltip",
     "apiReferenceUrl": null
@@ -931,7 +1374,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "glimpse",
     "title": "Glimpse",
     "description": "Glimpse — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "glimpse",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/glimpse",
     "apiReferenceUrl": null
@@ -942,7 +1388,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "pin-list",
     "title": "Pin List",
     "description": "Pin List — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "pin",
+      "list",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/pin-list",
     "apiReferenceUrl": null
@@ -953,7 +1403,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "spinner",
     "title": "Spinner",
     "description": "Spinner — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "spinner",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/spinner",
     "apiReferenceUrl": null
@@ -964,7 +1417,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "tabs",
     "title": "Tabs",
     "description": "Tabs — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "tabs",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/tabs",
     "apiReferenceUrl": null
@@ -975,7 +1431,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "banner",
     "title": "Banner",
     "description": "Banner — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "banner",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/banner",
     "apiReferenceUrl": null
@@ -986,7 +1445,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "marquee",
     "title": "Marquee",
     "description": "Marquee — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "marquee",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/marquee",
     "apiReferenceUrl": null
@@ -997,7 +1459,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "avatar-group",
     "title": "Avatar Group",
     "description": "Avatar Group — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "avatar",
+      "group",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/avatar-group",
     "apiReferenceUrl": null
@@ -1008,7 +1474,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "tags",
     "title": "Tags",
     "description": "Tags — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "tags",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/tags",
     "apiReferenceUrl": null
@@ -1019,7 +1488,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "calendar",
     "title": "Calendar",
     "description": "Calendar — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "calendar",
+      "date",
+      "picker"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/calendar",
     "apiReferenceUrl": null
@@ -1030,7 +1503,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "mini-calendar",
     "title": "Mini Calendar",
     "description": "Mini Calendar — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "mini",
+      "calendar",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/mini-calendar",
     "apiReferenceUrl": null
@@ -1041,7 +1518,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "comparison-slider",
     "title": "Comparison Slider",
     "description": "Comparison Slider — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "comparison",
+      "slider",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/comparison",
     "apiReferenceUrl": null
@@ -1052,7 +1533,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "kbd",
     "title": "KBD",
     "description": "KBD — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "kbd",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/kbd",
     "apiReferenceUrl": null
@@ -1063,7 +1547,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "qr-code",
     "title": "Qr Code",
     "description": "Qr Code — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "qr",
+      "code",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/qr-code",
     "apiReferenceUrl": null
@@ -1074,7 +1562,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "status",
     "title": "Status",
     "description": "Status — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "status",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/status",
     "apiReferenceUrl": null
@@ -1085,7 +1576,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "terminal",
     "title": "Terminal",
     "description": "Terminal — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "terminal",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/terminal",
     "apiReferenceUrl": null
@@ -1096,7 +1590,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "video-player",
     "title": "Video Player",
     "description": "Video Player — a UI component reference from shadcn.",
-    "tags": [],
+    "tags": [
+      "video",
+      "player",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/components/video-player",
     "apiReferenceUrl": null
@@ -1107,7 +1605,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "beam-collision",
     "title": "Beam Collision",
     "description": "Animated background preset: Beam Collision (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "beam",
+      "collision",
+      "background",
+      "beams",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/beams-collision",
     "apiReferenceUrl": null
@@ -1118,7 +1622,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "confetti",
     "title": "Confetti",
     "description": "Animated background preset: Confetti (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "confetti",
+      "background",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/confetti",
     "apiReferenceUrl": null
@@ -1129,7 +1637,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "fireworks",
     "title": "Fireworks",
     "description": "Animated background preset: Fireworks (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "fireworks",
+      "background",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/fireworks",
     "apiReferenceUrl": null
@@ -1140,7 +1652,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "meteors",
     "title": "Meteors",
     "description": "Animated background preset: Meteors (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "meteors",
+      "background",
+      "fireworks",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/fireworks",
     "apiReferenceUrl": null
@@ -1151,7 +1668,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "orbits",
     "title": "Orbits",
     "description": "Animated background preset: Orbits (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "orbits",
+      "background",
+      "fireworks",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/fireworks",
     "apiReferenceUrl": null
@@ -1162,7 +1684,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "rain",
     "title": "Rain",
     "description": "Animated background preset: Rain (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "rain",
+      "background",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/rain",
     "apiReferenceUrl": null
@@ -1173,7 +1699,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "snow",
     "title": "Snow",
     "description": "Animated background preset: Snow (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "snow",
+      "background",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/snow",
     "apiReferenceUrl": null
@@ -1184,7 +1714,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "vortex",
     "title": "Vortex",
     "description": "Animated background preset: Vortex (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "vortex",
+      "background",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/background/vortex",
     "apiReferenceUrl": null
@@ -1195,7 +1729,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "gradient-area-chart",
     "title": "Gradient Area Chart",
     "description": "Chart component: Gradient Area Chart (data visualization).",
-    "tags": [],
+    "tags": [
+      "gradient",
+      "area",
+      "chart",
+      "charts",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/charts/area-gradient",
     "apiReferenceUrl": null
@@ -1206,7 +1746,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "horizontal-bar",
     "title": "Horizontal Bar",
     "description": "Chart component: Horizontal Bar (data visualization).",
-    "tags": [],
+    "tags": [
+      "horizontal",
+      "bar",
+      "charts",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/charts/bar-horizontal",
     "apiReferenceUrl": null
@@ -1217,7 +1762,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "interactive-bar",
     "title": "Interactive Bar",
     "description": "Chart component: Interactive Bar (data visualization).",
-    "tags": [],
+    "tags": [
+      "interactive",
+      "bar",
+      "charts",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/charts/bar-interactive",
     "apiReferenceUrl": null
@@ -1228,7 +1778,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "pie-donut",
     "title": "Pie Donut",
     "description": "Chart component: Pie Donut (data visualization).",
-    "tags": [],
+    "tags": [
+      "pie",
+      "donut",
+      "charts",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/charts/pie-donut",
     "apiReferenceUrl": null
@@ -1239,7 +1794,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "radar-chart",
     "title": "Radar Chart",
     "description": "Chart component: Radar Chart (data visualization).",
-    "tags": [],
+    "tags": [
+      "radar",
+      "chart",
+      "charts",
+      "dots",
+      "shadcn"
+    ],
     "library": "shadcn",
     "url": "https://www.shadcn.io/charts/radar-dots",
     "apiReferenceUrl": null
@@ -1250,7 +1811,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "rainbow-button",
     "title": "Rainbow button",
     "description": "Button/CTA component: Rainbow button.",
-    "tags": [],
+    "tags": [
+      "rainbow",
+      "button",
+      "docs",
+      "buttons",
+      "joly",
+      "cta"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/buttons/rainbow-button",
     "apiReferenceUrl": null
@@ -1261,7 +1829,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "gooey-text-morphing",
     "title": "Gooey Text Morphing",
     "description": "Animated text effect: Gooey Text Morphing.",
-    "tags": [],
+    "tags": [
+      "gooey",
+      "text",
+      "morphing",
+      "docs",
+      "animations",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/text-animations/gooey-text-morphing",
     "apiReferenceUrl": null
@@ -1272,7 +1847,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "highlight-text",
     "title": "Highlight Text",
     "description": "Animated text effect: Highlight Text.",
-    "tags": [],
+    "tags": [
+      "highlight",
+      "text",
+      "docs",
+      "animations",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/text-animations/highlight-text",
     "apiReferenceUrl": null
@@ -1283,7 +1864,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "number-counter",
     "title": "Number Counter",
     "description": "Animates a number from 0 to a target value (stats/metrics).",
-    "tags": [],
+    "tags": [
+      "number",
+      "counter",
+      "docs",
+      "text",
+      "animations",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/text-animations/number-counter",
     "apiReferenceUrl": null
@@ -1294,7 +1882,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "rotate-text",
     "title": "Rotate Text",
     "description": "Animated text effect: Rotate Text.",
-    "tags": [],
+    "tags": [
+      "rotate",
+      "text",
+      "docs",
+      "animations",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/text-animations/rotate-text",
     "apiReferenceUrl": null
@@ -1305,7 +1899,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "typewriter-text",
     "title": "Typewriter Text",
     "description": "Types text character-by-character with a blinking cursor.",
-    "tags": [],
+    "tags": [
+      "typewriter",
+      "text",
+      "docs",
+      "animations",
+      "typewritter",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/text-animations/typewritter-text",
     "apiReferenceUrl": null
@@ -1316,7 +1917,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "ai-prompt-box",
     "title": "AI prompt box",
     "description": "Input/form component: AI prompt box.",
-    "tags": [],
+    "tags": [
+      "ai",
+      "prompt",
+      "box",
+      "docs",
+      "inputs",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/inputs/ai-prompt-box",
     "apiReferenceUrl": null
@@ -1327,7 +1935,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-theme-toggle",
     "title": "Animated Theme Toggle",
     "description": "Input/form component: Animated Theme Toggle.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "theme",
+      "toggle",
+      "docs",
+      "inputs",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/inputs/animated-theme-toggle",
     "apiReferenceUrl": null
@@ -1338,7 +1953,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "calendar-inout",
     "title": "Calendar Inout",
     "description": "Input/form component: Calendar Inout.",
-    "tags": [],
+    "tags": [
+      "calendar",
+      "inout",
+      "docs",
+      "inputs",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/inputs/calendar",
     "apiReferenceUrl": null
@@ -1349,7 +1970,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "date-wheel-picker",
     "title": "Date Wheel Picker",
     "description": "Input/form component: Date Wheel Picker.",
-    "tags": [],
+    "tags": [
+      "date",
+      "wheel",
+      "picker",
+      "docs",
+      "inputs",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/inputs/date-wheel-picker",
     "apiReferenceUrl": null
@@ -1360,7 +1988,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "feedback-widget",
     "title": "Feedback Widget",
     "description": "Input/form component: Feedback Widget.",
-    "tags": [],
+    "tags": [
+      "feedback",
+      "widget",
+      "docs",
+      "inputs",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/inputs/feedback-widget",
     "apiReferenceUrl": null
@@ -1371,7 +2005,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "file-tree",
     "title": "File Tree",
     "description": "Navigation component: File Tree.",
-    "tags": [],
+    "tags": [
+      "file",
+      "tree",
+      "docs",
+      "navigation",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/navigation/file-tree",
     "apiReferenceUrl": null
@@ -1382,7 +2022,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "animated-beam",
     "title": "Animated Beam",
     "description": "Animated Beam — a UI component reference from Joly UI.",
-    "tags": [],
+    "tags": [
+      "animated",
+      "beam",
+      "docs",
+      "creative",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/creative/animated-beam",
     "apiReferenceUrl": null
@@ -1393,7 +2039,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "expanded-map",
     "title": "Expanded Map",
     "description": "Expanded Map — a UI component reference from Joly UI.",
-    "tags": [],
+    "tags": [
+      "expanded",
+      "map",
+      "docs",
+      "creative",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/creative/expanded-map",
     "apiReferenceUrl": null
@@ -1404,7 +2056,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "github-star",
     "title": "Github Star",
     "description": "Github Star — a UI component reference from Joly UI.",
-    "tags": [],
+    "tags": [
+      "github",
+      "star",
+      "docs",
+      "creative",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/creative/github-star",
     "apiReferenceUrl": null
@@ -1415,7 +2073,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "hover-preview",
     "title": "Hover Preview",
     "description": "Hover Preview — a UI component reference from Joly UI.",
-    "tags": [],
+    "tags": [
+      "hover",
+      "preview",
+      "docs",
+      "creative",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/creative/hover-preview",
     "apiReferenceUrl": null
@@ -1426,7 +2090,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-sphere",
     "title": "Image Sphere",
     "description": "Image Sphere — a UI component reference from Joly UI.",
-    "tags": [],
+    "tags": [
+      "image",
+      "sphere",
+      "docs",
+      "creative",
+      "joly"
+    ],
     "library": "Joly UI",
     "url": "https://www.jolyui.dev/docs/components/creative/image-sphere",
     "apiReferenceUrl": null
@@ -1437,7 +2107,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "popover",
     "title": "Popover",
     "description": "Popover — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "popover",
+      "docs",
+      "radix",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/radix/popover",
     "apiReferenceUrl": null
@@ -1448,7 +2123,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "progress",
     "title": "Progress",
     "description": "Progress — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "progress",
+      "docs",
+      "radix",
+      "animated",
+      "loading"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/radix/progress",
     "apiReferenceUrl": null
@@ -1459,7 +2140,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "sheet",
     "title": "Sheet",
     "description": "Sheet — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "sheet",
+      "docs",
+      "radix",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/radix/sheet",
     "apiReferenceUrl": null
@@ -1470,7 +2156,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "copy-button",
     "title": "Copy Button",
     "description": "Button/CTA component: Copy Button.",
-    "tags": [],
+    "tags": [
+      "copy",
+      "button",
+      "docs",
+      "buttons",
+      "animated",
+      "cta"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/buttons/copy",
     "apiReferenceUrl": null
@@ -1481,7 +2174,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "flip-button",
     "title": "Flip Button",
     "description": "Button/CTA component: Flip Button.",
-    "tags": [],
+    "tags": [
+      "flip",
+      "button",
+      "docs",
+      "buttons",
+      "animated",
+      "cta"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/buttons/flip",
     "apiReferenceUrl": null
@@ -1492,7 +2192,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "ripple-button",
     "title": "Ripple Button",
     "description": "Button/CTA component: Ripple Button.",
-    "tags": [],
+    "tags": [
+      "ripple",
+      "button",
+      "docs",
+      "buttons",
+      "animated",
+      "cta"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/buttons/ripple",
     "apiReferenceUrl": null
@@ -1503,7 +2210,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "hole-backgrond",
     "title": "Hole Backgrond",
     "description": "Animated background preset: Hole Backgrond (drop into a section/hero).",
-    "tags": [],
+    "tags": [
+      "hole",
+      "backgrond",
+      "docs",
+      "backgrounds",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/backgrounds/hole",
     "apiReferenceUrl": null
@@ -1514,7 +2227,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "flip-card",
     "title": "Flip Card",
     "description": "Flip Card — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "flip",
+      "card",
+      "docs",
+      "community",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/flip-card",
     "apiReferenceUrl": null
@@ -1525,7 +2244,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "management-bar",
     "title": "Management Bar",
     "description": "Management Bar — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "management",
+      "bar",
+      "docs",
+      "community",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/management-bar",
     "apiReferenceUrl": null
@@ -1536,7 +2261,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "motion-carousel",
     "title": "Motion Carousel",
     "description": "Motion Carousel — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "motion",
+      "carousel",
+      "docs",
+      "community",
+      "animated",
+      "slider"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/motion-carousel",
     "apiReferenceUrl": null
@@ -1547,7 +2279,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "playful-todolist",
     "title": "Playful TodoList",
     "description": "Playful TodoList — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "playful",
+      "todolist",
+      "docs",
+      "community",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/playful-todolist",
     "apiReferenceUrl": null
@@ -1558,7 +2296,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "radial-intro",
     "title": "Radial Intro",
     "description": "Radial Intro — a UI component reference from Animated UI.",
-    "tags": [],
+    "tags": [
+      "radial",
+      "intro",
+      "docs",
+      "community",
+      "animated"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/radial-intro",
     "apiReferenceUrl": null
@@ -1569,7 +2313,14 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "radial-menu",
     "title": "Radial Menu",
     "description": "Navigation component: Radial Menu.",
-    "tags": [],
+    "tags": [
+      "radial",
+      "menu",
+      "docs",
+      "community",
+      "animated",
+      "navigation"
+    ],
     "library": "Animated UI",
     "url": "https://animate-ui.com/docs/components/community/radial-menu",
     "apiReferenceUrl": null
@@ -1580,7 +2331,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "icon-cloud",
     "title": "Icon Cloud",
     "description": "Icon Cloud — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "icons",
+      "cloud",
+      "canvas"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/icon-cloud",
     "apiReferenceUrl": null
@@ -1591,7 +2346,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "border-beam",
     "title": "Border Beam",
     "description": "Border Beam — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "border",
+      "beam",
+      "card"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/border-beam",
     "apiReferenceUrl": null
@@ -1602,7 +2361,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "shine-border",
     "title": "Shine Border",
     "description": "Shine Border — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "border",
+      "shine",
+      "card"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/shine-border",
     "apiReferenceUrl": null
@@ -1613,7 +2376,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "magic-card",
     "title": "Magic Card",
     "description": "Magic Card — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "card",
+      "hover",
+      "gradient"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/magic-card",
     "apiReferenceUrl": null
@@ -1624,7 +2391,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "compact-confetti",
     "title": "Compact Confetti",
     "description": "Compact Confetti — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "confetti",
+      "celebration",
+      "canvas"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/confetti",
     "apiReferenceUrl": null
@@ -1635,7 +2406,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "video-text",
     "title": "Video Text",
     "description": "Video Text — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "video",
+      "text",
+      "docs",
+      "magic"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/video-text",
     "apiReferenceUrl": null
@@ -1646,7 +2422,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "text-reveal",
     "title": "Text Reveal",
     "description": "Text Reveal — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "text",
+      "reveal",
+      "docs",
+      "magic"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/text-reveal",
     "apiReferenceUrl": null
@@ -1657,7 +2438,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "sparkles-text",
     "title": "Sparkles Text",
     "description": "Sparkles Text — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "sparkles",
+      "text",
+      "docs",
+      "magic"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/sparkles-text",
     "apiReferenceUrl": null
@@ -1668,7 +2454,12 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "code-comparison",
     "title": "Code Comparison",
     "description": "Code Comparison — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "code",
+      "comparison",
+      "docs",
+      "magic"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/code-comparison",
     "apiReferenceUrl": null
@@ -1679,7 +2470,13 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "scroll-progress",
     "title": "Scroll Progress",
     "description": "Scroll Progress — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "scroll",
+      "progress",
+      "docs",
+      "magic",
+      "loading"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/scroll-progress",
     "apiReferenceUrl": null
@@ -1690,7 +2487,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "neon-gradient-card",
     "title": "Neon Gradient Card",
     "description": "Neon Gradient Card — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "card",
+      "neon",
+      "gradient"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/neon-gradient-card",
     "apiReferenceUrl": null
@@ -1701,7 +2502,15 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "circular-progress-bar",
     "title": "Circular Progress Bar",
     "description": "Circular Progress Bar — a UI component reference from Magic UI.",
-    "tags": [],
+    "tags": [
+      "circular",
+      "progress",
+      "bar",
+      "docs",
+      "animated",
+      "magic",
+      "loading"
+    ],
     "library": "Magic UI",
     "url": "https://magicui.design/docs/components/animated-circular-progress-bar",
     "apiReferenceUrl": null
@@ -1712,7 +2521,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "draggable-card",
     "title": "Draggable Card",
     "description": "Draggable Card — a UI component reference from Aceternity UI.",
-    "tags": [],
+    "tags": [
+      "draggable",
+      "card",
+      "aceternity"
+    ],
     "library": "Aceternity UI",
     "url": "https://ui.aceternity.com/components/draggable-card",
     "apiReferenceUrl": null
@@ -1723,7 +2536,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "hero-parallax",
     "title": "Hero Parallax",
     "description": "Hero Parallax — a UI component reference from Aceternity UI.",
-    "tags": [],
+    "tags": [
+      "hero",
+      "parallax",
+      "aceternity"
+    ],
     "library": "Aceternity UI",
     "url": "https://ui.aceternity.com/components/hero-parallax",
     "apiReferenceUrl": null
@@ -1734,7 +2551,11 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "image-compare",
     "title": "Image Compare",
     "description": "Image Compare — a UI component reference from Aceternity UI.",
-    "tags": [],
+    "tags": [
+      "image",
+      "compare",
+      "aceternity"
+    ],
     "library": "Aceternity UI",
     "url": "https://ui.aceternity.com/components/compare",
     "apiReferenceUrl": null
@@ -1745,7 +2566,10 @@ export const COMPONENTS: ComponentItem[] = [
     "slug": "lens",
     "title": "Lens",
     "description": "Lens — a UI component reference from Aceternity UI.",
-    "tags": [],
+    "tags": [
+      "lens",
+      "aceternity"
+    ],
     "library": "Aceternity UI",
     "url": "https://ui.aceternity.com/components/lens",
     "apiReferenceUrl": null

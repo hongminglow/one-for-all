@@ -1,0 +1,18 @@
+@keyframes shine-border {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 300% 300%;
+  }
+}
+
+.magicui-shine-border {
+  animation: shine-border var(--duration, 14s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magicui-shine-border {
+    animation: none;
+  }
+}

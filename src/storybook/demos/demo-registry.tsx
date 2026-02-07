@@ -64,6 +64,39 @@ import {
 } from "@/components/jolyui/HoverPreview";
 import ImageSphere from "@/components/jolyui/ImageSphere";
 import Calendar from "@/components/shadcn/Calendar";
+import BorderBeam from "@/components/magicui/BorderBeam";
+import ShineBorder from "@/components/magicui/ShineBorder";
+import MagicCard from "@/components/magicui/MagicCard";
+import NeonGradientCard from "@/components/magicui/NeonGradientCard";
+import CircularProgressBar from "@/components/magicui/CircularProgressBar";
+import IconCloud from "@/components/magicui/IconCloud";
+import CompactConfetti, {
+  type ConfettiRef,
+} from "@/components/magicui/CompactConfetti";
+import VideoText from "@/components/magicui/VideoText";
+import TextReveal from "@/components/magicui/TextReveal";
+import SparklesText from "@/components/magicui/SparklesText";
+import CodeComparison from "@/components/magicui/CodeComparison";
+import ScrollProgress from "@/components/magicui/ScrollProgress";
+import CopyButton from "@/components/animateui/CopyButton";
+import FlipButton from "@/components/animateui/FlipButton";
+import RippleButton from "@/components/animateui/RippleButton";
+import Progress from "@/components/animateui/Progress";
+import Popover from "@/components/animateui/Popover";
+import Sheet from "@/components/animateui/Sheet";
+import FlipCard from "@/components/animateui/FlipCard";
+import MotionCarousel from "@/components/animateui/MotionCarousel";
+import RadialIntro from "@/components/animateui/RadialIntro";
+import RadialMenu from "@/components/animateui/RadialMenu";
+import HoleBackground from "@/components/animateui/HoleBackground";
+import ManagementBar from "@/components/animateui/ManagementBar";
+import PlayfulTodoList from "@/components/animateui/PlayfulTodoList";
+import Magnet from "@/components/animateui/Magnet";
+import Crosshair from "@/components/tsdefault/Crosshair";
+import DecayCard from "@/components/tsdefault/DecayCard";
+import FadeContent from "@/components/tsdefault/FadeContent";
+import PixelCard from "@/components/tsdefault/PixelCard";
+import TrueFocus from "@/components/tsdefault/TrueFocus";
 import {
   circularTextCode,
   curvedLoopCode,
@@ -143,6 +176,37 @@ import {
   hoverPreviewCode,
   imageSphereCode,
   shadcnCalendarCode,
+  borderBeamCode,
+  shineBorderCode,
+  magicCardCode,
+  neonGradientCardCode,
+  circularProgressBarCode,
+  iconCloudCode,
+  compactConfettiCode,
+  videoTextCode,
+  textRevealCode,
+  sparklesTextCode,
+  codeComparisonCode,
+  scrollProgressCode,
+  copyButtonCode,
+  flipButtonCode,
+  rippleButtonCode,
+  progressCode,
+  popoverCode,
+  sheetCode,
+  flipCardCode,
+  motionCarouselCode,
+  radialIntroCode,
+  radialMenuCode,
+  holeBackgroundCode,
+  managementBarCode,
+  playfulTodoListCode,
+  magnetCode,
+  crosshairCode,
+  decayCardCode,
+  fadeContentCode,
+  pixelCardCode,
+  trueFocusCode,
 } from "@/storybook/demos/code-snippets";
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 import Antigravity from "@/components/reactbits/Antigravity";
@@ -255,6 +319,86 @@ function AnimatedBeamDemo(props: {
 function CalendarDemo() {
   const [selected, setSelected] = useState<Date>(new Date());
   return <Calendar value={selected} onChange={setSelected} />;
+}
+
+function CompactConfettiDemo(props: {
+  particleCount?: number;
+  spread?: number;
+}) {
+  const confettiRef = useRef<ConfettiRef>(null);
+  return (
+    <div className="relative h-[260px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+      <CompactConfetti
+        ref={confettiRef}
+        className="absolute inset-0 h-full w-full"
+        manualStart
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <button
+          type="button"
+          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+          onClick={() =>
+            confettiRef.current?.fire({
+              particleCount: props.particleCount ?? 120,
+              spread: props.spread ?? 70,
+              startVelocity: 35,
+              scalar: 0.85,
+              ticks: 200,
+            })
+          }
+        >
+          Celebrate
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function SheetDemo(props: { side?: "left" | "right" }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="w-full max-w-[620px]">
+      <button
+        type="button"
+        className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+        onClick={() => setOpen(true)}
+      >
+        Open Sheet
+      </button>
+      <Sheet
+        open={open}
+        onOpenChange={setOpen}
+        title="Sheet"
+        side={props.side ?? "right"}
+      >
+        This is a simple sheet implementation.
+      </Sheet>
+    </div>
+  );
+}
+
+function CrosshairDemo(props: { size?: number }) {
+  const [enabled, setEnabled] = useState(false);
+  return (
+    <div className="relative w-full max-w-[620px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+      {enabled ? <Crosshair size={props.size ?? 22} /> : null}
+      <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+        Crosshair
+      </div>
+      <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+        Toggle to enable the pointer-following overlay.
+      </div>
+      <div className="mt-4">
+        <button
+          type="button"
+          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+          onClick={() => setEnabled((v) => !v)}
+        >
+          {enabled ? "Disable" : "Enable"}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function HoverPreviewDemo() {
@@ -1941,6 +2085,469 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
+    case slug === "border-beam" || title.includes("border beam"):
+      return (
+        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <BorderBeam
+            size={props?.size ?? 80}
+            duration={props?.duration ?? 6}
+            delay={props?.delay ?? 0}
+            reverse={props?.reverse ?? false}
+            initialOffset={props?.initialOffset ?? 0}
+            borderWidth={props?.borderWidth ?? 1}
+          />
+          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+            Border Beam
+          </div>
+          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            Animated beam traveling around the border.
+          </div>
+        </div>
+      );
+
+    case slug === "shine-border" || title.includes("shine border"):
+      return (
+        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <ShineBorder
+            borderWidth={props?.borderWidth ?? 1}
+            duration={props?.duration ?? 14}
+            shineColor={props?.shineColor ?? ["#A97CF8", "#F38CB8", "#FDCC92"]}
+          />
+          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+            Shine Border
+          </div>
+          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            Animated sheen effect around the card.
+          </div>
+        </div>
+      );
+
+    case slug === "magic-card" || title.includes("magic card"):
+      return (
+        <MagicCard
+          className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6"
+          gradientSize={props?.gradientSize ?? 200}
+          gradientOpacity={props?.gradientOpacity ?? 0.8}
+          gradientFrom={props?.gradientFrom ?? "#9E7AFF"}
+          gradientTo={props?.gradientTo ?? "#FE8BBB"}
+        >
+          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+            Magic Card
+          </div>
+          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            Hover to see the gradient follow your pointer.
+          </div>
+        </MagicCard>
+      );
+
+    case slug === "neon-gradient-card" || title.includes("neon gradient"):
+      return (
+        <div className="w-full max-w-[620px]">
+          <NeonGradientCard
+            borderSize={props?.borderSize ?? 2}
+            borderRadius={props?.borderRadius ?? 20}
+          >
+            <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+              Neon Gradient Card
+            </div>
+            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+              Animated neon gradient border.
+            </div>
+          </NeonGradientCard>
+        </div>
+      );
+
+    case slug === "circular-progress-bar" ||
+      title.includes("circular progress"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 240 }}
+        >
+          <CircularProgressBar
+            value={props?.value ?? 72}
+            min={props?.min ?? 0}
+            max={props?.max ?? 100}
+            gaugePrimaryColor={props?.gaugePrimaryColor ?? "#A97CF8"}
+            gaugeSecondaryColor={
+              props?.gaugeSecondaryColor ?? "rgba(0,0,0,0.15)"
+            }
+          />
+        </div>
+      );
+
+    case slug === "icon-cloud" || title.includes("icon cloud"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 420 }}
+        >
+          <IconCloud
+            size={props?.size ?? 380}
+            images={
+              (props?.images as string[] | undefined) ??
+              DEMO_IMAGES.slice(0, 10).map((i) => i.src)
+            }
+          />
+        </div>
+      );
+
+    case slug === "compact-confetti" || title.includes("compact confetti"):
+      return (
+        <CompactConfettiDemo
+          particleCount={props?.particleCount ?? 120}
+          spread={props?.spread ?? 70}
+        />
+      );
+
+    case slug === "video-text" || title.includes("video text"):
+      return (
+        <div className="h-[240px] w-full max-w-[720px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+          <VideoText
+            src={
+              props?.src ??
+              "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            }
+            fontSize={props?.fontSize ?? 22}
+          >
+            VIDEO
+          </VideoText>
+        </div>
+      );
+
+    case slug === "text-reveal" || title.includes("text reveal"):
+      return (
+        <div className="h-[420px] w-full overflow-y-auto rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+          <TextReveal>
+            Scroll this panel to reveal the words one by one.
+          </TextReveal>
+        </div>
+      );
+
+    case slug === "sparkles-text" || title.includes("sparkles"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 220 }}
+        >
+          <SparklesText sparklesCount={props?.sparklesCount ?? 10}>
+            Sparkles
+          </SparklesText>
+        </div>
+      );
+
+    case slug === "code-comparison" || title.includes("code comparison"):
+      return (
+        <CodeComparison
+          filename={props?.filename ?? "example.ts"}
+          highlightColor={props?.highlightColor ?? "#ff3333"}
+          beforeCode={
+            props?.beforeCode ??
+            "const a = 1;\nconst b = 2;\nconsole.log(a + b);"
+          }
+          afterCode={
+            props?.afterCode ??
+            "const a = 1;\nconst b = 3;\nconsole.log(a + b);"
+          }
+        />
+      );
+
+    case slug === "scroll-progress" || title.includes("scroll progress"):
+      return (
+        <div className="relative w-full rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <ScrollProgress className="!absolute !inset-x-0 !top-0" />
+          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+            Scroll Progress
+          </div>
+          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            Scroll the page to see the progress bar animate.
+          </div>
+          <div className="mt-6 space-y-3 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
+            <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
+            <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
+          </div>
+        </div>
+      );
+
+    case slug === "copy-button" || title.includes("copy button"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 220 }}
+        >
+          <CopyButton text={props?.text ?? "npm install one-for-all"} />
+        </div>
+      );
+
+    case slug === "flip-button" || title.includes("flip button"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 220 }}
+        >
+          <FlipButton
+            frontText={props?.frontText ?? "Hover me"}
+            backText={props?.backText ?? "Nice"}
+          />
+        </div>
+      );
+
+    case slug === "ripple-button" || title.includes("ripple button"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 220 }}
+        >
+          <RippleButton
+            rippleColor={props?.rippleColor ?? "rgba(255,255,255,0.35)"}
+          >
+            Click
+          </RippleButton>
+        </div>
+      );
+
+    case slug === "progress" || title.includes("progress"):
+      return (
+        <div className="w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+          <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+            Progress
+          </div>
+          <div className="mt-3">
+            <Progress value={props?.value ?? 64} max={props?.max ?? 100} />
+          </div>
+        </div>
+      );
+
+    case slug === "popover" || title.includes("popover"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 240 }}
+        >
+          <Popover
+            side={props?.side ?? "bottom"}
+            align={props?.align ?? "center"}
+            trigger={
+              <button
+                type="button"
+                className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+              >
+                Open Popover
+              </button>
+            }
+            content={
+              <div>
+                <div className="text-[13px] font-black">Popover</div>
+                <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+                  Click outside to close.
+                </div>
+              </div>
+            }
+          />
+        </div>
+      );
+
+    case slug === "sheet" || title.includes("sheet"):
+      return <SheetDemo side={props?.side ?? "right"} />;
+
+    case slug === "flip-card" || title.includes("flip card"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 320 }}
+        >
+          <FlipCard
+            front={
+              <div>
+                <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+                  Front
+                </div>
+                <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+                  Hover to flip.
+                </div>
+              </div>
+            }
+            back={
+              <div>
+                <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+                  Back
+                </div>
+                <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+                  3D flip using CSS transforms.
+                </div>
+              </div>
+            }
+          />
+        </div>
+      );
+
+    case slug === "motion-carousel" || title.includes("motion carousel"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 300 }}
+        >
+          <MotionCarousel
+            autoplay={props?.autoplay ?? false}
+            autoplayDelay={props?.autoplayDelay ?? 2800}
+            items={
+              props?.items ?? [
+                { id: "1", title: "First", description: "A minimal carousel" },
+                { id: "2", title: "Second", description: "No external deps" },
+                { id: "3", title: "Third", description: "Buttons + transform" },
+              ]
+            }
+          />
+        </div>
+      );
+
+    case slug === "radial-intro" || title.includes("radial intro"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 280 }}
+        >
+          <RadialIntro
+            title={props?.title ?? "Radial Intro"}
+            subtitle={props?.subtitle ?? "A simple radial-gradient hero intro."}
+          />
+        </div>
+      );
+
+    case slug === "radial-menu" || title.includes("radial menu"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 340 }}
+        >
+          <RadialMenu
+            radius={props?.radius ?? 90}
+            items={
+              props?.items ?? [
+                { label: "Edit" },
+                { label: "Share" },
+                { label: "Archive" },
+                { label: "Delete" },
+              ]
+            }
+          />
+        </div>
+      );
+
+    case slug === "hole-background" || title.includes("hole background"):
+      return <HoleBackground holeSize={props?.holeSize ?? 220} />;
+
+    case slug === "management-bar" || title.includes("management bar"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 260 }}
+        >
+          <ManagementBar title={props?.title ?? "Management"} />
+        </div>
+      );
+
+    case slug === "playful-todolist" ||
+      title.includes("todolist") ||
+      title.includes("todo"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 420 }}
+        >
+          <PlayfulTodoList />
+        </div>
+      );
+
+    case slug === "magnet" || title.includes("magnet"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 240 }}
+        >
+          <Magnet
+            strength={props?.strength ?? 0.25}
+            radius={props?.radius ?? 160}
+          >
+            <button
+              type="button"
+              className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-6 py-3 text-[13px] font-black text-[var(--sb-text-strong)]"
+            >
+              Magnetic
+            </button>
+          </Magnet>
+        </div>
+      );
+
+    case slug === "crosshair" || title.includes("crosshair"):
+      return <CrosshairDemo size={props?.size ?? 22} />;
+
+    case slug === "decay-card" || title.includes("decay"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 260 }}
+        >
+          <DecayCard>
+            <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+              Decay Card
+            </div>
+            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+              SVG filter displacement effect.
+            </div>
+          </DecayCard>
+        </div>
+      );
+
+    case slug === "fade-content" || title.includes("fade content"):
+      return (
+        <div className="h-[220px] w-full max-w-[620px] overflow-auto rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-4 sb-scroll">
+          <div className="h-[120px]" />
+          <FadeContent>
+            <div className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-5">
+              <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+                Fade Content
+              </div>
+              <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+                Scroll inside this panel.
+              </div>
+            </div>
+          </FadeContent>
+          <div className="h-[180px]" />
+        </div>
+      );
+
+    case slug === "pixel-card" || title.includes("pixel card"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 260 }}
+        >
+          <PixelCard>
+            <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+              Pixel Card
+            </div>
+            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+              Hover for pixel overlay.
+            </div>
+          </PixelCard>
+        </div>
+      );
+
+    case slug === "true-focus" || title.includes("true focus"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 220 }}
+        >
+          <TrueFocus
+            text={props?.text ?? "Focus moves across words"}
+            intervalMs={props?.intervalMs ?? 1400}
+          />
+        </div>
+      );
+
     case slug === "calendar":
       return (
         <div
@@ -2042,6 +2649,195 @@ export function getDemoControls(
         label: "On Hover",
         defaultValue: "speedUp",
         options: ["speedUp", "slowDown", "pause", "goBonkers"],
+      },
+    ];
+  }
+
+  if (slug === "border-beam" || title.includes("border beam")) {
+    return [
+      {
+        type: "number",
+        param: "size",
+        label: "Size",
+        defaultValue: 80,
+        min: 20,
+        max: 240,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 6,
+        min: 1,
+        max: 20,
+        step: 0.5,
+      },
+      {
+        type: "number",
+        param: "borderWidth",
+        label: "Border Width",
+        defaultValue: 1,
+        min: 1,
+        max: 6,
+        step: 1,
+      },
+      {
+        type: "boolean",
+        param: "reverse",
+        label: "Reverse",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (slug === "shine-border" || title.includes("shine border")) {
+    return [
+      {
+        type: "number",
+        param: "borderWidth",
+        label: "Border Width",
+        defaultValue: 1,
+        min: 1,
+        max: 6,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "duration",
+        label: "Duration",
+        defaultValue: 14,
+        min: 2,
+        max: 30,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "magic-card" || title.includes("magic card")) {
+    return [
+      {
+        type: "number",
+        param: "gradientSize",
+        label: "Gradient Size",
+        defaultValue: 200,
+        min: 80,
+        max: 420,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "gradientOpacity",
+        label: "Gradient Opacity",
+        defaultValue: 0.8,
+        min: 0,
+        max: 1,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug === "neon-gradient-card" || title.includes("neon gradient")) {
+    return [
+      {
+        type: "number",
+        param: "borderSize",
+        label: "Border Size",
+        defaultValue: 2,
+        min: 0,
+        max: 10,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "borderRadius",
+        label: "Border Radius",
+        defaultValue: 20,
+        min: 0,
+        max: 48,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "circular-progress-bar" || title.includes("circular progress")) {
+    return [
+      {
+        type: "number",
+        param: "value",
+        label: "Value",
+        defaultValue: 72,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "icon-cloud" || title.includes("icon cloud")) {
+    return [
+      {
+        type: "number",
+        param: "size",
+        label: "Size",
+        defaultValue: 380,
+        min: 240,
+        max: 520,
+        step: 10,
+      },
+    ];
+  }
+
+  if (slug === "compact-confetti" || title.includes("confetti")) {
+    return [
+      {
+        type: "number",
+        param: "particleCount",
+        label: "Particle Count",
+        defaultValue: 120,
+        min: 20,
+        max: 400,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "spread",
+        label: "Spread",
+        defaultValue: 70,
+        min: 10,
+        max: 180,
+        step: 5,
+      },
+    ];
+  }
+
+  if (slug === "sparkles-text" || title.includes("sparkles")) {
+    return [
+      {
+        type: "number",
+        param: "sparklesCount",
+        label: "Sparkles Count",
+        defaultValue: 10,
+        min: 0,
+        max: 30,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "code-comparison" || title.includes("code comparison")) {
+    return [
+      {
+        type: "color",
+        param: "highlightColor",
+        label: "Highlight Color",
+        defaultValue: "#ff3333",
+      },
+      {
+        type: "text",
+        param: "filename",
+        label: "Filename",
+        defaultValue: "example.ts",
       },
     ];
   }
@@ -4481,6 +5277,204 @@ export function getDemoControls(
     ];
   }
 
+  if (slug === "copy-button" || title.includes("copy button")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text to copy",
+        defaultValue: "npm install one-for-all",
+      },
+    ];
+  }
+
+  if (slug === "flip-button" || title.includes("flip button")) {
+    return [
+      {
+        type: "text",
+        param: "frontText",
+        label: "Front text",
+        defaultValue: "Hover me",
+      },
+      {
+        type: "text",
+        param: "backText",
+        label: "Back text",
+        defaultValue: "Nice",
+      },
+    ];
+  }
+
+  if (slug === "ripple-button" || title.includes("ripple button")) {
+    return [
+      {
+        type: "color",
+        param: "rippleColor",
+        label: "Ripple color",
+        defaultValue: "rgba(255,255,255,0.35)",
+      },
+    ];
+  }
+
+  if (slug === "progress" || title === "progress") {
+    return [
+      {
+        type: "number",
+        param: "value",
+        label: "Value",
+        defaultValue: 64,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "max",
+        label: "Max",
+        defaultValue: 100,
+        min: 1,
+        max: 200,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "popover" || title.includes("popover")) {
+    return [
+      {
+        type: "select",
+        param: "side",
+        label: "Side",
+        defaultValue: "bottom",
+        options: ["top", "bottom"],
+      },
+      {
+        type: "select",
+        param: "align",
+        label: "Align",
+        defaultValue: "center",
+        options: ["start", "center", "end"],
+      },
+    ];
+  }
+
+  if (slug === "sheet" || title.includes("sheet")) {
+    return [
+      {
+        type: "select",
+        param: "side",
+        label: "Side",
+        defaultValue: "right",
+        options: ["left", "right"],
+      },
+    ];
+  }
+
+  if (slug === "motion-carousel" || title.includes("motion carousel")) {
+    return [
+      {
+        type: "boolean",
+        param: "autoplay",
+        label: "Autoplay",
+        defaultValue: false,
+      },
+      {
+        type: "number",
+        param: "autoplayDelay",
+        label: "Autoplay delay (ms)",
+        defaultValue: 2800,
+        min: 800,
+        max: 8000,
+        step: 100,
+      },
+    ];
+  }
+
+  if (slug === "radial-menu" || title.includes("radial menu")) {
+    return [
+      {
+        type: "number",
+        param: "radius",
+        label: "Radius",
+        defaultValue: 90,
+        min: 50,
+        max: 140,
+        step: 5,
+      },
+    ];
+  }
+
+  if (slug === "hole-background" || title.includes("hole background")) {
+    return [
+      {
+        type: "number",
+        param: "holeSize",
+        label: "Hole size",
+        defaultValue: 220,
+        min: 120,
+        max: 360,
+        step: 10,
+      },
+    ];
+  }
+
+  if (slug === "magnet" || title.includes("magnet")) {
+    return [
+      {
+        type: "number",
+        param: "strength",
+        label: "Strength",
+        defaultValue: 0.25,
+        min: 0,
+        max: 1,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "radius",
+        label: "Radius",
+        defaultValue: 160,
+        min: 80,
+        max: 360,
+        step: 10,
+      },
+    ];
+  }
+
+  if (slug === "crosshair" || title.includes("crosshair")) {
+    return [
+      {
+        type: "number",
+        param: "size",
+        label: "Size",
+        defaultValue: 22,
+        min: 10,
+        max: 60,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug === "true-focus" || title.includes("true focus")) {
+    return [
+      {
+        type: "text",
+        param: "text",
+        label: "Text",
+        defaultValue: "Focus moves across words",
+      },
+      {
+        type: "number",
+        param: "intervalMs",
+        label: "Interval (ms)",
+        defaultValue: 1400,
+        min: 400,
+        max: 4000,
+        step: 100,
+      },
+    ];
+  }
+
   return null;
 }
 
@@ -4611,7 +5605,67 @@ export function getDemoCode(component: ComponentItem) {
     return hoverPreviewCode;
   if (slug.includes("image-sphere") || title.includes("image sphere"))
     return imageSphereCode;
+  if (slug === "border-beam" || title.includes("border beam"))
+    return borderBeamCode;
+  if (slug === "shine-border" || title.includes("shine border"))
+    return shineBorderCode;
+  if (slug === "magic-card" || title.includes("magic card"))
+    return magicCardCode;
+  if (slug === "neon-gradient-card" || title.includes("neon gradient"))
+    return neonGradientCardCode;
+  if (slug === "circular-progress-bar" || title.includes("circular progress"))
+    return circularProgressBarCode;
+  if (slug === "icon-cloud" || title.includes("icon cloud"))
+    return iconCloudCode;
+  if (slug === "compact-confetti" || title.includes("compact confetti"))
+    return compactConfettiCode;
+  if (slug === "video-text" || title.includes("video text"))
+    return videoTextCode;
+  if (slug === "text-reveal" || title.includes("text reveal"))
+    return textRevealCode;
+  if (slug === "sparkles-text" || title.includes("sparkles"))
+    return sparklesTextCode;
+  if (slug === "code-comparison" || title.includes("code comparison"))
+    return codeComparisonCode;
+  if (slug === "scroll-progress" || title.includes("scroll progress"))
+    return scrollProgressCode;
   if (slug === "calendar") return shadcnCalendarCode;
+
+  if (slug === "copy-button" || title.includes("copy button"))
+    return copyButtonCode;
+  if (slug === "flip-button" || title.includes("flip button"))
+    return flipButtonCode;
+  if (slug === "ripple-button" || title.includes("ripple button"))
+    return rippleButtonCode;
+  if (slug === "progress" || title === "progress") return progressCode;
+  if (slug === "popover" || title.includes("popover")) return popoverCode;
+  if (slug === "sheet" || title.includes("sheet")) return sheetCode;
+  if (slug === "flip-card" || title.includes("flip card")) return flipCardCode;
+  if (slug === "motion-carousel" || title.includes("motion carousel"))
+    return motionCarouselCode;
+  if (slug === "radial-intro" || title.includes("radial intro"))
+    return radialIntroCode;
+  if (slug === "radial-menu" || title.includes("radial menu"))
+    return radialMenuCode;
+  if (slug === "hole-background" || title.includes("hole background"))
+    return holeBackgroundCode;
+  if (slug === "management-bar" || title.includes("management bar"))
+    return managementBarCode;
+  if (
+    slug === "playful-todolist" ||
+    title.includes("todolist") ||
+    title.includes("todo")
+  )
+    return playfulTodoListCode;
+  if (slug === "magnet" || title.includes("magnet")) return magnetCode;
+  if (slug === "crosshair" || title.includes("crosshair")) return crosshairCode;
+  if (slug === "decay-card" || title.includes("decay")) return decayCardCode;
+  if (slug === "fade-content" || title.includes("fade content"))
+    return fadeContentCode;
+  if (slug === "pixel-card" || title.includes("pixel card"))
+    return pixelCardCode;
+  if (slug === "true-focus" || title.includes("true focus"))
+    return trueFocusCode;
 
   if (slug.includes("electric-border") || title.includes("electric border"))
     return electricBorderCode;
@@ -7193,6 +8247,402 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
     ];
   }
 
+  if (slug === "border-beam" || title.includes("border beam")) {
+    return [
+      {
+        prop: "size",
+        type: "number",
+        default: "50",
+        description: "Beam square size (px)",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "6",
+        description: "Animation duration (seconds)",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "0",
+        description: "Phase offset (seconds)",
+      },
+      {
+        prop: "reverse",
+        type: "boolean",
+        default: "false",
+        description: "Reverse animation direction",
+      },
+      {
+        prop: "initialOffset",
+        type: "number",
+        default: "0",
+        description: "Initial offsetDistance (%)",
+      },
+      {
+        prop: "borderWidth",
+        type: "number",
+        default: "1",
+        description: "Overlay border width (px)",
+      },
+      {
+        prop: "colorFrom",
+        type: "string",
+        default: "#ffaa40",
+        description: "Gradient start color",
+      },
+      {
+        prop: "colorTo",
+        type: "string",
+        default: "#9c40ff",
+        description: "Gradient end color",
+      },
+      {
+        prop: "transition",
+        type: "Transition",
+        default: "{ repeat: Infinity, ease: 'linear' }",
+        description: "Motion transition override",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Additional classes for the beam",
+      },
+    ];
+  }
+
+  if (slug === "shine-border" || title.includes("shine border")) {
+    return [
+      {
+        prop: "borderWidth",
+        type: "number",
+        default: "1",
+        description: "Border thickness (px)",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "14",
+        description: "Animation duration (seconds)",
+      },
+      {
+        prop: "shineColor",
+        type: "string | string[]",
+        default: "#000000",
+        description: "Shine color(s) used in the radial gradient",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Additional classes for the overlay",
+      },
+    ];
+  }
+
+  if (slug === "magic-card" || title.includes("magic card")) {
+    return [
+      {
+        prop: "gradientSize",
+        type: "number",
+        default: "200",
+        description: "Radial gradient size (px)",
+      },
+      {
+        prop: "gradientOpacity",
+        type: "number",
+        default: "0.8",
+        description: "Overlay opacity",
+      },
+      {
+        prop: "gradientFrom",
+        type: "string",
+        default: "#9E7AFF",
+        description: "Gradient start color",
+      },
+      {
+        prop: "gradientTo",
+        type: "string",
+        default: "#FE8BBB",
+        description: "Gradient end color",
+      },
+      {
+        prop: "gradientColor",
+        type: "string",
+        default: "#262626",
+        description: "Dark inner gradient color",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Card content",
+      },
+    ];
+  }
+
+  if (slug === "neon-gradient-card" || title.includes("neon gradient")) {
+    return [
+      {
+        prop: "borderSize",
+        type: "number",
+        default: "2",
+        description: "Border size (px)",
+      },
+      {
+        prop: "borderRadius",
+        type: "number",
+        default: "20",
+        description: "Border radius (px)",
+      },
+      {
+        prop: "neonColors",
+        type: "{ firstColor: string; secondColor: string }",
+        default: "{ firstColor: '#ff00aa', secondColor: '#00FFF1' }",
+        description: "Neon gradient colors",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Card content",
+      },
+    ];
+  }
+
+  if (slug === "circular-progress-bar" || title.includes("circular progress")) {
+    return [
+      {
+        prop: "value",
+        type: "number",
+        default: "0",
+        description: "Current value",
+      },
+      {
+        prop: "min",
+        type: "number",
+        default: "0",
+        description: "Minimum value",
+      },
+      {
+        prop: "max",
+        type: "number",
+        default: "100",
+        description: "Maximum value",
+      },
+      {
+        prop: "gaugePrimaryColor",
+        type: "string",
+        default: "",
+        description: "Progress stroke color",
+      },
+      {
+        prop: "gaugeSecondaryColor",
+        type: "string",
+        default: "",
+        description: "Remaining stroke color",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "icon-cloud" || title.includes("icon cloud")) {
+    return [
+      {
+        prop: "images",
+        type: "string[]",
+        default: "[]",
+        description: "Image URLs used as icons",
+      },
+      {
+        prop: "icons",
+        type: "ReactNode[]",
+        default: "[]",
+        description: "Optional icon nodes (placeholder-rendered in this port)",
+      },
+      {
+        prop: "size",
+        type: "number",
+        default: "400",
+        description: "Canvas size (px)",
+      },
+    ];
+  }
+
+  if (slug === "compact-confetti" || title.includes("compact confetti")) {
+    return [
+      {
+        prop: "options",
+        type: "ConfettiOptions",
+        default: "{}",
+        description: "Default fire options",
+      },
+      {
+        prop: "globalOptions",
+        type: "ConfettiGlobalOptions",
+        default: "{ resize: true, useWorker: true }",
+        description: "Canvas confetti global options",
+      },
+      {
+        prop: "manualStart",
+        type: "boolean",
+        default: "false",
+        description: "If false, fires once on mount",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Canvas className",
+      },
+    ];
+  }
+
+  if (slug === "video-text" || title.includes("video text")) {
+    return [
+      {
+        prop: "src",
+        type: "string",
+        default: "",
+        description: "Video source URL",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Text rendered as the mask",
+      },
+      {
+        prop: "fontSize",
+        type: "string | number",
+        default: "20",
+        description: "Mask text size (vw when number)",
+      },
+      {
+        prop: "fontWeight",
+        type: "string | number",
+        default: "bold",
+        description: "Mask font weight",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "text-reveal" || title.includes("text reveal")) {
+    return [
+      {
+        prop: "children",
+        type: "string",
+        default: "",
+        description: "Text content to reveal on scroll",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "sparkles-text" || title.includes("sparkles")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Text content",
+      },
+      {
+        prop: "sparklesCount",
+        type: "number",
+        default: "10",
+        description: "Number of sparkles",
+      },
+      {
+        prop: "colors",
+        type: "{ first: string; second: string }",
+        default: "{ first: '#9E7AFF', second: '#FE8BBB' }",
+        description: "Sparkle colors",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "code-comparison" || title.includes("code comparison")) {
+    return [
+      {
+        prop: "beforeCode",
+        type: "string",
+        default: "",
+        description: "Before code contents",
+      },
+      {
+        prop: "afterCode",
+        type: "string",
+        default: "",
+        description: "After code contents",
+      },
+      {
+        prop: "filename",
+        type: "string",
+        default: "example.ts",
+        description: "Filename label",
+      },
+      {
+        prop: "highlightColor",
+        type: "string",
+        default: "#ff3333",
+        description: "Highlight color for changes",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "scroll-progress" || title.includes("scroll progress")) {
+    return [
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Additional classes for the bar",
+      },
+    ];
+  }
+
   if (slug === "calendar") {
     return [
       {
@@ -7212,6 +8662,423 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         type: "string",
         default: "",
         description: "Wrapper className",
+      },
+    ];
+  }
+
+  if (slug === "copy-button" || title.includes("copy button")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text written to clipboard on click",
+      },
+      {
+        prop: "label",
+        type: "string",
+        default: "Copy",
+        description: "Button label",
+      },
+      {
+        prop: "copiedLabel",
+        type: "string",
+        default: "Copied",
+        description: "Label shown briefly after copying",
+      },
+      {
+        prop: "onCopiedChange",
+        type: "(copied: boolean) => void",
+        default: "",
+        description: "Fires when copy status changes",
+      },
+    ];
+  }
+
+  if (slug === "flip-button" || title.includes("flip button")) {
+    return [
+      {
+        prop: "frontText",
+        type: "string",
+        default: "",
+        description: "Text shown normally",
+      },
+      {
+        prop: "backText",
+        type: "string",
+        default: "frontText",
+        description: "Text shown on hover flip",
+      },
+    ];
+  }
+
+  if (slug === "ripple-button" || title.includes("ripple button")) {
+    return [
+      {
+        prop: "rippleColor",
+        type: "string",
+        default: "rgba(255,255,255,0.35)",
+        description: "Ripple overlay color",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Button contents",
+      },
+    ];
+  }
+
+  if (slug === "progress" || title === "progress") {
+    return [
+      {
+        prop: "value",
+        type: "number",
+        default: "0",
+        description: "Current value",
+      },
+      {
+        prop: "max",
+        type: "number",
+        default: "100",
+        description: "Maximum value",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "popover" || title.includes("popover")) {
+    return [
+      {
+        prop: "trigger",
+        type: "ReactNode",
+        default: "",
+        description: "Trigger element",
+      },
+      {
+        prop: "content",
+        type: "ReactNode",
+        default: "",
+        description: "Popover content",
+      },
+      {
+        prop: "open",
+        type: "boolean",
+        default: "(uncontrolled)",
+        description: "Controlled open state",
+      },
+      {
+        prop: "defaultOpen",
+        type: "boolean",
+        default: "false",
+        description: "Uncontrolled initial state",
+      },
+      {
+        prop: "onOpenChange",
+        type: "(open: boolean) => void",
+        default: "",
+        description: "Open state change callback",
+      },
+      {
+        prop: "side",
+        type: "'top' | 'bottom'",
+        default: "bottom",
+        description: "Panel side",
+      },
+      {
+        prop: "align",
+        type: "'start' | 'center' | 'end'",
+        default: "center",
+        description: "Panel alignment",
+      },
+    ];
+  }
+
+  if (slug === "sheet" || title.includes("sheet")) {
+    return [
+      {
+        prop: "open",
+        type: "boolean",
+        default: "false",
+        description: "Whether the sheet is open",
+      },
+      {
+        prop: "onOpenChange",
+        type: "(open: boolean) => void",
+        default: "",
+        description: "Called when open state changes",
+      },
+      {
+        prop: "side",
+        type: "'left' | 'right'",
+        default: "right",
+        description: "Slide-in side",
+      },
+      {
+        prop: "title",
+        type: "string",
+        default: "Sheet",
+        description: "Header title",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Sheet content",
+      },
+    ];
+  }
+
+  if (slug === "flip-card" || title.includes("flip card")) {
+    return [
+      {
+        prop: "front",
+        type: "ReactNode",
+        default: "",
+        description: "Front side content",
+      },
+      {
+        prop: "back",
+        type: "ReactNode",
+        default: "",
+        description: "Back side content",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "motion-carousel" || title.includes("motion carousel")) {
+    return [
+      {
+        prop: "items",
+        type: "{ id: string; title: string; description?: string; image?: string }[]",
+        default: "[]",
+        description: "Carousel slides",
+      },
+      {
+        prop: "autoplay",
+        type: "boolean",
+        default: "false",
+        description: "Auto-advance slides",
+      },
+      {
+        prop: "autoplayDelay",
+        type: "number",
+        default: "2800",
+        description: "Autoplay delay (ms)",
+      },
+    ];
+  }
+
+  if (slug === "radial-intro" || title.includes("radial intro")) {
+    return [
+      {
+        prop: "title",
+        type: "string",
+        default: "",
+        description: "Heading",
+      },
+      {
+        prop: "subtitle",
+        type: "string",
+        default: "",
+        description: "Optional subheading",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "radial-menu" || title.includes("radial menu")) {
+    return [
+      {
+        prop: "items",
+        type: "{ label: string; onSelect?: () => void }[]",
+        default: "[]",
+        description: "Menu items",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "90",
+        description: "Distance from center (px)",
+      },
+    ];
+  }
+
+  if (slug === "hole-background" || title.includes("hole background")) {
+    return [
+      {
+        prop: "holeSize",
+        type: "number",
+        default: "220",
+        description: "Hole radius (px)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "management-bar" || title.includes("management bar")) {
+    return [
+      {
+        prop: "title",
+        type: "string",
+        default: "Management",
+        description: "Header label",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (
+    slug === "playful-todolist" ||
+    title.includes("todolist") ||
+    title.includes("todo")
+  ) {
+    return [
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "magnet" || title.includes("magnet")) {
+    return [
+      {
+        prop: "strength",
+        type: "number",
+        default: "0.25",
+        description: "How much the element moves",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "160",
+        description: "Effect radius (px)",
+      },
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Wrapped content",
+      },
+    ];
+  }
+
+  if (slug === "crosshair" || title.includes("crosshair")) {
+    return [
+      {
+        prop: "size",
+        type: "number",
+        default: "22",
+        description: "Crosshair arm size (px)",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: "rgba(255,255,255,0.7)",
+        description: "Line color",
+      },
+    ];
+  }
+
+  if (slug === "decay-card" || title.includes("decay")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Card content",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "fade-content" || title.includes("fade content")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Content to fade in",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "pixel-card" || title.includes("pixel card")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Card content",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (slug === "true-focus" || title.includes("true focus")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text split into words",
+      },
+      {
+        prop: "intervalMs",
+        type: "number",
+        default: "1400",
+        description: "Advance interval (ms)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
       },
     ];
   }

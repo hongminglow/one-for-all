@@ -113,7 +113,7 @@ export function ComponentDetails(props: { component: ComponentItem }) {
 
       {/* Preview / Code */}
       <section className="mt-10 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
-        <div className="px-6 pt-6">
+        <div className="px-6 pt-3">
           <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
             {STORYBOOK.componentPage.previewTitle}
           </div>

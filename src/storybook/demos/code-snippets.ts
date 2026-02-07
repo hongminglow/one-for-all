@@ -793,3 +793,196 @@ export const lanyardCode = `import Lanyard from './Lanyard';
     cardColor="#efefef"
   />
 </div>`;
+
+export const borderBeamCode = `import BorderBeam from './BorderBeam';
+
+<div className="relative rounded-2xl border p-6 overflow-hidden">
+  <BorderBeam size={80} duration={6} borderWidth={1} />
+  <h3 className="text-lg font-bold">Border Beam</h3>
+  <p className="text-sm opacity-70">Animated beam around the border.</p>
+</div>`;
+
+export const shineBorderCode = `import ShineBorder from './ShineBorder';
+
+<div className="relative rounded-2xl border p-6 overflow-hidden">
+  <ShineBorder duration={14} shineColor={["#A97CF8", "#F38CB8", "#FDCC92"]} />
+  <h3 className="text-lg font-bold">Shine Border</h3>
+</div>`;
+
+export const magicCardCode = `import MagicCard from './MagicCard';
+
+<MagicCard className="rounded-2xl p-6">
+  <h3 className="text-lg font-bold">Magic Card</h3>
+  <p className="text-sm opacity-70">Hover to see the gradient follow.</p>
+</MagicCard>`;
+
+export const neonGradientCardCode = `import NeonGradientCard from './NeonGradientCard';
+
+<NeonGradientCard borderSize={2} borderRadius={20}>
+  <h3 className="text-lg font-bold">Neon Gradient Card</h3>
+  <p className="text-sm opacity-70">Animated neon gradient border.</p>
+</NeonGradientCard>`;
+
+export const circularProgressBarCode = `import CircularProgressBar from './CircularProgressBar';
+
+<CircularProgressBar
+  value={72}
+  gaugePrimaryColor="#A97CF8"
+  gaugeSecondaryColor="rgba(0,0,0,0.15)"
+/>`;
+
+export const iconCloudCode = `import IconCloud from './IconCloud';
+
+<IconCloud
+  size={400}
+  images={[
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=200&auto=format&fit=crop&q=60",
+    "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?w=200&auto=format&fit=crop&q=60",
+    "https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?w=200&auto=format&fit=crop&q=60",
+  ]}
+/>`;
+
+export const compactConfettiCode = `import CompactConfetti from './CompactConfetti';
+
+<div className="relative h-64 w-full overflow-hidden rounded-xl border">
+  <CompactConfetti className="absolute inset-0 h-full w-full" manualStart />
+  <div className="absolute inset-0 flex items-center justify-center">
+    <button className="px-4 py-2 rounded-md border">Celebrate</button>
+  </div>
+</div>`;
+
+export const videoTextCode = `import VideoText from './VideoText';
+
+<div className="h-64 w-full">
+  <VideoText src="/sample.mp4" fontSize={22}>
+    VIDEO
+  </VideoText>
+</div>`;
+
+export const textRevealCode = `import TextReveal from './TextReveal';
+
+<TextReveal>
+  Scroll to reveal the words one by one.
+</TextReveal>`;
+
+export const sparklesTextCode = `import SparklesText from './SparklesText';
+
+<SparklesText sparklesCount={10}>
+  Sparkles
+</SparklesText>`;
+
+export const codeComparisonCode = `import CodeComparison from './CodeComparison';
+
+<CodeComparison
+  filename="example.ts"
+  beforeCode={"const a = 1;\nconsole.log(a);"}
+  afterCode={"const a = 2;\nconsole.log(a);"}
+/>`;
+
+export const scrollProgressCode = `import ScrollProgress from './ScrollProgress';
+
+<ScrollProgress />`;
+
+export const copyButtonCode = `import CopyButton from './CopyButton';
+
+<CopyButton text="npm install one-for-all" />`;
+
+export const flipButtonCode = `import FlipButton from './FlipButton';
+
+<FlipButton frontText="Hover me" backText="Nice" />`;
+
+export const rippleButtonCode = `import RippleButton from './RippleButton';
+
+<RippleButton>Click</RippleButton>`;
+
+export const progressCode = `import Progress from './Progress';
+
+<Progress value={64} />`;
+
+export const popoverCode = `import Popover from './Popover';
+
+<Popover
+  trigger={<button>Open</button>}
+  content={<div>Popover content</div>}
+/>`;
+
+export const sheetCode = `import Sheet from './Sheet';
+
+const [open, setOpen] = useState(false);
+
+<>
+  <button onClick={() => setOpen(true)}>Open</button>
+  <Sheet open={open} onOpenChange={setOpen} title="Sheet">
+    Sheet content
+  </Sheet>
+</>`;
+
+export const flipCardCode = `import FlipCard from './FlipCard';
+
+<FlipCard
+  front={<div>Front</div>}
+  back={<div>Back</div>}
+/>`;
+
+export const motionCarouselCode = `import MotionCarousel from './MotionCarousel';
+
+<MotionCarousel
+  autoplay
+  items={[
+    { id: '1', title: 'One', description: 'First slide' },
+    { id: '2', title: 'Two', description: 'Second slide' },
+  ]}
+/>`;
+
+export const radialIntroCode = `import RadialIntro from './RadialIntro';
+
+<RadialIntro
+  title="Radial Intro"
+  subtitle="A simple radial-gradient hero intro."
+/>`;
+
+export const radialMenuCode = `import RadialMenu from './RadialMenu';
+
+<RadialMenu
+  items={[{ label: 'Edit' }, { label: 'Share' }, { label: 'Delete' }]}
+/>`;
+
+export const holeBackgroundCode = `import HoleBackground from './HoleBackground';
+
+<HoleBackground holeSize={220} />`;
+
+export const managementBarCode = `import ManagementBar from './ManagementBar';
+
+<ManagementBar title="Management" />`;
+
+export const playfulTodoListCode = `import PlayfulTodoList from './PlayfulTodoList';
+
+<PlayfulTodoList />`;
+
+export const magnetCode = `import Magnet from './Magnet';
+
+<Magnet>
+  <button>Magnet</button>
+</Magnet>`;
+
+export const crosshairCode = `import Crosshair from './Crosshair';
+
+<Crosshair size={22} />`;
+
+export const decayCardCode = `import DecayCard from './DecayCard';
+
+<DecayCard>Content</DecayCard>`;
+
+export const fadeContentCode = `import FadeContent from './FadeContent';
+
+<FadeContent>
+  <div>Revealed on scroll</div>
+</FadeContent>`;
+
+export const pixelCardCode = `import PixelCard from './PixelCard';
+
+<PixelCard>Hover me</PixelCard>`;
+
+export const trueFocusCode = `import TrueFocus from './TrueFocus';
+
+<TrueFocus text="Focus moves across words" />`;

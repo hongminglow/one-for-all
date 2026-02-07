@@ -1,0 +1,19 @@
+@keyframes magicui-neon-gradient-spin {
+  0% {
+    background-position: top center;
+  }
+  100% {
+    background-position: bottom center;
+  }
+}
+
+.magicui-neon-gradient-spin {
+  animation: magicui-neon-gradient-spin 3000ms infinite alternate;
+  background-size: 100% 200%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magicui-neon-gradient-spin {
+    animation: none;
+  }
+}

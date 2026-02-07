@@ -99,7 +99,7 @@ export function StorybookShell(props: { children: React.ReactNode }) {
     <div className="flex h-dvh flex-col overflow-hidden bg-[var(--sb-bg)] text-[var(--sb-text)]">
       {/* Topbar: fixed height, never scrolls */}
       <header className="h-[72px] flex-shrink-0 border-b border-[var(--sb-border)] bg-[var(--sb-topbar)]">
-        <div className="mx-2 flex h-full w-full max-w-[1440px] items-center">
+        <div className="px-4 flex h-full w-full items-center">
           <div className="flex flex-1 items-center gap-3">
             <Image
               src="/logo.svg"
