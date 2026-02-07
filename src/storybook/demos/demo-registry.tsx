@@ -36,7 +36,6 @@ import FloatingLines from "@/components/reactbits/FloatingLines";
 import LightRays from "@/components/reactbits/LightRays";
 import ColorBends from "@/components/reactbits/ColorBends";
 import Particles from "@/components/reactbits/Particles";
-import GridScan from "@/components/reactbits/GridScan";
 import Lightning from "@/components/reactbits/Lightning";
 import Galaxy from "@/components/reactbits/Galaxy";
 import DotGrid from "@/components/reactbits/DotGrid";
@@ -266,6 +265,7 @@ import Lanyard from "@/components/reactbits/Lanyard";
 import Antigravity from "@/components/reactbits/Antigravity";
 import LaserFlow from "@/components/reactbits/LaserFlow";
 import { NumberCounter } from "@/components/jolyui/NumberCounter";
+import { GridScan } from "@/components/reactbits/GridScan";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -1902,14 +1902,20 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("gridscan") || title.includes("gridscan"):
+    case slug.includes("grid-scan") || title.includes("grid scan"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
+        <div style={{ width: "100%", height: "600px", position: "relative" }}>
           <GridScan
+            sensitivity={0.55}
+            lineThickness={1}
             gridScale={props?.gridScale ?? 0.1}
             linesColor={props?.linesColor ?? "#392e4e"}
             scanColor={props?.scanColor ?? "#FF9FFC"}
             scanOpacity={props?.scanOpacity ?? 0.4}
+            enablePost
+            bloomIntensity={0.6}
+            chromaticAberration={0.002}
+            noiseIntensity={0.01}
             {...props}
           />
         </div>
@@ -1919,7 +1925,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       return (
         <div className="relative h-[600px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Lightning
-            hue={props?.hue ?? 220}
+            hue={props?.hue ?? 260}
             xOffset={props?.xOffset ?? 0}
             speed={props?.speed ?? 1}
             intensity={props?.intensity ?? 1}

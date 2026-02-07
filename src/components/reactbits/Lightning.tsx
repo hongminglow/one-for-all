@@ -1,6 +1,4 @@
-"use client";
-import { useEffect, useRef, FC } from "react";
-import "./Lightning.css";
+import React, { useRef, useEffect } from "react";
 
 interface LightningProps {
   hue?: number;
@@ -10,7 +8,7 @@ interface LightningProps {
   size?: number;
 }
 
-const Lightning: FC<LightningProps> = ({
+const Lightning: React.FC<LightningProps> = ({
   hue = 230,
   xOffset = 0,
   speed = 1,
@@ -198,7 +196,7 @@ const Lightning: FC<LightningProps> = ({
     };
   }, [hue, xOffset, speed, intensity, size]);
 
-  return <canvas ref={canvasRef} className="lightning-container" />;
+  return <canvas ref={canvasRef} className="w-full h-full relative" />;
 };
 
 export default Lightning;

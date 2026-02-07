@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
   EffectComposer,
@@ -8,9 +7,7 @@ import {
   ChromaticAberrationEffect,
 } from "postprocessing";
 import * as THREE from "three";
-// @ts-ignore
 import * as faceapi from "face-api.js";
-import "./GridScan.css";
 
 type GridScanProps = {
   enableWebcam?: boolean;
@@ -251,7 +248,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
       phase = 1.0 - phase;
     } else if (uScanDirection > 1.5) {
       float t2 = mod(max(0.0, iTime - del), 2.0 * dur);
-      phase = (t2 < dur) ? (t2 / dur) : (1.0 - (t2 - dur) / dur);\n    }
+      phase = (t2 < dur) ? (t2 / dur) : (1.0 - (t2 - dur) / dur);
+    }
     float scanZ = phase * scanZMax;
     float dz = abs(hit.z - scanZ);
     float lineBand = exp(-0.5 * (dz * dz) / (sigma * sigma));
@@ -850,6 +848,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 
       requestAnimationFrame(detect);
     };
+
     start();
 
     return () => {
@@ -867,19 +866,19 @@ export const GridScan: React.FC<GridScanProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`gridscan${className ? ` ${className}` : ""}`}
+      className={`relative w-full h-full overflow-hidden ${className ?? ""}`}
       style={style}
     >
       {showPreview && (
-        <div className="gridscan__preview">
+        <div className="absolute right-3 bottom-3 w-[220px] h-[132px] rounded-lg overflow-hidden border border-white/25 shadow-[0_4px_16px_rgba(0,0,0,0.4)] bg-black text-white text-[12px] leading-[1.2] font-sans pointer-events-none">
           <video
             ref={videoRef}
             muted
             playsInline
             autoPlay
-            className="gridscan__video"
+            className="w-full h-full object-cover -scale-x-100"
           />
-          <div className="gridscan__badge">
+          <div className="absolute left-2 top-2 px-[6px] py-[2px] bg-black/50 rounded-[6px] backdrop-blur-[4px]">
             {enableWebcam
               ? modelsReady
                 ? uiFaceActive
@@ -893,8 +892,6 @@ export const GridScan: React.FC<GridScanProps> = ({
     </div>
   );
 };
-
-export default GridScan;
 
 function srgbColor(hex: string) {
   const c = new THREE.Color(hex);
