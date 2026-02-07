@@ -206,6 +206,7 @@ export const STORYBOOK = {
   },
   componentPage: {
     tabs: { preview: "Preview", code: "Code" },
+    previewTitle: "Demo",
     installTitle: "Installation",
     installHint: "Open the upstream docs to see the original API + examples.",
     customizeTitle: "Customize",

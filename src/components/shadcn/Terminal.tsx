@@ -24,7 +24,7 @@ const Terminal: React.FC<TerminalProps> = ({
 
   useEffect(() => {
     let currentHistory: { type: "cmd" | "out"; text: string }[] = [];
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout | undefined;
 
     const streamCommands = async () => {
       for (const item of commands) {

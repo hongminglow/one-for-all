@@ -24,7 +24,7 @@ const ComboboxDemo: React.FC = () => {
   return (
     <div className="flex flex-col items-center gap-4 py-8">
       <div className="w-full max-w-[300px]">
-        <Combobox value={value} onValueChange={setValue}>
+        <Combobox value={value} onValueChange={(v) => setValue(v ?? "")}>
           <ComboboxInput placeholder="Search framework..." showTrigger />
           <ComboboxContent>
             <ComboboxList>

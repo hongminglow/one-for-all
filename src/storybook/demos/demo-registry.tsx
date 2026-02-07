@@ -489,6 +489,7 @@ function TypewriterDemo(props: { text: string }) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function CountUpDemo(props: { to: number }) {
   const [value, setValue] = useState(0);
 
@@ -525,6 +526,7 @@ function GlitchTextDemo(props: { label: string }) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function DecryptedTextDemo(props: { text: string }) {
   const [shown, setShown] = useState("".padEnd(props.text.length, "•"));
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -604,6 +606,7 @@ function BackgroundPanelDemo(props: { title: string }) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ScrollFloatWrapper(props: any) {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
@@ -632,6 +635,7 @@ function ScrollFloatWrapper(props: any) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ScrollRevealWrapper(props: any) {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
@@ -661,7 +665,8 @@ function ScrollRevealWrapper(props: any) {
   );
 }
 
-function VariableProximityWrapper(props: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+function VariableProximityWrapper(_props: any) {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
     <div
@@ -1113,7 +1118,8 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("falling-text") || title.includes("falling text"): {
       const rawHighlight = props?.highlightWords;
-      const highlightWords =
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _highlightWords =
         typeof rawHighlight === "string"
           ? rawHighlight
               .split(",")
@@ -3436,24 +3442,31 @@ console.log(fibonacci(10));`}
           <Stack
             randomRotation={true}
             sensitivity={180}
-            cardDimensions={{ width: 200, height: 200 }}
             cards={[
-              {
-                id: 1,
-                img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=400&q=80",
-              },
-              {
-                id: 2,
-                img: "https://images.unsplash.com/photo-1449824913929-79821eda29cb?w=400&q=80",
-              },
-              {
-                id: 3,
-                img: "https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&q=80",
-              },
-              {
-                id: 4,
-                img: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&q=80",
-              },
+              <img
+                key={1}
+                src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=400&q=80"
+                alt="Card 1"
+                className="w-[200px] h-[200px] object-cover rounded-lg"
+              />,
+              <img
+                key={2}
+                src="https://images.unsplash.com/photo-1449824913929-79821eda29cb?w=400&q=80"
+                alt="Card 2"
+                className="w-[200px] h-[200px] object-cover rounded-lg"
+              />,
+              <img
+                key={3}
+                src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&q=80"
+                alt="Card 3"
+                className="w-[200px] h-[200px] object-cover rounded-lg"
+              />,
+              <img
+                key={4}
+                src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=400&q=80"
+                alt="Card 4"
+                className="w-[200px] h-[200px] object-cover rounded-lg"
+              />,
             ]}
           />
         </div>

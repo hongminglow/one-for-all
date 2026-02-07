@@ -61,8 +61,10 @@ export function Fireworks({
   const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const fireworksRef = useRef<Firework[]>([]);
-  const animationRef = useRef<number>();
-  const launchTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+  const animationRef = useRef<number | undefined>(undefined);
+  const launchTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
   const scaleRef = useRef(1);
 
   const getRandomColor = useCallback(() => {

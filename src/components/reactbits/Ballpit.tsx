@@ -23,7 +23,7 @@ import {
   Plane,
 } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
-import { Observer } from "gsap/Observer";
+import { Observer } from "gsap/dist/Observer";
 import { gsap } from "gsap";
 
 gsap.registerPlugin(Observer);

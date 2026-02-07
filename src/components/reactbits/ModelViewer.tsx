@@ -22,7 +22,7 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 
 const isMeshObject = (object: THREE.Object3D): object is THREE.Mesh => {
