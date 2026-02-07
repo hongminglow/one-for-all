@@ -8,7 +8,6 @@ import CircularText from "@/components/reactbits/CircularText";
 import Dock from "@/components/reactbits/Dock";
 import Carousel from "@/components/reactbits/Carousel";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
-import ModalViewer from "@/components/reactbits/ModalViewer";
 import ModelViewer from "@/components/reactbits/ModelViewer";
 import FlowingMenu from "@/components/reactbits/FlowingMenu";
 import ElasticSlider from "@/components/reactbits/ElasticSlider";
@@ -49,7 +48,6 @@ import GridMotion from "@/components/reactbits/GridMotion";
 import RainbowButton from "@/components/jolyui/RainbowButton";
 import GooeyTextMorphing from "@/components/jolyui/GooeyTextMorphing";
 import HighlightText from "@/components/jolyui/HighlightText";
-import NumberCounter from "@/components/jolyui/NumberCounter";
 import RotateText from "@/components/jolyui/RotateText";
 import TypewriterText from "@/components/jolyui/TypewriterText";
 import AIPromptBox from "@/components/jolyui/AIPromptBox";
@@ -65,6 +63,20 @@ import {
   HoverPreviewProvider,
 } from "@/components/jolyui/HoverPreview";
 import ImageSphere from "@/components/jolyui/ImageSphere";
+import CodeBlock from "@/components/shadcn/CodeBlock";
+import CodeEditor from "@/components/shadcn/CodeEditor";
+import CodeTabs from "@/components/shadcn/CodeTabs";
+import Sandbox from "@/components/shadcn/Sandbox";
+import GanttChart from "@/components/shadcn/GanttChart";
+import Kanban from "@/components/shadcn/Kanban";
+import AndroidMock from "@/components/shadcn/AndroidMock";
+import IPhoneMock from "@/components/shadcn/IPhoneMock";
+import MacOSDock from "@/components/shadcn/MacOSDock";
+import Rating from "@/components/shadcn/Rating";
+import CreditCard from "@/components/shadcn/CreditCard";
+import ColorPicker from "@/components/shadcn/ColorPicker";
+import ComboboxDemo from "@/components/shadcn/ComboboxDemo";
+import Dropzone from "@/components/shadcn/Dropzone";
 import Calendar from "@/components/shadcn/Calendar";
 import BorderBeam from "@/components/magicui/BorderBeam";
 import ShineBorder from "@/components/magicui/ShineBorder";
@@ -219,7 +231,6 @@ import MagicBento from "@/components/reactbits/MagicBento";
 import CircularGallery from "@/components/reactbits/CircularGallery";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import TargetCursor from "@/components/reactbits/TargetCursor";
-import LaserFlow from "@/components/reactbits/LaserFlow";
 import MagnetLines from "@/components/reactbits/MagnetLines";
 import GhostCursor from "@/components/reactbits/GhostCursor";
 import ClickSpark from "@/components/reactbits/ClickSpark";
@@ -230,6 +241,8 @@ import FluidGlass from "@/components/reactbits/FluidGlass";
 import Masonry from "@/components/reactbits/Masonry";
 import Lanyard from "@/components/reactbits/Lanyard";
 import Antigravity from "@/components/reactbits/Antigravity";
+import LaserFlow from "@/components/reactbits/LaserFlow";
+import { NumberCounter } from "@/components/jolyui/NumberCounter";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -290,18 +303,18 @@ function AnimatedBeamDemo(props: {
   return (
     <div
       ref={containerRef}
-      className="relative flex items-center justify-between rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6"
+      className="relative flex items-center justify-between rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
       style={{ height: 220, width: "100%" }}
     >
       <div
         ref={fromRef}
-        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-[var(--sb-text-strong)]"
+        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-(--sb-text-strong)"
       >
         A
       </div>
       <div
         ref={toRef}
-        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-[var(--sb-text-strong)]"
+        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-(--sb-text-strong)"
       >
         B
       </div>
@@ -328,7 +341,7 @@ function CompactConfettiDemo(props: {
 }) {
   const confettiRef = useRef<ConfettiRef>(null);
   return (
-    <div className="relative h-[260px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+    <div className="relative h-[260px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
       <CompactConfetti
         ref={confettiRef}
         className="absolute inset-0 h-full w-full"
@@ -337,7 +350,7 @@ function CompactConfettiDemo(props: {
       <div className="absolute inset-0 flex items-center justify-center">
         <button
           type="button"
-          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
           onClick={() =>
             confettiRef.current?.fire({
               particleCount: props.particleCount ?? 120,
@@ -361,7 +374,7 @@ function SheetDemo(props: { side?: "left" | "right" }) {
     <div className="w-full max-w-[620px]">
       <button
         type="button"
-        className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+        className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
         onClick={() => setOpen(true)}
       >
         Open Sheet
@@ -381,18 +394,18 @@ function SheetDemo(props: { side?: "left" | "right" }) {
 function CrosshairDemo(props: { size?: number }) {
   const [enabled, setEnabled] = useState(false);
   return (
-    <div className="relative w-full max-w-[620px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+    <div className="relative w-full max-w-[620px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
       {enabled ? <Crosshair size={props.size ?? 22} /> : null}
-      <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+      <div className="text-[14px] font-black text-(--sb-text-strong)">
         Crosshair
       </div>
-      <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+      <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
         Toggle to enable the pointer-following overlay.
       </div>
       <div className="mt-4">
         <button
           type="button"
-          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
           onClick={() => setEnabled((v) => !v)}
         >
           {enabled ? "Disable" : "Enable"}
@@ -404,7 +417,7 @@ function CrosshairDemo(props: { size?: number }) {
 
 function HoverPreviewDemo() {
   return (
-    <div className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+    <div className="rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
       <HoverPreviewProvider
         data={{
           one: {
@@ -415,7 +428,7 @@ function HoverPreviewDemo() {
           },
         }}
       >
-        <div className="text-[13px] font-semibold text-[var(--sb-text-muted)]">
+        <div className="text-[13px] font-semibold text-(--sb-text-muted)">
           Hover over:
         </div>
         <div className="mt-2 text-[18px] font-black">
@@ -428,7 +441,7 @@ function HoverPreviewDemo() {
 
 function TypewriterDemo(props: { text: string }) {
   return (
-    <div className="font-mono text-[15px] font-bold text-[var(--sb-text-strong)]">
+    <div className="font-mono text-[15px] font-bold text-(--sb-text-strong)">
       <span className="inline-block overflow-hidden whitespace-nowrap align-bottom [border-right:2px_solid_var(--sb-accent)] [animation:type_2.2s_steps(28,end)_infinite]">
         {props.text}
       </span>
@@ -456,7 +469,7 @@ function CountUpDemo(props: { to: number }) {
   }, [props.to]);
 
   return (
-    <div className="text-[28px] font-black tracking-tight text-[var(--sb-text-strong)]">
+    <div className="text-[28px] font-black tracking-tight text-(--sb-text-strong)">
       {value.toLocaleString()}
     </div>
   );
@@ -464,7 +477,7 @@ function CountUpDemo(props: { to: number }) {
 
 function GlitchTextDemo(props: { label: string }) {
   return (
-    <div className="relative text-[26px] font-black tracking-tight text-[var(--sb-text-strong)]">
+    <div className="relative text-[26px] font-black tracking-tight text-(--sb-text-strong)">
       <span className="relative inline-block [text-shadow:2px_0_0_rgba(139,92,246,0.7),-2px_0_0_rgba(99,102,241,0.6)] [animation:glitch_1.4s_infinite]">
         {props.label}
       </span>
@@ -491,7 +504,7 @@ function DecryptedTextDemo(props: { text: string }) {
   }, [props.text]);
 
   return (
-    <div className="font-mono text-[15px] font-bold text-[var(--sb-text-strong)]">
+    <div className="font-mono text-[15px] font-bold text-(--sb-text-strong)">
       {shown}
     </div>
   );
@@ -504,18 +517,18 @@ function SimpleCarouselDemo() {
 
   return (
     <div className="w-full max-w-[520px]">
-      <div className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-6">
-        <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+      <div className="rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg) p-6">
+        <div className="text-[18px] font-black text-(--sb-text-strong)">
           {current}
         </div>
-        <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+        <div className="mt-1 text-[12px] font-medium text-(--sb-text-muted)">
           Minimal carousel demo
         </div>
         <div className="mt-4 flex gap-2">
           <button
             type="button"
             onClick={() => setI((x) => (x - 1 + items.length) % items.length)}
-            className="h-10 rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 text-[12px] font-black text-[var(--sb-text-strong)]"
+            className="h-10 rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 text-[12px] font-black text-(--sb-text-strong)"
           >
             Prev
           </button>
@@ -534,15 +547,15 @@ function SimpleCarouselDemo() {
 
 function BackgroundPanelDemo(props: { title: string }) {
   return (
-    <div className="relative h-[160px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+    <div className="relative h-[160px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
       <div className="absolute inset-0 opacity-90 [background:radial-gradient(circle_at_20%_30%,rgba(139,92,246,0.55),transparent_45%),radial-gradient(circle_at_80%_20%,rgba(99,102,241,0.45),transparent_40%),radial-gradient(circle_at_50%_85%,rgba(167,139,250,0.35),transparent_55%)]" />
       <div className="absolute inset-0 opacity-50 [background:linear-gradient(120deg,rgba(255,255,255,0.05),transparent_35%,rgba(255,255,255,0.06))] [animation:bgshift_4.5s_linear_infinite]" />
       <div className="relative flex h-full items-end p-4">
-        <div className="rounded-xl border border-[var(--sb-border)] bg-[var(--sb-card)] px-3 py-2">
-          <div className="text-[12px] font-black text-[var(--sb-text-strong)]">
+        <div className="rounded-xl border border-(--sb-border) bg-(--sb-card) px-3 py-2">
+          <div className="text-[12px] font-black text-(--sb-text-strong)">
             {props.title}
           </div>
-          <div className="text-[11px] font-semibold text-[var(--sb-text-muted)]">
+          <div className="text-[11px] font-semibold text-(--sb-text-muted)">
             Local background demo
           </div>
         </div>
@@ -568,7 +581,7 @@ function ScrollFloatWrapper(props: any) {
           animationDuration={props?.animationDuration ?? 1}
           ease={props?.ease ?? "back.inOut(2)"}
           stagger={props?.stagger ?? 0.03}
-          containerClassName={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.containerClassName ?? ""}`}
+          containerClassName={`text-[48px] font-black text-(--sb-text-strong) text-center ${props?.containerClassName ?? ""}`}
           {...props}
         >
           {props?.children ?? "React Bits"}
@@ -597,7 +610,7 @@ function ScrollRevealWrapper(props: any) {
           enableBlur={props?.enableBlur ?? true}
           baseRotation={props?.baseRotation ?? 3}
           blurStrength={props?.blurStrength ?? 4}
-          containerClassName={`text-[28px] font-bold text-[var(--sb-text-strong)] ${props?.containerClassName ?? ""}`}
+          containerClassName={`text-[28px] font-bold text-(--sb-text-strong) ${props?.containerClassName ?? ""}`}
           {...props}
         >
           {props?.children ?? "Scroll down to reveal the beauty of React Bits."}
@@ -613,22 +626,17 @@ function VariableProximityWrapper(props: any) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full min-h-[320px] max-h-[320px] rounded-2xl bg-[var(--sb-panel)] flex items-center justify-center overflow-hidden"
+      className="demo-container"
+      style={{ position: "relative" }}
     >
       <VariableProximity
-        label={
-          props?.label ??
-          "Hover me! And then star React Bits on GitHub, or else..."
-        }
-        fromFontVariationSettings={
-          props?.fromFontVariationSettings ?? "'wght' 400"
-        }
-        toFontVariationSettings={props?.toFontVariationSettings ?? "'wght' 900"}
+        label={"Hover me! And then star React Bits on GitHub, or else..."}
+        className={"variable-proximity-demo"}
+        fromFontVariationSettings="'wght' 400, 'opsz' 9"
+        toFontVariationSettings="'wght' 1000, 'opsz' 40"
         containerRef={containerRef}
-        radius={props?.radius ?? 140}
-        falloff={props?.falloff ?? "linear"}
-        className={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.className ?? "font-body"}`}
-        {...props}
+        radius={100}
+        falloff="linear"
       />
     </div>
   );
@@ -653,20 +661,20 @@ function ScrollRevealDemo() {
   }, []);
 
   return (
-    <div className="h-[180px] w-full max-w-[520px] overflow-auto rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-4 sb-scroll">
+    <div className="h-[180px] w-full max-w-[520px] overflow-auto rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg) p-4 sb-scroll">
       <div className="h-[120px]" />
       <div
         ref={ref}
         className={
           visible
-            ? "rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-5 transition-all duration-300"
-            : "translate-y-4 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-5 opacity-40 blur-[1px] transition-all duration-300"
+            ? "rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-5 transition-all duration-300"
+            : "translate-y-4 rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-5 opacity-40 blur-[1px] transition-all duration-300"
         }
       >
-        <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+        <div className="text-[14px] font-black text-(--sb-text-strong)">
           Revealed on scroll
         </div>
-        <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+        <div className="mt-1 text-[12px] font-medium text-(--sb-text-muted)">
           Scroll inside this panel to trigger
         </div>
       </div>
@@ -686,7 +694,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       return (
         <SplitText
           text="Elevate Your Web Experience"
-          className="text-[32px] font-black text-center leading-tight text-[var(--sb-text-strong)]"
+          className="text-[32px] font-black text-center leading-tight text-(--sb-text-strong)"
           delay={50}
           animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
           animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
@@ -703,7 +711,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           text="REACT*BITS*COMPONENTS*"
           onHover="speedUp"
           spinDuration={20}
-          className="custom-class text-[var(--sb-text-strong)]"
+          className="custom-class text-(--sb-text-strong)"
           {...props}
         />
       );
@@ -777,12 +785,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("spotlight-card") || title.includes("spotlight"):
       return (
-        <div className="w-full max-w-[640px]">
+        <div className="w-full ">
           <SpotlightCard
-            spotlightColor={
-              props?.spotlightColor ?? "rgba(255, 255, 255, 0.25)"
-            }
-            {...props}
+            className="custom-spotlight-card"
+            spotlightColor="rgba(0, 229, 255, 0.2)"
           >
             <div className="text-[18px] font-black text-white">
               Spotlight Card
@@ -796,7 +802,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("model-viewer") || title.includes("model viewer"):
       return (
-        <div className="w-full h-[500px] flex items-center justify-center bg-[#111] rounded-xl overflow-hidden border border-[var(--sb-border)]">
+        <div className="w-full h-[500px] flex items-center justify-center bg-[#111] rounded-xl overflow-hidden border border-(--sb-border)">
           <ModelViewer
             url={
               props?.url ??
@@ -818,7 +824,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("flowing-menu") || title.includes("flowing menu"):
       return (
-        <div className="w-full h-[360px] rounded-xl overflow-hidden border border-[var(--sb-border)]">
+        <div className="w-full h-[360px] rounded-xl overflow-hidden border border-(--sb-border)">
           <FlowingMenu
             items={
               props?.items ?? [
@@ -867,7 +873,27 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("counter") || title.includes("counter"):
+    case slug.includes("number-counter") || title.includes("number counter"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 140 }}
+        >
+          <div className="text-center">
+            <h3 className="mb-2 font-medium text-muted-foreground text-sm">
+              Basic Counter
+            </h3>
+            <NumberCounter
+              value={1234.56}
+              decimals={2}
+              prefix="$"
+              className="font-bold text-4xl"
+            />
+          </div>
+        </div>
+      );
+
+    case slug.includes("counter") || title.includes("counter"): {
       const CounterDemo = () => {
         const [val, setVal] = useState(0);
         useEffect(() => {
@@ -876,7 +902,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
         }, []);
 
         return (
-          <div className="relative h-[200px] w-full bg-[#111] overflow-hidden rounded-xl border border-[var(--sb-border)] flex items-center justify-center">
+          <div className="relative h-[200px] w-full bg-[#111] overflow-hidden rounded-xl border border-(--sb-border) flex items-center justify-center">
             <div style={{ transform: "scale(2.5)" }}>
               <Counter
                 value={val}
@@ -892,6 +918,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
         );
       };
       return <CounterDemo />;
+    }
 
     case slug.includes("infinite-menu") || title.includes("infinite menu"):
       return (
@@ -1010,7 +1037,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             speed={2}
             direction="left"
             interactive={true}
-            className="text-[32px] font-black text-[var(--sb-text-strong)]"
+            className="text-[32px] font-black text-(--sb-text-strong)"
             {...props}
           />
         </div>
@@ -1022,7 +1049,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           baseIntensity={0.18}
           hoverIntensity={0.5}
           enableHover={true}
-          className="text-[40px] font-black text-[var(--sb-text-strong)]"
+          className="text-[40px] font-black text-(--sb-text-strong)"
           {...props}
         >
           Fuzzy Text
@@ -1060,7 +1087,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="w-full min-h-[320px] rounded-2xl bg-[var(--sb-panel)] p-2 flex justify-center"
           style={{ minHeight: 320 }}
         >
-          <div className="w-full text-[var(--sb-text-strong)]">
+          <div className="w-full text-(--sb-text-strong)">
             <FallingText
               text={`React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow.`}
               highlightWords={[
@@ -1084,7 +1111,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("click-spark") || title.includes("click spark"):
       return (
-        <div className="w-full min-h-[400px] p-8 bg-[var(--sb-bg)] rounded-xl border border-[var(--sb-border)]">
+        <div className="w-full min-h-[400px] p-8 bg-(--sb-bg) rounded-xl border border-(--sb-border)">
           <ClickSpark
             sparkColor={props?.sparkColor ?? "#fff"}
             sparkSize={props?.sparkSize ?? 10}
@@ -1094,7 +1121,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             {...props}
           >
             <div className="flex flex-col items-center gap-4">
-              <h2 className="text-[var(--sb-text-strong)] text-2xl font-bold">
+              <h2 className="text-(--sb-text-strong) text-2xl font-bold">
                 Click anywhere!
               </h2>
               <p className="text-[var(--sb-text-dim)]">
@@ -1129,7 +1156,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center"
           style={{ minHeight: 200 }}
         >
-          <div className="text-[28px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[28px] font-black text-(--sb-text-strong)">
             <DecryptedText
               text={props?.text ?? "Hover to decrypt!"}
               speed={props?.speed ?? 50}
@@ -1155,7 +1182,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="w-full min-h-[200px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-8 flex items-center justify-center"
           style={{ minHeight: 200 }}
         >
-          <div className="text-[28px] font-black text-[var(--sb-text-strong)] flex items-center gap-2">
+          <div className="text-[28px] font-black text-(--sb-text-strong) flex items-center gap-2">
             <span>I love</span>
             <RotatingText
               texts={props?.texts ?? ["React", "Bits", "Design", "Code"]}
@@ -1178,7 +1205,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             speed={props?.speed ?? 1}
             enableShadows={props?.enableShadows ?? true}
             enableOnHover={props?.enableOnHover ?? true}
-            className="text-[4rem] font-bold text-[var(--sb-text-strong)]"
+            className="text-[4rem] font-bold text-(--sb-text-strong)"
             {...props}
           >
             {props?.text ?? "GLITCH"}
@@ -1195,7 +1222,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           <ScrollVelocity
             texts={props?.texts ?? ["React Bits", "Scroll Velocity"]}
             velocity={props?.velocity ?? 100}
-            className="custom-scroll-text text-[var(--sb-text-strong)]"
+            className="custom-scroll-text text-(--sb-text-strong)"
             {...props}
           />
         </div>
@@ -1205,9 +1232,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       title.includes("variable proximity"):
       return <VariableProximityWrapper {...props} />;
 
-    case slug.includes("count-up") ||
-      title.includes("count up") ||
-      title.includes("counter"):
+    case slug.includes("count-up") || title.includes("count up"):
       return (
         <div className="flex items-center justify-center w-full h-full min-h-[200px]">
           <CountUp
@@ -1216,7 +1241,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             separator={props?.separator ?? ","}
             direction={props?.direction ?? "up"}
             duration={props?.duration ?? 1}
-            className={`text-[64px] font-black text-[var(--sb-text-strong)] ${props?.className ?? ""}`}
+            className={`text-[64px] font-black text-(--sb-text-strong) ${props?.className ?? ""}`}
             {...props}
           />
         </div>
@@ -1232,7 +1257,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             borderRadius={props?.borderRadius ?? 16}
             {...props}
           >
-            <div className="p-6 bg-[var(--sb-card)] text-[var(--sb-text-strong)] rounded-[inherit] border border-[var(--sb-border)]">
+            <div className="p-6 bg-(--sb-card) text-(--sb-text-strong) rounded-[inherit] border border-(--sb-border)">
               <p className="font-bold">Electric Border</p>
               <p className="text-sm opacity-70">A glowing, animated wrapper.</p>
             </div>
@@ -1286,7 +1311,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
         },
       ];
       return (
-        <div className="flex items-center justify-center w-full min-h-[160px] p-4 bg-[var(--sb-bg)] rounded-2xl border border-[var(--sb-border)]">
+        <div className="flex items-center justify-center w-full min-h-[160px] p-4 bg-(--sb-bg) rounded-2xl border border-(--sb-border)">
           <LogoLoop
             logos={techLogos}
             speed={props?.speed ?? 100}
@@ -1304,7 +1329,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("target-cursor") || title.includes("target cursor"):
       return (
-        <div className="flex flex-col items-center justify-center w-full min-h-[300px] p-8 space-y-8 bg-[var(--sb-bg)]">
+        <div className="flex flex-col items-center justify-center w-full min-h-[300px] p-8 space-y-8 bg-(--sb-bg)">
           <TargetCursor
             targetSelector=".cursor-target"
             spinDuration={props?.spinDuration ?? 2}
@@ -1313,23 +1338,23 @@ export function renderDemo(component: ComponentItem, props?: any) {
             parallaxOn={props?.parallaxOn ?? true}
             {...props}
           />
-          <h2 className="text-xl font-bold text-[var(--sb-text-strong)]">
+          <h2 className="text-xl font-bold text-(--sb-text-strong)">
             Hover over elements to see the cursor lock in!
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <button className="cursor-target px-6 py-3 bg-[var(--sb-accent)] text-white rounded-lg font-bold">
               Button Target
             </button>
-            <div className="cursor-target w-32 h-32 flex items-center justify-center bg-[var(--sb-card)] border border-[var(--sb-border)] rounded-xl text-[var(--sb-text-muted)] text-center p-4">
+            <div className="cursor-target w-32 h-32 flex items-center justify-center bg-(--sb-card) border border-(--sb-border) rounded-xl text-(--sb-text-muted) text-center p-4">
               Div Target
             </div>
             <input
               type="text"
-              className="cursor-target px-4 py-2 bg-[var(--sb-input-bg)] border border-[var(--sb-border)] rounded-md"
+              className="cursor-target px-4 py-2 bg-[var(--sb-input-bg)] border border-(--sb-border) rounded-md"
               placeholder="Input Target"
             />
           </div>
-          <p className="text-sm text-[var(--sb-text-muted)] text-center max-w-md">
+          <p className="text-sm text-(--sb-text-muted) text-center max-w-md">
             The Target Cursor is fixed-position. When it hovers over elements
             matching the <code>targetSelector</code>, its corners snap to the
             element&apos;s bounds.
@@ -1339,28 +1364,34 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("laser-flow") || title.includes("laser flow"):
       return (
-        <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-[var(--sb-border)]">
-          <LaserFlow
-            color={props?.color ?? "#FF79C6"}
-            wispDensity={props?.wispDensity ?? 2}
-            fogIntensity={props?.fogIntensity ?? 0.45}
-            horizontalSizing={props?.horizontalSizing ?? 0.5}
-            verticalSizing={props?.verticalSizing ?? 2.0}
-            wispSpeed={props?.wispSpeed ?? 15.0}
-            {...props}
-          />
-          <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
-            <h3 className="text-white text-lg font-bold">Laser Flow</h3>
-            <p className="text-white/60 text-sm">
-              Shader-based volumetric laser effect
-            </p>
-          </div>
+        // <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-(--sb-border)">
+        //   <LaserFlow
+        //     color={props?.color ?? "#FF79C6"}
+        //     wispDensity={props?.wispDensity ?? 2}
+        //     fogIntensity={props?.fogIntensity ?? 0.45}
+        //     horizontalSizing={props?.horizontalSizing ?? 0.5}
+        //     verticalSizing={props?.verticalSizing ?? 2.0}
+        //     wispSpeed={props?.wispSpeed ?? 15.0}
+        //     {...props}
+        //   />
+        //   <div className="absolute inset-x-0 bottom-0 p-6 bg-linear-to-t from-black/80 to-transparent pointer-events-none">
+        //     <h3 className="text-white text-lg font-bold">Laser Flow</h3>
+        //     <p className="text-white/60 text-sm">
+        //       Shader-based volumetric laser effect
+        //     </p>
+        //   </div>
+        // </div>
+
+        <div
+          style={{ height: "300px", position: "relative", overflow: "hidden" }}
+        >
+          <LaserFlow />
         </div>
       );
 
     case slug.includes("magnet-lines") || title.includes("magnet lines"):
       return (
-        <div className="flex items-center justify-center w-full min-h-[400px] p-8 bg-[var(--sb-bg)] rounded-xl border border-[var(--sb-border)]">
+        <div className="flex items-center justify-center w-full min-h-[400px] p-8 bg-(--sb-bg) rounded-xl border border-(--sb-border)">
           <MagnetLines
             rows={props?.rows ?? 9}
             columns={props?.columns ?? 9}
@@ -1376,7 +1407,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("ghost-cursor") || title.includes("ghost cursor"):
       return (
-        <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-[var(--sb-border)]">
+        <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-(--sb-border)">
           <GhostCursor
             color={props?.color ?? "#B19EEF"}
             brightness={props?.brightness ?? 2}
@@ -1388,7 +1419,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             bloomThreshold={props?.bloomThreshold ?? 0.025}
             {...props}
           />
-          <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 p-6 bg-linear-to-t from-black/80 to-transparent pointer-events-none">
             <h3 className="text-white text-lg font-bold">Ghost Cursor</h3>
             <p className="text-white/60 text-sm">
               Interactive volumetric cursor trail
@@ -1399,7 +1430,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("sticker-peel") || title.includes("sticker peel"):
       return (
-        <div className="w-full flex items-center justify-center overflow-hidden bg-[#000] min-h-[400px] rounded-xl border border-[var(--sb-border)] relative">
+        <div className="w-full flex items-center justify-center overflow-hidden bg-black min-h-[400px] rounded-xl border border-(--sb-border) relative">
           <StickerPeel
             imageSrc={
               props?.imageSrc ??
@@ -1419,7 +1450,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("splash-cursor") || title.includes("splash cursor"):
       return (
-        <div className="w-full h-[500px] bg-[#000] relative overflow-hidden rounded-xl border border-[var(--sb-border)]">
+        <div className="w-full h-[500px] bg-black relative overflow-hidden rounded-xl border border-(--sb-border)">
           <SplashCursor
             SIM_RESOLUTION={props?.SIM_RESOLUTION ?? 128}
             DYE_RESOLUTION={props?.DYE_RESOLUTION ?? 1024}
@@ -1447,7 +1478,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("star-border") || title.includes("star border"):
       return (
-        <div className="w-full flex items-center justify-center min-h-[300px] bg-[#000] rounded-xl border border-[var(--sb-border)]">
+        <div className="w-full flex items-center justify-center min-h-[300px] bg-black rounded-xl border border-(--sb-border)">
           <StarBorder
             as={props?.as || "button"}
             className={props?.className || ""}
@@ -1463,7 +1494,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("animated-list") || title.includes("animated list"):
       return (
-        <div className="w-full flex items-center justify-center min-h-[500px] bg-[#000] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full flex items-center justify-center min-h-[500px] bg-black rounded-xl border border-(--sb-border) overflow-hidden">
           <AnimatedList
             items={
               props?.items || [
@@ -1491,7 +1522,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("scroll-stack") || title.includes("scroll stack"):
       return (
-        <div className="w-full h-[600px] relative bg-[#060606] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full h-[600px] relative bg-[#060606] rounded-xl border border-(--sb-border) overflow-hidden">
           <ScrollStack
             itemDistance={props?.itemDistance || 50}
             itemScale={props?.itemScale || 0.05}
@@ -1519,7 +1550,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("magic-bento") || title.includes("magic bento"):
       return (
-        <div className="w-full min-h-[600px] bg-[#030014] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full min-h-[600px] bg-[#030014] rounded-xl border border-(--sb-border) overflow-hidden">
           <MagicBento
             textAutoHide={props?.textAutoHide ?? true}
             enableStars={props?.enableStars ?? true}
@@ -1539,7 +1570,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("circular-gallery") ||
       title.includes("circular gallery"):
       return (
-        <div className="w-full h-[600px] position-relative bg-[#000] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full h-[600px] position-relative bg-black rounded-xl border border-(--sb-border) overflow-hidden">
           <CircularGallery
             bend={props?.bend || 3}
             textColor={props?.textColor || "#ffffff"}
@@ -1554,7 +1585,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("image-trail") || title.includes("image trail"):
       return (
-        <div className="w-full h-[500px] relative overflow-hidden bg-[#111] rounded-xl border border-[var(--sb-border)]">
+        <div className="w-full h-[500px] relative overflow-hidden bg-[#111] rounded-xl border border-(--sb-border)">
           <ImageTrail
             items={
               props?.items || [
@@ -1574,7 +1605,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("stack") || title.includes("stack"):
       return (
-        <div className="w-full h-[600px] flex items-center justify-center bg-[#f0f0f0] dark:bg-[#111] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full h-[600px] flex items-center justify-center bg-[#f0f0f0] dark:bg-[#111] rounded-xl border border-(--sb-border) overflow-hidden">
           <div
             style={{ position: "relative", width: "300px", height: "400px" }}
           >
@@ -1613,32 +1644,35 @@ export function renderDemo(component: ComponentItem, props?: any) {
           </div>
         </div>
       );
+    // IMPORTANT INFO BELOW
+    // This component requires a 3D model to function correctly.
+    // You can find three example models in the 'public/assets/3d' directory of the repository:
+    // - 'lens.glb'
+    // - 'bar.glb'
+    // - 'cube.glb'
+    // Make sure to place these models in the correct directory or update the paths accordingly.
 
     case slug.includes("fluid-glass") || title.includes("fluid glass"):
       return (
-        <div className="w-full h-[600px] relative bg-[#5227ff] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div style={{ height: "600px", position: "relative" }}>
           <FluidGlass
-            mode={props?.mode || "lens"}
+            mode="lens" // or "bar", "cube"
             lensProps={{
-              glb: "https://reactbits.dev/assets/3d/lens.glb",
-              ...props?.lensProps,
+              scale: 0.25,
+              ior: 1.15,
+              thickness: 2,
+              chromaticAberration: 0.05,
+              anisotropy: 0.01,
+              transmission: 1,
+              roughness: 0,
             }}
-            barProps={{
-              glb: "https://reactbits.dev/assets/3d/bar.glb",
-              ...props?.barProps,
-            }}
-            cubeProps={{
-              glb: "https://reactbits.dev/assets/3d/cube.glb",
-              ...props?.cubeProps,
-            }}
-            {...props}
           />
         </div>
       );
 
     case slug.includes("masonry") || title.includes("masonry"):
       return (
-        <div className="w-full min-h-[600px] bg-[#111] rounded-xl border border-[var(--sb-border)] p-4">
+        <div className="w-full min-h-[600px] bg-[#111] rounded-xl border border-(--sb-border) p-4">
           <Masonry
             items={[
               {
@@ -1699,7 +1733,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("model-viewer") || title.includes("model viewer"):
       return (
-        <div className="w-full h-[600px] relative bg-[#111] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+        <div className="w-full h-[600px] relative bg-[#111] rounded-xl border border-(--sb-border) overflow-hidden">
           <ModelViewer
             url={
               props?.url ||
@@ -1714,30 +1748,31 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("liquid-ether") || title.includes("liquid ether"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <LiquidEther resolution={props?.resolution ?? 1} {...props} />
         </div>
       );
 
     case slug.includes("prism") || title.includes("prism"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div style={{ width: "100%", height: "600px", position: "relative" }}>
           <Prism
-            animationType={props?.animationType ?? "rotate"}
-            glow={props?.glow ?? 1}
-            noise={props?.noise ?? 0.5}
-            hueShift={props?.hueShift ?? 0}
-            bloom={props?.bloom ?? 0.6}
-            scale={props?.scale ?? 3}
-            suspendWhenOffscreen={props?.suspendWhenOffscreen ?? false}
-            {...props}
+            animationType="rotate"
+            timeScale={0.5}
+            height={3.5}
+            baseWidth={5.5}
+            scale={3.6}
+            hueShift={0}
+            colorFrequency={1}
+            noise={0}
+            glow={1}
           />
         </div>
       );
 
     case slug.includes("dark-veil") || title.includes("dark veil"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <DarkVeil
             hueShift={props?.hueShift ?? 0}
             noiseIntensity={props?.noiseIntensity ?? 0}
@@ -1753,7 +1788,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("light-pillar") || title.includes("light pillar"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <LightPillar
             topColor={props?.topColor ?? "#5227FF"}
             bottomColor={props?.bottomColor ?? "#FF9FFC"}
@@ -1773,7 +1808,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("floating-lines") || title.includes("floating lines"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <FloatingLines
             animationSpeed={props?.animationSpeed ?? 1}
             interactive={props?.interactive ?? true}
@@ -1789,7 +1824,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("light-rays") || title.includes("light rays"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <LightRays
             raysOrigin={props?.raysOrigin ?? "top-center"}
             raysColor={props?.raysColor ?? "#ffffff"}
@@ -1810,7 +1845,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("color-bends") || title.includes("color bends"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <ColorBends
             rotation={props?.rotation ?? 45}
             speed={props?.speed ?? 0.2}
@@ -1829,30 +1864,29 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("particles") || title.includes("particles"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Particles
-            count={props?.count ?? 70}
-            speed={props?.speed ?? 0.6}
-            radius={props?.radius ?? 2}
-            color={props?.color ?? "#ffffff"}
-            linkDistance={props?.linkDistance ?? 120}
-            linkOpacity={props?.linkOpacity ?? 0.22}
-            interactive={props?.interactive ?? true}
+            particleCount={props?.particleCount ?? 200}
+            particleSpread={props?.particleSpread ?? 10}
+            speed={props?.speed ?? 0.1}
+            particleColors={props?.particleColors ?? ["#ffffff", "#ffffff"]}
+            moveParticlesOnHover={props?.moveParticlesOnHover ?? true}
+            particleBaseSize={props?.particleBaseSize ?? 100}
+            alphaParticles={props?.alphaParticles ?? false}
+            disableRotation={props?.disableRotation ?? false}
             {...props}
           />
         </div>
       );
 
-    case slug.includes("grid-scan") || title.includes("grid scan"):
+    case slug.includes("gridscan") || title.includes("gridscan"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <GridScan
-            size={props?.size ?? 44}
-            opacity={props?.opacity ?? 0.12}
-            scanOpacity={props?.scanOpacity ?? 0.55}
-            scanSpeed={props?.scanSpeed ?? 2.2}
-            gridColor={props?.gridColor ?? "#ffffff"}
-            scanColor={props?.scanColor ?? "var(--sb-accent)"}
+            gridScale={props?.gridScale ?? 0.1}
+            linesColor={props?.linesColor ?? "#392e4e"}
+            scanColor={props?.scanColor ?? "#FF9FFC"}
+            scanOpacity={props?.scanOpacity ?? 0.4}
             {...props}
           />
         </div>
@@ -1860,13 +1894,13 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("lightning") || title.includes("lightning"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[600px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Lightning
-            frequency={props?.frequency ?? 1.1}
+            hue={props?.hue ?? 220}
+            xOffset={props?.xOffset ?? 0}
             speed={props?.speed ?? 1}
-            color={props?.color ?? "#ffffff"}
-            glow={props?.glow ?? 10}
-            thickness={props?.thickness ?? 2}
+            intensity={props?.intensity ?? 1}
+            size={props?.size ?? 1}
             {...props}
           />
         </div>
@@ -1874,12 +1908,24 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("galaxy") || title.includes("galaxy"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Galaxy
-            stars={props?.stars ?? 900}
-            rotationSpeed={props?.rotationSpeed ?? 0.25}
-            colorA={props?.colorA ?? "#ffffff"}
-            colorB={props?.colorB ?? "var(--sb-accent)"}
+            focal={props?.focal ?? [0.5, 0.5]}
+            rotation={props?.rotation ?? [1.0, 0.0]}
+            starSpeed={props?.starSpeed ?? 0.5}
+            density={props?.density ?? 1.5}
+            hueShift={props?.hueShift ?? 140}
+            disableAnimation={props?.disableAnimation ?? false}
+            speed={props?.speed ?? 1.0}
+            mouseInteraction={props?.mouseInteraction ?? true}
+            glowIntensity={props?.glowIntensity ?? 0.3}
+            saturation={props?.saturation ?? 0.0}
+            mouseRepulsion={props?.mouseRepulsion ?? true}
+            twinkleIntensity={props?.twinkleIntensity ?? 0.3}
+            rotationSpeed={props?.rotationSpeed ?? 0.1}
+            repulsionStrength={props?.repulsionStrength ?? 2}
+            autoCenterRepulsion={props?.autoCenterRepulsion ?? 0}
+            transparent={props?.transparent ?? true}
             {...props}
           />
         </div>
@@ -1887,12 +1933,19 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("dot-grid") || title.includes("dot grid"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <DotGrid
-            spacing={props?.spacing ?? 22}
-            dotSize={props?.dotSize ?? 2}
-            opacity={props?.opacity ?? 0.18}
-            dotColor={props?.dotColor ?? "#ffffff"}
+            dotSize={props?.dotSize ?? 16}
+            gap={props?.gap ?? 32}
+            baseColor={props?.baseColor ?? "#5227FF"}
+            activeColor={props?.activeColor ?? "#5227FF"}
+            proximity={props?.proximity ?? 150}
+            speedTrigger={props?.speedTrigger ?? 100}
+            shockRadius={props?.shockRadius ?? 250}
+            shockStrength={props?.shockStrength ?? 5}
+            maxSpeed={props?.maxSpeed ?? 5000}
+            resistance={props?.resistance ?? 750}
+            returnDuration={props?.returnDuration ?? 1.5}
             {...props}
           />
         </div>
@@ -1900,23 +1953,29 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("hyperspeed") || title.includes("hyperspeed"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Hyperspeed
-            streaks={props?.streaks ?? 260}
-            speed={props?.speed ?? 1}
-            color={props?.color ?? "#ffffff"}
-            {...props}
+            effectOptions={{
+              distortion: props?.distortion ?? "turbulentDistortion",
+              length: props?.length ?? 400,
+              roadWidth: props?.roadWidth ?? 10,
+              islandWidth: props?.islandWidth ?? 2,
+              lanesPerRoad: props?.lanesPerRoad ?? 3,
+              ...props,
+            }}
           />
         </div>
       );
 
     case slug.includes("ballpit") || title.includes("ballpit"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Ballpit
-            balls={props?.balls ?? 18}
-            gravity={props?.gravity ?? 0.45}
-            bounce={props?.bounce ?? 0.86}
+            count={props?.count ?? 200}
+            gravity={props?.gravity ?? 0.5}
+            friction={props?.friction ?? 0.9975}
+            wallBounce={props?.wallBounce ?? 0.95}
+            followCursor={props?.followCursor ?? true}
             {...props}
           />
         </div>
@@ -1924,11 +1983,13 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("orb") || title.includes("orb"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <Orb
-            color={props?.color ?? "var(--sb-accent)"}
-            speed={props?.speed ?? 1}
-            glow={props?.glow ?? 0.85}
+            hue={props?.hue ?? 0}
+            hoverIntensity={props?.hoverIntensity ?? 0.2}
+            rotateOnHover={props?.rotateOnHover ?? true}
+            forceHoverState={props?.forceHoverState ?? false}
+            backgroundColor={props?.backgroundColor ?? "transparent"}
             {...props}
           />
         </div>
@@ -1936,11 +1997,19 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("letter-glitch") || title.includes("letter glitch"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <LetterGlitch
-            text={props?.text ?? "LETTER GLITCH"}
-            speed={props?.speed ?? 22}
-            glitchChance={props?.glitchChance ?? 0.18}
+            glitchColors={
+              props?.glitchColors ?? ["#2b4539", "#61dca3", "#61b3dc"]
+            }
+            glitchSpeed={props?.glitchSpeed ?? 50}
+            centerVignette={props?.centerVignette ?? false}
+            outerVignette={props?.outerVignette ?? true}
+            smooth={props?.smooth ?? true}
+            characters={
+              props?.characters ??
+              "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789"
+            }
             {...props}
           />
         </div>
@@ -1948,13 +2017,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("grid-motion") || title.includes("grid motion"):
       return (
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
           <GridMotion
-            gridSize={props?.gridSize ?? 28}
-            speed={props?.speed ?? 1}
-            amplitude={props?.amplitude ?? 8}
-            color={props?.color ?? "#ffffff"}
-            opacity={props?.opacity ?? 0.14}
+            // items={props?.items ?? []} // items are usually static, maybe leave default
+            gradientColor={props?.gradientColor ?? "black"}
             {...props}
           />
         </div>
@@ -1996,7 +2062,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[42px] font-black text-(--sb-text-strong)">
             <HighlightText
               duration={props?.duration ?? 0.5}
               delay={props?.delay ?? 0.1}
@@ -2007,29 +2073,13 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("number-counter") || title.includes("number counter"):
-      return (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: 140 }}
-        >
-          <div className="text-[54px] font-black text-[var(--sb-text-strong)]">
-            <NumberCounter
-              value={props?.value ?? 1234.56}
-              precision={props?.precision ?? 2}
-              durationMs={props?.durationMs ?? 700}
-            />
-          </div>
-        </div>
-      );
-
     case slug.includes("rotate-text") || title.includes("rotate text"):
       return (
         <div
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[42px] font-black text-(--sb-text-strong)">
             <span>Build </span>
             <span className="inline-block text-[var(--sb-accent)]">
               <RotateText
@@ -2048,7 +2098,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[42px] font-black text-(--sb-text-strong)">
             <TypewriterText
               words={["Typewriter", "Animation", "Effect"]}
               typingSpeed={props?.typingSpeed ?? 90}
@@ -2183,7 +2233,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "border-beam" || title.includes("border beam"):
       return (
-        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
           <BorderBeam
             size={props?.size ?? 80}
             duration={props?.duration ?? 6}
@@ -2192,10 +2242,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
             initialOffset={props?.initialOffset ?? 0}
             borderWidth={props?.borderWidth ?? 1}
           />
-          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[18px] font-black text-(--sb-text-strong)">
             Border Beam
           </div>
-          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+          <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
             Animated beam traveling around the border.
           </div>
         </div>
@@ -2203,16 +2253,16 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "shine-border" || title.includes("shine border"):
       return (
-        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+        <div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
           <ShineBorder
             borderWidth={props?.borderWidth ?? 1}
             duration={props?.duration ?? 14}
             shineColor={props?.shineColor ?? ["#A97CF8", "#F38CB8", "#FDCC92"]}
           />
-          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[18px] font-black text-(--sb-text-strong)">
             Shine Border
           </div>
-          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+          <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
             Animated sheen effect around the card.
           </div>
         </div>
@@ -2221,16 +2271,16 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug === "magic-card" || title.includes("magic card"):
       return (
         <MagicCard
-          className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6"
+          className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
           gradientSize={props?.gradientSize ?? 200}
           gradientOpacity={props?.gradientOpacity ?? 0.8}
           gradientFrom={props?.gradientFrom ?? "#9E7AFF"}
           gradientTo={props?.gradientTo ?? "#FE8BBB"}
         >
-          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[18px] font-black text-(--sb-text-strong)">
             Magic Card
           </div>
-          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+          <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
             Hover to see the gradient follow your pointer.
           </div>
         </MagicCard>
@@ -2243,10 +2293,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
             borderSize={props?.borderSize ?? 2}
             borderRadius={props?.borderRadius ?? 20}
           >
-            <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+            <div className="text-[18px] font-black text-(--sb-text-strong)">
               Neon Gradient Card
             </div>
-            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
               Animated neon gradient border.
             </div>
           </NeonGradientCard>
@@ -2298,7 +2348,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "video-text" || title.includes("video text"):
       return (
-        <div className="h-[240px] w-full max-w-[720px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+        <div className="h-[240px] w-full max-w-[720px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
           <VideoText
             src={
               props?.src ??
@@ -2313,7 +2363,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "text-reveal" || title.includes("text reveal"):
       return (
-        <div className="h-[420px] w-full overflow-y-auto rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
+        <div className="h-[420px] w-full overflow-y-auto rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
           <TextReveal>
             Scroll this panel to reveal the words one by one.
           </TextReveal>
@@ -2329,6 +2379,156 @@ export function renderDemo(component: ComponentItem, props?: any) {
           <SparklesText sparklesCount={props?.sparklesCount ?? 10}>
             Sparkles
           </SparklesText>
+        </div>
+      );
+
+    case slug.includes("code-block") || title.includes("code block"):
+      return (
+        <div className="w-full max-w-[620px]">
+          <CodeBlock
+            code={`const greeting = "Hello World";
+console.log(greeting);`}
+            language="javascript"
+            filename="example.js"
+          />
+        </div>
+      );
+
+    case slug.includes("code-editor") || title.includes("code editor"):
+      return (
+        <div className="w-full max-w-[620px]">
+          <CodeEditor
+            code={`function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));`}
+            language="javascript"
+            filename="fibonacci.js"
+          />
+        </div>
+      );
+
+    case slug.includes("code-tabs") || title.includes("code tabs"):
+      return (
+        <div className="w-full max-w-[620px]">
+          <CodeTabs
+            tabs={[
+              {
+                title: "npm",
+                code: "npm install one-for-all",
+                language: "bash",
+              },
+              {
+                title: "yarn",
+                code: "yarn add one-for-all",
+                language: "bash",
+              },
+              {
+                title: "pnpm",
+                code: "pnpm add one-for-all",
+                language: "bash",
+              },
+            ]}
+          />
+        </div>
+      );
+
+    case slug.includes("sandbox") || title.includes("sandbox"):
+      return (
+        <div className="w-full max-w-[900px]">
+          <Sandbox
+            code={`<button className="btn">
+  Click me
+</button>`}
+            preview={
+              <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                Click me
+              </button>
+            }
+          />
+        </div>
+      );
+
+    case slug.includes("gantt") || title.includes("gantt"):
+      return (
+        <div className="w-full max-w-[900px]">
+          <GanttChart />
+        </div>
+      );
+
+    case slug.includes("kanban") || title.includes("kanban"):
+      return (
+        <div className="w-full max-w-[900px]">
+          <Kanban />
+        </div>
+      );
+
+    case slug.includes("android") || title.includes("android"):
+      return (
+        <div className="w-full flex items-center justify-center p-8">
+          <AndroidMock />
+        </div>
+      );
+
+    case slug.includes("iphone") || title.includes("iphone"):
+      return (
+        <div className="w-full flex items-center justify-center p-8">
+          <IPhoneMock />
+        </div>
+      );
+
+    case slug.includes("mac-os-dock") ||
+      slug.includes("macos-dock") ||
+      title.includes("mac os dock"):
+      return (
+        <div className="w-full bg-linear-to-t from-black/20 to-transparent pt-20">
+          <MacOSDock />
+        </div>
+      );
+
+    case slug.includes("rating") || title.includes("rating"):
+      return (
+        <div className="w-full flex items-center justify-center py-10">
+          <Rating
+            count={props?.count ?? 5}
+            initialValue={props?.initialValue ?? 3}
+            icon={props?.icon ?? "star"}
+            activeColor={props?.activeColor ?? "#facc15"}
+          />
+        </div>
+      );
+
+    case slug.includes("credit-card") || title.includes("credit card"):
+      return (
+        <div className="w-full flex items-center justify-center">
+          <CreditCard
+            number={props?.number}
+            name={props?.name}
+            expiry={props?.expiry}
+          />
+        </div>
+      );
+
+    case slug.includes("color-picker") || title.includes("color picker"):
+      return (
+        <div className="w-full flex items-center justify-center p-10">
+          <ColorPicker />
+        </div>
+      );
+
+    case slug.includes("combobox") || title.includes("combobox"):
+      return (
+        <div className="w-full flex items-center justify-center p-10">
+          <ComboboxDemo />
+        </div>
+      );
+
+    case slug.includes("dropzone") || title.includes("dropzone"):
+      return (
+        <div className="w-full max-w-[800px]">
+          <Dropzone />
         </div>
       );
 
@@ -2350,15 +2550,15 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "scroll-progress" || title.includes("scroll progress"):
       return (
-        <div className="relative w-full rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
+        <div className="relative w-full rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
           <ScrollProgress className="!absolute !inset-x-0 !top-0" />
-          <div className="text-[18px] font-black text-[var(--sb-text-strong)]">
+          <div className="text-[18px] font-black text-(--sb-text-strong)">
             Scroll Progress
           </div>
-          <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+          <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
             Scroll the page to see the progress bar animate.
           </div>
-          <div className="mt-6 space-y-3 text-[13px] font-medium text-[var(--sb-text-muted)]">
+          <div className="mt-6 space-y-3 text-[13px] font-medium text-(--sb-text-muted)">
             <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
             <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
             <div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
@@ -2405,8 +2605,8 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "progress" || title.includes("progress"):
       return (
-        <div className="w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-6">
-          <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+        <div className="w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
+          <div className="text-[14px] font-black text-(--sb-text-strong)">
             Progress
           </div>
           <div className="mt-3">
@@ -2427,7 +2627,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             trigger={
               <button
                 type="button"
-                className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-[var(--sb-text-strong)]"
+                className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
               >
                 Open Popover
               </button>
@@ -2435,7 +2635,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             content={
               <div>
                 <div className="text-[13px] font-black">Popover</div>
-                <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+                <div className="mt-1 text-[12px] font-medium text-(--sb-text-muted)">
                   Click outside to close.
                 </div>
               </div>
@@ -2456,20 +2656,20 @@ export function renderDemo(component: ComponentItem, props?: any) {
           <FlipCard
             front={
               <div>
-                <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+                <div className="text-[16px] font-black text-(--sb-text-strong)">
                   Front
                 </div>
-                <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+                <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
                   Hover to flip.
                 </div>
               </div>
             }
             back={
               <div>
-                <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+                <div className="text-[16px] font-black text-(--sb-text-strong)">
                   Back
                 </div>
-                <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+                <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
                   3D flip using CSS transforms.
                 </div>
               </div>
@@ -2568,7 +2768,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           >
             <button
               type="button"
-              className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-6 py-3 text-[13px] font-black text-[var(--sb-text-strong)]"
+              className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-6 py-3 text-[13px] font-black text-(--sb-text-strong)"
             >
               Magnetic
             </button>
@@ -2586,10 +2786,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
           style={{ height: 260 }}
         >
           <DecayCard>
-            <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+            <div className="text-[16px] font-black text-(--sb-text-strong)">
               Decay Card
             </div>
-            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
               SVG filter displacement effect.
             </div>
           </DecayCard>
@@ -2598,14 +2798,14 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "fade-content" || title.includes("fade content"):
       return (
-        <div className="h-[220px] w-full max-w-[620px] overflow-auto rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-4 sb-scroll">
+        <div className="h-[220px] w-full max-w-[620px] overflow-auto rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg) p-4 sb-scroll">
           <div className="h-[120px]" />
           <FadeContent>
-            <div className="rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-5">
-              <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
+            <div className="rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-5">
+              <div className="text-[14px] font-black text-(--sb-text-strong)">
                 Fade Content
               </div>
-              <div className="mt-1 text-[12px] font-medium text-[var(--sb-text-muted)]">
+              <div className="mt-1 text-[12px] font-medium text-(--sb-text-muted)">
                 Scroll inside this panel.
               </div>
             </div>
@@ -2621,10 +2821,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
           style={{ height: 260 }}
         >
           <PixelCard>
-            <div className="text-[16px] font-black text-[var(--sb-text-strong)]">
+            <div className="text-[16px] font-black text-(--sb-text-strong)">
               Pixel Card
             </div>
-            <div className="mt-2 text-[13px] font-medium text-[var(--sb-text-muted)]">
+            <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
               Hover for pixel overlay.
             </div>
           </PixelCard>
@@ -2656,13 +2856,20 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("modal-viewer") || title.includes("modal viewer"):
       return (
-        <div className="flex items-center justify-center min-h-[400px] bg-gray-900 rounded-xl relative overflow-hidden">
-          <ModalViewer
-            triggerText="Open Demo Modal"
-            title="Beautiful Modal"
-            content={<p>This modal is powered by Framer Motion.</p>}
-          />
-        </div>
+        <ModelViewer
+          url="/assets/3d/toy-car.glb"
+          width={400}
+          height={400}
+          modelXOffset={0.5}
+          modelYOffset={0}
+          enableMouseParallax
+          enableHoverRotation
+          environmentPreset="forest"
+          fadeIn={false}
+          autoRotate={false}
+          autoRotateSpeed={0.35}
+          showScreenshotButton
+        />
       );
 
     case slug.includes("spotlight-card") || title.includes("spotlight card"):
@@ -2709,10 +2916,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
       <div className="inline-flex items-center gap-3">
         <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[var(--sb-accent)]" />
         <div>
-          <div className="text-[13px] font-extrabold text-[var(--sb-text-strong)]">
+          <div className="text-[13px] font-extrabold text-(--sb-text-strong)">
             {component.title}
           </div>
-          <div className="text-[12px] font-medium text-[var(--sb-text-muted)]">
+          <div className="text-[12px] font-medium text-(--sb-text-muted)">
             Local demo preview
           </div>
         </div>

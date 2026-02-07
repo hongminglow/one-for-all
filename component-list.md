@@ -49,7 +49,7 @@
 37. Lanyard : https://reactbits.dev/components/lanyard
 38. Dock : https://reactbits.dev/components/dock
 39. Carousel : https://reactbits.dev/components/carousel
-40. Spolight Card : https://reactbits.dev/components/spotlight-card
+40. Spotlight Card : https://reactbits.dev/components/spotlight-card
 41. Flowing Menu : https://reactbits.dev/components/flowing-menu
 42. Elastic Slider : https://reactbits.dev/components/elastic-slider
 43. Counter : https://reactbits.dev/components/counter

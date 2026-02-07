@@ -672,13 +672,12 @@ export const COMPONENTS: ComponentItem[] = [
   {
     "id": "cmp_40",
     "order": 40,
-    "slug": "spolight-card",
-    "title": "Spolight Card",
-    "description": "Spolight Card — a UI component reference from React-Bits.",
+    "slug": "spotlight-card",
+    "title": "Spotlight Card",
+    "description": "Spotlight Card — a UI component reference from React-Bits.",
     "tags": [
-      "spolight",
-      "card",
       "spotlight",
+      "card",
       "react",
       "bits"
     ],

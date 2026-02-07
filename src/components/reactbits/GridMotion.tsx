@@ -1,98 +1,116 @@
-import { useEffect, useMemo, useRef } from "react";
-
+import { useEffect, useRef, FC, ReactNode } from "react";
+import { gsap } from "gsap";
 import "./GridMotion.css";
 
-export interface GridMotionProps {
-  gridSize?: number;
-  speed?: number;
-  amplitude?: number;
-  color?: string;
-  opacity?: number;
-  className?: string;
+interface GridMotionProps {
+  items?: (string | ReactNode)[];
+  gradientColor?: string;
 }
 
-export default function GridMotion({
-  gridSize = 28,
-  speed = 1,
-  amplitude = 8,
-  color = "#ffffff",
-  opacity = 0.14,
-  className = "",
-}: GridMotionProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const rafRef = useRef<number | null>(null);
+const GridMotion: FC<GridMotionProps> = ({
+  items = [],
+  gradientColor = "black",
+}) => {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mouseXRef = useRef<number>(window.innerWidth / 2);
 
-  const opts = useMemo(
-    () => ({ gridSize, speed, amplitude, color, opacity }),
-    [gridSize, speed, amplitude, color, opacity],
+  const totalItems = 28;
+  const defaultItems = Array.from(
+    { length: totalItems },
+    (_, index) => `Item ${index + 1}`,
   );
+  const combinedItems =
+    items.length > 0 ? items.slice(0, totalItems) : defaultItems;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    gsap.ticker.lagSmoothing(0);
 
-    const resize = () => {
-      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.floor(rect.width * dpr);
-      canvas.height = Math.floor(rect.height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const handleMouseMove = (e: MouseEvent): void => {
+      mouseXRef.current = e.clientX;
     };
 
-    const draw = (t: number) => {
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-      ctx.clearRect(0, 0, w, h);
+    const updateMotion = (): void => {
+      const maxMoveAmount = 300;
+      const baseDuration = 0.8;
+      const inertiaFactors = [0.6, 0.4, 0.3, 0.2];
 
-      const time = (t / 1000) * opts.speed;
+      rowRefs.current.forEach((row, index) => {
+        if (row) {
+          const direction = index % 2 === 0 ? 1 : -1;
+          const moveAmount =
+            ((mouseXRef.current / window.innerWidth) * maxMoveAmount -
+              maxMoveAmount / 2) *
+            direction;
 
-      ctx.save();
-      ctx.strokeStyle = opts.color;
-      ctx.globalAlpha = Math.max(0, Math.min(1, opts.opacity));
-      ctx.lineWidth = 1;
-
-      const step = Math.max(10, opts.gridSize);
-      for (let y = 0; y <= h + step; y += step) {
-        ctx.beginPath();
-        for (let x = 0; x <= w + step; x += step) {
-          const dx = Math.sin(time + x * 0.02 + y * 0.01) * opts.amplitude;
-          const dy = Math.cos(time + y * 0.02 + x * 0.01) * opts.amplitude;
-          if (x === 0) ctx.moveTo(x + dx, y + dy);
-          else ctx.lineTo(x + dx, y + dy);
+          gsap.to(row, {
+            x: moveAmount,
+            duration:
+              baseDuration + inertiaFactors[index % inertiaFactors.length],
+            ease: "power3.out",
+            overwrite: "auto",
+          });
         }
-        ctx.stroke();
-      }
-
-      for (let x = 0; x <= w + step; x += step) {
-        ctx.beginPath();
-        for (let y = 0; y <= h + step; y += step) {
-          const dx = Math.sin(time + x * 0.02 + y * 0.01) * opts.amplitude;
-          const dy = Math.cos(time + y * 0.02 + x * 0.01) * opts.amplitude;
-          if (y === 0) ctx.moveTo(x + dx, y + dy);
-          else ctx.lineTo(x + dx, y + dy);
-        }
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      rafRef.current = window.requestAnimationFrame(draw);
+      });
     };
 
-    resize();
-    rafRef.current = window.requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
+    const removeAnimationLoop = gsap.ticker.add(updateMotion);
+    window.addEventListener("mousemove", handleMouseMove);
+
     return () => {
-      window.removeEventListener("resize", resize);
-      if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("mousemove", handleMouseMove);
+      removeAnimationLoop();
     };
-  }, [opts]);
+  }, []);
 
   return (
-    <div className={`rb-grid-motion ${className}`}>
-      <canvas ref={canvasRef} className="rb-grid-motion__canvas" />
+    <div className="noscroll loading" ref={gridRef}>
+      <section
+        className="intro"
+        style={{
+          background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
+        }}
+      >
+        <div className="gridMotion-container">
+          {Array.from({ length: 4 }, (_, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="row"
+              ref={(el) => {
+                rowRefs.current[rowIndex] = el;
+                return;
+              }}
+            >
+              {Array.from({ length: 7 }, (_, itemIndex) => {
+                const content = combinedItems[rowIndex * 7 + itemIndex];
+                return (
+                  <div key={itemIndex} className="row__item">
+                    <div
+                      className="row__item-inner"
+                      style={{ backgroundColor: "#111" }}
+                    >
+                      {typeof content === "string" &&
+                      content.startsWith("http") ? (
+                        <div
+                          className="row__item-img"
+                          style={{
+                            backgroundImage: `url(${content})`,
+                          }}
+                        ></div>
+                      ) : (
+                        <div className="row__item-content">{content}</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <div className="fullview"></div>
+      </section>
     </div>
   );
-}
+};
+
+export default GridMotion;

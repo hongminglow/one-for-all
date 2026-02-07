@@ -146,7 +146,10 @@ export function ComponentDetails(props: { component: ComponentItem }) {
         <div className="px-6 pb-6 pt-4">
           <div className="rounded-[16px] border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-6">
             {tab === "preview" ? (
-              <div className="relative flex min-h-[350px] items-center justify-center overflow-hidden">
+              <div
+                key={`${props.component.slug}-${JSON.stringify(controlValues)}`}
+                className="relative flex min-h-[350px] items-center justify-center overflow-hidden"
+              >
                 <div className="w-full text-center">{previewNode}</div>
               </div>
             ) : (

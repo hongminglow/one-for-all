@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import * as THREE from "three";
-import { useRef, useState, useEffect, memo, ReactNode } from "react";
+import { useRef, useState, useEffect, memo, ReactNode, Suspense } from "react";
 import {
   Canvas,
   createPortal,
@@ -58,17 +58,19 @@ export default function FluidGlass({
 
   return (
     <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true }}>
-      <ScrollControls damping={0.2} pages={3} distance={0.4}>
-        {mode === "bar" && <NavItems items={navItems as NavItem[]} />}
-        <Wrapper modeProps={modeProps}>
-          <Scroll>
-            <Typography />
-            <Images />
-          </Scroll>
-          <Scroll html />
-          <Preload />
-        </Wrapper>
-      </ScrollControls>
+      <Suspense fallback={null}>
+        <ScrollControls damping={0.2} pages={3} distance={0.4}>
+          {mode === "bar" && <NavItems items={navItems as NavItem[]} />}
+          <Wrapper modeProps={modeProps}>
+            <Scroll>
+              <Typography />
+              <Images />
+            </Scroll>
+            <Scroll html />
+            <Preload />
+          </Wrapper>
+        </ScrollControls>
+      </Suspense>
     </Canvas>
   );
 }
@@ -186,8 +188,8 @@ const ModeWrapper = memo(function ModeWrapper({
 function Lens({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
   return (
     <ModeWrapper
-      glb="https://reactbits.dev/assets/3d/lens.glb"
-      geometryKey="Cylinder"
+      glb="/assets/3d/bar.glb"
+      geometryKey="Cube"
       followPointer
       modeProps={modeProps}
       {...p}
@@ -198,7 +200,7 @@ function Lens({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
 function Cube({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
   return (
     <ModeWrapper
-      glb="https://reactbits.dev/assets/3d/cube.glb"
+      glb="/assets/3d/cube.glb"
       geometryKey="Cube"
       followPointer
       modeProps={modeProps}
@@ -220,7 +222,7 @@ function Bar({ modeProps = {}, ...p }: { modeProps?: ModeProps } & MeshProps) {
 
   return (
     <ModeWrapper
-      glb="https://reactbits.dev/assets/3d/bar.glb"
+      glb="/assets/3d/bar.glb"
       geometryKey="Cube"
       lockToBottom
       followPointer={false}

@@ -1,59 +1,44 @@
-.rb-grid-scan {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(
-          in srgb,
-          var(--rb-grid-color) calc(var(--rb-grid-opacity) * 100%),
-          transparent
-        )
-        1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(
-          in srgb,
-          var(--rb-grid-color) calc(var(--rb-grid-opacity) * 100%),
-          transparent
-        )
-        1px,
-      transparent 1px
-    );
-  background-size: var(--rb-grid-size) var(--rb-grid-size);
+.gridscan {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-.rb-grid-scan::after {
-  content: "";
+.gridscan__preview {
   position: absolute;
-  inset: -40% -20%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    color-mix(
-        in srgb,
-        var(--rb-scan-color) calc(var(--rb-scan-opacity) * 100%),
-        transparent
-      )
-      0%,
-    transparent 55%
-  );
-  filter: blur(6px);
-  animation: rb-grid-scan var(--rb-scan-duration) linear infinite;
+  right: 12px;
+  bottom: 12px;
+  width: 220px;
+  height: 132px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background: #000;
+  color: #fff;
+  font:
+    12px/1.2 system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    sans-serif;
+  pointer-events: none;
 }
 
-@keyframes rb-grid-scan {
-  0% {
-    transform: translateY(-30%);
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(30%);
-    opacity: 0.2;
-  }
+.gridscan__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.gridscan__badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
 }
