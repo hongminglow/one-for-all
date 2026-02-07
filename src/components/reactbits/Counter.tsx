@@ -1,17 +1,8 @@
-"use client";
+import { MotionValue, motion, useSpring, useTransform } from 'motion/react';
+import type React from 'react';
+import { useEffect } from 'react';
 
-import {
-  type MotionValue,
-  motion,
-  useSpring,
-  useTransform,
-} from "motion/react";
-import type React from "react";
-import { useEffect } from "react";
-
-import "./Counter.css";
-
-type PlaceValue = number | ".";
+type PlaceValue = number | '.';
 
 interface NumberProps {
   mv: MotionValue<number>;
@@ -20,7 +11,7 @@ interface NumberProps {
 }
 
 function Number({ mv, number, height }: NumberProps) {
-  const y = useTransform(mv, (latest) => {
+  const y = useTransform(mv, latest => {
     const placeValue = latest % 10;
     const offset = (10 + number - placeValue) % 10;
     let memo = offset * height;
@@ -30,11 +21,15 @@ function Number({ mv, number, height }: NumberProps) {
     return memo;
   });
 
-  return (
-    <motion.span className="counter-number" style={{ y }}>
-      {number}
-    </motion.span>
-  );
+  const baseStyle: React.CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  };
+
+  return <motion.span style={{ ...baseStyle, y }}>{number}</motion.span>;
 }
 
 interface DigitProps {
@@ -45,17 +40,19 @@ interface DigitProps {
 }
 
 function Digit({ place, value, height, digitStyle }: DigitProps) {
-  if (place === ".") {
+  // Decimal point digit
+  if (place === '.') {
     return (
       <span
-        className="counter-digit"
-        style={{ height, ...digitStyle, width: "fit-content" }}
+        className="relative inline-flex items-center justify-center"
+        style={{ height, width: 'fit-content', ...digitStyle }}
       >
         .
       </span>
     );
   }
 
+  // Numeric digit
   const valueRoundedToPlace = Math.floor(value / place);
   const animatedValue = useSpring(valueRoundedToPlace);
 
@@ -63,8 +60,15 @@ function Digit({ place, value, height, digitStyle }: DigitProps) {
     animatedValue.set(valueRoundedToPlace);
   }, [animatedValue, valueRoundedToPlace]);
 
+  const defaultStyle: React.CSSProperties = {
+    height,
+    position: 'relative',
+    width: '1ch',
+    fontVariantNumeric: 'tabular-nums'
+  };
+
   return (
-    <span className="counter-digit" style={{ height, ...digitStyle }}>
+    <span className="relative inline-flex overflow-hidden" style={{ ...defaultStyle, ...digitStyle }}>
       {Array.from({ length: 10 }, (_, i) => (
         <Number key={i} mv={animatedValue} number={i} height={height} />
       ))}
@@ -72,7 +76,7 @@ function Digit({ place, value, height, digitStyle }: DigitProps) {
   );
 }
 
-export interface CounterProps {
+interface CounterProps {
   value: number;
   fontSize?: number;
   padding?: number;
@@ -87,7 +91,7 @@ export interface CounterProps {
   borderRadius?: number;
   horizontalPadding?: number;
   textColor?: string;
-  fontWeight?: React.CSSProperties["fontWeight"];
+  fontWeight?: React.CSSProperties['fontWeight'];
   containerStyle?: React.CSSProperties;
   counterStyle?: React.CSSProperties;
   digitStyle?: React.CSSProperties;
@@ -103,81 +107,80 @@ export default function Counter({
   fontSize = 100,
   padding = 0,
   places = [...value.toString()].map((ch, i, a) => {
-    if (ch === ".") {
-      return ".";
+    if (ch === '.') {
+      return '.';
     }
-    const dotIndex = a.indexOf(".");
+
+    const dotIndex = a.indexOf('.');
     const isInteger = dotIndex === -1;
 
-    const exponent = isInteger
-      ? a.length - i - 1
-      : i < dotIndex
-        ? dotIndex - i - 1
-        : -(i - dotIndex);
+    const exponent = isInteger ? a.length - i - 1 : i < dotIndex ? dotIndex - i - 1 : -(i - dotIndex);
 
     return 10 ** exponent;
   }),
   gap = 8,
   borderRadius = 4,
   horizontalPadding = 8,
-  textColor = "inherit",
-  fontWeight = "inherit",
+  textColor = 'inherit',
+  fontWeight = 'inherit',
   containerStyle,
   counterStyle,
   digitStyle,
   gradientHeight = 16,
-  gradientFrom = "black",
-  gradientTo = "transparent",
+  gradientFrom = 'black',
+  gradientTo = 'transparent',
   topGradientStyle,
-  bottomGradientStyle,
+  bottomGradientStyle
 }: CounterProps) {
   const height = fontSize + padding;
 
+  const defaultContainerStyle: React.CSSProperties = {
+    position: 'relative',
+    display: 'inline-block'
+  };
+
   const defaultCounterStyle: React.CSSProperties = {
     fontSize,
+    display: 'flex',
     gap,
+    overflow: 'hidden',
     borderRadius,
     paddingLeft: horizontalPadding,
     paddingRight: horizontalPadding,
+    lineHeight: 1,
     color: textColor,
-    fontWeight,
+    fontWeight
+  };
+
+  const gradientContainerStyle: React.CSSProperties = {
+    pointerEvents: 'none',
+    position: 'absolute',
+    inset: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   };
 
   const defaultTopGradientStyle: React.CSSProperties = {
     height: gradientHeight,
-    background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
+    background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`
   };
 
   const defaultBottomGradientStyle: React.CSSProperties = {
     height: gradientHeight,
-    background: `linear-gradient(to top, ${gradientFrom}, ${gradientTo})`,
+    background: `linear-gradient(to top, ${gradientFrom}, ${gradientTo})`
   };
 
   return (
-    <span className="counter-container" style={containerStyle}>
-      <span
-        className="counter-counter"
-        style={{ ...defaultCounterStyle, ...counterStyle }}
-      >
-        {places.map((place) => (
-          <Digit
-            key={place}
-            place={place}
-            value={value}
-            height={height}
-            digitStyle={digitStyle}
-          />
+    <span style={{ ...defaultContainerStyle, ...containerStyle }}>
+      <span style={{ ...defaultCounterStyle, ...counterStyle }}>
+        {places.map(place => (
+          <Digit key={place} place={place} value={value} height={height} digitStyle={digitStyle} />
         ))}
       </span>
-      <span className="gradient-container">
-        <span
-          className="top-gradient"
-          style={topGradientStyle ?? defaultTopGradientStyle}
-        />
-        <span
-          className="bottom-gradient"
-          style={bottomGradientStyle ?? defaultBottomGradientStyle}
-        />
+      <span style={gradientContainerStyle}>
+        <span style={topGradientStyle ?? defaultTopGradientStyle} />
+        <span style={bottomGradientStyle ?? defaultBottomGradientStyle} />
       </span>
     </span>
   );

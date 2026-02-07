@@ -186,7 +186,7 @@ const ModeWrapper = memo(function ModeWrapper({
 function Lens({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
   return (
     <ModeWrapper
-      glb="/assets/3d/lens.glb"
+      glb="https://reactbits.dev/assets/3d/lens.glb"
       geometryKey="Cylinder"
       followPointer
       modeProps={modeProps}
@@ -198,7 +198,7 @@ function Lens({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
 function Cube({ modeProps, ...p }: { modeProps?: ModeProps } & MeshProps) {
   return (
     <ModeWrapper
-      glb="/assets/3d/cube.glb"
+      glb="https://reactbits.dev/assets/3d/cube.glb"
       geometryKey="Cube"
       followPointer
       modeProps={modeProps}
@@ -220,7 +220,7 @@ function Bar({ modeProps = {}, ...p }: { modeProps?: ModeProps } & MeshProps) {
 
   return (
     <ModeWrapper
-      glb="/assets/3d/bar.glb"
+      glb="https://reactbits.dev/assets/3d/bar.glb"
       geometryKey="Cube"
       lockToBottom
       followPointer={false}

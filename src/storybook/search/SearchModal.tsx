@@ -60,7 +60,7 @@ export function SearchModal(props: {
       role="dialog"
       aria-modal="true"
       aria-label="Search components"
-      className="fixed inset-0 z-50"
+      className="fixed inset-0 z-[99999]"
     >
       <button
         type="button"

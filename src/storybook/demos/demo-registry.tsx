@@ -8,6 +8,8 @@ import CircularText from "@/components/reactbits/CircularText";
 import Dock from "@/components/reactbits/Dock";
 import Carousel from "@/components/reactbits/Carousel";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
+import ModalViewer from "@/components/reactbits/ModalViewer";
+import ModelViewer from "@/components/reactbits/ModelViewer";
 import FlowingMenu from "@/components/reactbits/FlowingMenu";
 import ElasticSlider from "@/components/reactbits/ElasticSlider";
 import Counter from "@/components/reactbits/Counter";
@@ -209,7 +211,6 @@ import {
   trueFocusCode,
 } from "@/storybook/demos/code-snippets";
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
-import Antigravity from "@/components/reactbits/Antigravity";
 import SplashCursor from "@/components/reactbits/SplashCursor";
 import StarBorder from "@/components/reactbits/StarBorder";
 import AnimatedList from "@/components/reactbits/AnimatedList";
@@ -227,8 +228,8 @@ import ImageTrail from "@/components/reactbits/ImageTrail";
 import Stack from "@/components/reactbits/Stack";
 import FluidGlass from "@/components/reactbits/FluidGlass";
 import Masonry from "@/components/reactbits/Masonry";
-import ModelViewer from "@/components/reactbits/ModelViewer";
 import Lanyard from "@/components/reactbits/Lanyard";
+import Antigravity from "@/components/reactbits/Antigravity";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -620,15 +621,13 @@ function VariableProximityWrapper(props: any) {
           "Hover me! And then star React Bits on GitHub, or else..."
         }
         fromFontVariationSettings={
-          props?.fromFontVariationSettings ?? "'wght' 400, 'opsz' 9"
+          props?.fromFontVariationSettings ?? "'wght' 400"
         }
-        toFontVariationSettings={
-          props?.toFontVariationSettings ?? "'wght' 1000, 'opsz' 40"
-        }
+        toFontVariationSettings={props?.toFontVariationSettings ?? "'wght' 900"}
         containerRef={containerRef}
-        radius={props?.radius ?? 100}
+        radius={props?.radius ?? 140}
         falloff={props?.falloff ?? "linear"}
-        className={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.className ?? ""}`}
+        className={`text-[48px] font-black text-[var(--sb-text-strong)] text-center ${props?.className ?? "font-body"}`}
         {...props}
       />
     </div>
@@ -795,6 +794,28 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
+    case slug.includes("model-viewer") || title.includes("model viewer"):
+      return (
+        <div className="w-full h-[500px] flex items-center justify-center bg-[#111] rounded-xl overflow-hidden border border-[var(--sb-border)]">
+          <ModelViewer
+            url={
+              props?.url ??
+              "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Duck/glTF-Binary/Duck.glb"
+            }
+            width={props?.width ?? "100%"}
+            height={props?.height ?? "100%"}
+            autoRotate={props?.autoRotate ?? true}
+            autoRotateSpeed={props?.autoRotateSpeed ?? 0.35}
+            enableMouseParallax={props?.enableMouseParallax ?? true}
+            enableManualRotation={props?.enableManualRotation ?? true}
+            enableHoverRotation={props?.enableHoverRotation ?? true}
+            enableManualZoom={props?.enableManualZoom ?? true}
+            showScreenshotButton={props?.showScreenshotButton ?? true}
+            {...props}
+          />
+        </div>
+      );
+
     case slug.includes("flowing-menu") || title.includes("flowing menu"):
       return (
         <div className="w-full h-[360px] rounded-xl overflow-hidden border border-[var(--sb-border)]">
@@ -847,31 +868,65 @@ export function renderDemo(component: ComponentItem, props?: any) {
       );
 
     case slug.includes("counter") || title.includes("counter"):
-      return (
-        <div className="w-full flex items-center justify-center">
-          <Counter
-            value={props?.value ?? 1234.56}
-            fontSize={props?.fontSize ?? 56}
-            padding={props?.padding ?? 8}
-            gap={props?.gap ?? 8}
-            textColor={props?.textColor ?? "var(--sb-text-strong)"}
-            {...props}
-          />
-        </div>
-      );
+      const CounterDemo = () => {
+        const [val, setVal] = useState(0);
+        useEffect(() => {
+          const t = setTimeout(() => setVal(100), 100);
+          return () => clearTimeout(t);
+        }, []);
+
+        return (
+          <div className="relative h-[200px] w-full bg-[#111] overflow-hidden rounded-xl border border-[var(--sb-border)] flex items-center justify-center">
+            <div style={{ transform: "scale(2.5)" }}>
+              <Counter
+                value={val}
+                places={[100, 10, 1]}
+                fontSize={40}
+                padding={0}
+                gap={10}
+                textColor="white"
+                fontWeight={900}
+              />
+            </div>
+          </div>
+        );
+      };
+      return <CounterDemo />;
 
     case slug.includes("infinite-menu") || title.includes("infinite menu"):
       return (
-        <div className="w-full min-h-[240px] rounded-xl border border-[var(--sb-border)] bg-[var(--sb-bg)]">
+        <div style={{ height: "600px", position: "relative" }}>
           <InfiniteMenu
-            items={
-              props?.items ?? [
-                { id: 1, title: "Item 1" },
-                { id: 2, title: "Item 2" },
-              ]
-            }
-            scale={props?.scale ?? 1.0}
-            {...props}
+            items={[
+              {
+                image:
+                  "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=1000&auto=format&fit=crop",
+                link: "https://google.com/",
+                title: "Item 1",
+                description: "This is a description",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=1000&auto=format&fit=crop",
+                link: "https://google.com/",
+                title: "Item 2",
+                description: "This is a description",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=1000&auto=format&fit=crop",
+                link: "https://google.com/",
+                title: "Item 3",
+                description: "This is a description",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=1000&auto=format&fit=crop",
+                link: "https://google.com/",
+                title: "Item 4",
+                description: "This is a description",
+              },
+            ]}
           />
         </div>
       );
@@ -915,7 +970,9 @@ export function renderDemo(component: ComponentItem, props?: any) {
             fov={props?.fov ?? 20}
             bandColor={props?.bandColor ?? "white"}
             cardColor={props?.cardColor ?? "white"}
-            cardGLB={props?.cardGLB}
+            cardGLB={
+              props?.cardGLB ?? "https://reactbits.dev/assets/3d/card.glb"
+            }
             cardTexture={props?.cardTexture}
             {...props}
           />
@@ -1027,7 +1084,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("click-spark") || title.includes("click spark"):
       return (
-        <div className="flex items-center justify-center w-full min-h-[400px] p-8 bg-[var(--sb-bg)] rounded-xl border border-[var(--sb-border)]">
+        <div className="w-full min-h-[400px] p-8 bg-[var(--sb-bg)] rounded-xl border border-[var(--sb-border)]">
           <ClickSpark
             sparkColor={props?.sparkColor ?? "#fff"}
             sparkSize={props?.sparkSize ?? 10}
@@ -1203,24 +1260,29 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("logo-loop") || title.includes("logo loop"): {
       const techLogos = [
         {
-          src: "https://reactbits.dev/logos/react.svg",
+          src: "/react.svg",
           alt: "React",
           href: "https://react.dev",
         },
         {
-          src: "https://reactbits.dev/logos/nextjs.svg",
+          src: "/next.svg",
           alt: "Next.js",
           href: "https://nextjs.org",
         },
         {
-          src: "https://reactbits.dev/logos/typescript.svg",
+          src: "/file.svg", // Using file.svg as placeholder for typescript if not found, or maybe just remove typescript if not in public
           alt: "TypeScript",
           href: "https://www.typescriptlang.org",
         },
         {
-          src: "https://reactbits.dev/logos/tailwindcss.svg",
+          src: "/tailwind.svg",
           alt: "Tailwind CSS",
           href: "https://tailwindcss.com",
+        },
+        {
+          src: "/vercel.svg",
+          alt: "Vercel",
+          href: "https://vercel.com",
         },
       ];
       return (
@@ -1280,7 +1342,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
         <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-[var(--sb-border)]">
           <LaserFlow
             color={props?.color ?? "#FF79C6"}
-            wispDensity={props?.wispDensity ?? 1}
+            wispDensity={props?.wispDensity ?? 2}
             fogIntensity={props?.fogIntensity ?? 0.45}
             horizontalSizing={props?.horizontalSizing ?? 0.5}
             verticalSizing={props?.verticalSizing ?? 2.0}
@@ -1362,13 +1424,13 @@ export function renderDemo(component: ComponentItem, props?: any) {
             SIM_RESOLUTION={props?.SIM_RESOLUTION ?? 128}
             DYE_RESOLUTION={props?.DYE_RESOLUTION ?? 1024}
             CAPTURE_RESOLUTION={props?.CAPTURE_RESOLUTION ?? 512}
-            DENSITY_DISSIPATION={props?.DENSITY_DISSIPATION ?? 1}
+            DENSITY_DISSIPATION={props?.DENSITY_DISSIPATION ?? 3.0}
             VELOCITY_DISSIPATION={props?.VELOCITY_DISSIPATION ?? 0.2}
             PRESSURE={props?.PRESSURE ?? 0.8}
             PRESSURE_ITERATIONS={props?.PRESSURE_ITERATIONS ?? 20}
             CURL={props?.CURL ?? 30}
             SPLAT_RADIUS={props?.SPLAT_RADIUS ?? 0.25}
-            SPLAT_FORCE={props?.SPLAT_FORCE ?? 6000}
+            SPLAT_FORCE={props?.SPLAT_FORCE ?? 1500}
             SHADING={props?.SHADING ?? true}
             COLOR_UPDATE_SPEED={props?.COLOR_UPDATE_SPEED ?? 10}
             BACK_COLOR={props?.BACK_COLOR ?? { r: 0, g: 0, b: 0 }}
@@ -1555,7 +1617,22 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("fluid-glass") || title.includes("fluid glass"):
       return (
         <div className="w-full h-[600px] relative bg-[#5227ff] rounded-xl border border-[var(--sb-border)] overflow-hidden">
-          <FluidGlass mode={props?.mode || "lens"} {...props} />
+          <FluidGlass
+            mode={props?.mode || "lens"}
+            lensProps={{
+              glb: "https://reactbits.dev/assets/3d/lens.glb",
+              ...props?.lensProps,
+            }}
+            barProps={{
+              glb: "https://reactbits.dev/assets/3d/bar.glb",
+              ...props?.barProps,
+            }}
+            cubeProps={{
+              glb: "https://reactbits.dev/assets/3d/cube.glb",
+              ...props?.cubeProps,
+            }}
+            {...props}
+          />
         </div>
       );
 
@@ -1593,6 +1670,24 @@ export function renderDemo(component: ComponentItem, props?: any) {
                 img: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=500&auto=format",
                 url: "#",
                 height: 450,
+              },
+              {
+                id: "6",
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=500&auto=format",
+                url: "#",
+                height: 380,
+              },
+              {
+                id: "7",
+                img: "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=500&auto=format",
+                url: "#",
+                height: 520,
+              },
+              {
+                id: "8",
+                img: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=500&auto=format",
+                url: "#",
+                height: 400,
               },
             ]}
             stagger={props?.stagger ?? 0.05}
@@ -1632,7 +1727,8 @@ export function renderDemo(component: ComponentItem, props?: any) {
             glow={props?.glow ?? 1}
             noise={props?.noise ?? 0.5}
             hueShift={props?.hueShift ?? 0}
-            bloom={props?.bloom ?? 1}
+            bloom={props?.bloom ?? 0.6}
+            scale={props?.scale ?? 3}
             suspendWhenOffscreen={props?.suspendWhenOffscreen ?? false}
             {...props}
           />
@@ -1668,7 +1764,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             pillarWidth={props?.pillarWidth ?? 3.0}
             pillarHeight={props?.pillarHeight ?? 0.4}
             noiseIntensity={props?.noiseIntensity ?? 0.5}
-            pillarRotation={props?.pillarRotation ?? 0}
+            pillarRotation={props?.pillarRotation ?? 15}
             quality={props?.quality ?? "high"}
             {...props}
           />
@@ -2555,6 +2651,32 @@ export function renderDemo(component: ComponentItem, props?: any) {
           style={{ height: 360 }}
         >
           <CalendarDemo />
+        </div>
+      );
+
+    case slug.includes("modal-viewer") || title.includes("modal viewer"):
+      return (
+        <div className="flex items-center justify-center min-h-[400px] bg-gray-900 rounded-xl relative overflow-hidden">
+          <ModalViewer
+            triggerText="Open Demo Modal"
+            title="Beautiful Modal"
+            content={<p>This modal is powered by Framer Motion.</p>}
+          />
+        </div>
+      );
+
+    case slug.includes("spotlight-card") || title.includes("spotlight card"):
+      return (
+        <div className="flex items-center justify-center p-8 bg-black min-h-[400px] rounded-xl">
+          <SpotlightCard
+            className="w-[300px] h-[400px] rounded-xl border border-white/10 bg-white/5 p-6 text-white relative overflow-hidden"
+            spotlightColor="rgba(255, 255, 255, 0.25)"
+          >
+            <div className="text-2xl font-bold relative z-10">Spotlight</div>
+            <p className="mt-4 text-white/60 relative z-10">
+              Hover over this card to see the spotlight effect.
+            </p>
+          </SpotlightCard>
         </div>
       );
 
