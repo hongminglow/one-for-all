@@ -1,0 +1,32 @@
+<!-- src/ts-default/Components/TextAnimations/NumberCounter/NumberCounter.tsx -->
+<pre><code>
+import { motion, useSpring, useTransform } from "motion/react";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+interface NumberCounterProps {
+  value: number;
+  className?: string;
+  precision?: number;
+}
+
+const NumberCounter = React.forwardRef<HTMLSpanElement, NumberCounterProps>(
+  ({ value, className, precision = 0 }, ref) => {
+    const spring = useSpring(0, { stiffness: 50, damping: 20 });
+    const display = useTransform(spring, (current) => current.toFixed(precision));
+
+    React.useEffect(() => {
+      spring.set(value);
+    }, [value, spring]);
+
+    return (
+      <motion.span ref={ref} className={cn("tabular-nums", className)}>
+        {display}
+      </motion.span>
+    );
+  },
+);
+NumberCounter.displayName = "NumberCounter";
+
+export { NumberCounter };
+</code></pre>

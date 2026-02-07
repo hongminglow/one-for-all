@@ -21,6 +21,148 @@ export const circularTextCode = `import CircularText from './CircularText';
   className="custom-class"
 />`;
 
+export const dockCode = `import Dock from './Dock';
+
+<Dock
+  items={[
+    { icon: '🏠', label: 'Home', onClick: () => {} },
+    { icon: '🔍', label: 'Search', onClick: () => {} },
+    { icon: '📁', label: 'Files', onClick: () => {} },
+    { icon: '⚙️', label: 'Settings', onClick: () => {} },
+  ]}
+  magnification={70}
+  distance={200}
+  panelHeight={68}
+  dockHeight={256}
+  baseItemSize={50}
+/>`;
+
+export const carouselCode = `import Carousel from './Carousel';
+
+<Carousel
+  baseWidth={320}
+  autoplay={false}
+  autoplayDelay={3000}
+  pauseOnHover={false}
+  loop={false}
+  round={false}
+/>`;
+
+export const spotlightCardCode = `import SpotlightCard from './SpotlightCard';
+
+<SpotlightCard spotlightColor="rgba(255, 255, 255, 0.25)">
+  <h3 style={{ margin: 0 }}>Spotlight Card</h3>
+  <p style={{ marginTop: 8, opacity: 0.8 }}>Move your mouse around.</p>
+</SpotlightCard>`;
+
+export const flowingMenuCode = `import FlowingMenu from './FlowingMenu';
+
+<FlowingMenu
+  items={[
+    {
+      link: '#',
+      text: 'React Bits',
+      image: 'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?q=80&w=800&auto=format',
+    },
+    {
+      link: '#',
+      text: 'Components',
+      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format',
+    },
+    {
+      link: '#',
+      text: 'Backgrounds',
+      image: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=800&auto=format',
+    },
+  ]}
+  speed={15}
+/>`;
+
+export const elasticSliderCode = `import ElasticSlider from './ElasticSlider';
+
+<ElasticSlider
+  defaultValue={50}
+  startingValue={0}
+  maxValue={100}
+  isStepped={false}
+  stepSize={1}
+/>`;
+
+export const counterCode = `import Counter from './Counter';
+
+<Counter
+  value={1234.56}
+  fontSize={56}
+  padding={8}
+  gap={8}
+/>`;
+
+export const infiniteMenuCode = `import InfiniteMenu from './InfiniteMenu';
+
+<InfiniteMenu
+  items={[{ id: 1, title: 'Item 1' }, { id: 2, title: 'Item 2' }]}
+  scale={1.0}
+/>`;
+
+export const stepperCode = `import Stepper, { Step } from './Stepper';
+
+<Stepper initialStep={1}>
+  <Step>
+    <h3 style={{ margin: 0 }}>Step 1</h3>
+    <p style={{ marginTop: 8, opacity: 0.8 }}>Intro content.</p>
+  </Step>
+  <Step>
+    <h3 style={{ margin: 0 }}>Step 2</h3>
+    <p style={{ marginTop: 8, opacity: 0.8 }}>More details.</p>
+  </Step>
+  <Step>
+    <h3 style={{ margin: 0 }}>Step 3</h3>
+    <p style={{ marginTop: 8, opacity: 0.8 }}>Finish.</p>
+  </Step>
+</Stepper>`;
+
+export const liquidEtherCode = `import LiquidEther from './LiquidEther';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <LiquidEther resolution={1} />
+</div>`;
+
+export const prismCode = `import Prism from './Prism';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <Prism animationType="rotate" glow={1} noise={0.5} />
+</div>`;
+
+export const darkVeilCode = `import DarkVeil from './DarkVeil';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={0.5} />
+</div>`;
+
+export const lightPillarCode = `import LightPillar from './LightPillar';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <LightPillar topColor="#5227FF" bottomColor="#FF9FFC" intensity={1} interactive={false} />
+</div>`;
+
+export const floatingLinesCode = `import FloatingLines from './FloatingLines';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <FloatingLines interactive animationSpeed={1} />
+</div>`;
+
+export const lightRaysCode = `import LightRays from './LightRays';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <LightRays raysOrigin="top-center" raysColor="#ffffff" followMouse mouseInfluence={0.1} />
+</div>`;
+
+export const colorBendsCode = `import ColorBends from './ColorBends';
+
+<div style={{ height: 220, width: '100%', position: 'relative' }}>
+  <ColorBends rotation={45} speed={0.2} transparent={true} />
+</div>`;
+
 export const shinyTextCode = `import ShinyText from './ShinyText';
 
 <ShinyText
@@ -309,3 +451,169 @@ export const clickSparkCode = `import ClickSpark from './ClickSpark';
     <h2 style={{ color: '#fff' }}>Click anywhere!</h2>
   </div>
 </ClickSpark>`;
+
+export const stickerPeelCode = `import StickerPeel from './StickerPeel';
+
+<div style={{ width: '100%', minHeight: '400px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <StickerPeel
+    imageSrc="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60"
+    width={300}
+    rotate={15}
+    peelBackHoverPct={30}
+    peelBackActivePct={40}
+    shadowIntensity={0.6}
+    lightingIntensity={0.1}
+    peelDirection={0}
+  />
+</div>`;
+
+export const splashCursorCode = `import SplashCursor from './SplashCursor';
+
+<SplashCursor />`;
+
+export const starBorderCode = `import StarBorder from './StarBorder';
+
+<div style={{ padding: '20px', background: '#000', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+  <StarBorder color="cyan" speed="3s">
+    <div style={{ color: 'white', padding: '1em 2em' }}>Hover Me</div>
+  </StarBorder>
+</div>`;
+
+export const animatedListCode = `import AnimatedList from './AnimatedList';
+
+<div style={{ width: '100%', height: '500px', display: 'flex', justifyContent: 'center' }}>
+  <AnimatedList
+    items={['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8']}
+    onItemSelect={(item, index) => console.log(item, index)}
+    showGradients={true}
+    enableArrowNavigation={true}
+    displayScrollbar={true}
+  />
+</div>`;
+
+export const scrollStackCode = `import ScrollStack, { ScrollStackItem } from './ScrollStack';
+
+<div style={{ width: '100%', height: '600px', position: 'relative' }}>
+  <ScrollStack itemDistance={50} itemScale={0.05} itemStackDistance={20}>
+    <ScrollStackItem
+      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
+    >
+      Item 1
+    </ScrollStackItem>
+    <ScrollStackItem
+      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
+    >
+      Item 2
+    </ScrollStackItem>
+    <ScrollStackItem
+      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
+    >
+      Item 3
+    </ScrollStackItem>
+    <ScrollStackItem
+      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
+    >
+      Item 4
+    </ScrollStackItem>
+  </ScrollStack>
+</div>`;
+
+export const magicBentoCode = `import MagicBento from './MagicBento';
+
+<div style={{ width: '100%', minHeight: '600px', background: '#030014' }}>
+  <MagicBento
+    textAutoHide={true}
+    enableStars={true}
+    enableSpotlight={true}
+    enableBorderGlow={true}
+    enableTilt={true}
+    enableMagnetism={true}
+    clickEffect={true}
+  />
+</div>`;
+
+export const circularGalleryCode = `import CircularGallery from './CircularGallery';
+
+<div style={{ width: '100%', height: '600px', position: 'relative' }}>
+  <CircularGallery
+    bend={3}
+    textColor="#ffffff"
+    borderRadius={0.05}
+  />
+</div>`;
+
+export const imageTrailCode = `import ImageTrail from './ImageTrail';
+
+<div style={{ height: '500px', width: '100%', position: 'relative', overflow: 'hidden' }}>
+  <ImageTrail
+    items={[
+      "https://images.unsplash.com/photo-1653896775515-951b43021b3b?q=80&w=600&auto=format",
+      "https://images.unsplash.com/photo-1548021682-1720ed403a5b?q=80&w=600&auto=format",
+      "https://images.unsplash.com/photo-1696429380069-23dcf7a6e12e?q=80&w=600&auto=format",
+      "https://images.unsplash.com/photo-1655635643532-fa9ba2648cbe?q=80&w=600&auto=format",
+      "https://images.unsplash.com/photo-1655635643420-b9646b617bbd?q=80&w=600&auto=format",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=600&auto=format"
+    ]}
+    variant={1}
+  />
+</div>`;
+
+export const stackCode = `import Stack from './Stack';
+
+<div style={{ position: 'relative', width: '300px', height: '400px' }}>
+  <Stack
+    randomRotation={true}
+    sensitivity={180}
+    sendToBackOnClick={false}
+    cards={[
+      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 1</div>,
+      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 2</div>,
+      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#b0b0b0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 3</div>,
+      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#909090', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 4</div>
+    ]}
+  />
+</div>`;
+
+export const fluidGlassCode = `import FluidGlass from './FluidGlass';
+
+<div style={{ height: '600px', width: '100%', position: 'relative' }}>
+  <FluidGlass mode="lens" />
+</div>`;
+
+export const masonryCode = `import Masonry from './Masonry';
+
+<div style={{ width: '100%', minHeight: '600px' }}>
+  <Masonry
+    items={[
+      { id: '1', img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=500&auto=format', url: '#', height: 400 },
+      { id: '2', img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?q=80&w=500&auto=format', url: '#', height: 300 },
+      { id: '3', img: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=500&auto=format', url: '#', height: 500 },
+      { id: '4', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=500&auto=format', url: '#', height: 350 },
+      { id: '5', img: 'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=500&auto=format', url: '#', height: 450 },
+    ]}
+    stagger={0.05}
+    duration={0.5}
+  />
+</div>`;
+
+export const modelViewerCode = `import ModelViewer from './ModelViewer';
+
+<div style={{ width: '100%', height: '500px', position: 'relative' }}>
+  <ModelViewer
+    url="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+    environmentPreset="sunset"
+    autoRotate={true}
+  />
+</div>`;
+
+export const lanyardCode = `import Lanyard from './Lanyard';
+
+<div style={{ height: '500px', width: '100%', position: 'relative', overflow: 'hidden' }}>
+  <Lanyard
+    position={[0, 0, 20]}
+    gravity={[0, -40, 0]}
+    fov={20}
+    bandColor="#fff"
+    cardColor="#efefef"
+  />
+</div>`;

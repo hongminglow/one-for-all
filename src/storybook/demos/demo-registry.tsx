@@ -5,6 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import type { ComponentItem } from "@/storybook/components.generated";
 import SplitText from "@/components/reactbits/SplitText";
 import CircularText from "@/components/reactbits/CircularText";
+import Dock from "@/components/reactbits/Dock";
+import Carousel from "@/components/reactbits/Carousel";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
+import FlowingMenu from "@/components/reactbits/FlowingMenu";
+import ElasticSlider from "@/components/reactbits/ElasticSlider";
+import Counter from "@/components/reactbits/Counter";
+import InfiniteMenu from "@/components/reactbits/InfiniteMenu";
+import Stepper, { Step } from "@/components/reactbits/Stepper";
 import ShinyText from "@/components/reactbits/ShinyText";
 import CurvedLoop from "@/components/reactbits/CurvedLoop";
 import FuzzyText from "@/components/reactbits/FuzzyText";
@@ -19,9 +27,24 @@ import GlitchText from "@/components/reactbits/GlitchText";
 import ScrollVelocity from "@/components/reactbits/ScrollVelocity";
 import VariableProximity from "@/components/reactbits/VariableProximity";
 import CountUp from "@/components/reactbits/CountUp";
+import LiquidEther from "@/components/reactbits/LiquidEther";
+import Prism from "@/components/reactbits/Prism";
+import DarkVeil from "@/components/reactbits/DarkVeil";
+import LightPillar from "@/components/reactbits/LightPillar";
+import FloatingLines from "@/components/reactbits/FloatingLines";
+import LightRays from "@/components/reactbits/LightRays";
+import ColorBends from "@/components/reactbits/ColorBends";
 import {
   circularTextCode,
   curvedLoopCode,
+  carouselCode,
+  dockCode,
+  spotlightCardCode,
+  flowingMenuCode,
+  elasticSliderCode,
+  counterCode,
+  infiniteMenuCode,
+  stepperCode,
   fallingTextCode,
   fuzzyTextCode,
   gradientTextCode,
@@ -36,6 +59,13 @@ import {
   scrollVelocityCode,
   variableProximityCode,
   countUpCode,
+  liquidEtherCode,
+  prismCode,
+  darkVeilCode,
+  lightPillarCode,
+  floatingLinesCode,
+  lightRaysCode,
+  colorBendsCode,
   electricBorderCode,
   antigravityCode,
   logoLoopCode,
@@ -44,15 +74,40 @@ import {
   magnetLinesCode,
   ghostCursorCode,
   clickSparkCode,
+  stickerPeelCode,
+  splashCursorCode,
+  starBorderCode,
+  animatedListCode,
+  scrollStackCode,
+  magicBentoCode,
+  circularGalleryCode,
+  imageTrailCode,
+  stackCode,
+  fluidGlassCode,
+  masonryCode,
+  modelViewerCode,
 } from "@/storybook/demos/code-snippets";
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 import Antigravity from "@/components/reactbits/Antigravity";
+import SplashCursor from "@/components/reactbits/SplashCursor";
+import StarBorder from "@/components/reactbits/StarBorder";
+import AnimatedList from "@/components/reactbits/AnimatedList";
+import ScrollStack from "@/components/reactbits/ScrollStack";
+import MagicBento from "@/components/reactbits/MagicBento";
+import CircularGallery from "@/components/reactbits/CircularGallery";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import TargetCursor from "@/components/reactbits/TargetCursor";
 import LaserFlow from "@/components/reactbits/LaserFlow";
 import MagnetLines from "@/components/reactbits/MagnetLines";
 import GhostCursor from "@/components/reactbits/GhostCursor";
 import ClickSpark from "@/components/reactbits/ClickSpark";
+import StickerPeel from "@/components/reactbits/StickerPeel";
+import ImageTrail from "@/components/reactbits/ImageTrail";
+import Stack from "@/components/reactbits/Stack";
+import FluidGlass from "@/components/reactbits/FluidGlass";
+import Masonry from "@/components/reactbits/Masonry";
+import ModelViewer from "@/components/reactbits/ModelViewer";
+import Lanyard from "@/components/reactbits/Lanyard";
 
 function TypewriterDemo(props: { text: string }) {
   return (
@@ -336,6 +391,219 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="custom-class text-[var(--sb-text-strong)]"
           {...props}
         />
+      );
+
+    case slug.includes("dock") || title.includes("dock"):
+      return (
+        <div className="w-full min-h-80 bg-(--sb-bg) rounded-xl border border-(--sb-border) relative overflow-hidden">
+          <Dock
+            items={[
+              {
+                icon: (
+                  <span className="text-[22px] leading-none text-white">
+                    🏠
+                  </span>
+                ),
+                label: "Home",
+                onClick: () => {},
+              },
+              {
+                icon: (
+                  <span className="text-[22px] leading-none text-white">
+                    🔍
+                  </span>
+                ),
+                label: "Search",
+                onClick: () => {},
+              },
+              {
+                icon: (
+                  <span className="text-[22px] leading-none text-white">
+                    📁
+                  </span>
+                ),
+                label: "Files",
+                onClick: () => {},
+              },
+              {
+                icon: (
+                  <span className="text-[22px] leading-none text-white">
+                    ⚙️
+                  </span>
+                ),
+                label: "Settings",
+                onClick: () => {},
+              },
+            ]}
+            magnification={props?.magnification ?? 70}
+            distance={props?.distance ?? 200}
+            panelHeight={props?.panelHeight ?? 68}
+            dockHeight={props?.dockHeight ?? 256}
+            baseItemSize={props?.baseItemSize ?? 50}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("carousel") || title.includes("carousel"):
+      return (
+        <div className="w-full flex items-center justify-center">
+          <Carousel
+            baseWidth={props?.baseWidth ?? 320}
+            autoplay={props?.autoplay ?? false}
+            autoplayDelay={props?.autoplayDelay ?? 3000}
+            pauseOnHover={props?.pauseOnHover ?? false}
+            loop={props?.loop ?? false}
+            round={props?.round ?? false}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("spotlight-card") || title.includes("spotlight"):
+      return (
+        <div className="w-full max-w-[640px]">
+          <SpotlightCard
+            spotlightColor={
+              props?.spotlightColor ?? "rgba(255, 255, 255, 0.25)"
+            }
+            {...props}
+          >
+            <div className="text-[18px] font-black text-white">
+              Spotlight Card
+            </div>
+            <div className="mt-2 text-[13px] font-medium text-white/70">
+              Move your mouse around.
+            </div>
+          </SpotlightCard>
+        </div>
+      );
+
+    case slug.includes("flowing-menu") || title.includes("flowing menu"):
+      return (
+        <div className="w-full h-[360px] rounded-xl overflow-hidden border border-[var(--sb-border)]">
+          <FlowingMenu
+            items={
+              props?.items ?? [
+                {
+                  link: "#",
+                  text: "React Bits",
+                  image:
+                    "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?q=80&w=800&auto=format",
+                },
+                {
+                  link: "#",
+                  text: "Components",
+                  image:
+                    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format",
+                },
+                {
+                  link: "#",
+                  text: "Backgrounds",
+                  image:
+                    "https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=800&auto=format",
+                },
+              ]
+            }
+            speed={props?.speed ?? 15}
+            textColor={props?.textColor ?? "#ffffff"}
+            bgColor={props?.bgColor ?? "#060010"}
+            marqueeBgColor={props?.marqueeBgColor ?? "#ffffff"}
+            marqueeTextColor={props?.marqueeTextColor ?? "#060010"}
+            borderColor={props?.borderColor ?? "#ffffff"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("elastic-slider") || title.includes("elastic slider"):
+      return (
+        <div className="w-full flex items-center justify-center relative min-h-[220px]">
+          <ElasticSlider
+            defaultValue={props?.defaultValue ?? 50}
+            startingValue={props?.startingValue ?? 0}
+            maxValue={props?.maxValue ?? 100}
+            isStepped={props?.isStepped ?? false}
+            stepSize={props?.stepSize ?? 1}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("counter") || title.includes("counter"):
+      return (
+        <div className="w-full flex items-center justify-center">
+          <Counter
+            value={props?.value ?? 1234.56}
+            fontSize={props?.fontSize ?? 56}
+            padding={props?.padding ?? 8}
+            gap={props?.gap ?? 8}
+            textColor={props?.textColor ?? "var(--sb-text-strong)"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("infinite-menu") || title.includes("infinite menu"):
+      return (
+        <div className="w-full min-h-[240px] rounded-xl border border-[var(--sb-border)] bg-[var(--sb-bg)]">
+          <InfiniteMenu
+            items={
+              props?.items ?? [
+                { id: 1, title: "Item 1" },
+                { id: 2, title: "Item 2" },
+              ]
+            }
+            scale={props?.scale ?? 1.0}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("stepper") || title.includes("stepper"):
+      return (
+        <div className="w-full">
+          <Stepper
+            initialStep={props?.initialStep ?? 1}
+            disableStepIndicators={props?.disableStepIndicators ?? false}
+            {...props}
+          >
+            <Step>
+              <div className="text-[16px] font-black text-white">Step 1</div>
+              <div className="mt-2 text-[12px] font-medium text-white/70">
+                Intro content.
+              </div>
+            </Step>
+            <Step>
+              <div className="text-[16px] font-black text-white">Step 2</div>
+              <div className="mt-2 text-[12px] font-medium text-white/70">
+                More details.
+              </div>
+            </Step>
+            <Step>
+              <div className="text-[16px] font-black text-white">Step 3</div>
+              <div className="mt-2 text-[12px] font-medium text-white/70">
+                Finish.
+              </div>
+            </Step>
+          </Stepper>
+        </div>
+      );
+
+    case slug.includes("lanyard") || title.includes("lanyard"):
+      return (
+        <div className="w-full h-full min-h-[500px] bg-black rounded-xl overflow-hidden relative">
+          <Lanyard
+            position={props?.position ?? [0, 0, 20]}
+            gravity={props?.gravity ?? [0, -40, 0]}
+            fov={props?.fov ?? 20}
+            bandColor={props?.bandColor ?? "white"}
+            cardColor={props?.cardColor ?? "white"}
+            cardGLB={props?.cardGLB}
+            cardTexture={props?.cardTexture}
+            {...props}
+          />
+        </div>
       );
 
     case slug.includes("shiny-text") || title.includes("shiny text"):
@@ -750,6 +1018,403 @@ export function renderDemo(component: ComponentItem, props?: any) {
           </div>
         </div>
       );
+
+    case slug.includes("sticker-peel") || title.includes("sticker peel"):
+      return (
+        <div className="w-full flex items-center justify-center overflow-hidden bg-[#000] min-h-[400px] rounded-xl border border-[var(--sb-border)] relative">
+          <StickerPeel
+            imageSrc={
+              props?.imageSrc ??
+              "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60"
+            }
+            width={props?.width ?? 300}
+            rotate={props?.rotate ?? 15}
+            peelBackHoverPct={props?.peelBackHoverPct ?? 30}
+            peelBackActivePct={props?.peelBackActivePct ?? 40}
+            peelDirection={props?.peelDirection ?? 0}
+            shadowIntensity={props?.shadowIntensity ?? 0.6}
+            lightingIntensity={props?.lightingIntensity ?? 0.1}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("splash-cursor") || title.includes("splash cursor"):
+      return (
+        <div className="w-full h-[500px] bg-[#000] relative overflow-hidden rounded-xl border border-[var(--sb-border)]">
+          <SplashCursor
+            SIM_RESOLUTION={props?.SIM_RESOLUTION ?? 128}
+            DYE_RESOLUTION={props?.DYE_RESOLUTION ?? 1024}
+            CAPTURE_RESOLUTION={props?.CAPTURE_RESOLUTION ?? 512}
+            DENSITY_DISSIPATION={props?.DENSITY_DISSIPATION ?? 1}
+            VELOCITY_DISSIPATION={props?.VELOCITY_DISSIPATION ?? 0.2}
+            PRESSURE={props?.PRESSURE ?? 0.8}
+            PRESSURE_ITERATIONS={props?.PRESSURE_ITERATIONS ?? 20}
+            CURL={props?.CURL ?? 30}
+            SPLAT_RADIUS={props?.SPLAT_RADIUS ?? 0.25}
+            SPLAT_FORCE={props?.SPLAT_FORCE ?? 6000}
+            SHADING={props?.SHADING ?? true}
+            COLOR_UPDATE_SPEED={props?.COLOR_UPDATE_SPEED ?? 10}
+            BACK_COLOR={props?.BACK_COLOR ?? { r: 0, g: 0, b: 0 }}
+            TRANSPARENT={props?.TRANSPARENT ?? true}
+            {...props}
+          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <h3 className="text-white text-3xl font-bold opacity-50">
+              Move Mouse
+            </h3>
+          </div>
+        </div>
+      );
+
+    case slug.includes("star-border") || title.includes("star border"):
+      return (
+        <div className="w-full flex items-center justify-center min-h-[300px] bg-[#000] rounded-xl border border-[var(--sb-border)]">
+          <StarBorder
+            as={props?.as || "button"}
+            className={props?.className || ""}
+            color={props?.color || "cyan"}
+            speed={props?.speed || "6s"}
+            thickness={props?.thickness}
+            {...props}
+          >
+            <div className="text-white px-8 py-4">Hover Me</div>
+          </StarBorder>
+        </div>
+      );
+
+    case slug.includes("animated-list") || title.includes("animated list"):
+      return (
+        <div className="w-full flex items-center justify-center min-h-[500px] bg-[#000] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <AnimatedList
+            items={
+              props?.items || [
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5",
+                "Item 6",
+                "Item 7",
+                "Item 8",
+              ]
+            }
+            onItemSelect={
+              props?.onItemSelect || ((item, index) => console.log(item, index))
+            }
+            showGradients={props?.showGradients ?? true}
+            enableArrowNavigation={props?.enableArrowNavigation ?? true}
+            displayScrollbar={props?.displayScrollbar ?? true}
+            initialSelectedIndex={props?.initialSelectedIndex ?? -1}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("scroll-stack") || title.includes("scroll stack"):
+      return (
+        <div className="w-full h-[600px] relative bg-[#060606] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <ScrollStack
+            itemDistance={props?.itemDistance || 50}
+            itemScale={props?.itemScale || 0.05}
+            itemStackDistance={props?.itemStackDistance || 20}
+            stackPosition={props?.stackPosition || "20%"}
+            scaleEndPosition={props?.scaleEndPosition || "10%"}
+            baseScale={props?.baseScale || 0.85}
+            scaleDuration={props?.scaleDuration || 0.5}
+            rotationAmount={props?.rotationAmount || 0}
+            blurAmount={props?.blurAmount || 0}
+            useWindowScroll={false}
+            {...props}
+          >
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div
+                key={i}
+                className="scroll-stack-card bg-[#111] text-white flex items-center justify-center text-4xl font-bold border border-white/10"
+              >
+                Item {i}
+              </div>
+            ))}
+          </ScrollStack>
+        </div>
+      );
+
+    case slug.includes("magic-bento") || title.includes("magic bento"):
+      return (
+        <div className="w-full min-h-[600px] bg-[#030014] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <MagicBento
+            textAutoHide={props?.textAutoHide ?? true}
+            enableStars={props?.enableStars ?? true}
+            enableSpotlight={props?.enableSpotlight ?? true}
+            enableBorderGlow={props?.enableBorderGlow ?? true}
+            enableTilt={props?.enableTilt ?? false}
+            enableMagnetism={props?.enableMagnetism ?? true}
+            clickEffect={props?.clickEffect ?? true}
+            spotlightRadius={props?.spotlightRadius || 300}
+            particleCount={props?.particleCount || 12}
+            glowColor={props?.glowColor || "132, 0, 255"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("circular-gallery") ||
+      title.includes("circular gallery"):
+      return (
+        <div className="w-full h-[600px] position-relative bg-[#000] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <CircularGallery
+            bend={props?.bend || 3}
+            textColor={props?.textColor || "#ffffff"}
+            borderRadius={props?.borderRadius || 0.05}
+            font={props?.font || "bold 30px Figtree"}
+            scrollSpeed={props?.scrollSpeed || 2}
+            scrollEase={props?.scrollEase || 0.05}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("image-trail") || title.includes("image trail"):
+      return (
+        <div className="w-full h-[500px] relative overflow-hidden bg-[#111] rounded-xl border border-[var(--sb-border)]">
+          <ImageTrail
+            items={
+              props?.items || [
+                "https://images.unsplash.com/photo-1653896775515-951b43021b3b?q=80&w=600&auto=format",
+                "https://images.unsplash.com/photo-1548021682-1720ed403a5b?q=80&w=600&auto=format",
+                "https://images.unsplash.com/photo-1696429380069-23dcf7a6e12e?q=80&w=600&auto=format",
+                "https://images.unsplash.com/photo-1655635643532-fa9ba2648cbe?q=80&w=600&auto=format",
+                "https://images.unsplash.com/photo-1655635643420-b9646b617bbd?q=80&w=600&auto=format",
+                "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=600&auto=format",
+              ]
+            }
+            variant={props?.variant || 1}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("stack") || title.includes("stack"):
+      return (
+        <div className="w-full h-[600px] flex items-center justify-center bg-[#f0f0f0] dark:bg-[#111] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <div
+            style={{ position: "relative", width: "300px", height: "400px" }}
+          >
+            <Stack
+              randomRotation={props?.randomRotation ?? true}
+              sensitivity={props?.sensitivity ?? 180}
+              sendToBackOnClick={props?.sendToBackOnClick ?? false}
+              cards={[
+                <div
+                  key={1}
+                  className="w-full h-full rounded-xl bg-white shadow-lg flex items-center justify-center text-4xl font-bold text-black border border-black/10"
+                >
+                  1
+                </div>,
+                <div
+                  key={2}
+                  className="w-full h-full rounded-xl bg-gray-100 shadow-lg flex items-center justify-center text-4xl font-bold text-black border border-black/10"
+                >
+                  2
+                </div>,
+                <div
+                  key={3}
+                  className="w-full h-full rounded-xl bg-gray-200 shadow-lg flex items-center justify-center text-4xl font-bold text-black border border-black/10"
+                >
+                  3
+                </div>,
+                <div
+                  key={4}
+                  className="w-full h-full rounded-xl bg-gray-300 shadow-lg flex items-center justify-center text-4xl font-bold text-black border border-black/10"
+                >
+                  4
+                </div>,
+              ]}
+              {...props}
+            />
+          </div>
+        </div>
+      );
+
+    case slug.includes("fluid-glass") || title.includes("fluid glass"):
+      return (
+        <div className="w-full h-[600px] relative bg-[#5227ff] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <FluidGlass mode={props?.mode || "lens"} {...props} />
+        </div>
+      );
+
+    case slug.includes("masonry") || title.includes("masonry"):
+      return (
+        <div className="w-full min-h-[600px] bg-[#111] rounded-xl border border-[var(--sb-border)] p-4">
+          <Masonry
+            items={[
+              {
+                id: "1",
+                img: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=500&auto=format",
+                url: "#",
+                height: 400,
+              },
+              {
+                id: "2",
+                img: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?q=80&w=500&auto=format",
+                url: "#",
+                height: 300,
+              },
+              {
+                id: "3",
+                img: "https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=500&auto=format",
+                url: "#",
+                height: 500,
+              },
+              {
+                id: "4",
+                img: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=500&auto=format",
+                url: "#",
+                height: 350,
+              },
+              {
+                id: "5",
+                img: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=500&auto=format",
+                url: "#",
+                height: 450,
+              },
+            ]}
+            stagger={props?.stagger ?? 0.05}
+            duration={props?.duration ?? 0.5}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("model-viewer") || title.includes("model viewer"):
+      return (
+        <div className="w-full h-[600px] relative bg-[#111] rounded-xl border border-[var(--sb-border)] overflow-hidden">
+          <ModelViewer
+            url={
+              props?.url ||
+              "https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+            }
+            environmentPreset={props?.environmentPreset || "sunset"}
+            autoRotate={props?.autoRotate ?? true}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("liquid-ether") || title.includes("liquid ether"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <LiquidEther resolution={props?.resolution ?? 1} {...props} />
+        </div>
+      );
+
+    case slug.includes("prism") || title.includes("prism"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <Prism
+            animationType={props?.animationType ?? "rotate"}
+            glow={props?.glow ?? 1}
+            noise={props?.noise ?? 0.5}
+            hueShift={props?.hueShift ?? 0}
+            bloom={props?.bloom ?? 1}
+            suspendWhenOffscreen={props?.suspendWhenOffscreen ?? false}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("dark-veil") || title.includes("dark veil"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <DarkVeil
+            hueShift={props?.hueShift ?? 0}
+            noiseIntensity={props?.noiseIntensity ?? 0}
+            scanlineIntensity={props?.scanlineIntensity ?? 0}
+            speed={props?.speed ?? 0.5}
+            scanlineFrequency={props?.scanlineFrequency ?? 0}
+            warpAmount={props?.warpAmount ?? 0}
+            resolutionScale={props?.resolutionScale ?? 1}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("light-pillar") || title.includes("light pillar"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <LightPillar
+            topColor={props?.topColor ?? "#5227FF"}
+            bottomColor={props?.bottomColor ?? "#FF9FFC"}
+            intensity={props?.intensity ?? 1}
+            rotationSpeed={props?.rotationSpeed ?? 0.3}
+            interactive={props?.interactive ?? false}
+            glowAmount={props?.glowAmount ?? 0.005}
+            pillarWidth={props?.pillarWidth ?? 3.0}
+            pillarHeight={props?.pillarHeight ?? 0.4}
+            noiseIntensity={props?.noiseIntensity ?? 0.5}
+            pillarRotation={props?.pillarRotation ?? 0}
+            quality={props?.quality ?? "high"}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("floating-lines") || title.includes("floating lines"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <FloatingLines
+            animationSpeed={props?.animationSpeed ?? 1}
+            interactive={props?.interactive ?? true}
+            bendRadius={props?.bendRadius ?? 5}
+            bendStrength={props?.bendStrength ?? -0.5}
+            mouseDamping={props?.mouseDamping ?? 0.05}
+            parallax={props?.parallax ?? true}
+            parallaxStrength={props?.parallaxStrength ?? 0.2}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("light-rays") || title.includes("light rays"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <LightRays
+            raysOrigin={props?.raysOrigin ?? "top-center"}
+            raysColor={props?.raysColor ?? "#ffffff"}
+            raysSpeed={props?.raysSpeed ?? 1}
+            lightSpread={props?.lightSpread ?? 1}
+            rayLength={props?.rayLength ?? 2}
+            pulsating={props?.pulsating ?? false}
+            fadeDistance={props?.fadeDistance ?? 1}
+            saturation={props?.saturation ?? 1}
+            followMouse={props?.followMouse ?? true}
+            mouseInfluence={props?.mouseInfluence ?? 0.1}
+            noiseAmount={props?.noiseAmount ?? 0}
+            distortion={props?.distortion ?? 0}
+            {...props}
+          />
+        </div>
+      );
+
+    case slug.includes("color-bends") || title.includes("color bends"):
+      return (
+        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+          <ColorBends
+            rotation={props?.rotation ?? 45}
+            speed={props?.speed ?? 0.2}
+            transparent={props?.transparent ?? true}
+            autoRotate={props?.autoRotate ?? 0}
+            scale={props?.scale ?? 1}
+            frequency={props?.frequency ?? 1}
+            warpStrength={props?.warpStrength ?? 1}
+            mouseInfluence={props?.mouseInfluence ?? 1}
+            parallax={props?.parallax ?? 0.5}
+            noise={props?.noise ?? 0.1}
+            {...props}
+          />
+        </div>
+      );
+
     // ... other cases fallback to generic
   }
 
@@ -841,6 +1506,280 @@ export function getDemoControls(
         label: "On Hover",
         defaultValue: "speedUp",
         options: ["speedUp", "slowDown", "pause", "goBonkers"],
+      },
+    ];
+  }
+
+  if (slug.includes("dock") || title.includes("dock")) {
+    return [
+      {
+        type: "number",
+        param: "magnification",
+        label: "Magnification",
+        defaultValue: 70,
+        min: 40,
+        max: 140,
+        step: 2,
+      },
+      {
+        type: "number",
+        param: "distance",
+        label: "Distance",
+        defaultValue: 200,
+        min: 60,
+        max: 400,
+        step: 5,
+      },
+      {
+        type: "number",
+        param: "panelHeight",
+        label: "Panel Height",
+        defaultValue: 68,
+        min: 40,
+        max: 120,
+        step: 2,
+      },
+      {
+        type: "number",
+        param: "dockHeight",
+        label: "Dock Height",
+        defaultValue: 256,
+        min: 120,
+        max: 500,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "baseItemSize",
+        label: "Base Item Size",
+        defaultValue: 50,
+        min: 28,
+        max: 90,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug.includes("carousel") || title.includes("carousel")) {
+    return [
+      {
+        type: "number",
+        param: "baseWidth",
+        label: "Base Width",
+        defaultValue: 320,
+        min: 220,
+        max: 520,
+        step: 10,
+      },
+      {
+        type: "boolean",
+        param: "autoplay",
+        label: "Autoplay",
+        defaultValue: false,
+      },
+      {
+        type: "number",
+        param: "autoplayDelay",
+        label: "Autoplay Delay (ms)",
+        defaultValue: 3000,
+        min: 500,
+        max: 10000,
+        step: 250,
+      },
+      {
+        type: "boolean",
+        param: "pauseOnHover",
+        label: "Pause On Hover",
+        defaultValue: false,
+      },
+      {
+        type: "boolean",
+        param: "loop",
+        label: "Loop",
+        defaultValue: false,
+      },
+      {
+        type: "boolean",
+        param: "round",
+        label: "Round",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (slug.includes("spotlight-card") || title.includes("spotlight")) {
+    return [
+      {
+        type: "color",
+        param: "spotlightColor",
+        label: "Spotlight Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("flowing-menu") || title.includes("flowing menu")) {
+    return [
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 15,
+        min: 2,
+        max: 60,
+        step: 1,
+      },
+      {
+        type: "color",
+        param: "textColor",
+        label: "Text Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "color",
+        param: "bgColor",
+        label: "Background Color",
+        defaultValue: "#060010",
+      },
+      {
+        type: "color",
+        param: "marqueeBgColor",
+        label: "Marquee BG Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "color",
+        param: "marqueeTextColor",
+        label: "Marquee Text Color",
+        defaultValue: "#060010",
+      },
+      {
+        type: "color",
+        param: "borderColor",
+        label: "Border Color",
+        defaultValue: "#ffffff",
+      },
+    ];
+  }
+
+  if (slug.includes("elastic-slider") || title.includes("elastic slider")) {
+    return [
+      {
+        type: "number",
+        param: "defaultValue",
+        label: "Default Value",
+        defaultValue: 50,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "startingValue",
+        label: "Starting Value",
+        defaultValue: 0,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "maxValue",
+        label: "Max Value",
+        defaultValue: 100,
+        min: 1,
+        max: 500,
+        step: 1,
+      },
+      {
+        type: "boolean",
+        param: "isStepped",
+        label: "Stepped",
+        defaultValue: false,
+      },
+      {
+        type: "number",
+        param: "stepSize",
+        label: "Step Size",
+        defaultValue: 1,
+        min: 1,
+        max: 25,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug.includes("counter") || title.includes("counter")) {
+    return [
+      {
+        type: "number",
+        param: "value",
+        label: "Value",
+        defaultValue: 1234.56,
+        min: 0,
+        max: 999999,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "fontSize",
+        label: "Font Size",
+        defaultValue: 56,
+        min: 12,
+        max: 140,
+        step: 2,
+      },
+      {
+        type: "number",
+        param: "padding",
+        label: "Padding",
+        defaultValue: 8,
+        min: 0,
+        max: 40,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "gap",
+        label: "Gap",
+        defaultValue: 8,
+        min: 0,
+        max: 24,
+        step: 1,
+      },
+    ];
+  }
+
+  if (slug.includes("infinite-menu") || title.includes("infinite menu")) {
+    return [
+      {
+        type: "number",
+        param: "scale",
+        label: "Scale",
+        defaultValue: 1,
+        min: 0.5,
+        max: 2,
+        step: 0.1,
+      },
+    ];
+  }
+
+  if (slug.includes("stepper") || title.includes("stepper")) {
+    return [
+      {
+        type: "number",
+        param: "initialStep",
+        label: "Initial Step",
+        defaultValue: 1,
+        min: 1,
+        max: 4,
+        step: 1,
+      },
+      {
+        type: "boolean",
+        param: "disableStepIndicators",
+        label: "Disable Step Indicators",
+        defaultValue: false,
       },
     ];
   }
@@ -1726,6 +2665,625 @@ export function getDemoControls(
     ];
   }
 
+  if (slug.includes("sticker-peel") || title.includes("sticker peel")) {
+    return [
+      {
+        type: "text",
+        param: "imageSrc",
+        label: "Image Source",
+        defaultValue:
+          "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60",
+      },
+      {
+        type: "number",
+        param: "width",
+        label: "Width (px)",
+        defaultValue: 300,
+        min: 100,
+        max: 500,
+        step: 10,
+      },
+      {
+        type: "number",
+        param: "rotate",
+        label: "Rotate",
+        defaultValue: 15,
+        min: -180,
+        max: 180,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "peelBackHoverPct",
+        label: "Hover Peel %",
+        defaultValue: 30,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "peelBackActivePct",
+        label: "Active Peel %",
+        defaultValue: 40,
+        min: 0,
+        max: 100,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "peelDirection",
+        label: "Direction",
+        defaultValue: 0,
+        min: 0,
+        max: 360,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "shadowIntensity",
+        label: "Shadow",
+        defaultValue: 0.6,
+        min: 0,
+        max: 1,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "lightingIntensity",
+        label: "Lighting",
+        defaultValue: 0.1,
+        min: 0,
+        max: 1,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("splash-cursor") || title.includes("splash cursor")) {
+    return [
+      {
+        type: "number",
+        param: "SIM_RESOLUTION",
+        label: "Sim Res",
+        defaultValue: 128,
+      },
+      {
+        type: "number",
+        param: "DYE_RESOLUTION",
+        label: "Dye Res",
+        defaultValue: 1024,
+      },
+      {
+        type: "number",
+        param: "DENSITY_DISSIPATION",
+        label: "Density Dissipation",
+        defaultValue: 1,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "VELOCITY_DISSIPATION",
+        label: "Velocity Dissipation",
+        defaultValue: 0.2,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "PRESSURE",
+        label: "Pressure",
+        defaultValue: 0.8,
+        step: 0.1,
+      },
+      { type: "number", param: "CURL", label: "Curl", defaultValue: 30 },
+      {
+        type: "number",
+        param: "SPLAT_RADIUS",
+        label: "Splat Radius",
+        defaultValue: 0.25,
+        step: 0.01,
+      },
+      {
+        type: "number",
+        param: "SPLAT_FORCE",
+        label: "Splat Force",
+        defaultValue: 6000,
+      },
+      {
+        type: "boolean",
+        param: "SHADING",
+        label: "Shading",
+        defaultValue: true,
+      },
+    ];
+  }
+
+  if (slug.includes("star-border") || title.includes("star border")) {
+    return [
+      { type: "color", param: "color", label: "Color", defaultValue: "cyan" },
+      { type: "text", param: "speed", label: "Speed", defaultValue: "6s" },
+      {
+        type: "number",
+        param: "thickness",
+        label: "Thickness",
+        defaultValue: 1,
+      },
+    ];
+  }
+
+  if (slug.includes("animated-list") || title.includes("animated list")) {
+    return [
+      {
+        type: "boolean",
+        param: "showGradients",
+        label: "Show Gradients",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "enableArrowNavigation",
+        label: "Arrow Nav",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "displayScrollbar",
+        label: "Scrollbar",
+        defaultValue: true,
+      },
+    ];
+  }
+
+  if (slug.includes("scroll-stack") || title.includes("scroll stack")) {
+    return [
+      {
+        type: "number",
+        param: "itemDistance",
+        label: "Distance",
+        defaultValue: 50,
+      },
+      {
+        type: "number",
+        param: "itemScale",
+        label: "Scale Step",
+        defaultValue: 0.05,
+        step: 0.01,
+      },
+      {
+        type: "number",
+        param: "itemStackDistance",
+        label: "Stack Dist",
+        defaultValue: 20,
+      },
+      {
+        type: "text",
+        param: "stackPosition",
+        label: "Stack Pos",
+        defaultValue: "20%",
+      },
+      {
+        type: "number",
+        param: "rotationAmount",
+        label: "Rotation",
+        defaultValue: 0,
+      },
+      { type: "number", param: "blurAmount", label: "Blur", defaultValue: 0 },
+    ];
+  }
+
+  if (slug.includes("magic-bento") || title.includes("magic bento")) {
+    return [
+      {
+        type: "boolean",
+        param: "textAutoHide",
+        label: "Text Auto Hide",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "enableStars",
+        label: "Stars",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "enableSpotlight",
+        label: "Spotlight",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "enableBorderGlow",
+        label: "Border Glow",
+        defaultValue: true,
+      },
+      {
+        type: "boolean",
+        param: "enableTilt",
+        label: "Tilt",
+        defaultValue: false,
+      },
+      {
+        type: "boolean",
+        param: "enableMagnetism",
+        label: "Magnetism",
+        defaultValue: true,
+      },
+      {
+        type: "color",
+        param: "glowColor",
+        label: "Glow Color",
+        defaultValue: "132, 0, 255",
+      },
+    ];
+  }
+
+  if (slug.includes("liquid-ether") || title.includes("liquid ether")) {
+    return [
+      {
+        type: "number",
+        param: "resolution",
+        label: "Resolution Scale",
+        defaultValue: 1,
+        min: 0.25,
+        max: 2,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("prism") || title.includes("prism")) {
+    return [
+      {
+        type: "select",
+        param: "animationType",
+        label: "Animation",
+        defaultValue: "rotate",
+        options: ["rotate", "hover", "3drotate"],
+      },
+      {
+        type: "number",
+        param: "glow",
+        label: "Glow",
+        defaultValue: 1,
+        min: 0,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "noise",
+        label: "Noise",
+        defaultValue: 0.5,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "hueShift",
+        label: "Hue Shift",
+        defaultValue: 0,
+        min: -3.14,
+        max: 3.14,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "bloom",
+        label: "Bloom",
+        defaultValue: 1,
+        min: 0,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "suspendWhenOffscreen",
+        label: "Suspend Offscreen",
+        defaultValue: false,
+      },
+    ];
+  }
+
+  if (slug.includes("dark-veil") || title.includes("dark veil")) {
+    return [
+      {
+        type: "number",
+        param: "hueShift",
+        label: "Hue Shift",
+        defaultValue: 0,
+        min: -180,
+        max: 180,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 0.5,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "noiseIntensity",
+        label: "Noise",
+        defaultValue: 0,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+      {
+        type: "number",
+        param: "scanlineIntensity",
+        label: "Scanlines",
+        defaultValue: 0,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+      {
+        type: "number",
+        param: "warpAmount",
+        label: "Warp",
+        defaultValue: 0,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "resolutionScale",
+        label: "Resolution Scale",
+        defaultValue: 1,
+        min: 0.25,
+        max: 2,
+        step: 0.05,
+      },
+    ];
+  }
+
+  if (slug.includes("light-pillar") || title.includes("light pillar")) {
+    return [
+      {
+        type: "color",
+        param: "topColor",
+        label: "Top Color",
+        defaultValue: "#5227FF",
+      },
+      {
+        type: "color",
+        param: "bottomColor",
+        label: "Bottom Color",
+        defaultValue: "#FF9FFC",
+      },
+      {
+        type: "number",
+        param: "intensity",
+        label: "Intensity",
+        defaultValue: 1,
+        min: 0,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "rotationSpeed",
+        label: "Rotation Speed",
+        defaultValue: 0.3,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "interactive",
+        label: "Interactive",
+        defaultValue: false,
+      },
+      {
+        type: "select",
+        param: "quality",
+        label: "Quality",
+        defaultValue: "high",
+        options: ["low", "medium", "high"],
+      },
+    ];
+  }
+
+  if (slug.includes("floating-lines") || title.includes("floating lines")) {
+    return [
+      {
+        type: "boolean",
+        param: "interactive",
+        label: "Interactive",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "animationSpeed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0,
+        max: 5,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "bendRadius",
+        label: "Bend Radius",
+        defaultValue: 5,
+        min: 0,
+        max: 20,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "bendStrength",
+        label: "Bend Strength",
+        defaultValue: -0.5,
+        min: -2,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "parallax",
+        label: "Parallax",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "parallaxStrength",
+        label: "Parallax Strength",
+        defaultValue: 0.2,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+    ];
+  }
+
+  if (slug.includes("light-rays") || title.includes("light rays")) {
+    return [
+      {
+        type: "select",
+        param: "raysOrigin",
+        label: "Origin",
+        defaultValue: "top-center",
+        options: [
+          "top-center",
+          "top-left",
+          "top-right",
+          "left",
+          "right",
+          "bottom-center",
+          "bottom-left",
+          "bottom-right",
+        ],
+      },
+      {
+        type: "color",
+        param: "raysColor",
+        label: "Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "number",
+        param: "raysSpeed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0,
+        max: 5,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "lightSpread",
+        label: "Spread",
+        defaultValue: 1,
+        min: 0.1,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "pulsating",
+        label: "Pulsating",
+        defaultValue: false,
+      },
+      {
+        type: "boolean",
+        param: "followMouse",
+        label: "Follow Mouse",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "mouseInfluence",
+        label: "Mouse Influence",
+        defaultValue: 0.1,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+    ];
+  }
+
+  if (slug.includes("color-bends") || title.includes("color bends")) {
+    return [
+      {
+        type: "number",
+        param: "rotation",
+        label: "Rotation (deg)",
+        defaultValue: 45,
+        min: -180,
+        max: 180,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 0.2,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "transparent",
+        label: "Transparent",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "warpStrength",
+        label: "Warp",
+        defaultValue: 1,
+        min: 0,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "noise",
+        label: "Noise",
+        defaultValue: 0.1,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+    ];
+  }
+
+  if (slug.includes("circular-gallery") || title.includes("circular gallery")) {
+    return [
+      {
+        type: "number",
+        param: "bend",
+        label: "Bend",
+        defaultValue: 3,
+        step: 0.1,
+      },
+      {
+        type: "color",
+        param: "textColor",
+        label: "Text Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "number",
+        param: "borderRadius",
+        label: "Border Radius",
+        defaultValue: 0.05,
+        step: 0.01,
+      },
+    ];
+  }
+
   return null;
 }
 
@@ -1738,6 +3296,19 @@ export function getDemoCode(component: ComponentItem) {
     return splitTextCode;
   if (slug.includes("circular-text") || title.includes("circular text"))
     return circularTextCode;
+  if (slug.includes("dock") || title.includes("dock")) return dockCode;
+  if (slug.includes("carousel") || title.includes("carousel"))
+    return carouselCode;
+  if (slug.includes("spotlight-card") || title.includes("spotlight"))
+    return spotlightCardCode;
+  if (slug.includes("flowing-menu") || title.includes("flowing menu"))
+    return flowingMenuCode;
+  if (slug.includes("elastic-slider") || title.includes("elastic slider"))
+    return elasticSliderCode;
+  if (slug.includes("counter") || title.includes("counter")) return counterCode;
+  if (slug.includes("infinite-menu") || title.includes("infinite menu"))
+    return infiniteMenuCode;
+  if (slug.includes("stepper") || title.includes("stepper")) return stepperCode;
   if (slug.includes("shiny-text") || title.includes("shiny text"))
     return shinyTextCode;
   if (slug.includes("curved-marquee") || title.includes("curved marquee"))
@@ -1779,6 +3350,20 @@ export function getDemoCode(component: ComponentItem) {
   )
     return countUpCode;
 
+  if (slug.includes("liquid-ether") || title.includes("liquid ether"))
+    return liquidEtherCode;
+  if (slug.includes("prism") || title.includes("prism")) return prismCode;
+  if (slug.includes("dark-veil") || title.includes("dark veil"))
+    return darkVeilCode;
+  if (slug.includes("light-pillar") || title.includes("light pillar"))
+    return lightPillarCode;
+  if (slug.includes("floating-lines") || title.includes("floating lines"))
+    return floatingLinesCode;
+  if (slug.includes("light-rays") || title.includes("light rays"))
+    return lightRaysCode;
+  if (slug.includes("color-bends") || title.includes("color bends"))
+    return colorBendsCode;
+
   if (slug.includes("electric-border") || title.includes("electric border"))
     return electricBorderCode;
   if (slug.includes("antigravity") || title.includes("antigravity"))
@@ -1795,6 +3380,29 @@ export function getDemoCode(component: ComponentItem) {
     return ghostCursorCode;
   if (slug.includes("click-spark") || title.includes("click spark"))
     return clickSparkCode;
+  if (slug.includes("sticker-peel") || title.includes("sticker peel"))
+    return stickerPeelCode;
+
+  if (slug.includes("splash-cursor") || title.includes("splash cursor"))
+    return splashCursorCode;
+  if (slug.includes("star-border") || title.includes("star border"))
+    return starBorderCode;
+  if (slug.includes("animated-list") || title.includes("animated list"))
+    return animatedListCode;
+  if (slug.includes("scroll-stack") || title.includes("scroll stack"))
+    return scrollStackCode;
+  if (slug.includes("magic-bento") || title.includes("magic bento"))
+    return magicBentoCode;
+  if (slug.includes("circular-gallery") || title.includes("circular gallery"))
+    return circularGalleryCode;
+  if (slug.includes("image-trail") || title.includes("image trail"))
+    return imageTrailCode;
+  if (slug.includes("stack") || title.includes("stack")) return stackCode;
+  if (slug.includes("fluid-glass") || title.includes("fluid glass"))
+    return fluidGlassCode;
+  if (slug.includes("masonry") || title.includes("masonry")) return masonryCode;
+  if (slug.includes("model-viewer") || title.includes("model viewer"))
+    return modelViewerCode;
 
   if (title.includes("typewriter")) {
     return [
@@ -1856,6 +3464,917 @@ export type ApiProp = {
 export function getApiReference(component: ComponentItem): ApiProp[] | null {
   const slug = component.slug.toLowerCase();
   const title = component.title.toLowerCase();
+
+  if (slug.includes("carousel") || title.includes("carousel")) {
+    return [
+      {
+        prop: "items",
+        type: "CarouselItem[]",
+        default: "DEFAULT_ITEMS",
+        description: "Items to render (title, description, id, icon)",
+      },
+      {
+        prop: "baseWidth",
+        type: "number",
+        default: "300",
+        description: "Overall component width (px)",
+      },
+      {
+        prop: "autoplay",
+        type: "boolean",
+        default: "false",
+        description: "Auto-advance slides",
+      },
+      {
+        prop: "autoplayDelay",
+        type: "number",
+        default: "3000",
+        description: "Autoplay delay (ms)",
+      },
+      {
+        prop: "pauseOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Pause autoplay when hovered",
+      },
+      {
+        prop: "loop",
+        type: "boolean",
+        default: "false",
+        description: "Enable looping via cloned items",
+      },
+      {
+        prop: "round",
+        type: "boolean",
+        default: "false",
+        description: "Render the carousel as a circular layout",
+      },
+    ];
+  }
+
+  if (slug.includes("liquid-ether") || title.includes("liquid ether")) {
+    return [
+      {
+        prop: "resolution",
+        type: "number",
+        default: "1",
+        description: "Resolution scale (higher = sharper, more GPU)",
+      },
+      {
+        prop: "mouseForce",
+        type: "number",
+        default: "(unused in this build)",
+        description: "Pointer force (upstream fluid sim prop)",
+      },
+      {
+        prop: "cursorSize",
+        type: "number",
+        default: "(unused in this build)",
+        description: "Pointer radius (upstream fluid sim prop)",
+      },
+      {
+        prop: "colors",
+        type: "{ red; green; blue; whi; yel }",
+        default: "(unused in this build)",
+        description: "Color palette (upstream fluid sim prop)",
+      },
+    ];
+  }
+
+  if (slug.includes("prism") || title.includes("prism")) {
+    return [
+      {
+        prop: "height",
+        type: "number",
+        default: "3.5",
+        description: "Pyramid height scalar",
+      },
+      {
+        prop: "baseWidth",
+        type: "number",
+        default: "5.5",
+        description: "Pyramid base width scalar",
+      },
+      {
+        prop: "animationType",
+        type: "'rotate' | 'hover' | '3drotate'",
+        default: "'rotate'",
+        description: "Animation mode",
+      },
+      {
+        prop: "glow",
+        type: "number",
+        default: "1",
+        description: "Glow strength",
+      },
+      {
+        prop: "noise",
+        type: "number",
+        default: "0.5",
+        description: "Dither/noise amount",
+      },
+      {
+        prop: "transparent",
+        type: "boolean",
+        default: "true",
+        description: "Transparent canvas",
+      },
+      {
+        prop: "scale",
+        type: "number",
+        default: "3.6",
+        description: "Scene scale",
+      },
+      {
+        prop: "hueShift",
+        type: "number",
+        default: "0",
+        description: "Hue rotation (radians)",
+      },
+      {
+        prop: "bloom",
+        type: "number",
+        default: "1",
+        description: "Bloom multiplier",
+      },
+      {
+        prop: "suspendWhenOffscreen",
+        type: "boolean",
+        default: "false",
+        description: "Pause RAF when not visible",
+      },
+      {
+        prop: "timeScale",
+        type: "number",
+        default: "0.5",
+        description: "Time multiplier",
+      },
+    ];
+  }
+
+  if (slug.includes("dark-veil") || title.includes("dark veil")) {
+    return [
+      {
+        prop: "hueShift",
+        type: "number",
+        default: "0",
+        description: "Hue shift (degrees)",
+      },
+      {
+        prop: "noiseIntensity",
+        type: "number",
+        default: "0",
+        description: "Noise amount",
+      },
+      {
+        prop: "scanlineIntensity",
+        type: "number",
+        default: "0",
+        description: "Scanlines amount",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.5",
+        description: "Animation speed",
+      },
+      {
+        prop: "scanlineFrequency",
+        type: "number",
+        default: "0",
+        description: "Scanline frequency",
+      },
+      {
+        prop: "warpAmount",
+        type: "number",
+        default: "0",
+        description: "Warp amount",
+      },
+      {
+        prop: "resolutionScale",
+        type: "number",
+        default: "1",
+        description: "Internal render resolution scale",
+      },
+    ];
+  }
+
+  if (slug.includes("light-pillar") || title.includes("light pillar")) {
+    return [
+      {
+        prop: "topColor",
+        type: "string",
+        default: "'#5227FF'",
+        description: "Top gradient color",
+      },
+      {
+        prop: "bottomColor",
+        type: "string",
+        default: "'#FF9FFC'",
+        description: "Bottom gradient color",
+      },
+      {
+        prop: "intensity",
+        type: "number",
+        default: "1",
+        description: "Brightness multiplier",
+      },
+      {
+        prop: "rotationSpeed",
+        type: "number",
+        default: "0.3",
+        description: "Animation speed",
+      },
+      {
+        prop: "interactive",
+        type: "boolean",
+        default: "false",
+        description: "Mouse-driven rotation",
+      },
+      {
+        prop: "quality",
+        type: "'low' | 'medium' | 'high'",
+        default: "'high'",
+        description: "Quality tier (affects iterations & DPR)",
+      },
+    ];
+  }
+
+  if (slug.includes("floating-lines") || title.includes("floating lines")) {
+    return [
+      {
+        prop: "linesGradient",
+        type: "string[]",
+        default: "undefined",
+        description: "Optional gradient stops (hex) for lines",
+      },
+      {
+        prop: "enabledWaves",
+        type: "Array<'top' | 'middle' | 'bottom'>",
+        default: "['top','middle','bottom']",
+        description: "Which wave groups are enabled",
+      },
+      {
+        prop: "animationSpeed",
+        type: "number",
+        default: "1",
+        description: "Speed multiplier",
+      },
+      {
+        prop: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Bend lines near pointer",
+      },
+      {
+        prop: "parallax",
+        type: "boolean",
+        default: "true",
+        description: "Apply subtle parallax offset",
+      },
+    ];
+  }
+
+  if (slug.includes("light-rays") || title.includes("light rays")) {
+    return [
+      {
+        prop: "raysOrigin",
+        type: "RaysOrigin",
+        default: "'top-center'",
+        description: "Ray emitter position",
+      },
+      {
+        prop: "raysColor",
+        type: "string",
+        default: "'#ffffff'",
+        description: "Ray tint",
+      },
+      {
+        prop: "raysSpeed",
+        type: "number",
+        default: "1",
+        description: "Animation speed",
+      },
+      {
+        prop: "lightSpread",
+        type: "number",
+        default: "1",
+        description: "Beam spread",
+      },
+      {
+        prop: "rayLength",
+        type: "number",
+        default: "2",
+        description: "Beam length",
+      },
+      {
+        prop: "followMouse",
+        type: "boolean",
+        default: "true",
+        description: "Blend ray direction toward mouse",
+      },
+      {
+        prop: "mouseInfluence",
+        type: "number",
+        default: "0.1",
+        description: "How much rays follow the mouse",
+      },
+    ];
+  }
+
+  if (slug.includes("color-bends") || title.includes("color bends")) {
+    return [
+      {
+        prop: "rotation",
+        type: "number",
+        default: "45",
+        description: "Rotation angle (degrees)",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.2",
+        description: "Animation speed",
+      },
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "[]",
+        description: "Optional palette (hex)",
+      },
+      {
+        prop: "transparent",
+        type: "boolean",
+        default: "true",
+        description: "Transparent background",
+      },
+      {
+        prop: "warpStrength",
+        type: "number",
+        default: "1",
+        description: "Warp amount",
+      },
+      {
+        prop: "noise",
+        type: "number",
+        default: "0.1",
+        description: "Noise amount",
+      },
+    ];
+  }
+
+  if (slug.includes("spotlight-card") || title.includes("spotlight")) {
+    return [
+      {
+        prop: "children",
+        type: "React.ReactNode",
+        default: "required",
+        description: "Card contents",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "''",
+        description: "Additional class names",
+      },
+      {
+        prop: "spotlightColor",
+        type: "string",
+        default: "rgba(255,255,255,0.25)",
+        description: "Spotlight color for the radial gradient",
+      },
+    ];
+  }
+
+  if (slug.includes("flowing-menu") || title.includes("flowing menu")) {
+    return [
+      {
+        prop: "items",
+        type: "{ link: string; text: string; image: string }[]",
+        default: "[]",
+        description: "Menu items",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "15",
+        description: "Marquee speed (lower is faster travel distance per time)",
+      },
+      {
+        prop: "textColor",
+        type: "string",
+        default: "#fff",
+        description: "Base text color",
+      },
+      {
+        prop: "bgColor",
+        type: "string",
+        default: "#060010",
+        description: "Background color",
+      },
+      {
+        prop: "marqueeBgColor",
+        type: "string",
+        default: "#fff",
+        description: "Marquee background color",
+      },
+      {
+        prop: "marqueeTextColor",
+        type: "string",
+        default: "#060010",
+        description: "Marquee text color",
+      },
+      {
+        prop: "borderColor",
+        type: "string",
+        default: "#fff",
+        description: "Divider border color",
+      },
+    ];
+  }
+
+  if (slug.includes("elastic-slider") || title.includes("elastic slider")) {
+    return [
+      {
+        prop: "defaultValue",
+        type: "number",
+        default: "50",
+        description: "Initial value",
+      },
+      {
+        prop: "startingValue",
+        type: "number",
+        default: "0",
+        description: "Minimum value",
+      },
+      {
+        prop: "maxValue",
+        type: "number",
+        default: "100",
+        description: "Maximum value",
+      },
+      {
+        prop: "isStepped",
+        type: "boolean",
+        default: "false",
+        description: "Enable discrete steps",
+      },
+      {
+        prop: "stepSize",
+        type: "number",
+        default: "1",
+        description: "Step size when stepped",
+      },
+      {
+        prop: "leftIcon",
+        type: "React.ReactNode",
+        default: "<RiVolumeDownFill />",
+        description: "Left icon",
+      },
+      {
+        prop: "rightIcon",
+        type: "React.ReactNode",
+        default: "<RiVolumeUpFill />",
+        description: "Right icon",
+      },
+    ];
+  }
+
+  if (slug.includes("counter") || title.includes("counter")) {
+    return [
+      {
+        prop: "value",
+        type: "number",
+        default: "required",
+        description: "Numeric value to display",
+      },
+      {
+        prop: "fontSize",
+        type: "number",
+        default: "100",
+        description: "Digit font size (px)",
+      },
+      {
+        prop: "padding",
+        type: "number",
+        default: "0",
+        description: "Extra height padding (px)",
+      },
+      {
+        prop: "places",
+        type: "(number | '.')[]",
+        default: "auto",
+        description: "Place values to show (auto-detected by default)",
+      },
+      {
+        prop: "gap",
+        type: "number",
+        default: "8",
+        description: "Gap between digits (px)",
+      },
+    ];
+  }
+
+  if (slug.includes("infinite-menu") || title.includes("infinite menu")) {
+    return [
+      {
+        prop: "items",
+        type: "any[]",
+        default: "[]",
+        description:
+          "Placeholder items (full upstream implementation not embedded)",
+      },
+      {
+        prop: "scale",
+        type: "number",
+        default: "1.0",
+        description: "Placeholder scale",
+      },
+    ];
+  }
+
+  if (slug.includes("stepper") || title.includes("stepper")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "required",
+        description: "Steps (use <Step> child helper)",
+      },
+      {
+        prop: "initialStep",
+        type: "number",
+        default: "1",
+        description: "Initial step index (1-based)",
+      },
+      {
+        prop: "onStepChange",
+        type: "(step: number) => void",
+        default: "() => {}",
+        description: "Called when step changes",
+      },
+      {
+        prop: "onFinalStepCompleted",
+        type: "() => void",
+        default: "() => {}",
+        description: "Called when completed",
+      },
+      {
+        prop: "disableStepIndicators",
+        type: "boolean",
+        default: "false",
+        description: "Disable clicking the step indicators",
+      },
+      {
+        prop: "renderStepIndicator",
+        type: "(props) => ReactNode",
+        default: "undefined",
+        description: "Custom indicator renderer",
+      },
+    ];
+  }
+
+  if (slug.includes("dock") || title.includes("dock")) {
+    return [
+      {
+        prop: "items",
+        type: "DockItemData[]",
+        default: "required",
+        description:
+          "Items to display (icon, label, onClick, optional className)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "''",
+        description: "Additional class for the dock panel",
+      },
+      {
+        prop: "distance",
+        type: "number",
+        default: "200",
+        description: "Mouse influence distance (px) for magnification",
+      },
+      {
+        prop: "panelHeight",
+        type: "number",
+        default: "68",
+        description: "Collapsed panel height (px)",
+      },
+      {
+        prop: "baseItemSize",
+        type: "number",
+        default: "50",
+        description: "Base icon size (px)",
+      },
+      {
+        prop: "dockHeight",
+        type: "number",
+        default: "256",
+        description: "Minimum expanded dock height (px)",
+      },
+      {
+        prop: "magnification",
+        type: "number",
+        default: "70",
+        description: "Max item size (px) at the cursor",
+      },
+      {
+        prop: "spring",
+        type: "SpringOptions",
+        default: "{ mass: 0.1, stiffness: 150, damping: 12 }",
+        description: "Motion spring options for the magnification animation",
+      },
+    ];
+  }
+
+  if (slug.includes("splash-cursor") || title.includes("splash cursor")) {
+    return [
+      {
+        prop: "SIM_RESOLUTION",
+        type: "number",
+        default: "128",
+        description: "Simulation resolution",
+      },
+      {
+        prop: "DYE_RESOLUTION",
+        type: "number",
+        default: "1024",
+        description: "Dye resolution",
+      },
+      {
+        prop: "DENSITY_DISSIPATION",
+        type: "number",
+        default: "1",
+        description: "Density dissipation rate",
+      },
+      {
+        prop: "VELOCITY_DISSIPATION",
+        type: "number",
+        default: "0.2",
+        description: "Velocity dissipation rate",
+      },
+      {
+        prop: "PRESSURE",
+        type: "number",
+        default: "0.8",
+        description: "Pressure",
+      },
+      {
+        prop: "CURL",
+        type: "number",
+        default: "30",
+        description: "Curl amount",
+      },
+      {
+        prop: "SPLAT_RADIUS",
+        type: "number",
+        default: "0.25",
+        description: "Splat radius",
+      },
+      {
+        prop: "SPLAT_FORCE",
+        type: "number",
+        default: "6000",
+        description: "Splat force",
+      },
+      {
+        prop: "SHADING",
+        type: "boolean",
+        default: "true",
+        description: "Enable shading",
+      },
+    ];
+  }
+
+  if (slug.includes("star-border") || title.includes("star border")) {
+    return [
+      {
+        prop: "as",
+        type: "React.ElementType",
+        default: '"button"',
+        description: "The element to render as.",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: '"white"',
+        description: "Border gradient color.",
+      },
+      {
+        prop: "speed",
+        type: "string",
+        default: '"6s"',
+        description: "Animation speed.",
+      },
+      {
+        prop: "thickness",
+        type: "number",
+        default: "1",
+        description: "Padding/Thickness of the border.",
+      },
+    ];
+  }
+
+  if (slug.includes("animated-list") || title.includes("animated list")) {
+    return [
+      {
+        prop: "items",
+        type: "string[]",
+        default: "[]",
+        description: "List of items to display.",
+      },
+      {
+        prop: "onItemSelect",
+        type: "(item, index) => void",
+        default: "undefined",
+        description: "Callback when item is selected.",
+      },
+      {
+        prop: "showGradients",
+        type: "boolean",
+        default: "true",
+        description: "Show top/bottom gradients.",
+      },
+      {
+        prop: "enableArrowNavigation",
+        type: "boolean",
+        default: "true",
+        description: "Enable keyboard navigation.",
+      },
+      {
+        prop: "displayScrollbar",
+        type: "boolean",
+        default: "true",
+        description: "Show scrollbar.",
+      },
+    ];
+  }
+
+  if (slug.includes("scroll-stack") || title.includes("scroll stack")) {
+    return [
+      {
+        prop: "itemDistance",
+        type: "number",
+        default: "100",
+        description: "Distance between items.",
+      },
+      {
+        prop: "itemScale",
+        type: "number",
+        default: "0.03",
+        description: "Scale difference between items.",
+      },
+      {
+        prop: "itemStackDistance",
+        type: "number",
+        default: "30",
+        description: "Stack distance.",
+      },
+      {
+        prop: "stackPosition",
+        type: "string",
+        default: '"20%"',
+        description: "Stack position.",
+      },
+      {
+        prop: "scaleEndPosition",
+        type: "string",
+        default: '"10%"',
+        description: "Scale end position.",
+      },
+      {
+        prop: "baseScale",
+        type: "number",
+        default: "0.85",
+        description: "Base scale.",
+      },
+      {
+        prop: "scaleDuration",
+        type: "number",
+        default: "0.5",
+        description: "Scale duration.",
+      },
+      {
+        prop: "rotationAmount",
+        type: "number",
+        default: "0",
+        description: "Rotation amount.",
+      },
+      {
+        prop: "blurAmount",
+        type: "number",
+        default: "0",
+        description: "Blur amount.",
+      },
+    ];
+  }
+
+  if (slug.includes("magic-bento") || title.includes("magic bento")) {
+    return [
+      {
+        prop: "textAutoHide",
+        type: "boolean",
+        default: "true",
+        description: "Auto hide text.",
+      },
+      {
+        prop: "enableStars",
+        type: "boolean",
+        default: "true",
+        description: "Enable star particles.",
+      },
+      {
+        prop: "enableSpotlight",
+        type: "boolean",
+        default: "true",
+        description: "Enable spotlight.",
+      },
+      {
+        prop: "enableBorderGlow",
+        type: "boolean",
+        default: "true",
+        description: "Enable border glow.",
+      },
+      {
+        prop: "disableAnimations",
+        type: "boolean",
+        default: "false",
+        description: "Disable animations.",
+      },
+      {
+        prop: "spotlightRadius",
+        type: "number",
+        default: "300",
+        description: "Spotlight radius.",
+      },
+      {
+        prop: "particleCount",
+        type: "number",
+        default: "12",
+        description: "Particle count.",
+      },
+      {
+        prop: "enableTilt",
+        type: "boolean",
+        default: "true",
+        description: "Enable tilt effect.",
+      },
+      {
+        prop: "glowColor",
+        type: "string",
+        default: '"132, 0, 255"',
+        description: "Glow color.",
+      },
+    ];
+  }
+
+  if (slug.includes("circular-gallery") || title.includes("circular gallery")) {
+    return [
+      {
+        prop: "items",
+        type: "{ image: string; text: string }[]",
+        default: "[]",
+        description: "Gallery items.",
+      },
+      {
+        prop: "bend",
+        type: "number",
+        default: "3",
+        description: "Bend amount.",
+      },
+      {
+        prop: "textColor",
+        type: "string",
+        default: '"#ffffff"',
+        description: "Text color.",
+      },
+      {
+        prop: "borderRadius",
+        type: "number",
+        default: "0.05",
+        description: "Border radius.",
+      },
+      {
+        prop: "font",
+        type: "string",
+        default: '"bold 30px Figtree"',
+        description: "Font string.",
+      },
+      {
+        prop: "scrollSpeed",
+        type: "number",
+        default: "2",
+        description: "Scroll speed.",
+      },
+      {
+        prop: "scrollEase",
+        type: "number",
+        default: "0.05",
+        description: "Scroll easing.",
+      },
+    ];
+  }
 
   if (slug.includes("circular-text") || title.includes("circular text")) {
     return [
@@ -2812,6 +5331,124 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         type: "string",
         default: '""',
         description: "Custom class for individual text items.",
+      },
+    ];
+  }
+
+  if (slug.includes("sticker-peel") || title.includes("sticker peel")) {
+    return [
+      {
+        prop: "imageSrc",
+        type: "string",
+        default: '""',
+        description: "The source URL for the sticker image.",
+      },
+      {
+        prop: "width",
+        type: "number",
+        default: "200",
+        description: "Width of the sticker in pixels.",
+      },
+      {
+        prop: "rotate",
+        type: "number",
+        default: "30",
+        description: "Initial rotation angle in degrees.",
+      },
+      {
+        prop: "peelBackHoverPct",
+        type: "number",
+        default: "30",
+        description: "Percentage of peel effect on hover.",
+      },
+      {
+        prop: "peelBackActivePct",
+        type: "number",
+        default: "40",
+        description: "Percentage of peel effect when active/clicked.",
+      },
+      {
+        prop: "peelDirection",
+        type: "number",
+        default: "0",
+        description: "Direction of the peel effect in degrees.",
+      },
+      {
+        prop: "shadowIntensity",
+        type: "number",
+        default: "0.6",
+        description: "Intensity of the shadow effect (0-1).",
+      },
+      {
+        prop: "lightingIntensity",
+        type: "number",
+        default: "0.1",
+        description: "Intensity of the lighting effect (0-1).",
+      },
+    ];
+  }
+
+  if (slug.includes("lanyard") || title.includes("lanyard")) {
+    return [
+      {
+        prop: "position",
+        type: "[number, number, number]",
+        default: "[0, 0, 30]",
+        description: "Camera position.",
+      },
+      {
+        prop: "gravity",
+        type: "[number, number, number]",
+        default: "[0, -40, 0]",
+        description: "Physics gravity vector.",
+      },
+      {
+        prop: "fov",
+        type: "number",
+        default: "20",
+        description: "Field of view.",
+      },
+      {
+        prop: "bandColor",
+        type: "string",
+        default: '"white"',
+        description: "Color of the lanyard band.",
+      },
+      {
+        prop: "cardColor",
+        type: "string",
+        default: '"white"',
+        description: "Color of the card fallback.",
+      },
+      {
+        prop: "cardGLB",
+        type: "string",
+        default: '""',
+        description: "URL to custom GLB model for the card.",
+      },
+      {
+        prop: "cardTexture",
+        type: "string",
+        default: '""',
+        description: "URL to texture for the card.",
+      },
+      {
+        prop: "maxSpeed",
+        type: "number",
+        default: "50",
+        description: "Max simulation speed.",
+      },
+      {
+        prop: "minSpeed",
+        type: "number",
+        default: "0",
+        description: "Min simulation speed.",
+      },
+      {
+        prop: "transparent",
+        type: "boolean",
+        default: "true",
+        description: "Whether the canvas background is transparent.",
       },
     ];
   }

@@ -35,7 +35,7 @@
 23. Ghost Cursor : https://reactbits.dev/animations/ghost-cursor
 24. Click Spark : https://reactbits.dev/animations/click-spark
 25. Sticker Peel : https://reactbits.dev/animations/sticker-peel
-26. Image Trail : https://reactbits.dev/animations/image-trail
+26. Image Trail : https://reactbits.dev/animations/imawge-trail
 27. Splash Cursor : https://reactbits.dev/animations/splash-cursor
 28. Star Border : https://reactbits.dev/animations/star-border
 29. Animated List : https://reactbits.dev/components/animated-list
