@@ -8,17 +8,25 @@ import {
   HTMLAttributes,
 } from "react";
 import { motion } from "motion/react";
+import "./VariableProximity.css";
 
 function useAnimationFrame(callback: () => void) {
+  const callbackRef = useRef(callback);
+
+  // Keep the callback ref up to date
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+
   useEffect(() => {
     let frameId: number;
     const loop = () => {
-      callback();
+      callbackRef.current();
       frameId = requestAnimationFrame(loop);
     };
     frameId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frameId);
-  }, [callback]);
+  }, []);
 }
 
 function useMousePositionRef(
@@ -179,13 +187,9 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
     return (
       <span
         ref={ref}
+        className={`${className} variable-proximity`}
         onClick={onClick}
-        style={{
-          display: "inline",
-          fontFamily: '"Roboto Flex", sans-serif',
-          ...style,
-        }}
-        className={className}
+        style={{ display: "inline", ...style }}
         {...restProps}
       >
         {words.map((word, wordIndex) => (
