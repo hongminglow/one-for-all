@@ -146,13 +146,13 @@ import {
   RippleButtonRipples,
 } from "@/components/animate-ui/components/buttons/ripple";
 
-import FlipCard from "@/components/animateui/FlipCard";
-import MotionCarousel from "@/components/animateui/MotionCarousel";
+import { FlipCard } from "@/components/animate-ui/components/community/flip-card";
+import { MotionCarousel } from "@/components/animate-ui/components/community/motion-carousel";
 import RadialIntro from "@/components/animateui/RadialIntro";
 import RadialMenu from "@/components/animateui/RadialMenu";
-import HoleBackground from "@/components/animateui/HoleBackground";
-import ManagementBar from "@/components/animateui/ManagementBar";
-import PlayfulTodoList from "@/components/animateui/PlayfulTodoList";
+import { HoleBackground } from "@/components/animate-ui/components/backgrounds/hole";
+import { ManagementBar } from "@/components/animate-ui/components/community/management-bar";
+import { PlayfulTodolist as PlayfulTodoList } from "@/components/animate-ui/components/community/playful-todolist";
 import Magnet from "@/components/animateui/Magnet";
 import Crosshair from "@/components/tsdefault/Crosshair";
 import DecayCard from "@/components/tsdefault/DecayCard";
@@ -2511,7 +2511,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug === "magic-card" || title.includes("magic card"):
       return (
         <MagicCard
-          className="w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
+          className="w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
           gradientSize={props?.gradientSize ?? 200}
           gradientOpacity={props?.gradientOpacity ?? 0.8}
           gradientFrom={props?.gradientFrom ?? "#9E7AFF"}
@@ -2588,7 +2588,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug === "video-text" || title.includes("video text"):
       return (
-        <div className="h-[240px] w-full max-w-[720px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
+        <div className="h-[240px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
           <VideoText
             src={
               props?.src ??
@@ -3095,30 +3095,26 @@ console.log(fibonacci(10));`}
     case slug === "flip-card" || title.includes("flip card"):
       return (
         <div
-          className="flex items-center justify-center"
-          style={{ height: 320 }}
+          className="flex items-center justify-center p-4"
+          style={{ height: 420 }}
         >
           <FlipCard
-            front={
-              <div>
-                <div className="text-[16px] font-black text-(--sb-text-strong)">
-                  Front
-                </div>
-                <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-                  Hover to flip.
-                </div>
-              </div>
-            }
-            back={
-              <div>
-                <div className="text-[16px] font-black text-(--sb-text-strong)">
-                  Back
-                </div>
-                <div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-                  3D flip using CSS transforms.
-                </div>
-              </div>
-            }
+            data={{
+              name: "Hong Ming",
+              username: "hongminglow",
+              image: "https://avatars.githubusercontent.com/u/41559868?v=4",
+              bio: "Passionate developer building awesome things with React and Motion.",
+              stats: {
+                following: 42,
+                followers: 1337,
+                posts: 120,
+              },
+              socialLinks: {
+                github: "https://github.com/hongminglow",
+                twitter: "https://twitter.com/hongminglow",
+                linkedin: "https://linkedin.com/in/hongminglow",
+              },
+            }}
           />
         </div>
       );
@@ -3126,19 +3122,12 @@ console.log(fibonacci(10));`}
     case slug === "motion-carousel" || title.includes("motion carousel"):
       return (
         <div
-          className="flex items-center justify-center"
-          style={{ height: 300 }}
+          className="flex items-center justify-center w-full px-4"
+          style={{ height: 420 }}
         >
           <MotionCarousel
-            autoplay={props?.autoplay ?? false}
-            autoplayDelay={props?.autoplayDelay ?? 2800}
-            items={
-              props?.items ?? [
-                { id: "1", title: "First", description: "A minimal carousel" },
-                { id: "2", title: "Second", description: "No external deps" },
-                { id: "3", title: "Third", description: "Buttons + transform" },
-              ]
-            }
+            slides={props?.slides ?? [0, 1, 2, 3, 4]}
+            options={{ loop: true }}
           />
         </div>
       );
@@ -3177,7 +3166,16 @@ console.log(fibonacci(10));`}
       );
 
     case slug === "hole-background" || title.includes("hole background"):
-      return <HoleBackground holeSize={props?.holeSize ?? 220} />;
+      return (
+        <div className="relative h-[400px] w-full overflow-hidden rounded-xl border">
+          <HoleBackground />
+          <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+            <h2 className="text-4xl font-bold text-white drop-shadow-lg">
+              Hole Background
+            </h2>
+          </div>
+        </div>
+      );
 
     case slug === "management-bar" || title.includes("management bar"):
       return (

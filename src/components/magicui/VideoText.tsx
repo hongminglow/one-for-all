@@ -54,7 +54,7 @@ export default function VideoText({
   return (
     <div className={cn("relative size-full", className)}>
       <div
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0 top-[15%] flex items-center justify-center"
         style={{
           maskImage: dataUrlMask,
           WebkitMaskImage: dataUrlMask,
