@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { Progress } from "./Progress";
+import { Progress } from "@/components/animate-ui/components/radix/progress";
 
 export interface ManagementBarProps {
   title?: string;

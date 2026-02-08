@@ -126,9 +126,25 @@ import TextReveal from "@/components/magicui/TextReveal";
 import SparklesText from "@/components/magicui/SparklesText";
 import CodeComparison from "@/components/magicui/CodeComparison";
 import ScrollProgress from "@/components/magicui/ScrollProgress";
-import CopyButton from "@/components/animateui/CopyButton";
-import FlipButton from "@/components/animateui/FlipButton";
-import RippleButton from "@/components/animateui/RippleButton";
+import { Progress } from "@/components/animate-ui/components/radix/progress";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/animate-ui/components/radix/sheet";
+import { CopyButton } from "@/components/animate-ui/components/buttons/copy";
+import {
+  FlipButton,
+  FlipButtonFront,
+  FlipButtonBack,
+} from "@/components/animate-ui/components/buttons/flip";
+import {
+  RippleButton,
+  RippleButtonRipples,
+} from "@/components/animate-ui/components/buttons/ripple";
 
 import FlipCard from "@/components/animateui/FlipCard";
 import MotionCarousel from "@/components/animateui/MotionCarousel";
@@ -281,8 +297,6 @@ import { DraggableCard } from "@/components/aceternityui/DraggableCard";
 import { Lens } from "@/components/aceternityui/Lens";
 import { ImageCompare } from "@/components/aceternityui/ImageCompare";
 import { HeroParallax } from "@/components/aceternityui/HeroParallax";
-import { Progress } from "@/components/animateui/Progress";
-import { Sheet } from "@/components/animateui/Sheet";
 import Orbs from "@/components/reactbits/Orbs";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
@@ -494,26 +508,27 @@ function CompactConfettiDemo(props: {
   );
 }
 
-function SheetDemo(props: { side?: "left" | "right" }) {
-  const [open, setOpen] = useState(false);
+function SheetDemo(props: { side?: "top" | "bottom" | "left" | "right" }) {
   return (
-    <div className="w-full max-w-[620px]">
-      <button
-        type="button"
-        className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
-        onClick={() => setOpen(true)}
-      >
-        Open Sheet
-      </button>
-      <Sheet
-        open={open}
-        onOpenChange={setOpen}
-        title="Sheet"
-        side={props.side ?? "right"}
-      >
-        This is a simple sheet implementation.
-      </Sheet>
-    </div>
+    <Sheet>
+      <SheetTrigger asChild>
+        <button
+          type="button"
+          className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
+        >
+          Open Sheet
+        </button>
+      </SheetTrigger>
+      <SheetContent side={props.side ?? "right"}>
+        <SheetHeader>
+          <SheetTitle>Sheet Title</SheetTitle>
+          <SheetDescription>
+            This is a simple sheet implementation from Animate UI.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="p-4">This is the content of the sheet.</div>
+      </SheetContent>
+    </Sheet>
   );
 }
 
@@ -894,6 +909,26 @@ function ScrollRevealDemo() {
   );
 }
 
+function RadixProgressDemo() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) return 100;
+        return prev + 25;
+      });
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 100) setTimeout(() => setProgress(0), 4000);
+  }, [progress]);
+
+  return <Progress value={progress} className="w-[520px]" />;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function renderDemo(component: ComponentItem, props?: any) {
   const title = component.title.toLowerCase();
@@ -979,7 +1014,20 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("carousel") || title.includes("carousel"):
+    case slug === "copy-button" || title.includes("copy button"):
+      return (
+        <div
+          className="flex items-center justify-center"
+          style={{ height: 160 }}
+        >
+          <CopyButton
+            content={props?.text ?? "npm install one-for-all"}
+            variant="outline"
+          />
+        </div>
+      );
+
+    case slug === "carousel" || title.includes("carousel"):
       return (
         <div className="w-full flex items-center justify-center">
           <Carousel
@@ -3006,10 +3054,10 @@ console.log(fibonacci(10));`}
           className="flex items-center justify-center"
           style={{ height: 220 }}
         >
-          <FlipButton
-            frontText={props?.frontText ?? "Hover me"}
-            backText={props?.backText ?? "Nice"}
-          />
+          <FlipButton variant="outline">
+            <FlipButtonFront>{props?.frontText ?? "Hover me"}</FlipButtonFront>
+            <FlipButtonBack>{props?.backText ?? "Nice"}</FlipButtonBack>
+          </FlipButton>
         </div>
       );
 
@@ -3019,22 +3067,21 @@ console.log(fibonacci(10));`}
           className="flex items-center justify-center"
           style={{ height: 220 }}
         >
-          <RippleButton
-            rippleColor={props?.rippleColor ?? "rgba(255,255,255,0.35)"}
-          >
+          <RippleButton variant="outline">
             Click
+            <RippleButtonRipples />
           </RippleButton>
         </div>
       );
 
     case slug === "progress" || title.includes("progress"):
       return (
-        <div className="w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
+        <div className="w-full rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
           <div className="text-[14px] font-black text-(--sb-text-strong)">
             Progress
           </div>
-          <div className="mt-3">
-            <Progress value={props?.value ?? 64} max={props?.max ?? 100} />
+          <div className="mt-3 justify-self-center">
+            <RadixProgressDemo />
           </div>
         </div>
       );
