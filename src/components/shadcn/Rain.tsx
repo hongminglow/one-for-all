@@ -33,7 +33,7 @@ export function Rain({
   count = 150,
   intensity = 1,
   angle = 15,
-  color = "rgba(174, 194, 224, 0.5)",
+  color = "rgba(200, 220, 255, 0.8)",
   lightning = true,
 }: RainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -161,7 +161,10 @@ export function Rain({
   return (
     <div
       ref={containerRef}
-      className={cn("fixed inset-0 overflow-hidden", className)}
+      className={cn(
+        "relative w-full h-full min-h-[500px] overflow-hidden",
+        className,
+      )}
       style={{
         background:
           "linear-gradient(to bottom, #0c1018 0%, #1a1f2e 50%, #151922 100%)",

@@ -2096,6 +2096,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
             texts={["Joly UI", "One-for-all", "Storybook"]}
             duration={props?.duration ?? 1.2}
             pauseDuration={props?.pauseDuration ?? 1.2}
+            className="text-foreground"
           />
         </div>
       );
@@ -2106,7 +2107,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-(--sb-text-strong)">
+          <div className="text-[42px] font-black text-primary">
             <HighlightText
               duration={props?.duration ?? 0.5}
               delay={props?.delay ?? 0.1}
@@ -2123,9 +2124,9 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-(--sb-text-strong)">
+          <div className="text-[42px] font-black text-primary">
             <span>Build </span>
-            <span className="inline-block text-[var(--sb-accent)]">
+            <span className="inline-block text-primary">
               <RotateText
                 words={["fast", "simple", "polished"]}
                 duration={props?.duration ?? 0.5}
@@ -2142,7 +2143,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 140 }}
         >
-          <div className="text-[42px] font-black text-(--sb-text-strong)">
+          <div className="text-[42px] font-black text-primary">
             <TypewriterText
               words={["Typewriter", "Animation", "Effect"]}
               typingSpeed={props?.typingSpeed ?? 90}
@@ -2156,7 +2157,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
     case slug.includes("ai-prompt-box") || title.includes("ai prompt"):
       return (
         <div
-          className="flex items-center justify-center"
+          className="flex items-center justify-center px-4"
           style={{ height: 240 }}
         >
           <AIPromptBox
@@ -3215,7 +3216,7 @@ console.log(fibonacci(10));`}
 
     case slug.includes("pie-donut") || title.includes("pie donut"):
       return (
-        <div className="w-full max-w-[400px] p-4">
+        <div className="w-full  p-4">
           <PieDonut />
         </div>
       );
@@ -3401,7 +3402,7 @@ console.log(fibonacci(10));`}
       title.includes("radar dots") ||
       slug.includes("radar-chart"):
       return (
-        <div className="w-full max-w-[400px] p-4">
+        <div className="w-full p-4">
           <RadarDots />
         </div>
       );

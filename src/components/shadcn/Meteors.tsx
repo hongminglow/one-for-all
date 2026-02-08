@@ -47,7 +47,10 @@ export function Meteors({
 
   return (
     <div
-      className={cn("fixed inset-0 overflow-hidden bg-neutral-950", className)}
+      className={cn(
+        "relative w-full h-full min-h-[500px] overflow-hidden bg-neutral-950",
+        className,
+      )}
     >
       {/* Keyframe animation - uses vmax for viewport scaling */}
       <style>{`

@@ -281,7 +281,10 @@ export function Fireworks({
   return (
     <div
       ref={containerRef}
-      className={cn("fixed inset-0 overflow-hidden bg-[#0a0a14]", className)}
+      className={cn(
+        "relative w-full h-full min-h-[500px] overflow-hidden bg-[#0a0a14]",
+        className,
+      )}
     >
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 

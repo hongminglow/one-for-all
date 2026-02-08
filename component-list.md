@@ -112,8 +112,8 @@
 100. Beam Collision : https://www.shadcn.io/background/beams-collision
 101. Confetti : https://www.shadcn.io/background/confetti
 102. Fireworks : https://www.shadcn.io/background/fireworks
-103. Meteors : https://www.shadcn.io/background/fireworks
-104. Orbits : https://www.shadcn.io/background/fireworks
+103. Meteors : https://www.shadcn.io/background/meteors
+104. Orbits : https://www.shadcn.io/background/orbits
 105. Rain : https://www.shadcn.io/background/rain
 106. Snow : https://www.shadcn.io/background/snow
 107. Vortex : https://www.shadcn.io/background/vortex

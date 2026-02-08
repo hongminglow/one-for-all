@@ -57,16 +57,8 @@ export function AreaGradient() {
             y1="0"
             y2="1"
           >
-            <stop
-              offset="5%"
-              stopColor="var(--color-desktop)"
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="95%"
-              stopColor="var(--color-desktop)"
-              stopOpacity={0.1}
-            />
+            <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#4f46e5" stopOpacity={0.1} />
           </linearGradient>
           <linearGradient
             id="area-chart-09-fillMobile"
@@ -75,16 +67,8 @@ export function AreaGradient() {
             y1="0"
             y2="1"
           >
-            <stop
-              offset="5%"
-              stopColor="var(--color-mobile)"
-              stopOpacity={0.8}
-            />
-            <stop
-              offset="95%"
-              stopColor="var(--color-mobile)"
-              stopOpacity={0.1}
-            />
+            <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.1} />
           </linearGradient>
         </defs>
         <Area
@@ -92,7 +76,7 @@ export function AreaGradient() {
           fill="url(#area-chart-09-fillMobile)"
           fillOpacity={0.4}
           stackId="a"
-          stroke="var(--color-mobile)"
+          stroke="#06b6d4"
           type="natural"
         />
         <Area
@@ -100,7 +84,7 @@ export function AreaGradient() {
           fill="url(#area-chart-09-fillDesktop)"
           fillOpacity={0.4}
           stackId="a"
-          stroke="var(--color-desktop)"
+          stroke="#4f46e5"
           type="natural"
         />
       </AreaChart>

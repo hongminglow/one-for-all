@@ -33,9 +33,14 @@ export default function RotateText({
 
   return (
     <div
-      ref={undefined}
-      className={cn("relative h-[1.2em] overflow-hidden", className)}
+      className={cn(
+        "relative inline-block h-[1.2em] overflow-hidden align-top",
+        className,
+      )}
     >
+      <span className="invisible opacity-0" aria-hidden="true">
+        {words.reduce((a, b) => (a.length > b.length ? a : b), "")}
+      </span>
       <AnimatePresence mode="wait">
         <motion.span
           key={words[index] ?? index}
@@ -43,7 +48,7 @@ export default function RotateText({
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -16, opacity: 0 }}
           transition={{ duration }}
-          className="absolute block"
+          className="absolute left-0 top-0 block w-full text-center"
         >
           {words[index]}
         </motion.span>

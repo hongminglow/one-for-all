@@ -36,20 +36,20 @@ export default function GooeyTextMorphing({
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center",
-        "[filter:blur(10px)_contrast(1.8)]",
+        "relative flex items-center justify-center bg-background p-10",
+        "[filter:blur(4px)_contrast(1.2)]",
         className,
       )}
-      style={{ filter: `url(#${filterId}) blur(10px) contrast(1.8)` }}
+      style={{ filter: `url(#${filterId}) blur(4px) contrast(1.2)` }}
     >
       <AnimatePresence mode="popLayout">
         <motion.span
           key={texts[index] ?? index}
-          initial={{ opacity: 0, scale: 0.85, filter: "blur(10px)" }}
+          initial={{ opacity: 0, scale: 0.85, filter: "blur(4px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, scale: 1.15, filter: "blur(10px)" }}
+          exit={{ opacity: 0, scale: 1.15, filter: "blur(4px)" }}
           transition={{ duration, ease: "easeInOut" }}
-          className="absolute whitespace-nowrap text-[42px] font-black tracking-tight text-[var(--sb-text-strong)]"
+          className="absolute whitespace-nowrap text-[42px] font-black tracking-tight text-foreground"
         >
           {texts[index]}
         </motion.span>
@@ -57,11 +57,7 @@ export default function GooeyTextMorphing({
       <svg className="hidden" aria-hidden="true">
         <defs>
           <filter id={filterId}>
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="14"
-              result="blur"
-            />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
             <feColorMatrix
               in="blur"
               mode="matrix"

@@ -59,7 +59,7 @@ const RainbowButton = React.forwardRef<HTMLButtonElement, RainbowButtonProps>(
           }
         />
         <span
-          className="relative z-10 flex items-center gap-2 rounded-[10px] bg-[var(--sb-bg)] px-5 py-2.5 text-[13px] font-black text-[var(--sb-text-strong)]"
+          className="relative z-10 flex items-center gap-2 rounded-[10px] bg-background px-5 py-2.5 text-[13px] font-black text-foreground"
           style={{ borderRadius: `calc(0.75rem - ${borderWidth}px)` }}
         >
           {children}

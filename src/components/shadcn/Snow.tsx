@@ -184,7 +184,10 @@ export function Snow({
   return (
     <div
       ref={containerRef}
-      className={cn("fixed inset-0 overflow-hidden", className)}
+      className={cn(
+        "relative w-full h-full min-h-[500px] overflow-hidden",
+        className,
+      )}
       style={{
         background:
           "linear-gradient(to bottom, #1a2a3a 0%, #2d3e50 40%, #3a4a5c 100%)",
