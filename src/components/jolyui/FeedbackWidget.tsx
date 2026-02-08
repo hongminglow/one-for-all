@@ -25,56 +25,69 @@ export default function FeedbackWidget({
   const [sent, setSent] = React.useState(false);
 
   const send = () => {
+    if (!rating) return;
     setSent(true);
-    window.setTimeout(() => setSent(false), 1800);
+    setTimeout(() => setSent(false), 2000);
   };
 
   return (
     <div
       className={cn(
-        "w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-4",
+        "group relative w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-sm transition-all hover:shadow-md",
         className,
       )}
     >
-      <div className="text-[13px] font-black text-[var(--sb-text-strong)]">
-        {title}
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+        {sent && (
+          <span className="text-xs font-medium text-emerald-500 animate-in fade-in slide-in-from-right-2">
+            Thanks!
+          </span>
+        )}
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
+
+      <div className="mt-4 flex gap-2">
         {RATING.map((r) => (
           <button
             key={r.value}
-            type="button"
             onClick={() => setRating(r.value)}
             className={cn(
-              "h-9 rounded-xl border px-3 text-[12px] font-black",
+              "flex-1 rounded-xl border py-2 text-xs font-medium transition-all hover:scale-105 active:scale-95",
               rating === r.value
-                ? "border-[var(--sb-accent)] bg-[var(--sb-selected)] text-[var(--sb-text-strong)]"
-                : "border-[var(--sb-border)] bg-[var(--sb-panel)] text-[var(--sb-text-muted)] hover:bg-[var(--sb-hover)]",
+                ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                : "border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
+            type="button"
           >
             {r.label}
           </button>
         ))}
       </div>
-      <textarea
-        value={note}
-        onChange={(e) => setNote(e.target.value)}
-        placeholder="Optional note…"
-        className="mt-3 w-full resize-none rounded-xl border border-[var(--sb-border)] bg-[var(--sb-panel)] px-3 py-2 text-[13px] font-semibold text-[var(--sb-text)] outline-none"
-        rows={3}
-      />
-      <div className="mt-3 flex items-center justify-between">
-        <div className="text-[11px] font-semibold text-[var(--sb-text-dim)]">
-          Stored locally (demo only)
+
+      <div
+        className={cn(
+          "grid transition-all duration-300 ease-in-out",
+          rating
+            ? "grid-rows-[1fr] mt-4 opacity-100"
+            : "grid-rows-[0fr] mt-0 opacity-0",
+        )}
+      >
+        <div className="overflow-hidden">
+          <textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="Tell us more (optional)..."
+            className="w-full resize-none rounded-xl bg-muted/30 p-3 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring/20"
+            rows={3}
+          />
+          <button
+            onClick={send}
+            disabled={sent}
+            className="mt-2 w-full rounded-xl bg-foreground py-2 text-xs font-bold text-background transition-transform hover:opacity-90 active:scale-[0.98]"
+          >
+            Submit Feedback
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={send}
-          disabled={!rating}
-          className="h-9 rounded-xl bg-[var(--sb-accent)] px-4 text-[12px] font-black text-[var(--sb-on-accent)] disabled:opacity-50"
-        >
-          {sent ? "Sent" : "Send"}
-        </button>
       </div>
     </div>
   );

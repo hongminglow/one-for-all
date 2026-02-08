@@ -5,5 +5,3 @@
 4. Calendar Input - Calendar pop up is wrapped inside the preview container, suppose this popover has higher z index
 5. Date Wheel Picker - The date wheel picker should totally follow the docs, ours is custom one not like the actual one, the picker for each section can be scrollable
 6. Feedback widget - not as expected output, refer docs
-
-7.
