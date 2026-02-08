@@ -845,28 +845,6 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("model-viewer") || title.includes("model viewer"):
-      return (
-        <div className="w-full h-[500px] flex items-center justify-center bg-[#111] rounded-xl overflow-hidden border border-(--sb-border)">
-          <ModelViewer
-            url={
-              props?.url ??
-              "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Duck/glTF-Binary/Duck.glb"
-            }
-            width={props?.width ?? "100%"}
-            height={props?.height ?? "100%"}
-            autoRotate={props?.autoRotate ?? true}
-            autoRotateSpeed={props?.autoRotateSpeed ?? 0.35}
-            enableMouseParallax={props?.enableMouseParallax ?? true}
-            enableManualRotation={props?.enableManualRotation ?? true}
-            enableHoverRotation={props?.enableHoverRotation ?? true}
-            enableManualZoom={props?.enableManualZoom ?? true}
-            showScreenshotButton={props?.showScreenshotButton ?? true}
-            {...props}
-          />
-        </div>
-      );
-
     case slug.includes("flowing-menu") || title.includes("flowing menu"):
       return (
         <div className="w-full h-[360px] rounded-xl overflow-hidden border border-(--sb-border)">
@@ -1772,21 +1750,6 @@ export function renderDemo(component: ComponentItem, props?: any) {
             ]}
             stagger={props?.stagger ?? 0.05}
             duration={props?.duration ?? 0.5}
-            {...props}
-          />
-        </div>
-      );
-
-    case slug.includes("model-viewer") || title.includes("model viewer"):
-      return (
-        <div className="w-full h-[600px] relative bg-[#111] rounded-xl border border-(--sb-border) overflow-hidden">
-          <ModelViewer
-            url={
-              props?.url ||
-              "https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-            }
-            environmentPreset={props?.environmentPreset || "sunset"}
-            autoRotate={props?.autoRotate ?? true}
             {...props}
           />
         </div>
@@ -3208,8 +3171,8 @@ console.log(fibonacci(10));`}
     case slug.includes("modal-viewer") || title.includes("modal viewer"):
       return (
         <ModelViewer
-          url="/assets/3d/toy-car.glb"
-          width={400}
+          url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Duck/glTF-Binary/Duck.glb"
+          width={1000}
           height={400}
           modelXOffset={0.5}
           modelYOffset={0}

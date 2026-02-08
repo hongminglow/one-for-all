@@ -22,16 +22,8 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
-
-const isMeshObject = (object: THREE.Object3D): object is THREE.Mesh => {
-  return "isMesh" in object && object.isMesh === true;
-};
-
-const isLightObject = (object: THREE.Object3D): object is THREE.Light => {
-  return "isLight" in object && object.isLight === true;
-};
 
 export interface ViewerProps {
   url: string;
@@ -93,7 +85,7 @@ const Loader: FC<{ placeholderSrc?: string }> = ({ placeholderSrc }) => {
           src={placeholderSrc}
           width={128}
           height={128}
-          style={{ filter: "blur(8px)", borderRadius: 8 }}
+          className="blur-lg rounded-lg"
         />
       ) : (
         `${Math.round(progress)} %`
@@ -190,22 +182,18 @@ const ModelInner: FC<ModelInnerProps> = ({
     const sphere = new THREE.Box3()
       .setFromObject(g)
       .getBoundingSphere(new THREE.Sphere());
-    const s = 1 / (sphere.radius * 2);
+    // Normalize to a larger size (diameter ~3) so it's clearly visible
+    const s = 3 / (sphere.radius * 2);
     g.position.set(-sphere.center.x, -sphere.center.y, -sphere.center.z);
     g.scale.setScalar(s);
 
-    g.traverse((o: THREE.Object3D) => {
-      if (isMeshObject(o)) {
+    g.traverse((o: any) => {
+      if (o.isMesh) {
         o.castShadow = true;
         o.receiveShadow = true;
         if (fadeIn) {
-          const materials = Array.isArray(o.material)
-            ? o.material
-            : [o.material];
-          materials.forEach((material) => {
-            material.transparent = true;
-            material.opacity = 0;
-          });
+          o.material.transparent = true;
+          o.material.opacity = 0;
         }
       }
     });
@@ -234,15 +222,8 @@ const ModelInner: FC<ModelInnerProps> = ({
       const id = setInterval(() => {
         t += 0.05;
         const v = Math.min(t, 1);
-        g.traverse((o: THREE.Object3D) => {
-          if (isMeshObject(o)) {
-            const materials = Array.isArray(o.material)
-              ? o.material
-              : [o.material];
-            materials.forEach((material) => {
-              material.opacity = v;
-            });
-          }
+        g.traverse((o: any) => {
+          if (o.isMesh) o.material.opacity = v;
         });
         invalidate();
         if (v === 1) {
@@ -466,7 +447,12 @@ const ModelViewer: FC<ViewerProps> = ({
   fillLightIntensity = 0.5,
   rimLightIntensity = 0.8,
   environmentPreset = "forest",
-  autoFrame = false,
+  /*
+     SAFE DEFAULTS:
+     - Auto-frame enabled by default to ensure model is visible
+     - Camera positioned at a safe distance (z=4) initially
+  */
+  autoFrame = true,
   placeholderSrc,
   showScreenshotButton = true,
   fadeIn = false,
@@ -483,10 +469,10 @@ const ModelViewer: FC<ViewerProps> = ({
 
   const initYaw = deg2rad(defaultRotationX);
   const initPitch = deg2rad(defaultRotationY);
-  const camZ = Math.min(
-    Math.max(defaultZoom, minZoomDistance),
-    maxZoomDistance,
-  );
+
+  // Use a safe default distance. The autoFrame logic will adjust this if enabled.
+  // 4.0 is standard for a model normalized to size ~1.0
+  const camZ = 4.0;
 
   const capture = () => {
     const g = rendererRef.current,
@@ -495,8 +481,8 @@ const ModelViewer: FC<ViewerProps> = ({
     if (!g || !s || !c) return;
     g.shadowMap.enabled = false;
     const tmp: { l: THREE.Light; cast: boolean }[] = [];
-    s.traverse((o: THREE.Object3D) => {
-      if (isLightObject(o)) {
+    s.traverse((o: any) => {
+      if (o.isLight && "castShadow" in o) {
         tmp.push({ l: o, cast: o.castShadow });
         o.castShadow = false;
       }
@@ -519,23 +505,14 @@ const ModelViewer: FC<ViewerProps> = ({
       style={{
         width,
         height,
-        position: "relative",
         touchAction: "pan-y pinch-zoom",
       }}
+      className="relative"
     >
       {showScreenshotButton && (
         <button
           onClick={capture}
-          style={{
-            position: "absolute",
-            border: "1px solid #fff",
-            right: 16,
-            top: 16,
-            zIndex: 10,
-            cursor: "pointer",
-            padding: "8px 16px",
-            borderRadius: 10,
-          }}
+          className="absolute top-4 right-4 z-10 cursor-pointer px-4 py-2 border border-white rounded-xl bg-transparent text-white hover:bg-white hover:text-black transition-colors"
         >
           Take Screenshot
         </button>

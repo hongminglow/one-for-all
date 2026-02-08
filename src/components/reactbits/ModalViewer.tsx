@@ -22,7 +22,7 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
 
 export interface ViewerProps {
@@ -174,6 +174,11 @@ const ModelInner: FC<ModelInnerProps> = ({
   }, [url, ext]);
 
   const pivotW = useRef(new THREE.Vector3());
+  // Flag to indicate model is initialized
+  const modelReadyRef = useRef(false);
+  // Store the base position set during layout effect
+  const basePositionRef = useRef(new THREE.Vector3());
+
   useLayoutEffect(() => {
     if (!content) return;
     const g = inner.current;
@@ -182,7 +187,8 @@ const ModelInner: FC<ModelInnerProps> = ({
     const sphere = new THREE.Box3()
       .setFromObject(g)
       .getBoundingSphere(new THREE.Sphere());
-    const s = 1 / (sphere.radius * 2);
+    // Normalize to a larger size (diameter ~3) so it's clearly visible
+    const s = 3 / (sphere.radius * 2);
     g.position.set(-sphere.center.x, -sphere.center.y, -sphere.center.z);
     g.scale.setScalar(s);
 
@@ -201,19 +207,30 @@ const ModelInner: FC<ModelInnerProps> = ({
     pivot.copy(pivotW.current);
     outer.current.rotation.set(initPitch, initYaw, 0);
 
-    if (autoFrame && (camera as THREE.PerspectiveCamera).isPerspectiveCamera) {
+    // Always reposition camera to frame the model correctly
+    // The model is normalized to radius ~0.5, so we need to position the camera appropriately
+    if ((camera as THREE.PerspectiveCamera).isPerspectiveCamera) {
       const persp = camera as THREE.PerspectiveCamera;
-      const fitR = sphere.radius * s;
-      const d = (fitR * 1.2) / Math.sin((persp.fov * Math.PI) / 180 / 2);
+      const fitR = sphere.radius * s; // This is ~0.5 after normalization
+      // Calculate distance needed to see the entire model (with autoFrame logic)
+      const d = autoFrame
+        ? (fitR * 1.2) / Math.sin((persp.fov * Math.PI) / 180 / 2)
+        : 1.5; // Default distance if autoFrame is disabled
       persp.position.set(
         pivotW.current.x,
         pivotW.current.y,
         pivotW.current.z + d,
       );
-      persp.near = d / 10;
-      persp.far = d * 10;
-      persp.updateProjectionMatrix();
+      if (autoFrame) {
+        persp.near = d / 10;
+        persp.far = d * 10;
+        persp.updateProjectionMatrix();
+      }
     }
+
+    // Mark model as ready for frame updates
+    modelReadyRef.current = true;
+    invalidate();
 
     /* optional fade-in */
     if (fadeIn) {
@@ -377,27 +394,28 @@ const ModelInner: FC<ModelInnerProps> = ({
   }, [enableMouseParallax, enableHoverRotation]);
 
   useFrame((_, dt) => {
+    // Don't update until model is ready
+    if (!modelReadyRef.current) return;
+
     let need = false;
-    cPar.current.x += (tPar.current.x - cPar.current.x) * PARALLAX_EASE;
-    cPar.current.y += (tPar.current.y - cPar.current.y) * PARALLAX_EASE;
+
+    // Ease the hover rotation values
     const phx = cHov.current.x,
       phy = cHov.current.y;
     cHov.current.x += (tHov.current.x - cHov.current.x) * HOVER_EASE;
     cHov.current.y += (tHov.current.y - cHov.current.y) * HOVER_EASE;
 
-    const ndc = pivotW.current.clone().project(camera);
-    ndc.x += xOff + cPar.current.x;
-    ndc.y += yOff + cPar.current.y;
-    outer.current.position.copy(ndc.unproject(camera));
-
+    // Apply hover rotation effect
     outer.current.rotation.x += cHov.current.x - phx;
     outer.current.rotation.y += cHov.current.y - phy;
 
+    // Auto-rotate if enabled
     if (autoRotate) {
       outer.current.rotation.y += autoRotateSpeed * dt;
       need = true;
     }
 
+    // Apply manual rotation inertia
     outer.current.rotation.y += vel.current.x;
     outer.current.rotation.x += vel.current.y;
     vel.current.x *= INERTIA;
@@ -405,9 +423,8 @@ const ModelInner: FC<ModelInnerProps> = ({
     if (Math.abs(vel.current.x) > 1e-4 || Math.abs(vel.current.y) > 1e-4)
       need = true;
 
+    // Check if hover animation still needs to run
     if (
-      Math.abs(cPar.current.x - tPar.current.x) > 1e-4 ||
-      Math.abs(cPar.current.y - tPar.current.y) > 1e-4 ||
       Math.abs(cHov.current.x - tHov.current.x) > 1e-4 ||
       Math.abs(cHov.current.y - tHov.current.y) > 1e-4
     )
@@ -446,7 +463,7 @@ const ModelViewer: FC<ViewerProps> = ({
   fillLightIntensity = 0.5,
   rimLightIntensity = 0.8,
   environmentPreset = "forest",
-  autoFrame = false,
+  autoFrame = true,
   placeholderSrc,
   showScreenshotButton = true,
   fadeIn = false,
@@ -463,8 +480,10 @@ const ModelViewer: FC<ViewerProps> = ({
 
   const initYaw = deg2rad(defaultRotationX);
   const initPitch = deg2rad(defaultRotationY);
+  // Use a reasonable initial camera distance that works with the normalized model (radius ~0.5)
+  // The model will be repositioned by autoFrame, but this ensures visibility initially
   const camZ = Math.min(
-    Math.max(defaultZoom, minZoomDistance),
+    Math.max(defaultZoom > 1 ? defaultZoom : 1.5, minZoomDistance),
     maxZoomDistance,
   );
 
