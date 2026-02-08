@@ -37,10 +37,11 @@ export default function GooeyTextMorphing({
     <div
       className={cn(
         "relative flex items-center justify-center bg-background p-10",
-        "[filter:blur(4px)_contrast(1.2)]",
+        // The gooey effect needs HIGH contrast to snap the blur edges
+        "filter-[url('#goo-filter')]",
         className,
       )}
-      style={{ filter: `url(#${filterId}) blur(4px) contrast(1.2)` }}
+      style={{ filter: `url(#${filterId})` }}
     >
       <AnimatePresence mode="popLayout">
         <motion.span
@@ -57,11 +58,15 @@ export default function GooeyTextMorphing({
       <svg className="hidden" aria-hidden="true">
         <defs>
           <filter id={filterId}>
-            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
             <feColorMatrix
               in="blur"
               mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
               result="goo"
             />
             <feComposite in="SourceGraphic" in2="goo" operator="atop" />

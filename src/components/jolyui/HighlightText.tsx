@@ -27,11 +27,11 @@ const HighlightText = React.forwardRef<HTMLSpanElement, HighlightTextProps>(
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration, delay, ease: "easeInOut" }}
           className={cn(
-            "absolute bottom-[2px] left-0 -z-10 h-[0.4em] rounded-sm",
+            "absolute inset-0 -z-10 h-full w-full rounded-sm opacity-30",
             highlightClassName,
           )}
           style={{
-            background: "var(--highlight-color, rgba(234, 179, 8, 0.4))", // Default to yellow-500/40
+            backgroundColor: "var(--highlight-color, #facc15)",
           }}
         />
         {children}
