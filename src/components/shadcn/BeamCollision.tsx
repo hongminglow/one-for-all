@@ -206,7 +206,7 @@ const CollisionMechanism = React.forwardRef<
       <motion.div
         animate="animate"
         className={cn(
-          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent",
+          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-linear-to-t from-indigo-500 via-purple-500 to-transparent",
           beamOptions.className,
         )}
         initial={{
@@ -283,7 +283,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
     >
       <motion.div
         animate={{ opacity: 1 }}
-        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
+        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-linear-to-r from-transparent via-indigo-500 to-transparent blur-sm"
         exit={{ opacity: 0 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -295,7 +295,7 @@ const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
             y: span.directionY,
             opacity: 0,
           }}
-          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
+          className="absolute h-1 w-1 rounded-full bg-linear-to-b from-indigo-500 to-purple-500"
           initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
           key={span.id}
           transition={{ duration: span.duration, ease: "easeOut" }}

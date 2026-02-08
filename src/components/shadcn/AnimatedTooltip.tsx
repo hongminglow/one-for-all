@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-} from "motion/react";
+} from "framer-motion";
 import { useRef, useState } from "react";
 
 export interface AnimatedTooltipItem {
@@ -79,8 +79,8 @@ export const AnimatedTooltip = ({ items }: AnimatedTooltipProps) => {
                   whiteSpace: "nowrap",
                 }}
               >
-                <div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
-                <div className="absolute -bottom-px left-10 z-30 h-px w-[40%] bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
+                <div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-linear-to-r from-transparent via-emerald-500 to-transparent" />
+                <div className="absolute -bottom-px left-10 z-30 h-px w-[40%] bg-linear-to-r from-transparent via-sky-500 to-transparent" />
                 <div className="relative z-30 text-base font-bold text-white">
                   {item.name}
                 </div>
@@ -90,7 +90,7 @@ export const AnimatedTooltip = ({ items }: AnimatedTooltipProps) => {
           </AnimatePresence>
           <img
             alt={item.name}
-            className="relative !m-0 h-14 w-14 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105"
+            className="relative m-0! h-14 w-14 rounded-full border-2 border-white object-cover object-top p-0! transition duration-500 group-hover:z-30 group-hover:scale-105"
             height={100}
             onMouseMove={handleMouseMove}
             src={item.image}

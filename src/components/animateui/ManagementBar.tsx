@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import Progress from "@/components/animateui/Progress";
+import { Progress } from "./Progress";
 
 export interface ManagementBarProps {
   title?: string;

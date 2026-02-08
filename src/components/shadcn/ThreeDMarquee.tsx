@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface ThreeDMarqueeProps {
@@ -62,7 +62,7 @@ export const ThreeDMarquee = ({
               {[...column, ...column, ...column].map((item, itemIndex) => (
                 <motion.div
                   key={itemIndex}
-                  className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-2xl shadow-xl"
+                  className="relative aspect-4/3 w-full shrink-0 overflow-hidden rounded-2xl shadow-xl"
                   style={{
                     backgroundColor: useColors ? item : undefined,
                     minHeight: "20vmax",
@@ -84,8 +84,8 @@ export const ThreeDMarquee = ({
       </div>
 
       {/* Gradient overlays for fade effect */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-background via-transparent to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-background via-transparent to-background" />
     </div>
   );
 };

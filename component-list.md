@@ -69,7 +69,7 @@
 57. Dot Grid : https://reactbits.dev/backgrounds/dot-grid
 58. Hyperspeed : https://reactbits.dev/backgrounds/hyperspeed
 59. Ballpit : https://reactbits.dev/backgrounds/ballpit
-60. Orb : https://reactbits.dev/backgrounds/orb
+60. Orbs : https://reactbits.dev/backgrounds/orbs
 61. Letter Glitch : https://reactbits.dev/backgrounds/letter-glitch
 62. Grid Motion : https://reactbits.dev/backgrounds/grid-motion
 63. Code Block : https://www.shadcn.io/components/code-block

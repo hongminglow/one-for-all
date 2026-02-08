@@ -41,27 +41,27 @@ import Galaxy from "@/components/reactbits/Galaxy";
 import DotGrid from "@/components/reactbits/DotGrid";
 import Hyperspeed from "@/components/reactbits/Hyperspeed";
 import Ballpit from "@/components/reactbits/Ballpit";
-import Orb from "@/components/reactbits/Orb";
 import LetterGlitch from "@/components/reactbits/LetterGlitch";
 import GridMotion from "@/components/reactbits/GridMotion";
 import RainbowButton from "@/components/jolyui/RainbowButton";
 import GooeyTextMorphing from "@/components/jolyui/GooeyTextMorphing";
-import HighlightText from "@/components/jolyui/HighlightText";
 import RotateText from "@/components/jolyui/RotateText";
 import TypewriterText from "@/components/jolyui/TypewriterText";
 import AIPromptBox from "@/components/jolyui/AIPromptBox";
 import AnimatedThemeToggle from "@/components/jolyui/AnimatedThemeToggle";
-import DateWheelPicker from "@/components/jolyui/DateWheelPicker";
 import FeedbackWidget from "@/components/jolyui/FeedbackWidget";
 import FileTree, { type FileTreeNode } from "@/components/jolyui/FileTree";
-import AnimatedBeam from "@/components/jolyui/AnimatedBeam";
+import {
+  AnimatedBeam,
+  BeamContainer,
+  BeamNode,
+} from "@/components/jolyui/AnimatedBeam";
 import ExpandedMap from "@/components/jolyui/ExpandedMap";
 import GitHubStarButton from "@/components/jolyui/GitHubStarButton";
 import {
   HoverPreviewLink,
   HoverPreviewProvider,
 } from "@/components/jolyui/HoverPreview";
-import ImageSphere from "@/components/jolyui/ImageSphere";
 import CodeBlock from "@/components/shadcn/CodeBlock";
 import CodeEditor from "@/components/shadcn/CodeEditor";
 import CodeTabs from "@/components/shadcn/CodeTabs";
@@ -101,7 +101,7 @@ import { Demo as VideoPlayer } from "@/components/shadcn/VideoPlayer";
 import { Confetti } from "@/components/shadcn/Confetti";
 import { Fireworks } from "@/components/shadcn/Fireworks";
 import { Meteors } from "@/components/shadcn/Meteors";
-import { Orbits } from "@/components/shadcn/Orbits";
+import { OrbitsBackground } from "@/components/shadcn/Orbits";
 import { Rain } from "@/components/shadcn/Rain";
 import { Snow } from "@/components/shadcn/Snow";
 import { Vortex } from "@/components/shadcn/Vortex";
@@ -129,9 +129,7 @@ import ScrollProgress from "@/components/magicui/ScrollProgress";
 import CopyButton from "@/components/animateui/CopyButton";
 import FlipButton from "@/components/animateui/FlipButton";
 import RippleButton from "@/components/animateui/RippleButton";
-import Progress from "@/components/animateui/Progress";
-import Popover from "@/components/animateui/Popover";
-import Sheet from "@/components/animateui/Sheet";
+
 import FlipCard from "@/components/animateui/FlipCard";
 import MotionCarousel from "@/components/animateui/MotionCarousel";
 import RadialIntro from "@/components/animateui/RadialIntro";
@@ -283,6 +281,21 @@ import { DraggableCard } from "@/components/aceternityui/DraggableCard";
 import { Lens } from "@/components/aceternityui/Lens";
 import { ImageCompare } from "@/components/aceternityui/ImageCompare";
 import { HeroParallax } from "@/components/aceternityui/HeroParallax";
+import { Progress } from "@/components/animateui/Progress";
+import { Sheet } from "@/components/animateui/Sheet";
+import Orbs from "@/components/reactbits/Orbs";
+import { HighlightText } from "@/components/ui/highlight-text";
+import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
+import { Bot, Search, User, Zap } from "lucide-react";
+import { SphereImageGrid } from "@/components/jolyui/ImageSphere";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverPortal,
+} from "@/components/animate-ui/primitives/radix/popover";
+import { Button } from "@/components/ui/button";
+import { Input } from "@base-ui/react";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -331,42 +344,115 @@ const DEMO_IMAGES = [
   },
 ];
 
-function AnimatedBeamDemo(props: {
-  curvature: number;
-  duration: number;
-  reverse: boolean;
-}) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const fromRef = useRef<HTMLDivElement | null>(null);
-  const toRef = useRef<HTMLDivElement | null>(null);
+interface RadixPopoverDemoProps {
+  side?: "top" | "bottom" | "left" | "right";
+  sideOffset?: number;
+  align?: "start" | "center" | "end";
+  alignOffset?: number;
+}
+
+function AnimatedBeamDemo() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
+  const aiRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div
+    <BeamContainer
       ref={containerRef}
-      className="relative flex items-center justify-between rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
-      style={{ height: 220, width: "100%" }}
+      className="mx-auto flex w-full items-center justify-between rounded-xl border bg-background p-10 shadow-sm"
     >
-      <div
-        ref={fromRef}
-        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-(--sb-text-strong)"
-      >
-        A
+      <div className="flex flex-col items-center gap-2">
+        <BeamNode
+          ref={userRef}
+          className="h-12 w-12 border-2 border-blue-500/20 bg-blue-500/10"
+        >
+          <User className="h-6 w-6 text-blue-600" />
+        </BeamNode>
+        <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+          User
+        </span>
       </div>
-      <div
-        ref={toRef}
-        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--sb-selected)] text-[12px] font-black text-(--sb-text-strong)"
-      >
-        B
+
+      <div className="flex flex-col items-center gap-2">
+        <BeamNode
+          ref={aiRef}
+          className="h-16 w-16 border-2 border-purple-500/20 bg-purple-500/10 shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+        >
+          <Bot className="h-8 w-8 text-purple-600" />
+        </BeamNode>
+        <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+          AI Agent
+        </span>
       </div>
+
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col items-center gap-2">
+          <BeamNode
+            ref={searchRef}
+            className="h-12 w-12 border-2 border-amber-500/20 bg-amber-500/10"
+          >
+            <Search className="h-5 w-5 text-amber-600" />
+          </BeamNode>
+          <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+            Search
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <BeamNode
+            ref={resultRef}
+            className="h-12 w-12 border-2 border-emerald-500/20 bg-emerald-500/10"
+          >
+            <Zap className="h-5 w-5 text-emerald-600" />
+          </BeamNode>
+          <span className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+            Result
+          </span>
+        </div>
+      </div>
+
       <AnimatedBeam
         containerRef={containerRef}
-        fromRef={fromRef}
-        toRef={toRef}
-        curvature={props.curvature}
-        duration={props.duration}
-        reverse={props.reverse}
+        fromRef={userRef}
+        toRef={aiRef}
+        duration={3}
+        curvature={0.2}
+        gradientStartColor="#3b82f6"
+        gradientStopColor="#8b5cf6"
       />
-    </div>
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={aiRef}
+        toRef={searchRef}
+        duration={3}
+        delay={0.5}
+        curvature={-0.3}
+        gradientStartColor="#8b5cf6"
+        gradientStopColor="#f59e0b"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={searchRef}
+        toRef={aiRef}
+        duration={3}
+        delay={1.5}
+        curvature={-0.3}
+        reverse
+        gradientStartColor="#f59e0b"
+        gradientStopColor="#8b5cf6"
+      />
+      <AnimatedBeam
+        containerRef={containerRef}
+        fromRef={aiRef}
+        toRef={resultRef}
+        duration={3}
+        delay={2.5}
+        curvature={0.3}
+        gradientStartColor="#8b5cf6"
+        gradientStopColor="#10b981"
+      />
+    </BeamContainer>
   );
 }
 
@@ -516,6 +602,19 @@ function CountUpDemo(props: { to: number }) {
   );
 }
 
+function DateWheelPickerDemo() {
+  const [date, setDate] = useState<Date>(new Date());
+
+  return (
+    <div className="relative flex h-[300px] w-full flex-col items-center justify-center gap-4">
+      <DateWheelPicker value={date} onChange={setDate} />
+      <p className="text-muted-foreground text-sm">
+        Selected: {date.toLocaleDateString()}
+      </p>
+    </div>
+  );
+}
+
 function GlitchTextDemo(props: { label: string }) {
   return (
     <div className="relative text-[26px] font-black tracking-tight text-(--sb-text-strong)">
@@ -525,6 +624,73 @@ function GlitchTextDemo(props: { label: string }) {
     </div>
   );
 }
+
+const RadixPopoverDemo = ({
+  side,
+  sideOffset,
+  align,
+  alignOffset,
+}: RadixPopoverDemoProps) => {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Open popover</Button>
+      </PopoverTrigger>
+      <PopoverPortal>
+        <PopoverContent
+          side={side}
+          sideOffset={sideOffset}
+          align={align}
+          alignOffset={alignOffset}
+          className="w-80"
+        >
+          <div className="grid gap-4">
+            <div className="space-y-2">
+              <h4 className="leading-none font-medium">Dimensions</h4>
+              <p className="text-muted-foreground text-sm">
+                Set the dimensions for the layer.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <div className="grid grid-cols-3 items-center gap-4">
+                <label htmlFor="width">Width</label>
+                <Input
+                  id="width"
+                  defaultValue="100%"
+                  className="col-span-2 h-8"
+                />
+              </div>
+              <div className="grid grid-cols-3 items-center gap-4">
+                <label htmlFor="maxWidth">Max. width</label>
+                <Input
+                  id="maxWidth"
+                  defaultValue="300px"
+                  className="col-span-2 h-8"
+                />
+              </div>
+              <div className="grid grid-cols-3 items-center gap-4">
+                <label htmlFor="height">Height</label>
+                <Input
+                  id="height"
+                  defaultValue="25px"
+                  className="col-span-2 h-8"
+                />
+              </div>
+              <div className="grid grid-cols-3 items-center gap-4">
+                <label htmlFor="maxHeight">Max. height</label>
+                <Input
+                  id="maxHeight"
+                  defaultValue="none"
+                  className="col-span-2 h-8"
+                />
+              </div>
+            </div>
+          </div>
+        </PopoverContent>
+      </PopoverPortal>
+    </Popover>
+  );
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function DecryptedTextDemo(props: { text: string }) {
@@ -2025,10 +2191,10 @@ export function renderDemo(component: ComponentItem, props?: any) {
         </div>
       );
 
-    case slug.includes("orb") || title.includes("orb"):
+    case slug.includes("orbs") || title.includes("orbs"):
       return (
         <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
-          <Orb
+          <Orbs
             hue={props?.hue ?? 0}
             hoverIntensity={props?.hoverIntensity ?? 0.2}
             rotateOnHover={props?.rotateOnHover ?? true}
@@ -2103,18 +2269,11 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
     case slug.includes("highlight-text") || title.includes("highlight text"):
       return (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: 140 }}
-        >
-          <div className="text-[42px] font-black text-primary">
-            <HighlightText
-              duration={props?.duration ?? 0.5}
-              delay={props?.delay ?? 0.1}
-            >
-              {props?.text ?? "Highlight me"}
-            </HighlightText>
-          </div>
+        <div className="flex flex-col items-center justify-center py-20">
+          <h1 className="max-w-2xl text-center font-bold text-4xl leading-relaxed tracking-tight">
+            Make your text <HighlightText>stand out</HighlightText> with
+            animated highlights.
+          </h1>
         </div>
       );
 
@@ -2180,19 +2339,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       );
 
     case slug.includes("date-wheel-picker") || title.includes("date wheel"):
-      return (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: 140 }}
-        >
-          <DateWheelPicker
-            value={new Date()}
-            onChange={() => {}}
-            size={props?.size ?? "md"}
-            disabled={props?.disabled ?? false}
-          />
-        </div>
-      );
+      return <DateWheelPickerDemo />;
 
     case slug.includes("feedback-widget") || title.includes("feedback"):
       return (
@@ -2267,11 +2414,11 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 420 }}
         >
-          <ImageSphere
+          <SphereImageGrid
             images={DEMO_IMAGES}
-            autoRotate={props?.autoRotate ?? true}
-            sphereRadius={props?.sphereRadius ?? 160}
-            containerSize={props?.containerSize ?? 360}
+            containerSize={400}
+            sphereRadius={180}
+            autoRotate={true}
           />
         </div>
       );
@@ -2893,33 +3040,7 @@ console.log(fibonacci(10));`}
       );
 
     case slug === "popover" || title.includes("popover"):
-      return (
-        <div
-          className="flex items-center justify-center"
-          style={{ height: 240 }}
-        >
-          <Popover
-            side={props?.side ?? "bottom"}
-            align={props?.align ?? "center"}
-            trigger={
-              <button
-                type="button"
-                className="rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-4 py-2 text-[13px] font-black text-(--sb-text-strong)"
-              >
-                Open Popover
-              </button>
-            }
-            content={
-              <div>
-                <div className="text-[13px] font-black">Popover</div>
-                <div className="mt-1 text-[12px] font-medium text-(--sb-text-muted)">
-                  Click outside to close.
-                </div>
-              </div>
-            }
-          />
-        </div>
-      );
+      return <RadixPopoverDemo />;
 
     case slug === "sheet" || title.includes("sheet"):
       return <SheetDemo side={props?.side ?? "right"} />;
@@ -3176,7 +3297,7 @@ console.log(fibonacci(10));`}
       return <Meteors {...props} />;
 
     case slug.includes("orbits") || title.includes("orbits"):
-      return <Orbits {...props} />;
+      return <OrbitsBackground {...props} />;
 
     case slug.includes("rain") || title.includes("rain"):
       return <Rain {...props} />;
@@ -6620,7 +6741,7 @@ export function getDemoCode(component: ComponentItem) {
   if (slug.includes("hyperspeed") || title.includes("hyperspeed"))
     return hyperspeedCode;
   if (slug.includes("ballpit") || title.includes("ballpit")) return ballpitCode;
-  if (slug.includes("orb") || title.includes("orb")) return orbCode;
+  if (slug.includes("orbs") || title.includes("orbs")) return orbCode;
   if (slug.includes("letter-glitch") || title.includes("letter glitch"))
     return letterGlitchCode;
   if (slug.includes("grid-motion") || title.includes("grid motion"))

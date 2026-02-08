@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-
-import { cn } from "@/lib/cn";
+import { Folder, File, ChevronRight, ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export type FileTreeNode =
   | { type: "file"; name: string }
@@ -19,34 +19,33 @@ function NodeView({ node, depth }: { node: FileTreeNode; depth: number }) {
   if (node.type === "file") {
     return (
       <div
-        className="flex items-center gap-2"
-        style={{ paddingLeft: depth * 14 }}
+        className="flex items-center gap-2 py-1 hover:bg-muted/50 rounded-md px-2 cursor-default transition-colors"
+        style={{ paddingLeft: depth * 16 + 8 }}
       >
-        <span className="text-[12px] text-[var(--sb-text-dim)]">•</span>
-        <span className="text-[12px] font-semibold text-[var(--sb-text)]">
-          {node.name}
-        </span>
+        <File className="w-4 h-4 text-muted-foreground" />
+        <span className="text-sm font-medium text-foreground">{node.name}</span>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 text-left"
-        style={{ paddingLeft: depth * 14 }}
+        className="flex items-center gap-2 py-1 hover:bg-muted/50 rounded-md px-2 text-left transition-colors"
+        style={{ paddingLeft: depth * 16 + 8 }}
       >
-        <span className="text-[11px] font-black text-[var(--sb-text-dim)]">
-          {open ? "▾" : "▸"}
-        </span>
-        <span className="text-[12px] font-black text-[var(--sb-text-strong)]">
-          {node.name}
-        </span>
+        {open ? (
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+        ) : (
+          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+        )}
+        <Folder className="w-4 h-4 text-primary" />
+        <span className="text-sm font-bold text-foreground">{node.name}</span>
       </button>
       {open && (
-        <div className="mt-1 space-y-1">
+        <div className="flex flex-col">
           {node.children.map((child, idx) => (
             <NodeView key={idx} node={child} depth={depth + 1} />
           ))}
@@ -60,14 +59,11 @@ export default function FileTree({ tree, className }: FileTreeProps) {
   return (
     <div
       className={cn(
-        "w-full max-w-[520px] rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)] p-4",
+        "w-full rounded-2xl border border-border bg-card p-4 shadow-sm",
         className,
       )}
     >
-      <div className="text-[13px] font-black text-[var(--sb-text-strong)]">
-        File Tree
-      </div>
-      <div className="mt-3 space-y-2">
+      <div className="flex flex-col gap-1">
         {tree.map((node, idx) => (
           <NodeView key={idx} node={node} depth={0} />
         ))}

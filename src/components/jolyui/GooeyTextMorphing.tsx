@@ -1,78 +1,145 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion } from "motion/react";
-
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 
 export interface GooeyTextMorphingProps {
   texts: string[];
+  morphTime?: number;
+  cooldownTime?: number;
   className?: string;
-  duration?: number;
-  pauseDuration?: number;
+  textClassName?: string;
 }
 
 export default function GooeyTextMorphing({
   texts,
+  morphTime = 1,
+  cooldownTime = 0.25,
   className,
-  duration = 1.5,
-  pauseDuration = 2,
+  textClassName,
 }: GooeyTextMorphingProps) {
-  const [index, setIndex] = React.useState(0);
-  const uid = React.useId();
-  const filterId = `goo-${uid}`;
+  const text1Ref = React.useRef<HTMLSpanElement>(null);
+  const text2Ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
-    if (texts.length <= 1) return;
-    const interval = window.setInterval(
-      () => {
-        setIndex((prev) => (prev + 1) % texts.length);
-      },
-      (duration + pauseDuration) * 1000,
-    );
-    return () => window.clearInterval(interval);
-  }, [texts, duration, pauseDuration]);
+    let textIndex = texts.length - 1;
+    let time = new Date();
+    let morph = 0;
+    let cooldown = cooldownTime;
+    let animationId: number;
+
+    const setMorph = (fraction: number) => {
+      if (text1Ref.current && text2Ref.current) {
+        // text2 (appearing)
+        text2Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        text2Ref.current.style.opacity = `${fraction ** 0.4 * 100}%`;
+
+        // text1 (disappearing)
+        const invFraction = 1 - fraction;
+        text1Ref.current.style.filter = `blur(${Math.min(8 / invFraction - 8, 100)}px)`;
+        text1Ref.current.style.opacity = `${invFraction ** 0.4 * 100}%`;
+      }
+    };
+
+    const doMorph = () => {
+      morph -= cooldown;
+      cooldown = 0;
+
+      let fraction = morph / morphTime;
+
+      if (fraction > 1) {
+        cooldown = cooldownTime;
+        fraction = 1;
+      }
+
+      setMorph(fraction);
+    };
+
+    const doCooldown = () => {
+      morph = 0;
+
+      if (text2Ref.current) {
+        text2Ref.current.style.filter = "";
+        text2Ref.current.style.opacity = "100%";
+      }
+
+      if (text1Ref.current) {
+        text1Ref.current.style.filter = "";
+        text1Ref.current.style.opacity = "0%";
+      }
+    };
+
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
+
+      const newTime = new Date();
+      const shouldIncrementIndex = cooldown > 0;
+      const dt = (newTime.getTime() - time.getTime()) / 1000;
+      time = newTime;
+
+      cooldown -= dt;
+
+      if (cooldown <= 0) {
+        if (shouldIncrementIndex) {
+          textIndex++;
+          if (text1Ref.current && text2Ref.current) {
+            text1Ref.current.textContent = texts[textIndex % texts.length];
+            text2Ref.current.textContent =
+              texts[(textIndex + 1) % texts.length];
+          }
+        }
+
+        doMorph();
+      } else {
+        doCooldown();
+      }
+    };
+
+    animate();
+    return () => cancelAnimationFrame(animationId);
+  }, [texts, morphTime, cooldownTime]);
 
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center bg-background p-10",
-        // The gooey effect needs HIGH contrast to snap the blur edges
-        "filter-[url('#goo-filter')]",
+        "relative flex h-full w-full items-center justify-center py-20",
         className,
       )}
-      style={{ filter: `url(#${filterId})` }}
     >
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={texts[index] ?? index}
-          initial={{ opacity: 0, scale: 0.85, filter: "blur(4px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, scale: 1.15, filter: "blur(4px)" }}
-          transition={{ duration, ease: "easeInOut" }}
-          className="absolute whitespace-nowrap text-[42px] font-black tracking-tight text-foreground"
-        >
-          {texts[index]}
-        </motion.span>
-      </AnimatePresence>
-      <svg className="hidden" aria-hidden="true">
+      <svg className="absolute h-0 w-0" aria-hidden="true">
         <defs>
-          <filter id={filterId}>
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="10"
-              result="blur"
-            />
+          <filter id="threshold">
             <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-              result="goo"
+              in="SourceGraphic"
+              type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140"
             />
-            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
           </filter>
         </defs>
       </svg>
+
+      <div
+        className="flex h-full w-full items-center justify-center text-center outline-none"
+        style={{ filter: "url(#threshold)" }}
+      >
+        <span
+          ref={text1Ref}
+          className={cn(
+            "absolute inline-block select-none text-4xl font-black md:text-6xl lg:text-8xl",
+            textClassName,
+          )}
+        />
+        <span
+          ref={text2Ref}
+          className={cn(
+            "absolute inline-block select-none text-4xl font-black md:text-6xl lg:text-8xl",
+            textClassName,
+          )}
+        />
+      </div>
     </div>
   );
 }

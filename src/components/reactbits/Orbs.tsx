@@ -1,7 +1,7 @@
 import { Mesh, Program, Renderer, Triangle, Vec3 } from "ogl";
 import { useEffect, useRef } from "react";
 
-import "./Orb.css";
+import "./Orbs.css";
 
 interface OrbProps {
   hue?: number;
@@ -11,7 +11,7 @@ interface OrbProps {
   backgroundColor?: string;
 }
 
-export default function Orb({
+export default function Orbs({
   hue = 0,
   hoverIntensity = 0.2,
   rotateOnHover = true,
