@@ -22,8 +22,50 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "three-stdlib";
 import * as THREE from "three";
+
+const GLTFLoaderWrapper: FC<{
+  url: string;
+  children: (content: THREE.Object3D) => React.ReactNode;
+}> = ({ url, children }) => {
+  const { scene } = useGLTF(url);
+  const content = useMemo(() => scene.clone(), [scene]);
+  return <>{children(content)}</>;
+};
+
+const FBXLoaderWrapper: FC<{
+  url: string;
+  children: (content: THREE.Object3D) => React.ReactNode;
+}> = ({ url, children }) => {
+  const fbx = useFBX(url);
+  const content = useMemo(() => fbx.clone(), [fbx]);
+  return <>{children(content)}</>;
+};
+
+const OBJLoaderWrapper: FC<{
+  url: string;
+  children: (content: THREE.Object3D) => React.ReactNode;
+}> = ({ url, children }) => {
+  const obj = useLoader(OBJLoader, url);
+  const content = useMemo(() => obj.clone(), [obj]);
+  return <>{children(content)}</>;
+};
+
+const UnifiedLoader: FC<{
+  url: string;
+  children: (content: THREE.Object3D) => React.ReactNode;
+}> = ({ url, children }) => {
+  const ext = useMemo(() => url.split(".").pop()!.toLowerCase(), [url]);
+  if (ext === "glb" || ext === "gltf")
+    return <GLTFLoaderWrapper url={url}>{children}</GLTFLoaderWrapper>;
+  if (ext === "fbx")
+    return <FBXLoaderWrapper url={url}>{children}</FBXLoaderWrapper>;
+  if (ext === "obj")
+    return <OBJLoaderWrapper url={url}>{children}</OBJLoaderWrapper>;
+  console.error("Unsupported format:", ext);
+  return null;
+};
 
 export interface ViewerProps {
   url: string;
@@ -116,7 +158,7 @@ const DesktopControls: FC<{
 };
 
 interface ModelInnerProps {
-  url: string;
+  content: THREE.Object3D;
   xOff: number;
   yOff: number;
   pivot: THREE.Vector3;
@@ -136,7 +178,7 @@ interface ModelInnerProps {
 }
 
 const ModelInner: FC<ModelInnerProps> = ({
-  url,
+  content,
   xOff,
   yOff,
   pivot,
@@ -163,15 +205,6 @@ const ModelInner: FC<ModelInnerProps> = ({
   const cPar = useRef({ x: 0, y: 0 });
   const tHov = useRef({ x: 0, y: 0 });
   const cHov = useRef({ x: 0, y: 0 });
-
-  const ext = useMemo(() => url.split(".").pop()!.toLowerCase(), [url]);
-  const content = useMemo<THREE.Object3D | null>(() => {
-    if (ext === "glb" || ext === "gltf") return useGLTF(url).scene.clone();
-    if (ext === "fbx") return useFBX(url).clone();
-    if (ext === "obj") return useLoader(OBJLoader, url).clone();
-    console.error("Unsupported format:", ext);
-    return null;
-  }, [url, ext]);
 
   const pivotW = useRef(new THREE.Vector3());
   // Flag to indicate model is initialized
@@ -570,25 +603,29 @@ const ModelViewer: FC<ViewerProps> = ({
         />
 
         <Suspense fallback={<Loader placeholderSrc={placeholderSrc} />}>
-          <ModelInner
-            url={url}
-            xOff={modelXOffset}
-            yOff={modelYOffset}
-            pivot={pivot}
-            initYaw={initYaw}
-            initPitch={initPitch}
-            minZoom={minZoomDistance}
-            maxZoom={maxZoomDistance}
-            enableMouseParallax={enableMouseParallax}
-            enableManualRotation={enableManualRotation}
-            enableHoverRotation={enableHoverRotation}
-            enableManualZoom={enableManualZoom}
-            autoFrame={autoFrame}
-            fadeIn={fadeIn}
-            autoRotate={autoRotate}
-            autoRotateSpeed={autoRotateSpeed}
-            onLoaded={onModelLoaded}
-          />
+          <UnifiedLoader url={url}>
+            {(content) => (
+              <ModelInner
+                content={content}
+                xOff={modelXOffset}
+                yOff={modelYOffset}
+                pivot={pivot}
+                initYaw={initYaw}
+                initPitch={initPitch}
+                minZoom={minZoomDistance}
+                maxZoom={maxZoomDistance}
+                enableMouseParallax={enableMouseParallax}
+                enableManualRotation={enableManualRotation}
+                enableHoverRotation={enableHoverRotation}
+                enableManualZoom={enableManualZoom}
+                autoFrame={autoFrame}
+                fadeIn={fadeIn}
+                autoRotate={autoRotate}
+                autoRotateSpeed={autoRotateSpeed}
+                onLoaded={onModelLoaded}
+              />
+            )}
+          </UnifiedLoader>
         </Suspense>
 
         {!isTouch && (

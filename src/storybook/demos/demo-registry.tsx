@@ -77,18 +77,18 @@ import ColorPicker from "@/components/shadcn/ColorPicker";
 import ComboboxDemo from "@/components/shadcn/ComboboxDemo";
 import Dropzone from "@/components/shadcn/Dropzone";
 import ImageZoom from "@/components/shadcn/ImageZoom";
-import ImageCrop from "@/components/shadcn/ImageCrop";
+import { Demo as ImageCrop } from "@/components/shadcn/ImageCrop";
 import ThreeDCard from "@/components/shadcn/ThreeDCard";
-import ThreeDMarquee from "@/components/shadcn/ThreeDMarquee";
-import AnimatedCursor from "@/components/shadcn/AnimatedCursor";
-import AnimatedTestimonials from "@/components/shadcn/AnimatedTestimonials";
-import AnimatedTooltip from "@/components/shadcn/AnimatedTooltip";
-import Glimpse from "@/components/shadcn/Glimpse";
+import { Demo as ThreeDMarquee } from "@/components/shadcn/ThreeDMarquee";
+import { Demo as AnimatedCursor } from "@/components/shadcn/AnimatedCursor";
+import { Demo as AnimatedTestimonials } from "@/components/shadcn/AnimatedTestimonials";
+import { Demo as AnimatedTooltip } from "@/components/shadcn/AnimatedTooltip";
+import { Demo as Glimpse } from "@/components/shadcn/Glimpse";
 import PinList from "@/components/shadcn/PinList";
-import Spinner from "@/components/shadcn/Spinner";
+import { Demo as Spinner } from "@/components/shadcn/Spinner";
 import TabsPremium from "@/components/shadcn/TabsPremium";
 import Banner from "@/components/shadcn/Banner";
-import Marquee from "@/components/shadcn/Marquee";
+import { Demo as Marquee } from "@/components/shadcn/Marquee";
 import AvatarGroup from "@/components/shadcn/AvatarGroup";
 import Tags from "@/components/shadcn/Tags";
 import MiniCalendar from "@/components/shadcn/MiniCalendar";
@@ -97,7 +97,7 @@ import Kbd from "@/components/shadcn/Kbd";
 import QrCode from "@/components/shadcn/QrCode";
 import StatusIndicator from "@/components/shadcn/StatusIndicator";
 import Terminal from "@/components/shadcn/Terminal";
-import VideoPlayer from "@/components/shadcn/VideoPlayer";
+import { Demo as VideoPlayer } from "@/components/shadcn/VideoPlayer";
 import { Confetti } from "@/components/shadcn/Confetti";
 import { Fireworks } from "@/components/shadcn/Fireworks";
 import { Meteors } from "@/components/shadcn/Meteors";
@@ -2575,7 +2575,7 @@ console.log(fibonacci(10));`}
 
     case slug.includes("dropzone") || title.includes("dropzone"):
       return (
-        <div className="w-full max-w-[800px]">
+        <div className="w-full">
           <Dropzone />
         </div>
       );
@@ -2596,13 +2596,8 @@ console.log(fibonacci(10));`}
 
     case slug.includes("image-crop") || title.includes("image crop"):
       return (
-        <div className="w-full max-w-[800px]">
-          <ImageCrop
-            src={
-              props?.src ??
-              "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
-            }
-          />
+        <div className="w-full">
+          <ImageCrop />
         </div>
       );
 
@@ -2660,10 +2655,7 @@ console.log(fibonacci(10));`}
     case slug.includes("spinner") || title.includes("spinner"):
       return (
         <div className="w-full flex items-center justify-center py-10 bg-black/20 rounded-2xl">
-          <Spinner
-            size={props?.size ?? "md"}
-            variant={props?.variant ?? "spin"}
-          />
+          <Spinner />
         </div>
       );
 
@@ -2696,34 +2688,7 @@ console.log(fibonacci(10));`}
     case slug.includes("marquee") || title.includes("marquee"):
       return (
         <div className="w-full py-10">
-          <Marquee
-            items={[
-              <div
-                key="1"
-                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
-              >
-                LOGO 1
-              </div>,
-              <div
-                key="2"
-                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
-              >
-                LOGO 2
-              </div>,
-              <div
-                key="3"
-                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
-              >
-                LOGO 3
-              </div>,
-              <div
-                key="4"
-                className="flex items-center justify-center h-20 w-40 rounded-2xl bg-white/5 border border-white/5 font-black text-white italic"
-              >
-                LOGO 4
-              </div>,
-            ]}
-          />
+          <Marquee />
         </div>
       );
 
@@ -2832,10 +2797,7 @@ console.log(fibonacci(10));`}
     case slug.includes("video-player") || title.includes("video player"):
       return (
         <div className="w-full py-10">
-          <VideoPlayer
-            src="https://framerusercontent.com/assets/p2Vf958fId7c65H2p4x856p6eU.mp4"
-            poster="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80"
-          />
+          <VideoPlayer />
         </div>
       );
 

@@ -1,54 +1,89 @@
 "use client";
 
-import React from "react";
+import type { HTMLAttributes } from "react";
+import type { MarqueeProps as FastMarqueeProps } from "react-fast-marquee";
+import FastMarquee from "react-fast-marquee";
 import { cn } from "@/lib/utils";
 
-interface MarqueeProps {
-  items: React.ReactNode[];
-  direction?: "left" | "right";
-  speed?: number;
-  pauseOnHover?: boolean;
-  className?: string;
-}
+export type MarqueeProps = HTMLAttributes<HTMLDivElement>;
 
-const Marquee: React.FC<MarqueeProps> = ({
-  items,
-  direction = "left",
-  speed = 40,
+export const Marquee = ({ className, ...props }: MarqueeProps) => (
+  <div
+    className={cn("relative w-full overflow-hidden", className)}
+    {...(props as any)}
+  />
+);
+
+export type MarqueeContentProps = FastMarqueeProps;
+
+export const MarqueeContent = ({
+  loop = 0,
+  autoFill = true,
   pauseOnHover = true,
-  className,
-}) => {
-  return (
-    <div className={cn("relative flex w-full overflow-hidden py-4", className)}>
-      <div
-        className={cn(
-          "flex min-w-full shrink-0 gap-8 py-4",
-          direction === "left" ? "animate-marquee" : "animate-marquee-reverse",
-          pauseOnHover && "hover:[animation-play-state:paused]",
-        )}
-        style={{ "--duration": `${speed}s` } as React.CSSProperties}
-      >
-        {items.map((item, i) => (
-          <div key={i} className="flex shrink-0 items-center justify-center">
-            {item}
-          </div>
-        ))}
-        {/* Repeat for seamless loop */}
-        {items.map((item, i) => (
-          <div
-            key={`dup-${i}`}
-            className="flex shrink-0 items-center justify-center"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
+  ...props
+}: MarqueeContentProps) => (
+  <FastMarquee
+    autoFill={autoFill}
+    loop={loop}
+    pauseOnHover={pauseOnHover}
+    {...(props as any)}
+  />
+);
 
-      {/* Fade Gradients */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[var(--sb-bg)] to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[var(--sb-bg)] to-transparent z-10" />
-    </div>
-  );
+export type MarqueeFadeProps = HTMLAttributes<HTMLDivElement> & {
+  side: "left" | "right";
 };
 
-export default Marquee;
+export const MarqueeFade = ({
+  className,
+  side,
+  ...props
+}: MarqueeFadeProps) => (
+  <div
+    className={cn(
+      "absolute top-0 bottom-0 z-10 h-full w-24 from-background to-transparent",
+      side === "left" ? "left-0 bg-gradient-to-r" : "right-0 bg-gradient-to-l",
+      className,
+    )}
+    {...(props as any)}
+  />
+);
+
+export type MarqueeItemProps = HTMLAttributes<HTMLDivElement>;
+
+export const MarqueeItem = ({ className, ...props }: MarqueeItemProps) => (
+  <div
+    className={cn("mx-2 flex-shrink-0 object-contain", className)}
+    {...(props as any)}
+  />
+);
+
+// Demo
+const colors = [
+  "bg-rose-500",
+  "bg-orange-500",
+  "bg-amber-500",
+  "bg-emerald-500",
+  "bg-cyan-500",
+  "bg-blue-500",
+  "bg-violet-500",
+  "bg-pink-500",
+];
+
+export function Demo() {
+  return (
+    <div className="relative w-full h-[300px] flex items-center justify-center overflow-hidden">
+      <Marquee>
+        <MarqueeFade side="left" />
+        <MarqueeContent speed={40}>
+          {colors.map((color, i) => (
+            <MarqueeItem key={i} className="mx-3">
+              <div className={cn("h-16 w-16 rounded-xl", color)} />
+            </MarqueeItem>
+          ))}
+        </MarqueeContent>
+        <MarqueeFade side="right" />
+      </Marquee>
+    </div>
+  );
+}

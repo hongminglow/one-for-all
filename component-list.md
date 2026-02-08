@@ -90,7 +90,7 @@
 78. Image Crop : https://www.shadcn.io/components/image-crop
 79. 3D Card : https://www.shadcn.io/components/3d-card
 80. 3D Marquee : https://www.shadcn.io/components/3d-marquee
-81. Animated Cursor : https://www.shadcn.io/components/3d-marquee
+81. Animated Cursor : https://www.shadcn.io/components/animated-cursor
 82. Animated Testimonials : https://www.shadcn.io/components/animated-testimonials
 83. Animated Tooltip : https://www.shadcn.io/components/animated-tooltip
 84. Glimpse : https://www.shadcn.io/components/glimpse

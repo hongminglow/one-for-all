@@ -1,137 +1,228 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-const testimonials = [
-  {
-    name: "Alex Rivera",
-    role: "Senior Designer",
-    content:
-      "The attention to detail in these components is simply breathtaking. It's rare to find such a perfect balance of aesthetics and functionality.",
-    avatar: "https://i.pravatar.cc/150?u=1",
-    color: "#6366f1",
-  },
-  {
-    name: "Sarah Chen",
-    role: "Engineering Lead",
-    content:
-      "Integration was a breeze. The code is clean, modular, and the animations are buttery smooth. Highly recommended for any modern app.",
-    avatar: "https://i.pravatar.cc/150?u=2",
-    color: "#ec4899",
-  },
-  {
-    name: "James Wilson",
-    role: "Startup Founder",
-    content:
-      "Our user engagement spiked after we implemented these interactive elements. They truly make the interface feel alive.",
-    avatar: "https://i.pravatar.cc/150?u=3",
-    color: "#10b981",
-  },
-];
+export interface Testimonial {
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
+}
 
-const AnimatedTestimonials: React.FC = () => {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+export interface AnimatedTestimonialsProps {
+  testimonials: Testimonial[];
+  autoplay?: boolean;
+  className?: string;
+}
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setIndex(
-      (prev) =>
-        (prev + newDirection + testimonials.length) % testimonials.length,
+export const AnimatedTestimonials = ({
+  testimonials,
+  autoplay = false,
+  className,
+}: AnimatedTestimonialsProps) => {
+  const [active, setActive] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const [rotations, setRotations] = useState<number[]>([]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setRotations(testimonials.map(() => Math.floor(Math.random() * 21) - 10));
+  }, [testimonials]);
+
+  const handleNext = () => {
+    setActive((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const isActive = (index: number) => {
+    return index === active;
+  };
+
+  useEffect(() => {
+    if (autoplay) {
+      const interval = setInterval(handleNext, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [autoplay]);
+
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "mx-auto max-w-sm px-4 py-20 md:max-w-4xl md:px-8 lg:px-12 h-96 bg-muted/20 animate-pulse rounded-xl",
+          className,
+        )}
+      />
     );
-  };
-
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.5,
-      rotateY: direction > 0 ? 45 : -45,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.5,
-      rotateY: direction < 0 ? 45 : -45,
-    }),
-  };
+  }
 
   return (
-    <div className="flex w-full items-center justify-center py-10">
-      <div className="relative h-[440px] w-full max-w-4xl px-4 flex items-center justify-center">
-        <AnimatePresence initial={false} custom={direction} mode="wait">
+    <div
+      className={cn(
+        "mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12",
+        className,
+      )}
+    >
+      <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+        <div>
+          <div className="relative h-80 w-full">
+            <AnimatePresence>
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  animate={{
+                    opacity: isActive(index) ? 1 : 0.7,
+                    scale: isActive(index) ? 1 : 0.95,
+                    z: isActive(index) ? 0 : -100,
+                    rotate: isActive(index) ? 0 : (rotations[index] ?? 0),
+                    zIndex: isActive(index)
+                      ? 40
+                      : testimonials.length + 2 - index,
+                    y: isActive(index) ? [0, -80, 0] : 0,
+                  }}
+                  className="absolute inset-0 origin-bottom"
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                    z: 100,
+                    rotate: rotations[index] ?? 0,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.9,
+                    z: -100,
+                    rotate: rotations[index] ?? 0,
+                  }}
+                  key={testimonial.src}
+                  transition={{
+                    duration: 0.4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <img
+                    alt={testimonial.name}
+                    className="h-full w-full rounded-3xl object-cover object-center"
+                    draggable={false}
+                    height={500}
+                    src={testimonial.src}
+                    width={500}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between py-4">
           <motion.div
-            key={index}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.3 },
-              scale: { duration: 0.4 },
-              rotateY: { duration: 0.5 },
+            animate={{
+              y: 0,
+              opacity: 1,
             }}
-            className="absolute rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-12 shadow-2xl backdrop-blur-xl flex flex-col items-center text-center"
-            style={{ perspective: "1000px" }}
+            exit={{
+              y: -20,
+              opacity: 0,
+            }}
+            initial={{
+              y: 20,
+              opacity: 0,
+            }}
+            key={active}
+            transition={{
+              duration: 0.2,
+              ease: "easeInOut",
+            }}
           >
-            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-white">
-              <Quote className="h-8 w-8 opacity-40" />
-            </div>
-
-            <p className="mb-10 text-xl md:text-2xl font-medium leading-relaxed text-white">
-              "{testimonials[index].content}"
+            <h3 className="text-2xl font-bold text-black dark:text-white">
+              {testimonials[active].name}
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-neutral-500">
+              {testimonials[active].designation}
             </p>
-
-            <div className="flex flex-col items-center">
-              <div
-                className="mb-4 h-16 w-16 rounded-full border-2 p-1"
-                style={{ borderColor: testimonials[index].color }}
-              >
-                <img
-                  src={testimonials[index].avatar}
-                  alt={testimonials[index].name}
-                  className="h-full w-full rounded-full object-cover grayscale transition-all hover:grayscale-0"
-                />
-              </div>
-              <h4 className="text-lg font-bold text-white">
-                {testimonials[index].name}
-              </h4>
-              <p className="text-sm font-medium text-white/40 uppercase tracking-widest">
-                {testimonials[index].role}
-              </p>
-            </div>
+            <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300">
+              {testimonials[active].quote.split(" ").map((word, index) => (
+                <motion.span
+                  animate={{
+                    filter: "blur(0px)",
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  className="inline-block"
+                  initial={{
+                    filter: "blur(10px)",
+                    opacity: 0,
+                    y: 5,
+                  }}
+                  key={index}
+                  transition={{
+                    duration: 0.2,
+                    ease: "easeInOut",
+                    delay: 0.02 * index,
+                  }}
+                >
+                  {word}&nbsp;
+                </motion.span>
+              ))}
+            </motion.p>
           </motion.div>
-        </AnimatePresence>
-
-        <div className="absolute inset-x-0 bottom-0 flex justify-center gap-4 py-8 pointer-events-none">
-          <button
-            onClick={() => paginate(-1)}
-            className="pointer-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all hover:bg-white/10 active:scale-95"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            onClick={() => paginate(1)}
-            className="pointer-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all hover:bg-white/10 active:scale-95"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+          <div className="flex gap-4 pt-12 md:pt-0">
+            <button
+              type="button"
+              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              onClick={handlePrev}
+            >
+              <ChevronLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+            </button>
+            <button
+              type="button"
+              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              onClick={handleNext}
+            >
+              <ChevronRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default AnimatedTestimonials;
+// Demo
+const demoTestimonials: Testimonial[] = [
+  {
+    quote:
+      "This product has completely transformed how we work. The attention to detail and user experience is unmatched.",
+    name: "Sarah Chen",
+    designation: "CTO at TechCorp",
+    src: "https://i.pravatar.cc/500?img=1",
+  },
+  {
+    quote:
+      "I've never seen such a well-designed interface. It's intuitive and beautiful at the same time.",
+    name: "Michael Roberts",
+    designation: "Design Lead at Creative Co",
+    src: "https://i.pravatar.cc/500?img=3",
+  },
+  {
+    quote:
+      "The best investment we've made this year. Our team productivity has increased significantly.",
+    name: "Emily Watson",
+    designation: "CEO at StartupXYZ",
+    src: "https://i.pravatar.cc/500?img=5",
+  },
+];
+
+export function Demo() {
+  return (
+    <div className="relative w-full py-20 flex items-center justify-center bg-background">
+      <AnimatedTestimonials testimonials={demoTestimonials} autoplay />
+    </div>
+  );
+}
