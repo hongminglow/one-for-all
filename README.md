@@ -15,12 +15,10 @@ This project serves as a central registry for diverse UI components from various
 
 | ID | Component Name | Library | Reference URL |
 |----|----------------|---------|---------------|
-| 1 | React-Bits | React Bits | [Link](https://reactbits.dev/get-started/introduction) |
-| 2 | Shadcn.io | Shadcn UI | [Link](https://www.shadcn.io/components) |
-| 3 | Joly UI | Joly UI | [Link](https://www.jolyui.dev/docs/components/creative/animated-beam) |
-| 4 | Animated UI | Animate UI | [Link](https://animate-ui.com/docs/components) |
 | 1 | Split Text | React Bits | [Link](https://reactbits.dev/text-animations/split-text) |
+| 2 | Circular Text | React Bits | [Link](https://reactbits.dev/text-animations/circular-text) |
 | 3 | Shiny Text | React Bits | [Link](https://reactbits.dev/text-animations/shiny-text) |
+| 4 | Curved Marquee | React Bits | [Link](https://reactbits.dev/text-animations/curved-loop) |
 | 5 | Fuzzy Text | React Bits | [Link](https://reactbits.dev/text-animations/fuzzy-text) |
 | 6 | Gradient Text | React Bits | [Link](https://reactbits.dev/text-animations/gradient-text) |
 | 7 | Falling Text | React Bits | [Link](https://reactbits.dev/text-animations/falling-text) |
@@ -76,7 +74,7 @@ This project serves as a central registry for diverse UI components from various
 | 57 | Dot Grid | React Bits | [Link](https://reactbits.dev/backgrounds/dot-grid) |
 | 58 | Hyperspeed | React Bits | [Link](https://reactbits.dev/backgrounds/hyperspeed) |
 | 59 | Ballpit | React Bits | [Link](https://reactbits.dev/backgrounds/ballpit) |
-| 60 | Orb | React Bits | [Link](https://reactbits.dev/backgrounds/orb) |
+| 60 | Orbs | React Bits | [Link](https://reactbits.dev/backgrounds/orbs) |
 | 61 | Letter Glitch | React Bits | [Link](https://reactbits.dev/backgrounds/letter-glitch) |
 | 62 | Grid Motion | React Bits | [Link](https://reactbits.dev/backgrounds/grid-motion) |
 | 63 | Code Block | Shadcn UI | [Link](https://www.shadcn.io/components/code-block) |
@@ -85,6 +83,8 @@ This project serves as a central registry for diverse UI components from various
 | 66 | Sandbox | Shadcn UI | [Link](https://www.shadcn.io/components/sandbox) |
 | 67 | GanttChart | Shadcn UI | [Link](https://www.shadcn.io/components/gantt) |
 | 68 | Kanban | Shadcn UI | [Link](https://www.shadcn.io/components/kanban) |
+| 69 | Device Mock(Android) | Shadcn UI | [Link](https://www.shadcn.io/components/android) |
+| 70 | Device Mock(IOS) | Shadcn UI | [Link](https://www.shadcn.io/components/iphone-15-pro) |
 | 71 | MacOS Dock | Shadcn UI | [Link](https://www.shadcn.io/components/mac-os-dock) |
 | 72 | Rating | Shadcn UI | [Link](https://www.shadcn.io/components/rating) |
 | 73 | Credit Card | Shadcn UI | [Link](https://www.shadcn.io/components/credit-card) |
@@ -117,8 +117,8 @@ This project serves as a central registry for diverse UI components from various
 | 100 | Beam Collision | Shadcn UI | [Link](https://www.shadcn.io/background/beams-collision) |
 | 101 | Confetti | Shadcn UI | [Link](https://www.shadcn.io/background/confetti) |
 | 102 | Fireworks | Shadcn UI | [Link](https://www.shadcn.io/background/fireworks) |
-| 103 | Meteors | Shadcn UI | [Link](https://www.shadcn.io/background/fireworks) |
-| 104 | Orbits | Shadcn UI | [Link](https://www.shadcn.io/background/fireworks) |
+| 103 | Meteors | Shadcn UI | [Link](https://www.shadcn.io/background/meteors) |
+| 104 | Orbits | Shadcn UI | [Link](https://www.shadcn.io/background/orbits) |
 | 105 | Rain | Shadcn UI | [Link](https://www.shadcn.io/background/rain) |
 | 106 | Snow | Shadcn UI | [Link](https://www.shadcn.io/background/snow) |
 | 107 | Vortex | Shadcn UI | [Link](https://www.shadcn.io/background/vortex) |
