@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, FC } from "react";
 import * as THREE from "three";
 import {
@@ -8,6 +10,7 @@ import {
   SMAAEffect,
   SMAAPreset,
 } from "postprocessing";
+import { hyperspeedPresets } from "@/presets/presets";
 
 interface Distortion {
   uniforms: Record<string, { value: any }>;
@@ -62,45 +65,11 @@ interface HyperspeedOptions {
 
 interface HyperspeedProps {
   effectOptions?: Partial<HyperspeedOptions>;
+  preset?: keyof typeof hyperspeedPresets;
 }
 
-const defaultOptions: HyperspeedOptions = {
-  onSpeedUp: () => {},
-  onSlowDown: () => {},
-  distortion: "turbulentDistortion",
-  length: 400,
-  roadWidth: 10,
-  islandWidth: 2,
-  lanesPerRoad: 4,
-  fov: 90,
-  fovSpeedUp: 150,
-  speedUp: 2,
-  carLightsFade: 0.4,
-  totalSideLightSticks: 20,
-  lightPairsPerRoadWay: 40,
-  shoulderLinesWidthPercentage: 0.05,
-  brokenLinesWidthPercentage: 0.1,
-  brokenLinesLengthPercentage: 0.5,
-  lightStickWidth: [0.12, 0.5],
-  lightStickHeight: [1.3, 1.7],
-  movingAwaySpeed: [60, 80],
-  movingCloserSpeed: [-120, -160],
-  carLightsLength: [400 * 0.03, 400 * 0.2],
-  carLightsRadius: [0.05, 0.14],
-  carWidthPercentage: [0.3, 0.5],
-  carShiftX: [-0.8, 0.8],
-  carFloorSeparation: [0, 5],
-  colors: {
-    roadColor: 0x080808,
-    islandColor: 0x0a0a0a,
-    background: 0x000000,
-    shoulderLines: 0xffffff,
-    brokenLines: 0xffffff,
-    leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-    rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-    sticks: 0x03b3c3,
-  },
-};
+const defaultOptions: HyperspeedOptions =
+  hyperspeedPresets.one as unknown as HyperspeedOptions;
 
 function nsin(val: number) {
   return Math.sin(val) * 0.5 + 0.5;
@@ -979,24 +948,25 @@ function resizeRendererToDisplaySize(
 class App {
   container: HTMLElement;
   options: HyperspeedOptions;
-  renderer: THREE.WebGLRenderer;
-  composer: EffectComposer;
-  camera: THREE.PerspectiveCamera;
-  scene: THREE.Scene;
+  renderer!: THREE.WebGLRenderer;
+  composer!: EffectComposer;
+  camera!: THREE.PerspectiveCamera;
+  scene!: THREE.Scene;
   renderPass!: RenderPass;
   bloomPass!: EffectPass;
-  clock: THREE.Clock;
+  clock!: THREE.Clock;
   assets: Record<string, any>;
   disposed: boolean;
-  road: Road;
-  leftCarLights: CarLights;
-  rightCarLights: CarLights;
-  leftSticks: LightsSticks;
-  fogUniforms: Record<string, { value: any }>;
+  road!: Road;
+  leftCarLights!: CarLights;
+  rightCarLights!: CarLights;
+  leftSticks!: LightsSticks;
+  fogUniforms!: Record<string, { value: any }>;
   fovTarget: number;
   speedUpTarget: number;
   speedUp: number;
   timeOffset: number;
+  animationId?: number;
 
   constructor(container: HTMLElement, options: HyperspeedOptions) {
     this.options = options;
@@ -1007,64 +977,8 @@ class App {
       };
     }
     this.container = container;
-
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: true,
-    });
-    this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-
-    this.composer = new EffectComposer(this.renderer);
-    container.appendChild(this.renderer.domElement);
-
-    this.camera = new THREE.PerspectiveCamera(
-      options.fov,
-      container.offsetWidth / container.offsetHeight,
-      0.1,
-      10000,
-    );
-    this.camera.position.z = -5;
-    this.camera.position.y = 8;
-    this.camera.position.x = 0;
-
-    this.scene = new THREE.Scene();
-    this.scene.background = null;
-
-    const fog = new THREE.Fog(
-      options.colors.background,
-      options.length * 0.2,
-      options.length * 500,
-    );
-    this.scene.fog = fog;
-
-    this.fogUniforms = {
-      fogColor: { value: fog.color },
-      fogNear: { value: fog.near },
-      fogFar: { value: fog.far },
-    };
-
-    this.clock = new THREE.Clock();
     this.assets = {};
     this.disposed = false;
-
-    this.road = new Road(this, options);
-    this.leftCarLights = new CarLights(
-      this,
-      options,
-      options.colors.leftCars,
-      options.movingAwaySpeed,
-      new THREE.Vector2(0, 1 - options.carLightsFade),
-    );
-    this.rightCarLights = new CarLights(
-      this,
-      options,
-      options.colors.rightCars,
-      options.movingCloserSpeed,
-      new THREE.Vector2(1, 0 + options.carLightsFade),
-    );
-    this.leftSticks = new LightsSticks(this, options);
-
     this.fovTarget = options.fov;
     this.speedUpTarget = 0;
     this.speedUp = 0;
@@ -1079,15 +993,15 @@ class App {
     this.onTouchStart = this.onTouchStart.bind(this);
     this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onContextMenu = this.onContextMenu.bind(this);
-
-    window.addEventListener("resize", this.onWindowResize.bind(this));
+    this.onWindowResize = this.onWindowResize.bind(this);
   }
 
   onWindowResize() {
+    if (this.disposed || !this.renderer) return;
     const width = this.container.offsetWidth;
     const height = this.container.offsetHeight;
 
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.composer.setSize(width, height);
@@ -1147,8 +1061,70 @@ class App {
   }
 
   init() {
-    this.initPasses();
+    if (this.disposed) return;
+
     const options = this.options;
+    const container = this.container;
+
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+    });
+    this.renderer.domElement.style.width = "100%";
+    this.renderer.domElement.style.height = "100%";
+    this.renderer.domElement.style.display = "block";
+    this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+
+    this.composer = new EffectComposer(this.renderer);
+    container.appendChild(this.renderer.domElement);
+
+    this.camera = new THREE.PerspectiveCamera(
+      options.fov,
+      container.offsetWidth / container.offsetHeight,
+      0.1,
+      10000,
+    );
+    this.camera.position.z = -5;
+    this.camera.position.y = 8;
+    this.camera.position.x = 0;
+
+    this.scene = new THREE.Scene();
+    this.scene.background = null;
+
+    const fog = new THREE.Fog(
+      options.colors.background,
+      options.length * 0.2,
+      options.length * 500,
+    );
+    this.scene.fog = fog;
+
+    this.fogUniforms = {
+      fogColor: { value: fog.color },
+      fogNear: { value: fog.near },
+      fogFar: { value: fog.far },
+    };
+
+    this.clock = new THREE.Clock();
+
+    this.road = new Road(this, options);
+    this.leftCarLights = new CarLights(
+      this,
+      options,
+      options.colors.leftCars,
+      options.movingAwaySpeed,
+      new THREE.Vector2(0, 1 - options.carLightsFade),
+    );
+    this.rightCarLights = new CarLights(
+      this,
+      options,
+      options.colors.rightCars,
+      options.movingCloserSpeed,
+      new THREE.Vector2(1, 0 + options.carLightsFade),
+    );
+    this.leftSticks = new LightsSticks(this, options);
+
+    this.initPasses();
     this.road.init();
     this.leftCarLights.init();
     this.leftCarLights.mesh.position.setX(
@@ -1179,6 +1155,7 @@ class App {
       passive: true,
     });
     this.container.addEventListener("contextmenu", this.onContextMenu);
+    window.addEventListener("resize", this.onWindowResize);
 
     this.tick();
   }
@@ -1260,6 +1237,9 @@ class App {
 
   dispose() {
     this.disposed = true;
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
 
     if (this.renderer) {
       this.renderer.dispose();
@@ -1271,7 +1251,7 @@ class App {
       this.scene.clear();
     }
 
-    window.removeEventListener("resize", this.onWindowResize.bind(this));
+    window.removeEventListener("resize", this.onWindowResize);
     if (this.container) {
       this.container.removeEventListener("mousedown", this.onMouseDown);
       this.container.removeEventListener("mouseup", this.onMouseUp);
@@ -1298,49 +1278,65 @@ class App {
     const delta = this.clock.getDelta();
     this.render(delta);
     this.update(delta);
-    requestAnimationFrame(this.tick);
+    this.animationId = requestAnimationFrame(this.tick);
   }
 }
 
-const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
-  const mergedOptions: HyperspeedOptions = {
-    ...defaultOptions,
-    ...effectOptions,
-  };
+const Hyperspeed: FC<HyperspeedProps> = ({
+  effectOptions = {},
+  preset = "one",
+}) => {
   const hyperspeed = useRef<HTMLDivElement>(null);
   const appRef = useRef<App | null>(null);
 
-  useEffect(() => {
-    if (appRef.current) {
-      appRef.current.dispose();
-      const container = document.getElementById("lights");
-      if (container) {
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
-        }
-      }
-    }
+  const presetOptions = preset
+    ? (hyperspeedPresets[preset] as unknown as HyperspeedOptions)
+    : {};
+  const optionsString = JSON.stringify({ ...presetOptions, ...effectOptions });
 
+  useEffect(() => {
     const container = hyperspeed.current;
     if (!container) return;
 
-    const options = { ...mergedOptions };
-    if (typeof options.distortion === "string") {
-      options.distortion = distortions[options.distortion];
+    if (appRef.current) {
+      appRef.current.dispose();
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
     }
 
-    const myApp = new App(container, options);
+    const mergedOptions: HyperspeedOptions = {
+      ...defaultOptions,
+      ...presetOptions,
+      ...effectOptions,
+    };
+
+    if (typeof mergedOptions.distortion === "string") {
+      mergedOptions.distortion = distortions[mergedOptions.distortion];
+    }
+
+    const myApp = new App(container, mergedOptions);
     appRef.current = myApp;
-    myApp.loadAssets().then(myApp.init);
+    myApp.loadAssets().then(() => {
+      if (!myApp.disposed) {
+        myApp.init();
+      }
+    });
 
     return () => {
       if (appRef.current) {
         appRef.current.dispose();
       }
+      if (container) {
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+      }
     };
-  }, [mergedOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [optionsString]);
 
-  return <div id="lights" className="w-full h-full" ref={hyperspeed}></div>;
+  return <div className="w-full h-full" ref={hyperspeed}></div>;
 };
 
 export default Hyperspeed;
