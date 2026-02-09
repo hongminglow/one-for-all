@@ -10691,5 +10691,2416 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
     ];
   }
 
+  if (slug === "shiny-text" || title.includes("shiny text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text content to animate",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "2",
+        description: "Animation speed in seconds",
+      },
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "['#b5b5b5', '#ffffff', '#b5b5b5']",
+        description: "Colors for the shine gradient",
+      },
+      {
+        prop: "blur",
+        type: "number",
+        default: "0",
+        description: "Blur amount (px)",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
+  if (
+    slug === "curved-marquee" ||
+    slug === "curved-loop" ||
+    title.includes("curved")
+  ) {
+    return [
+      {
+        prop: "marqueeText",
+        type: "string",
+        default: "",
+        description: "Text to scroll along the curve",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "2",
+        description: "Scroll speed",
+      },
+      {
+        prop: "curveAmount",
+        type: "number",
+        default: "400",
+        description: "Vertical curve intensity",
+      },
+      {
+        prop: "direction",
+        type: "'left' | 'right'",
+        default: "left",
+        description: "Scroll direction",
+      },
+      {
+        prop: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Enable drag interaction",
+      },
+    ];
+  }
+
+  if (slug === "fuzzy-text" || title.includes("fuzzy text")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Text content",
+      },
+      {
+        prop: "fontSize",
+        type: "number | string",
+        default: "clamp(2rem, 8vw, 8rem)",
+        description: "Font size",
+      },
+      {
+        prop: "baseIntensity",
+        type: "number",
+        default: "0.18",
+        description: "Base fuzziness intensity",
+      },
+      {
+        prop: "hoverIntensity",
+        type: "number",
+        default: "0.5",
+        description: "Hover fuzziness intensity",
+      },
+      {
+        prop: "enableHover",
+        type: "boolean",
+        default: "true",
+        description: "Enable hover effect",
+      },
+    ];
+  }
+
+  if (slug === "gradient-text" || title.includes("gradient text")) {
+    return [
+      {
+        prop: "children",
+        type: "ReactNode",
+        default: "",
+        description: "Text content",
+      },
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "['#5227FF', '#FF9FFC', '#B19EEF']",
+        description: "Gradient colors",
+      },
+      {
+        prop: "animationSpeed",
+        type: "number",
+        default: "8",
+        description: "Animation duration in seconds",
+      },
+      {
+        prop: "showBorder",
+        type: "boolean",
+        default: "false",
+        description: "Show animated border",
+      },
+      {
+        prop: "direction",
+        type: "'horizontal' | 'vertical' | 'diagonal'",
+        default: "horizontal",
+        description: "Gradient direction",
+      },
+    ];
+  }
+
+  if (slug === "falling-text" || title.includes("falling text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Content text",
+      },
+      {
+        prop: "highlightWords",
+        type: "string[]",
+        default: "[]",
+        description: "Words to highlight",
+      },
+      {
+        prop: "trigger",
+        type: "'auto' | 'scroll' | 'click' | 'hover'",
+        default: "auto",
+        description: "Trigger mechanism",
+      },
+      {
+        prop: "gravity",
+        type: "number",
+        default: "1",
+        description: "Physics gravity strength",
+      },
+      {
+        prop: "fontSize",
+        type: "string",
+        default: "1rem",
+        description: "Font size for text",
+      },
+    ];
+  }
+
+  if (slug === "decrypted-text" || title.includes("decrypted")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Final displayed text",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "50",
+        description: "Scramble speed (ms)",
+      },
+      {
+        prop: "maxIterations",
+        type: "number",
+        default: "10",
+        description: "Max scramble iterations",
+      },
+      {
+        prop: "revealDirection",
+        type: "'start' | 'end' | 'center'",
+        default: "start",
+        description: "Direction of reveal",
+      },
+      {
+        prop: "useOriginalCharsOnly",
+        type: "boolean",
+        default: "false",
+        description: "Scramble using only original chars",
+      },
+      {
+        prop: "animateOn",
+        type: "'view' | 'hover' | 'both'",
+        default: "hover",
+        description: "Animation trigger",
+      },
+    ];
+  }
+
+  if (slug === "rotating-text" || title.includes("rotating text")) {
+    return [
+      {
+        prop: "texts",
+        type: "string[]",
+        default: "[]",
+        description: "Array of texts to rotate through",
+      },
+      {
+        prop: "rotationInterval",
+        type: "number",
+        default: "2000",
+        description: "Time between rotations (ms)",
+      },
+      {
+        prop: "staggerDuration",
+        type: "number",
+        default: "0",
+        description: "Stagger delay per element",
+      },
+      {
+        prop: "loop",
+        type: "boolean",
+        default: "true",
+        description: "Infinite loop",
+      },
+      {
+        prop: "splitBy",
+        type: "string",
+        default: "characters",
+        description: "Split granularity",
+      },
+    ];
+  }
+
+  if (slug === "glitch-text" || title.includes("glitch text")) {
+    return [
+      {
+        prop: "children",
+        type: "string",
+        default: "",
+        description: "Text content",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "1",
+        description: "Glitch animation speed",
+      },
+      {
+        prop: "enableShadows",
+        type: "boolean",
+        default: "true",
+        description: "Enable color offsets/shadows",
+      },
+      {
+        prop: "enableOnHover",
+        type: "boolean",
+        default: "true",
+        description: "Trigger on hover",
+      },
+    ];
+  }
+
+  if (slug === "variable-proximity" || title.includes("variable proximity")) {
+    return [
+      {
+        prop: "label",
+        type: "string",
+        default: "",
+        description: "Screen reader label",
+      },
+      {
+        prop: "fromFontVariationSettings",
+        type: "string",
+        default: "",
+        description: "Initial font settings",
+      },
+      {
+        prop: "toFontVariationSettings",
+        type: "string",
+        default: "",
+        description: "Hover font settings",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "50",
+        description: "Proximity radius",
+      },
+      {
+        prop: "falloff",
+        type: "'linear' | 'exponential' | 'gaussian'",
+        default: "linear",
+        description: "Easing function for proximity",
+      },
+    ];
+  }
+
+  if (slug === "count-up" || title.includes("count up")) {
+    return [
+      {
+        prop: "to",
+        type: "number",
+        default: "0",
+        description: "Target number",
+      },
+      {
+        prop: "from",
+        type: "number",
+        default: "0",
+        description: "Start number",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "2",
+        description: "Animation duration (s)",
+      },
+      {
+        prop: "separator",
+        type: "string",
+        default: "",
+        description: "Thousands separator",
+      },
+      {
+        prop: "startWhen",
+        type: "boolean",
+        default: "true",
+        description: "Start requirement",
+      },
+    ];
+  }
+
+  if (slug === "electric-border" || title.includes("electric border")) {
+    return [
+      {
+        prop: "color",
+        type: "string",
+        default: "#5227FF",
+        description: "Border color",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "1",
+        description: "Animation speed",
+      },
+      {
+        prop: "chaos",
+        type: "number",
+        default: "0.12",
+        description: "Noise chaos level",
+      },
+      {
+        prop: "borderRadius",
+        type: "number",
+        default: "24",
+        description: "Border radius (px)",
+      },
+    ];
+  }
+
+  if (slug === "antigravity" || title.includes("antigravity")) {
+    return [
+      {
+        prop: "count",
+        type: "number",
+        default: "300",
+        description: "Number of particles",
+      },
+      {
+        prop: "magnetRadius",
+        type: "number",
+        default: "10",
+        description: "Mouse interaction radius",
+      },
+      {
+        prop: "ringRadius",
+        type: "number",
+        default: "10",
+        description: "Formation ring radius",
+      },
+      {
+        prop: "waveSpeed",
+        type: "number",
+        default: "0.4",
+        description: "Wave animation speed",
+      },
+      {
+        prop: "waveAmplitude",
+        type: "number",
+        default: "1",
+        description: "Wave height amplitude",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: "#FF9FFC",
+        description: "Particle color",
+      },
+      {
+        prop: "autoAnimate",
+        type: "boolean",
+        default: "false",
+        description: "Enable auto-animation",
+      },
+    ];
+  }
+
+  if (slug === "logo-loop" || title.includes("logo loop")) {
+    return [
+      {
+        prop: "logos",
+        type: "LogoItem[]",
+        default: "[]",
+        description: "Array of logo objects",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "120",
+        description: "Scroll speed",
+      },
+      {
+        prop: "direction",
+        type: "'left' | 'right' | 'up' | 'down'",
+        default: "left",
+        description: "Scroll direction",
+      },
+      {
+        prop: "pauseOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Pause on mouse hover",
+      },
+      {
+        prop: "gap",
+        type: "number",
+        default: "32",
+        description: "Gap between logos",
+      },
+    ];
+  }
+
+  if (slug === "target-cursor" || title.includes("target cursor")) {
+    return [
+      {
+        prop: "targetSelector",
+        type: "string",
+        default: ".cursor-target",
+        description: "CSS selector for targets",
+      },
+      {
+        prop: "spinDuration",
+        type: "number",
+        default: "2",
+        description: "Rotation duration (s)",
+      },
+      {
+        prop: "hideDefaultCursor",
+        type: "boolean",
+        default: "true",
+        description: "Hide system cursor",
+      },
+      {
+        prop: "hoverDuration",
+        type: "number",
+        default: "0.2",
+        description: "Hover transition duration",
+      },
+      {
+        prop: "parallaxOn",
+        type: "boolean",
+        default: "true",
+        description: "Enable parallax effect",
+      },
+    ];
+  }
+
+  if (slug === "laser-flow" || title.includes("laser flow")) {
+    return [
+      {
+        prop: "color",
+        type: "string",
+        default: "#FF79C6",
+        description: "Laser color",
+      },
+      {
+        prop: "flowSpeed",
+        type: "number",
+        default: "0.35",
+        description: "Flow animation speed",
+      },
+      {
+        prop: "wispDensity",
+        type: "number",
+        default: "1",
+        description: "Density of wisps",
+      },
+      {
+        prop: "fogIntensity",
+        type: "number",
+        default: "0.45",
+        description: "Fog effect intensity",
+      },
+      {
+        prop: "decay",
+        type: "number",
+        default: "1.1",
+        description: "Beam decay factor",
+      },
+    ];
+  }
+
+  if (slug === "magnet-lines" || title.includes("magnet lines")) {
+    return [
+      {
+        prop: "rows",
+        type: "number",
+        default: "9",
+        description: "Number of rows",
+      },
+      {
+        prop: "columns",
+        type: "number",
+        default: "9",
+        description: "Number of columns",
+      },
+      {
+        prop: "lineColor",
+        type: "string",
+        default: "#efefef",
+        description: "Line color",
+      },
+      {
+        prop: "lineWidth",
+        type: "string",
+        default: "1vmin",
+        description: "Line width",
+      },
+      {
+        prop: "baseAngle",
+        type: "number",
+        default: "-10",
+        description: "Initial rotation angle",
+      },
+    ];
+  }
+
+  if (slug === "ghost-cursor" || title.includes("ghost cursor")) {
+    return [
+      {
+        prop: "trailLength",
+        type: "number",
+        default: "50",
+        description: "Length of the trail",
+      },
+      {
+        prop: "inertia",
+        type: "number",
+        default: "0.5",
+        description: "Movement inertia",
+      },
+      {
+        prop: "grainIntensity",
+        type: "number",
+        default: "0.05",
+        description: "Film grain intensity",
+      },
+      {
+        prop: "bloomStrength",
+        type: "number",
+        default: "0.1",
+        description: "Bloom effect strength",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: "#B19EEF",
+        description: "Trail color",
+      },
+    ];
+  }
+
+  if (slug === "click-spark" || title.includes("click spark")) {
+    return [
+      {
+        prop: "sparkColor",
+        type: "string",
+        default: "#fff",
+        description: "Color of sparks",
+      },
+      {
+        prop: "sparkSize",
+        type: "number",
+        default: "10",
+        description: "Size of individual sparks",
+      },
+      {
+        prop: "sparkRadius",
+        type: "number",
+        default: "15",
+        description: "Radius of explosion",
+      },
+      {
+        prop: "sparkCount",
+        type: "number",
+        default: "8",
+        description: "Number of sparks",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "400",
+        description: "Animation duration (ms)",
+      },
+    ];
+  }
+
+  if (slug === "sticker-peel" || title.includes("sticker peel")) {
+    return [
+      {
+        prop: "imageSrc",
+        type: "string",
+        default: "",
+        description: "Image source URL",
+      },
+      {
+        prop: "peelBackHoverPct",
+        type: "number",
+        default: "30",
+        description: "% Peel on hover",
+      },
+      {
+        prop: "peelBackActivePct",
+        type: "number",
+        default: "40",
+        description: "% Peel on active",
+      },
+      {
+        prop: "rotate",
+        type: "number",
+        default: "30",
+        description: "Sticker rotation",
+      },
+      {
+        prop: "shadowIntensity",
+        type: "number",
+        default: "0.6",
+        description: "Shadow opacity",
+      },
+    ];
+  }
+
+  if (slug === "image-trail" || title.includes("image trail")) {
+    return [
+      {
+        prop: "items",
+        type: "string[]",
+        default: "[]",
+        description: "Array of image URLs",
+      },
+      {
+        prop: "variant",
+        type: "number",
+        default: "1",
+        description: "Animation variant (1-8)",
+      },
+    ];
+  }
+
+  if (slug === "splash-cursor" || title.includes("splash cursor")) {
+    return [
+      {
+        prop: "SIM_RESOLUTION",
+        type: "number",
+        default: "128",
+        description: "Simulation resolution",
+      },
+      {
+        prop: "DYE_RESOLUTION",
+        type: "number",
+        default: "1440",
+        description: "Dye resolution",
+      },
+      {
+        prop: "SPLAT_FORCE",
+        type: "number",
+        default: "6000",
+        description: "Force of splash",
+      },
+      {
+        prop: "COLOR_UPDATE_SPEED",
+        type: "number",
+        default: "10",
+        description: "Color cycle speed",
+      },
+      {
+        prop: "BACK_COLOR",
+        type: "{r,g,b}",
+        default: "{r:0.5,g:0,b:0}",
+        description: "Background color",
+      },
+    ];
+  }
+
+  if (slug === "star-border" || title.includes("star border")) {
+    return [
+      {
+        prop: "color",
+        type: "string",
+        default: "white",
+        description: "Star color",
+      },
+      {
+        prop: "speed",
+        type: "string",
+        default: "6s",
+        description: "Animation duration",
+      },
+      {
+        prop: "thickness",
+        type: "number",
+        default: "1",
+        description: "Border thickness",
+      },
+      {
+        prop: "as",
+        type: "ElementType",
+        default: "button",
+        description: "Render as element",
+      },
+    ];
+  }
+
+  if (slug === "animated-list" || title.includes("animated list")) {
+    return [
+      {
+        prop: "items",
+        type: "string[]",
+        default: "['Item 1', ...]",
+        description: "Array of list items",
+      },
+      {
+        prop: "onItemSelect",
+        type: "(item: string, index: number) => void",
+        default: "undefined",
+        description: "Callback on item selection",
+      },
+      {
+        prop: "showGradients",
+        type: "boolean",
+        default: "true",
+        description: "Show fade gradients",
+      },
+      {
+        prop: "enableArrowNavigation",
+        type: "boolean",
+        default: "true",
+        description: "Enable keyboard navigation",
+      },
+      {
+        prop: "displayScrollbar",
+        type: "boolean",
+        default: "true",
+        description: "Show scrollbar",
+      },
+    ];
+  }
+
+  if (slug === "carousel" || title.includes("carousel")) {
+    return [
+      {
+        prop: "items",
+        type: "CarouselItem[]",
+        default: "[]",
+        description: "Array of items",
+      },
+      {
+        prop: "baseWidth",
+        type: "number",
+        default: "300",
+        description: "Card base width",
+      },
+      {
+        prop: "autoplay",
+        type: "boolean",
+        default: "false",
+        description: "Enable autoplay",
+      },
+      {
+        prop: "autoplayDelay",
+        type: "number",
+        default: "3000",
+        description: "Autoplay delay (ms)",
+      },
+      {
+        prop: "loop",
+        type: "boolean",
+        default: "false",
+        description: "Infinite loop",
+      },
+      {
+        prop: "round",
+        type: "boolean",
+        default: "false",
+        description: "Round styling",
+      },
+    ];
+  }
+
+  if (slug === "circular-gallery" || title.includes("circular gallery")) {
+    return [
+      {
+        prop: "items",
+        type: "{image: string, text: string}[]",
+        default: "[]",
+        description: "Gallery items",
+      },
+      {
+        prop: "bend",
+        type: "number",
+        default: "3",
+        description: "Curvature amount",
+      },
+      {
+        prop: "textColor",
+        type: "string",
+        default: "#ffffff",
+        description: "Text color",
+      },
+      {
+        prop: "borderRadius",
+        type: "number",
+        default: "0.05",
+        description: "Image border radius",
+      },
+      {
+        prop: "scrollSpeed",
+        type: "number",
+        default: "2",
+        description: "Scroll sensitivity",
+      },
+    ];
+  }
+
+  if (slug === "circular-text" || title.includes("circular text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to display",
+      },
+      {
+        prop: "spinDuration",
+        type: "number",
+        default: "20",
+        description: "Rotation duration (s)",
+      },
+      {
+        prop: "onHover",
+        type: "'slowDown' | 'speedUp' | 'pause' | 'goBonkers'",
+        default: "speedUp",
+        description: "Hover behavior",
+      },
+    ];
+  }
+
+  if (slug === "color-bends" || title.includes("color bends")) {
+    return [
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "[]",
+        description: "Array of hex colors",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.2",
+        description: "Animation speed",
+      },
+      {
+        prop: "rotation",
+        type: "number",
+        default: "45",
+        description: "Global rotation",
+      },
+      {
+        prop: "noise",
+        type: "number",
+        default: "0.1",
+        description: "Noise amount",
+      },
+    ];
+  }
+
+  if (slug === "counter" || title.includes("counter")) {
+    return [
+      {
+        prop: "value",
+        type: "number",
+        default: "0",
+        description: "Value to display",
+      },
+      {
+        prop: "fontSize",
+        type: "number",
+        default: "100",
+        description: "Font size (px)",
+      },
+      {
+        prop: "places",
+        type: "number[]",
+        default: "auto",
+        description: "Digit places config",
+      },
+      {
+        prop: "gap",
+        type: "number",
+        default: "8",
+        description: "Gap between digits",
+      },
+    ];
+  }
+
+  if (slug === "dark-veil" || title.includes("dark veil")) {
+    return [
+      {
+        prop: "hueShift",
+        type: "number",
+        default: "0",
+        description: "Hue shift amount",
+      },
+      {
+        prop: "noiseIntensity",
+        type: "number",
+        default: "0",
+        description: "Noise level",
+      },
+      {
+        prop: "scanlineIntensity",
+        type: "number",
+        default: "0",
+        description: "Scanline opacity",
+      },
+      {
+        prop: "warpAmount",
+        type: "number",
+        default: "0",
+        description: "Warp distortion",
+      },
+    ];
+  }
+
+  if (slug === "dock" || title.includes("dock")) {
+    return [
+      {
+        prop: "items",
+        type: "DockItemData[]",
+        default: "[]",
+        description: "Dock items",
+      },
+      {
+        prop: "distance",
+        type: "number",
+        default: "200",
+        description: "Effect distance",
+      },
+      {
+        prop: "magnification",
+        type: "number",
+        default: "70",
+        description: "Magnified size",
+      },
+      {
+        prop: "baseItemSize",
+        type: "number",
+        default: "50",
+        description: "Base item size",
+      },
+    ];
+  }
+
+  if (slug === "elastic-slider" || title.includes("elastic slider")) {
+    return [
+      {
+        prop: "defaultValue",
+        type: "number",
+        default: "50",
+        description: "Initial value",
+      },
+      {
+        prop: "startingValue",
+        type: "number",
+        default: "0",
+        description: "Minimum value",
+      },
+      {
+        prop: "maxValue",
+        type: "number",
+        default: "100",
+        description: "Maximum value",
+      },
+      {
+        prop: "isStepped",
+        type: "boolean",
+        default: "false",
+        description: "Enable steps",
+      },
+    ];
+  }
+
+  if (slug === "floating-lines" || title.includes("floating lines")) {
+    return [
+      {
+        prop: "lineCount",
+        type: "number | number[]",
+        default: "[6]",
+        description: "Lines per wave",
+      },
+      {
+        prop: "lineDistance",
+        type: "number | number[]",
+        default: "[5]",
+        description: "Distance between lines",
+      },
+      {
+        prop: "animationSpeed",
+        type: "number",
+        default: "1",
+        description: "Animation speed",
+      },
+      {
+        prop: "interactive",
+        type: "boolean",
+        default: "true",
+        description: "Mouse interactivity",
+      },
+    ];
+  }
+
+  if (slug === "flowing-menu" || title.includes("flowing menu")) {
+    return [
+      {
+        prop: "items",
+        type: "MenuItemData[]",
+        default: "[]",
+        description: "Menu items",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "15",
+        description: "Marquee speed",
+      },
+      {
+        prop: "textColor",
+        type: "string",
+        default: "#fff",
+        description: "Text color",
+      },
+      {
+        prop: "bgColor",
+        type: "string",
+        default: "#060010",
+        description: "Background color",
+      },
+    ];
+  }
+
+  if (slug === "fluid-glass" || title.includes("fluid glass")) {
+    return [
+      {
+        prop: "mode",
+        type: "'lens' | 'bar' | 'cube'",
+        default: "lens",
+        description: "Display mode",
+      },
+      {
+        prop: "lensProps",
+        type: "ModeProps",
+        default: "{}",
+        description: "Props for lens mode",
+      },
+      {
+        prop: "barProps",
+        type: "ModeProps",
+        default: "{}",
+        description: "Props for bar mode",
+      },
+      {
+        prop: "cubeProps",
+        type: "ModeProps",
+        default: "{}",
+        description: "Props for cube mode",
+      },
+    ];
+  }
+
+  if (slug === "infinite-menu" || title.includes("infinite menu")) {
+    return [
+      {
+        prop: "items",
+        type: "MenuItem[]",
+        default: "[]",
+        description: "Menu items {image, link, title}",
+      },
+      {
+        prop: "scale",
+        type: "number",
+        default: "1.0",
+        description: "Global scale",
+      },
+    ];
+  }
+
+  if (slug === "lanyard" || title.includes("lanyard")) {
+    return [
+      {
+        prop: "position",
+        type: "[number, number, number]",
+        default: "[0, 0, 30]",
+        description: "Camera position",
+      },
+      {
+        prop: "gravity",
+        type: "[number, number, number]",
+        default: "[0, -40, 0]",
+        description: "Physics gravity",
+      },
+      {
+        prop: "fov",
+        type: "number",
+        default: "20",
+        description: "Field of view",
+      },
+      {
+        prop: "transparent",
+        type: "boolean",
+        default: "true",
+        description: "Transparent background",
+      },
+    ];
+  }
+
+  if (slug === "light-pillar" || title.includes("light pillar")) {
+    return [
+      {
+        prop: "topColor",
+        type: "string",
+        default: "#5227FF",
+        description: "Top gradient color",
+      },
+      {
+        prop: "bottomColor",
+        type: "string",
+        default: "#FF9FFC",
+        description: "Bottom gradient color",
+      },
+      {
+        prop: "intensity",
+        type: "number",
+        default: "1.0",
+        description: "Light intensity",
+      },
+      {
+        prop: "pillarWidth",
+        type: "number",
+        default: "3.0",
+        description: "Width of the pillar",
+      },
+      {
+        prop: "quality",
+        type: "'low' | 'medium' | 'high'",
+        default: "high",
+        description: "Rendering quality",
+      },
+    ];
+  }
+
+  if (slug === "light-rays" || title.includes("light rays")) {
+    return [
+      {
+        prop: "raysColor",
+        type: "string",
+        default: "#ffffff",
+        description: "Color of rays",
+      },
+      {
+        prop: "raysSpeed",
+        type: "number",
+        default: "1",
+        description: "Animation speed",
+      },
+      {
+        prop: "pulsating",
+        type: "boolean",
+        default: "false",
+        description: "Enable pulsating",
+      },
+      {
+        prop: "mouseInfluence",
+        type: "number",
+        default: "0.1",
+        description: "Mouse reactivity",
+      },
+    ];
+  }
+
+  if (slug === "liquid-ether" || title.includes("liquid ether")) {
+    return [
+      {
+        prop: "resolution",
+        type: "number",
+        default: "1",
+        description: "Resolution scale",
+      },
+    ];
+  }
+
+  if (slug === "magic-bento" || title.includes("magic bento")) {
+    return [
+      {
+        prop: "enableSpotlight",
+        type: "boolean",
+        default: "true",
+        description: "Enable mouse spotlight",
+      },
+      {
+        prop: "enableStars",
+        type: "boolean",
+        default: "true",
+        description: "Enable particle stars",
+      },
+      {
+        prop: "enableTilt",
+        type: "boolean",
+        default: "false",
+        description: "Enable tilt effect",
+      },
+      {
+        prop: "glowColor",
+        type: "string",
+        default: "132, 0, 255",
+        description: "RGB glow color",
+      },
+    ];
+  }
+
+  if (slug === "masonry" || title.includes("masonry")) {
+    return [
+      {
+        prop: "items",
+        type: "Item[]",
+        default: "[]",
+        description: "Masonry grid items",
+      },
+      {
+        prop: "animateFrom",
+        type: "string",
+        default: "bottom",
+        description: "Animation origin",
+      },
+      {
+        prop: "stagger",
+        type: "number",
+        default: "0.05",
+        description: "Stagger delay (s)",
+      },
+      {
+        prop: "scaleOnHover",
+        type: "boolean",
+        default: "true",
+        description: "Scale on hover",
+      },
+    ];
+  }
+
+  if (slug === "model-viewer" || title.includes("model viewer")) {
+    return [
+      {
+        prop: "url",
+        type: "string",
+        default: "",
+        description: "Model URL (glb/fbx/obj)",
+      },
+      {
+        prop: "autoRotate",
+        type: "boolean",
+        default: "false",
+        description: "Enable auto rotation",
+      },
+      {
+        prop: "enableManualRotation",
+        type: "boolean",
+        default: "true",
+        description: "Allow manual rotation",
+      },
+      {
+        prop: "environmentPreset",
+        type: "string",
+        default: "forest",
+        description: "Lighting environment",
+      },
+    ];
+  }
+
+  if (slug === "particles" || title.includes("particles")) {
+    return [
+      {
+        prop: "particleCount",
+        type: "number",
+        default: "200",
+        description: "Number of particles",
+      },
+      {
+        prop: "particleSpread",
+        type: "number",
+        default: "10",
+        description: "Spread area of particles",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.1",
+        description: "Animation speed",
+      },
+      {
+        prop: "particleBaseSize",
+        type: "number",
+        default: "100",
+        description: "Base size of particles",
+      },
+      {
+        prop: "moveParticlesOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Particles react to mouse",
+      },
+      {
+        prop: "alphaParticles",
+        type: "boolean",
+        default: "false",
+        description: "Use alpha blending",
+      },
+      {
+        prop: "disableRotation",
+        type: "boolean",
+        default: "false",
+        description: "Disable camera rotation",
+      },
+    ];
+  }
+
+  if (slug === "prism" || title.includes("prism")) {
+    return [
+      {
+        prop: "animationType",
+        type: "'rotate' | 'hover' | '3drotate'",
+        default: "rotate",
+        description: "Animation behavior",
+      },
+      {
+        prop: "height",
+        type: "number",
+        default: "3.5",
+        description: "Prism height",
+      },
+      {
+        prop: "baseWidth",
+        type: "number",
+        default: "5.5",
+        description: "Prism base width",
+      },
+      {
+        prop: "glow",
+        type: "number",
+        default: "1",
+        description: "Glow intensity",
+      },
+      {
+        prop: "noise",
+        type: "number",
+        default: "0.5",
+        description: "Noise amount",
+      },
+    ];
+  }
+
+  if (slug === "scroll-stack" || title.includes("scroll stack")) {
+    return [
+      {
+        prop: "itemDistance",
+        type: "number",
+        default: "100",
+        description: "Distance between items",
+      },
+      {
+        prop: "itemScale",
+        type: "number",
+        default: "0.03",
+        description: "Scale increment",
+      },
+      {
+        prop: "stackPosition",
+        type: "string",
+        default: "20%",
+        description: "Stack start position",
+      },
+      {
+        prop: "rotationAmount",
+        type: "number",
+        default: "0",
+        description: "Rotation on scroll",
+      },
+    ];
+  }
+
+  if (slug === "split-text" || title.includes("split text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to animate",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "100",
+        description: "Delay between letters (ms)",
+      },
+      {
+        prop: "textAlign",
+        type: "string",
+        default: "center",
+        description: "Text alignment",
+      },
+      {
+        prop: "threshold",
+        type: "number",
+        default: "0.1",
+        description: "Threshold for animation",
+      },
+    ];
+  }
+
+  if (slug === "spotlight-card" || title.includes("spotlight card")) {
+    return [
+      {
+        prop: "spotlightColor",
+        type: "string",
+        default: "rgba(255, 255, 255, 0.25)",
+        description: "Color of the spotlight",
+      },
+    ];
+  }
+
+  if (slug === "stack" || title === "stack") {
+    return [
+      {
+        prop: "randomRotation",
+        type: "boolean",
+        default: "false",
+        description: "Randomize card rotation",
+      },
+      {
+        prop: "sensitivity",
+        type: "number",
+        default: "200",
+        description: "Drag sensitivity",
+      },
+      {
+        prop: "autoplay",
+        type: "boolean",
+        default: "false",
+        description: "Autoplay stack",
+      },
+      {
+        prop: "pauseOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Pause autoplay on hover",
+      },
+    ];
+  }
+
+  if (slug === "stepper" || title.includes("stepper")) {
+    return [
+      {
+        prop: "initialStep",
+        type: "number",
+        default: "1",
+        description: "Starting step",
+      },
+      {
+        prop: "backButtonText",
+        type: "string",
+        default: "Back",
+        description: "Back button label",
+      },
+      {
+        prop: "nextButtonText",
+        type: "string",
+        default: "Continue",
+        description: "Next button label",
+      },
+      {
+        prop: "disableStepIndicators",
+        type: "boolean",
+        default: "false",
+        description: "Hide step indicators",
+      },
+    ];
+  }
+
+  if (slug === "text-cursor" || title.includes("text cursor")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "⚛️",
+        description: "Cursor text",
+      },
+      {
+        prop: "spacing",
+        type: "number",
+        default: "100",
+        description: "Spacing between trails",
+      },
+      {
+        prop: "randomFloat",
+        type: "boolean",
+        default: "true",
+        description: "Randomized movement",
+      },
+    ];
+  }
+
+  if (slug === "ballpit" || title.includes("ballpit")) {
+    return [
+      {
+        prop: "followCursor",
+        type: "boolean",
+        default: "true",
+        description: "Balls follow cursor",
+      },
+      {
+        prop: "count",
+        type: "number",
+        default: "200",
+        description: "Number of balls",
+      },
+      {
+        prop: "colors",
+        type: "number[]",
+        default: "[0, 0, 0]",
+        description: "Ball colors (hex)",
+      },
+    ];
+  }
+
+  if (slug === "count-up" || title.includes("count up")) {
+    return [
+      {
+        prop: "to",
+        type: "number",
+        default: "",
+        description: "Target number",
+      },
+      {
+        prop: "from",
+        type: "number",
+        default: "0",
+        description: "Starting number",
+      },
+      {
+        prop: "duration",
+        type: "number",
+        default: "2",
+        description: "Animation duration (s)",
+      },
+      {
+        prop: "separator",
+        type: "string",
+        default: "",
+        description: "Thousands separator",
+      },
+    ];
+  }
+
+  if (slug === "curved-loop" || title.includes("curved loop")) {
+    return [
+      {
+        prop: "marqueeText",
+        type: "string",
+        default: "",
+        description: "Text to display",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "2",
+        description: "Animation speed",
+      },
+      {
+        prop: "curveAmount",
+        type: "number",
+        default: "400",
+        description: "Curve intensity",
+      },
+      {
+        prop: "direction",
+        type: "'left' | 'right'",
+        default: "left",
+        description: "Scroll direction",
+      },
+    ];
+  }
+
+  if (slug === "decrypted-text" || title.includes("decrypted text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to decrypt",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "50",
+        description: "Decryption speed (ms)",
+      },
+      {
+        prop: "sequential",
+        type: "boolean",
+        default: "false",
+        description: "Decrypt sequentially",
+      },
+      {
+        prop: "animateOn",
+        type: "'view' | 'hover' | 'both'",
+        default: "view",
+        description: "Animation trigger",
+      },
+    ];
+  }
+
+  if (slug === "dot-grid" || title.includes("dot grid")) {
+    return [
+      {
+        prop: "dotSize",
+        type: "number",
+        default: "1",
+        description: "Size of dots",
+      },
+      {
+        prop: "dotColor",
+        type: "string",
+        default: "#888888",
+        description: "Dot color",
+      },
+      {
+        prop: "backgroundColor",
+        type: "string",
+        default: "#0a0a0a",
+        description: "Background color",
+      },
+      {
+        prop: "spacing",
+        type: "number",
+        default: "15",
+        description: "Grid spacing",
+      },
+    ];
+  }
+
+  if (slug === "falling-text" || title.includes("falling text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to animate",
+      },
+      {
+        prop: "delay",
+        type: "number",
+        default: "50",
+        description: "Delay between letters (ms)",
+      },
+      {
+        prop: "animateOn",
+        type: "'view' | 'hover'",
+        default: "view",
+        description: "Animation trigger",
+      },
+    ];
+  }
+
+  if (slug === "fuzzy-text" || title.includes("fuzzy text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to display",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.05",
+        description: "Animation speed",
+      },
+      {
+        prop: "blurAmount",
+        type: "number",
+        default: "10",
+        description: "Blur intensity",
+      },
+    ];
+  }
+
+  if (slug === "galaxy" || title.includes("galaxy")) {
+    return [
+      {
+        prop: "count",
+        type: "number",
+        default: "5000",
+        description: "Number of stars",
+      },
+      {
+        prop: "size",
+        type: "number",
+        default: "0.01",
+        description: "Star size",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "5",
+        description: "Galaxy radius",
+      },
+      {
+        prop: "branches",
+        type: "number",
+        default: "3",
+        description: "Number of arms",
+      },
+    ];
+  }
+
+  if (slug === "glitch-text" || title.includes("glitch text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to glitch",
+      },
+    ];
+  }
+
+  if (slug === "gradient-text" || title.includes("gradient text")) {
+    return [
+      {
+        prop: "colors",
+        type: "string[]",
+        default: "['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa']",
+        description: "Gradient colors",
+      },
+      {
+        prop: "animationSpeed",
+        type: "number",
+        default: "3",
+        description: "Animation speed (s)",
+      },
+      {
+        prop: "showBorder",
+        type: "boolean",
+        default: "false",
+        description: "Show text border",
+      },
+    ];
+  }
+
+  if (slug === "grid-motion" || title.includes("grid motion")) {
+    return [
+      {
+        prop: "gridSize",
+        type: "number",
+        default: "20",
+        description: "Grid cell size",
+      },
+      {
+        prop: "dotSize",
+        type: "number",
+        default: "2",
+        description: "Dot size",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.5",
+        description: "Animation speed",
+      },
+    ];
+  }
+
+  if (slug === "grid-scan" || title.includes("grid scan")) {
+    return [
+      {
+        prop: "gridSize",
+        type: "number",
+        default: "50",
+        description: "Grid cell size",
+      },
+      {
+        prop: "scanSpeed",
+        type: "number",
+        default: "2",
+        description: "Scan speed",
+      },
+      {
+        prop: "color",
+        type: "string",
+        default: "#00ff00",
+        description: "Scan color",
+      },
+    ];
+  }
+
+  if (slug === "letter-glitch" || title.includes("letter glitch")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to glitch",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "50",
+        description: "Glitch speed (ms)",
+      },
+      {
+        prop: "glitchOnHover",
+        type: "boolean",
+        default: "false",
+        description: "Trigger on hover",
+      },
+    ];
+  }
+
+  if (slug === "lightning" || title.includes("lightning")) {
+    return [
+      {
+        prop: "color",
+        type: "string",
+        default: "#ffffff",
+        description: "Lightning color",
+      },
+      {
+        prop: "intensity",
+        type: "number",
+        default: "1",
+        description: "Lightning intensity",
+      },
+      {
+        prop: "frequency",
+        type: "number",
+        default: "2",
+        description: "Strike frequency",
+      },
+    ];
+  }
+
+  if (slug === "orbs" || title.includes("orbs")) {
+    return [
+      {
+        prop: "count",
+        type: "number",
+        default: "3",
+        description: "Number of orbs",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "100",
+        description: "Orb radius",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "1",
+        description: "Movement speed",
+      },
+    ];
+  }
+
+  if (slug === "rotating-text" || title.includes("rotating text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to rotate",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "100",
+        description: "Rotation radius",
+      },
+      {
+        prop: "fontSize",
+        type: "number",
+        default: "16",
+        description: "Font size",
+      },
+    ];
+  }
+
+  if (slug === "scroll-float" || title.includes("scroll float")) {
+    return [
+      {
+        prop: "speed",
+        type: "number",
+        default: "0.5",
+        description: "Float speed",
+      },
+      {
+        prop: "rotationIntensity",
+        type: "number",
+        default: "1",
+        description: "Rotation amount",
+      },
+    ];
+  }
+
+  if (slug === "scroll-reveal" || title.includes("scroll reveal")) {
+    return [
+      {
+        prop: "delay",
+        type: "number",
+        default: "0",
+        description: "Animation delay (s)",
+      },
+      {
+        prop: "direction",
+        type: "'up' | 'down' | 'left' | 'right'",
+        default: "up",
+        description: "Reveal direction",
+      },
+    ];
+  }
+
+  if (slug === "scroll-velocity" || title.includes("scroll velocity")) {
+    return [
+      {
+        prop: "texts",
+        type: "string[]",
+        default: "[]",
+        description: "Array of text strings",
+      },
+      {
+        prop: "defaultVelocity",
+        type: "number",
+        default: "1",
+        description: "Base scroll speed",
+      },
+      {
+        prop: "velocityFactor",
+        type: "number",
+        default: "0.1",
+        description: "Velocity multiplier",
+      },
+    ];
+  }
+
+  if (slug === "shiny-text" || title.includes("shiny text")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to shine",
+      },
+      {
+        prop: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Disable shine effect",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "3",
+        description: "Animation speed (s)",
+      },
+    ];
+  }
+
+  if (slug === "variable-proximity" || title.includes("variable proximity")) {
+    return [
+      {
+        prop: "text",
+        type: "string",
+        default: "",
+        description: "Text to display",
+      },
+      {
+        prop: "radius",
+        type: "number",
+        default: "100",
+        description: "Effect radius",
+      },
+      {
+        prop: "fontSize",
+        type: "number",
+        default: "16",
+        description: "Base font size",
+      },
+    ];
+  }
+
+  if (slug === "hyperspeed" || title.includes("hyperspeed")) {
+    return [
+      {
+        prop: "effectOptions",
+        type: "HyperspeedOptions",
+        default: "{}",
+        description: "Configuration object for Hyperspeed effect",
+      },
+      {
+        prop: "preset",
+        type: '"one" | "two" | "three" | "four" | "five" | "six"',
+        default: '"one"',
+        description: "Preset configuration to apply",
+      },
+    ];
+  }
+
+  if (slug === "ballpit" || title.includes("ballpit")) {
+    return [
+      {
+        prop: "count",
+        type: "number",
+        default: "200",
+        description: "Number of balls",
+      },
+      {
+        prop: "colors",
+        type: "number[]",
+        default: "[0, 0, 0]",
+        description: "Array of hex colors for balls",
+      },
+      {
+        prop: "gravity",
+        type: "number",
+        default: "0.5",
+        description: "Physics gravity",
+      },
+      {
+        prop: "friction",
+        type: "number",
+        default: "0.9975",
+        description: "Physics friction",
+      },
+      {
+        prop: "wallBounce",
+        type: "number",
+        default: "0.95",
+        description: "Bouncing factor from walls",
+      },
+      {
+        prop: "followCursor",
+        type: "boolean",
+        default: "true",
+        description: "Whether balls react to cursor",
+      },
+    ];
+  }
+
+  if (slug === "grid-scan" || title.includes("grid scan")) {
+    return [
+      {
+        prop: "linesColor",
+        type: "string",
+        default: "'#392e4e'",
+        description: "Color of the grid lines",
+      },
+      {
+        prop: "scanColor",
+        type: "string",
+        default: "'#FF9FFC'",
+        description: "Color of the scan line",
+      },
+      {
+        prop: "scanDuration",
+        type: "number",
+        default: "2.0",
+        description: "Duration of one scan cycle (seconds)",
+      },
+      {
+        prop: "enablePost",
+        type: "boolean",
+        default: "true",
+        description: "Enable post-processing effects (bloom, etc.)",
+      },
+      {
+        prop: "bloomIntensity",
+        type: "number",
+        default: "0",
+        description: "Intensity of the bloom effect",
+      },
+    ];
+  }
+
+  if (slug === "orbs" || slug === "orb" || title.includes("orb")) {
+    return [
+      {
+        prop: "hue",
+        type: "number",
+        default: "0",
+        description: "Base hue rotation for colors",
+      },
+      {
+        prop: "hoverIntensity",
+        type: "number",
+        default: "0.2",
+        description: "Intensity of distortion on hover",
+      },
+      {
+        prop: "rotateOnHover",
+        type: "boolean",
+        default: "true",
+        description: "Whether to rotate the orb on hover",
+      },
+      {
+        prop: "forceHoverState",
+        type: "boolean",
+        default: "false",
+        description: "Force the hover state always on",
+      },
+      {
+        prop: "backgroundColor",
+        type: "string",
+        default: "'#000000'",
+        description: "Background color hex",
+      },
+    ];
+  }
+
+  if (slug === "grid-motion" || title.includes("grid motion")) {
+    return [
+      {
+        prop: "items",
+        type: "(string | ReactNode)[]",
+        default: "[]",
+        description: "Array of items (images or text) to display in the grid",
+      },
+      {
+        prop: "gradientColor",
+        type: "string",
+        default: "'black'",
+        description: "Color of the radial gradient background",
+      },
+    ];
+  }
+
+  if (slug === "letter-glitch" || title.includes("letter glitch")) {
+    return [
+      {
+        prop: "glitchColors",
+        type: "string[]",
+        default: "['#2b4539', '#61dca3', '#61b3dc']",
+        description: "Array of colors for the glitch effect",
+      },
+      {
+        prop: "glitchSpeed",
+        type: "number",
+        default: "50",
+        description: "Speed of the glitch animation (ms)",
+      },
+      {
+        prop: "centerVignette",
+        type: "boolean",
+        default: "false",
+        description: "Enable center vignette effect",
+      },
+      {
+        prop: "outerVignette",
+        type: "boolean",
+        default: "true",
+        description: "Enable outer vignette effect",
+      },
+      {
+        prop: "smooth",
+        type: "boolean",
+        default: "true",
+        description: "Enable smooth color transitions",
+      },
+    ];
+  }
+
+  if (slug === "lightning" || title.includes("lightning")) {
+    return [
+      {
+        prop: "hue",
+        type: "number",
+        default: "230",
+        description: "Hue of the lightning color",
+      },
+      {
+        prop: "xOffset",
+        type: "number",
+        default: "0",
+        description: "Horizontal offset",
+      },
+      {
+        prop: "speed",
+        type: "number",
+        default: "1",
+        description: "Animation speed",
+      },
+      {
+        prop: "intensity",
+        type: "number",
+        default: "1",
+        description: "Brightness intensity",
+      },
+      {
+        prop: "size",
+        type: "number",
+        default: "1",
+        description: "Scale of the noise pattern",
+      },
+    ];
+  }
+
+  if (slug === "galaxy" || title.includes("galaxy")) {
+    return [
+      {
+        prop: "focal",
+        type: "[number, number]",
+        default: "[0.5, 0.5]",
+        description: "Focal point coordinates",
+      },
+      {
+        prop: "starSpeed",
+        type: "number",
+        default: "0.5",
+        description: "Speed of stars",
+      },
+      {
+        prop: "density",
+        type: "number",
+        default: "1",
+        description: "Star density",
+      },
+      {
+        prop: "hueShift",
+        type: "number",
+        default: "140",
+        description: "Color hue shift",
+      },
+      {
+        prop: "mouseInteraction",
+        type: "boolean",
+        default: "true",
+        description: "Enable interaction with mouse",
+      },
+    ];
+  }
+
+  if (slug === "dot-grid" || title.includes("dot grid")) {
+    return [
+      {
+        prop: "dotSize",
+        type: "number",
+        default: "16",
+        description: "Size of dots",
+      },
+      {
+        prop: "gap",
+        type: "number",
+        default: "32",
+        description: "Gap between dots",
+      },
+      {
+        prop: "baseColor",
+        type: "string",
+        default: "'#5227FF'",
+        description: "Idle color of dots",
+      },
+      {
+        prop: "activeColor",
+        type: "string",
+        default: "'#5227FF'",
+        description: "Color of dots on interaction",
+      },
+      {
+        prop: "proximity",
+        type: "number",
+        default: "150",
+        description: "Distance for interaction effect",
+      },
+    ];
+  }
+
+  if (slug === "scroll-velocity" || title.includes("scroll velocity")) {
+    return [
+      {
+        prop: "texts",
+        type: "string[]",
+        default: "[]",
+        description: "Array of text strings to scroll",
+      },
+      {
+        prop: "velocity",
+        type: "number",
+        default: "100",
+        description: "Scroll velocity",
+      },
+      {
+        prop: "numCopies",
+        type: "number",
+        default: "6",
+        description: "Number of copies for infinite effect",
+      },
+    ];
+  }
+
+  if (slug === "scroll-float" || title.includes("scroll float")) {
+    return [
+      {
+        prop: "animationDuration",
+        type: "number",
+        default: "1",
+        description: "Duration of the float animation",
+      },
+      {
+        prop: "ease",
+        type: "string",
+        default: "'back.inOut(2)'",
+        description: "GSAP ease string",
+      },
+      {
+        prop: "stagger",
+        type: "number",
+        default: "0.03",
+        description: "Stagger delay between characters",
+      },
+    ];
+  }
+
+  if (slug === "scroll-reveal" || title.includes("scroll reveal")) {
+    return [
+      {
+        prop: "baseOpacity",
+        type: "number",
+        default: "0.1",
+        description: "Initial opacity of text",
+      },
+      {
+        prop: "enableBlur",
+        type: "boolean",
+        default: "true",
+        description: "Whether to apply blur effect",
+      },
+      {
+        prop: "baseRotation",
+        type: "number",
+        default: "3",
+        description: "Initial rotation in degrees",
+      },
+      {
+        prop: "blurStrength",
+        type: "number",
+        default: "4",
+        description: "Strength of the blur",
+      },
+    ];
+  }
+
   return null;
 }

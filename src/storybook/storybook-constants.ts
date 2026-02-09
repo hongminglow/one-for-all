@@ -3,7 +3,7 @@ import type { ComponentItem } from "@/storybook/components.generated";
 export const STORYBOOK = {
   brand: {
     title: "One For All",
-    subtitle: "Design system • Storybook-style",
+    subtitle: "Design system • Storybook",
   },
   navigation: {
     heading: "Sections",
