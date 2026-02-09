@@ -4,16 +4,10 @@ import * as React from "react";
 import { motion } from "motion/react";
 
 import { cn } from "@/lib/cn";
+import { getTheme } from "@/utils/theme";
 
 export interface AnimatedThemeToggleProps {
   className?: string;
-}
-
-function getTheme(): "light" | "dark" {
-  if (typeof document === "undefined") return "dark";
-  return document.documentElement.getAttribute("data-theme") === "light"
-    ? "light"
-    : "dark";
 }
 
 export default function AnimatedThemeToggle({
