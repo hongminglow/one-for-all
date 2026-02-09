@@ -108,6 +108,7 @@
 
 	--animate-border-beam: border-beam var(--duration) infinite linear;
 	--animate-shine: shine var(--duration) infinite linear;
+	--animate-background-position-spin: background-position-spin 3000ms infinite alternate;
 
 	@keyframes border-beam {
 		100% {
@@ -124,6 +125,15 @@
 		}
 		to {
 			background-position: 0% 0%;
+		}
+	}
+
+	@keyframes background-position-spin {
+		0% {
+			background-position: top center;
+		}
+		100% {
+			background-position: bottom center;
 		}
 	}
 }

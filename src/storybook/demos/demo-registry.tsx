@@ -105,14 +105,9 @@ import PieDonut from "@/components/shadcn/PieDonut";
 import RadarDots from "@/components/shadcn/RadarDots";
 import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
-import NeonGradientCard from "@/components/magicui/NeonGradientCard";
-import CircularProgressBar from "@/components/magicui/CircularProgressBar";
+import CircularProgressBar, { AnimatedCircularProgressBar } from "@/components/magicui/CircularProgressBar";
 import CompactConfetti, { type ConfettiRef } from "@/components/magicui/CompactConfetti";
-import VideoText from "@/components/magicui/VideoText";
-import TextReveal from "@/components/magicui/TextReveal";
 import SparklesText from "@/components/magicui/SparklesText";
-import CodeComparison from "@/components/magicui/CodeComparison";
-import ScrollProgress from "@/components/magicui/ScrollProgress";
 import { Progress } from "@/components/animate-ui/components/radix/progress";
 import {
 	Sheet,
@@ -272,9 +267,6 @@ import { NumberCounter } from "@/components/jolyui/NumberCounter";
 import { GridScan } from "@/components/reactbits/GridScan";
 import CalendarInput from "@/components/jolyui/CalendarInput";
 import { DraggableCard } from "@/components/aceternityui/DraggableCard";
-import { Lens } from "@/components/aceternityui/Lens";
-import { ImageCompare } from "@/components/aceternityui/ImageCompare";
-import { HeroParallax } from "@/components/aceternityui/HeroParallax";
 import Orbs from "@/components/reactbits/Orbs";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
@@ -296,6 +288,17 @@ import { Label } from "@/components/ui/label";
 import { BorderBeam } from "@/components/magicui/BorderBeam";
 import { ShineBorder } from "@/components/magicui/ShineBorder";
 import { MagicCard } from "@/components/magicui/MagicCard";
+import { VideoText } from "@/components/magicui/VideoText";
+import { TextReveal } from "@/components/magicui/TextReveal";
+import { CodeComparison } from "@/components/magicui/CodeComparison";
+import { ScrollProgress } from "@/components/magicui/ScrollProgress";
+import { NeonGradientCard } from "@/components/magicui/NeonGradientCard";
+import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
+import { HeroParallax } from "@/components/ui/hero-parallax";
+import { Compare } from "@/components/ui/compare";
+import { Lens } from "@/components/ui/lens";
+import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
 	{
@@ -434,6 +437,127 @@ const slugs = [
 	"figma",
 ];
 
+const beforeCode = `import { NextRequest } from 'next/server';
+export const middleware = async (req: NextRequest) => {
+  let user = undefined;
+  let team = undefined;
+  const token = req.headers.get('token'); 
+  if(req.nextUrl.pathname.startsWith('/auth')) {
+    user = await getUserByToken(token);
+    if(!user) {
+      return NextResponse.redirect('/login');
+    }
+  }
+  if(req.nextUrl.pathname.startsWith('/team')) {
+    user = await getUserByToken(token);
+    if(!user) {
+      return NextResponse.redirect('/login');
+    }
+    const slug = req.nextUrl.query.slug;
+    team = await getTeamBySlug(slug); // [!code highlight]
+    if(!team) { // [!code highlight]
+      return NextResponse.redirect('/'); // [!code highlight]
+    } // [!code highlight]
+  } // [!code highlight]
+  return NextResponse.next(); // [!code highlight]
+}
+export const config = {
+  matcher: ['/((?!_next/|_static|_vercel|[\\w-]+\\.\\w+).*)'], // [!code highlight]
+};`;
+
+const afterCode = `import { createMiddleware, type MiddlewareFunctionProps } from '@app/(auth)/auth/_middleware';
+import { auth } from '@/app/(auth)/auth/_middleware'; // [!code --]
+import { auth } from '@/app/(auth)/auth/_middleware'; // [!code ++]
+import { team } from '@/app/(team)/team/_middleware';
+const middlewares = {
+  '/auth{/:path?}': auth,
+  '/team{/:slug?}': [ auth, team ],
+};
+export const middleware = createMiddleware(middlewares); // [!code focus]
+export const config = {
+  matcher: ['/((?!_next/|_static|_vercel|[\\w-]+\\.\\w+).*)'],
+};`;
+
+const products = [
+	{
+		title: "Moonbeam",
+		link: "https://gomoonbeam.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+	},
+	{
+		title: "Cursor",
+		link: "https://cursor.so",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+	},
+	{
+		title: "Rogue",
+		link: "https://userogue.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+	},
+
+	{
+		title: "Editorially",
+		link: "https://editorially.org",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/editorially.png",
+	},
+	{
+		title: "Editrix AI",
+		link: "https://editrix.ai",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/editrix.png",
+	},
+	{
+		title: "Pixel Perfect",
+		link: "https://app.pixelperfect.quest",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+	},
+
+	{
+		title: "Algochurn",
+		link: "https://algochurn.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+	},
+	{
+		title: "Aceternity UI",
+		link: "https://ui.aceternity.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+	},
+	{
+		title: "Tailwind Master Kit",
+		link: "https://tailwindmasterkit.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+	},
+	{
+		title: "SmartBridge",
+		link: "https://smartbridgetech.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
+	},
+	{
+		title: "Renderwork Studio",
+		link: "https://renderwork.studio",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+	},
+
+	{
+		title: "Creme Digital",
+		link: "https://cremedigital.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+	},
+	{
+		title: "Golden Bells Academy",
+		link: "https://goldenbellsacademy.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+	},
+	{
+		title: "Invoker Labs",
+		link: "https://invoker.lol",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/invoker.png",
+	},
+	{
+		title: "E Free Invoice",
+		link: "https://efreeinvoice.com",
+		thumbnail: "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
+	},
+];
 interface RadixPopoverDemoProps {
 	side?: "top" | "bottom" | "left" | "right";
 	sideOffset?: number;
@@ -918,6 +1042,420 @@ function IconCloudDemo() {
 	return (
 		<div className="relative flex size-full items-center justify-center overflow-hidden">
 			<IconCloud images={images} />
+		</div>
+	);
+}
+
+function AnimatedCircularProgressBarDemo() {
+	const [value, setValue] = useState(0);
+	useEffect(() => {
+		const handleIncrement = (prev: number) => {
+			if (prev === 100) {
+				return 0;
+			}
+			return prev + 10;
+		};
+		setValue(handleIncrement);
+		const interval = setInterval(() => setValue(handleIncrement), 2000);
+		return () => clearInterval(interval);
+	}, []);
+	return (
+		<AnimatedCircularProgressBar
+			value={value}
+			gaugePrimaryColor="rgb(79 70 229)"
+			gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
+		/>
+	);
+}
+
+function DraggableCardDemo() {
+	const items = [
+		{
+			title: "Tyler Durden",
+			image:
+				"https://images.unsplash.com/photo-1732310216648-603c0255c000?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-10 left-[20%] rotate-[-5deg]",
+		},
+		{
+			title: "The Narrator",
+			image:
+				"https://images.unsplash.com/photo-1697909623564-3dae17f6c20b?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-40 left-[25%] rotate-[-7deg]",
+		},
+		{
+			title: "Iceland",
+			image:
+				"https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-5 left-[40%] rotate-[8deg]",
+		},
+		{
+			title: "Japan",
+			image:
+				"https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=3648&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-32 left-[55%] rotate-[10deg]",
+		},
+		{
+			title: "Norway",
+			image:
+				"https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-20 right-[35%] rotate-[2deg]",
+		},
+		{
+			title: "New Zealand",
+			image:
+				"https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-24 left-[45%] rotate-[-7deg]",
+		},
+		{
+			title: "Canada",
+			image:
+				"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			className: "absolute top-8 left-[30%] rotate-[4deg]",
+		},
+	];
+	return (
+		<DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
+			<p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
+				If its your first day at Fight Club, you have to fight.
+			</p>
+			{items.map((item) => (
+				<DraggableCardBody className={item.className}>
+					<img src={item.image} alt={item.title} className="pointer-events-none relative z-10 h-80 w-80 object-cover" />
+					<h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">{item.title}</h3>
+				</DraggableCardBody>
+			))}
+		</DraggableCardContainer>
+	);
+}
+
+const Beams = () => {
+	return (
+		<svg
+			width="380"
+			height="315"
+			viewBox="0 0 380 315"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className="absolute top-0 left-1/2 -translate-x-1/2 w-full pointer-events-none"
+		>
+			<g filter="url(#filter0_f_120_7473)">
+				<circle cx="34" cy="52" r="114" fill="#6925E7" />
+			</g>
+			<g filter="url(#filter1_f_120_7473)">
+				<circle cx="332" cy="24" r="102" fill="#8A4BFF" />
+			</g>
+			<g filter="url(#filter2_f_120_7473)">
+				<circle cx="191" cy="53" r="102" fill="#802FE3" />
+			</g>
+			<defs>
+				<filter
+					id="filter0_f_120_7473"
+					x="-192"
+					y="-174"
+					width="452"
+					height="452"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="56" result="effect1_foregroundBlur_120_7473" />
+				</filter>
+				<filter
+					id="filter1_f_120_7473"
+					x="70"
+					y="-238"
+					width="524"
+					height="524"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
+				</filter>
+				<filter
+					id="filter2_f_120_7473"
+					x="-71"
+					y="-209"
+					width="524"
+					height="524"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
+				</filter>
+			</defs>
+		</svg>
+	);
+};
+
+const Rays = ({ className }: { className?: string }) => {
+	return (
+		<svg
+			width="380"
+			height="397"
+			viewBox="0 0 380 397"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className={cn("absolute left-0 top-0  pointer-events-none z-[1]", className)}
+		>
+			<g filter="url(#filter0_f_120_7480)">
+				<path
+					d="M-37.4202 -76.0163L-18.6447 -90.7295L242.792 162.228L207.51 182.074L-37.4202 -76.0163Z"
+					fill="url(#paint0_linear_120_7480)"
+				/>
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} opacity="0.3" filter="url(#filter1_f_120_7480)">
+				<path
+					d="M-109.54 -36.9027L-84.2903 -58.0902L178.786 193.228L132.846 223.731L-109.54 -36.9027Z"
+					fill="url(#paint1_linear_120_7480)"
+				/>
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} opacity="0.86" filter="url(#filter2_f_120_7480)">
+				<path
+					d="M-100.647 -65.795L-69.7261 -92.654L194.786 157.229L139.51 197.068L-100.647 -65.795Z"
+					fill="url(#paint2_linear_120_7480)"
+				/>
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} opacity="0.31" filter="url(#filter3_f_120_7480)">
+				<path
+					d="M163.917 -89.0982C173.189 -72.1354 80.9618 2.11525 34.7334 30.1553C-11.495 58.1954 -106.505 97.514 -115.777 80.5512C-125.048 63.5885 -45.0708 -3.23233 1.15763 -31.2724C47.386 -59.3124 154.645 -106.061 163.917 -89.0982Z"
+					fill="#8A50FF"
+				/>
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter4_f_120_7480)">
+				<path d="M34.2031 13.2222L291.721 269.534" stroke="url(#paint3_linear_120_7480)" />
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter5_f_120_7480)">
+				<path d="M41 -40.9331L298.518 215.378" stroke="url(#paint4_linear_120_7480)" />
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter6_f_120_7480)">
+				<path d="M61.3691 3.8999L317.266 261.83" stroke="url(#paint5_linear_120_7480)" />
+			</g>
+			<g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter7_f_120_7480)">
+				<path d="M-1.46191 9.06348L129.458 145.868" stroke="url(#paint6_linear_120_7480)" strokeWidth="2" />
+			</g>
+			<defs>
+				<filter
+					id="filter0_f_120_7480"
+					x="-49.4199"
+					y="-102.729"
+					width="304.212"
+					height="296.803"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter1_f_120_7480"
+					x="-115.54"
+					y="-64.0903"
+					width="300.326"
+					height="293.822"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="3" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter2_f_120_7480"
+					x="-111.647"
+					y="-103.654"
+					width="317.434"
+					height="311.722"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="5.5" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter3_f_120_7480"
+					x="-212.518"
+					y="-188.71"
+					width="473.085"
+					height="369.366"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="48" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter4_f_120_7480"
+					x="25.8447"
+					y="4.84521"
+					width="274.234"
+					height="273.065"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter5_f_120_7480"
+					x="32.6416"
+					y="-49.3101"
+					width="274.234"
+					height="273.065"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter6_f_120_7480"
+					x="54.0078"
+					y="-3.47461"
+					width="270.619"
+					height="272.68"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<filter
+					id="filter7_f_120_7480"
+					x="-9.2002"
+					y="1.32812"
+					width="146.396"
+					height="152.275"
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB"
+				>
+					<feFlood floodOpacity="0" result="BackgroundImageFix" />
+					<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+					<feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur_120_7480" />
+				</filter>
+				<linearGradient
+					id="paint0_linear_120_7480"
+					x1="-57.5042"
+					y1="-134.741"
+					x2="403.147"
+					y2="351.523"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop offset="0.214779" stopColor="#AF53FF" />
+					<stop offset="0.781583" stopColor="#B253FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint1_linear_120_7480"
+					x1="-122.154"
+					y1="-103.098"
+					x2="342.232"
+					y2="379.765"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop offset="0.214779" stopColor="#AF53FF" />
+					<stop offset="0.781583" stopColor="#9E53FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint2_linear_120_7480"
+					x1="-106.717"
+					y1="-138.534"
+					x2="359.545"
+					y2="342.58"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop offset="0.214779" stopColor="#9D53FF" />
+					<stop offset="0.781583" stopColor="#A953FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint3_linear_120_7480"
+					x1="72.701"
+					y1="54.347"
+					x2="217.209"
+					y2="187.221"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stopColor="#AF81FF" />
+					<stop offset="1" stopColor="#C081FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint4_linear_120_7480"
+					x1="79.4978"
+					y1="0.191681"
+					x2="224.006"
+					y2="133.065"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stopColor="#AF81FF" />
+					<stop offset="1" stopColor="#C081FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint5_linear_120_7480"
+					x1="79.6568"
+					y1="21.8377"
+					x2="234.515"
+					y2="174.189"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stopColor="#B981FF" />
+					<stop offset="1" stopColor="#CF81FF" stopOpacity="0" />
+				</linearGradient>
+				<linearGradient
+					id="paint6_linear_120_7480"
+					x1="16.119"
+					y1="27.6966"
+					x2="165.979"
+					y2="184.983"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stopColor="#A981FF" />
+					<stop offset="1" stopColor="#CB81FF" stopOpacity="0" />
+				</linearGradient>
+			</defs>
+		</svg>
+	);
+};
+
+function LensDemo() {
+	const [hovering, setHovering] = useState(false);
+
+	return (
+		<div>
+			<div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 my-10">
+				<Rays />
+				<Beams />
+				<div className="relative z-10">
+					<Lens hovering={hovering} setHovering={setHovering}>
+						<img
+							src="https://images.unsplash.com/photo-1713869820987-519844949a8a?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+							alt="image"
+							width={500}
+							height={500}
+							className="rounded-2xl"
+						/>
+					</Lens>
+					<motion.div
+						animate={{
+							filter: hovering ? "blur(2px)" : "blur(0px)",
+						}}
+						className="py-4 relative z-20"
+					>
+						<h2 className="text-white text-2xl text-left font-bold">Apple Vision Pro</h2>
+						<p className="text-neutral-200 text-left  mt-4">
+							The all new apple vision pro was the best thing that happened around 8 months ago, not anymore.
+						</p>
+					</motion.div>
+				</div>
+			</div>
 		</div>
 	);
 }
@@ -2376,7 +2914,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
 		case slug === "magic-card" || title.includes("magic card"):
 			return (
-				<Card className="w-full max-w-sm border-none p-0 shadow-none">
+				<Card className="w-full max-w-sm justify-self-center border-none p-0 shadow-none">
 					<MagicCard gradientColor="#262626" className="p-0">
 						<CardHeader className="border-border border-b p-4 [.border-b]:pb-4">
 							<CardTitle>Login</CardTitle>
@@ -2405,24 +2943,19 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
 		case slug === "neon-gradient-card" || title.includes("neon gradient"):
 			return (
-				<div className="w-full max-w-[620px]">
-					<NeonGradientCard borderSize={props?.borderSize ?? 2} borderRadius={props?.borderRadius ?? 20}>
-						<div className="text-[18px] font-black text-(--sb-text-strong)">Neon Gradient Card</div>
-						<div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">Animated neon gradient border.</div>
+				<div className="w-full flex justify-center justify-self-center max-w-[520px]">
+					<NeonGradientCard className="max-w-sm items-center justify-center text-center">
+						<span className="pointer-events-none z-10 h-full bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text text-center text-3xl leading-none font-bold tracking-tighter text-balance whitespace-pre-wrap text-transparent md:text-5xl xl:text-6xl dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+							Neon Gradient Card
+						</span>
 					</NeonGradientCard>
 				</div>
 			);
 
 		case slug === "circular-progress-bar" || title.includes("circular progress"):
 			return (
-				<div className="flex items-center justify-center" style={{ height: 240 }}>
-					<CircularProgressBar
-						value={props?.value ?? 72}
-						min={props?.min ?? 0}
-						max={props?.max ?? 100}
-						gaugePrimaryColor={props?.gaugePrimaryColor ?? "#A97CF8"}
-						gaugeSecondaryColor={props?.gaugeSecondaryColor ?? "rgba(0,0,0,0.15)"}
-					/>
+				<div className="w-full flex items-center justify-center">
+					<AnimatedCircularProgressBarDemo />
 				</div>
 			);
 
@@ -2434,22 +2967,13 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
 		case slug === "video-text" || title.includes("video text"):
 			return (
-				<div className="h-[240px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
-					<VideoText
-						src={props?.src ?? "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"}
-						fontSize={props?.fontSize ?? 22}
-					>
-						VIDEO
-					</VideoText>
+				<div className="relative h-[200px] w-full overflow-hidden">
+					<VideoText src="https://cdn.magicui.design/ocean-small.webm">OCEAN</VideoText>
 				</div>
 			);
 
 		case slug === "text-reveal" || title.includes("text reveal"):
-			return (
-				<div className="h-[420px] w-full overflow-y-auto rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card)">
-					<TextReveal>Scroll this panel to reveal the words one by one.</TextReveal>
-				</div>
-			);
+			return <TextReveal>Magic UI will change the way you design.</TextReveal>;
 
 		case slug === "sparkles-text" || title.includes("sparkles"):
 			return (
@@ -2754,6 +3278,19 @@ console.log(fibonacci(10));`}
 				</div>
 			);
 
+		case slug === "code-comparison" || title.includes("code comparison"):
+			return (
+				<CodeComparison
+					beforeCode={beforeCode}
+					afterCode={afterCode}
+					language="typescript"
+					filename="middleware.ts"
+					lightTheme="github-light"
+					darkTheme="github-dark"
+					highlightColor="rgba(101, 117, 133, 0.16)"
+				/>
+			);
+
 		case slug.includes("comparison") || title.includes("comparison"):
 			return (
 				<div className="w-full flex items-center justify-center py-10">
@@ -2817,31 +3354,8 @@ console.log(fibonacci(10));`}
 				</div>
 			);
 
-		case slug === "code-comparison" || title.includes("code comparison"):
-			return (
-				<CodeComparison
-					filename={props?.filename ?? "example.ts"}
-					highlightColor={props?.highlightColor ?? "#ff3333"}
-					beforeCode={props?.beforeCode ?? "const a = 1;\nconst b = 2;\nconsole.log(a + b);"}
-					afterCode={props?.afterCode ?? "const a = 1;\nconst b = 3;\nconsole.log(a + b);"}
-				/>
-			);
-
 		case slug === "scroll-progress" || title.includes("scroll progress"):
-			return (
-				<div className="relative w-full rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
-					<ScrollProgress className="!absolute !inset-x-0 !top-0" />
-					<div className="text-[18px] font-black text-(--sb-text-strong)">Scroll Progress</div>
-					<div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-						Scroll the page to see the progress bar animate.
-					</div>
-					<div className="mt-6 space-y-3 text-[13px] font-medium text-(--sb-text-muted)">
-						<div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
-						<div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
-						<div className="h-8 rounded-xl bg-[var(--sb-selected)]" />
-					</div>
-				</div>
-			);
+			return <ScrollProgress />;
 
 		case slug === "copy-button" || title.includes("copy button"):
 			return (
@@ -3120,123 +3634,27 @@ console.log(fibonacci(10));`}
 			);
 
 		case slug.includes("draggable-card") || title.includes("draggable card"):
-			return (
-				<div className="flex items-center justify-center p-8 h-[400px] relative overflow-hidden">
-					<DraggableCard className="w-40 h-40 bg-blue-500 rounded-xl flex items-center justify-center text-white font-bold cursor-grab active:cursor-grabbing shadow-2xl">
-						Drag me!
-					</DraggableCard>
-				</div>
-			);
+			return <DraggableCardDemo />;
 
 		case slug.includes("hero-parallax") || title.includes("hero parallax"):
-			return (
-				<div className="w-full h-[600px] overflow-auto">
-					<HeroParallax
-						products={[
-							{
-								title: "Moonbeam",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
-							},
-							{
-								title: "Cursor",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/cursor.png",
-							},
-							{
-								title: "Rogue",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/rogue.png",
-							},
-							{
-								title: "Editorially",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/editorially.png",
-							},
-							{
-								title: "Editrix AI",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/editrix.png",
-							},
-							{
-								title: "Pixel Perfect",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
-							},
-							{
-								title: "Algochurn",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
-							},
-							{
-								title: "Aceternity UI",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
-							},
-							{
-								title: "Tailwind Master Kit",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
-							},
-							{
-								title: "SmartBridge",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
-							},
-							{
-								title: "Renderwork Studio",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
-							},
-							{
-								title: "Creme Digital",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
-							},
-							{
-								title: "Golden Bells Academy",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
-							},
-							{
-								title: "Invoker Labs",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/invoker.png",
-							},
-							{
-								title: "E Free Invoice",
-								link: "#",
-								thumbnail: "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
-							},
-						]}
-					/>
-				</div>
-			);
+			return <HeroParallax products={products} />;
 
 		case slug.includes("image-compare") || title.includes("image compare"):
 			return (
-				<div className="w-full max-w-[600px] p-4">
-					<ImageCompare
-						beforeImage="https://assets.aceternity.com/demos/aceternity-before.webp"
-						afterImage="https://assets.aceternity.com/demos/aceternity-after.webp"
+				<div className="p-4 border rounded-3xl dark:bg-neutral-900 bg-neutral-100  border-neutral-200 dark:border-neutral-800 px-4">
+					<Compare
+						firstImage="https://assets.aceternity.com/code-problem.png"
+						secondImage="https://assets.aceternity.com/code-solution.png"
+						firstImageClassName="object-cover object-left-top"
+						secondImageClassname="object-cover object-left-top"
+						className="h-[250px] md:h-[500px] w-[600px] justify-self-center"
+						slideMode="hover"
 					/>
 				</div>
 			);
 
 		case slug.includes("lens") || title.includes("lens"):
-			return (
-				<div className="w-full flex items-center justify-center p-8 bg-[#1e1e1e] rounded-xl">
-					<Lens>
-						<div className="w-[400px] relative rounded-lg overflow-hidden shadow-2xl">
-							<img
-								src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80"
-								alt="Lens Demo"
-								className="w-full h-auto"
-							/>
-						</div>
-					</Lens>
-				</div>
-			);
+			return <LensDemo />;
 
 		case slug.includes("image-stack") || title.includes("image stack"):
 			return (

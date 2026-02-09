@@ -1,101 +1,138 @@
 "use client";
 
-import * as React from "react";
+import { CSSProperties, ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import "./NeonGradientCard.css";
-
-export interface NeonColors {
-  firstColor: string;
-  secondColor: string;
+interface NeonColorsProps {
+	firstColor: string;
+	secondColor: string;
 }
 
-export interface NeonGradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
-  borderSize?: number;
-  borderRadius?: number;
-  neonColors?: NeonColors;
+interface NeonGradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
+	/**
+	 * @default <div />
+	 * @type ReactElement
+	 * @description
+	 * The component to be rendered as the card
+	 * */
+	as?: ReactElement;
+	/**
+	 * @default ""
+	 * @type string
+	 * @description
+	 * The className of the card
+	 */
+	className?: string;
+
+	/**
+	 * @default ""
+	 * @type ReactNode
+	 * @description
+	 * The children of the card
+	 * */
+	children?: ReactNode;
+
+	/**
+	 * @default 5
+	 * @type number
+	 * @description
+	 * The size of the border in pixels
+	 * */
+	borderSize?: number;
+
+	/**
+	 * @default 20
+	 * @type number
+	 * @description
+	 * The size of the radius in pixels
+	 * */
+	borderRadius?: number;
+
+	/**
+	 * @default "{ firstColor: '#ff00aa', secondColor: '#00FFF1' }"
+	 * @type string
+	 * @description
+	 * The colors of the neon gradient
+	 * */
+	neonColors?: NeonColorsProps;
 }
 
-export default function NeonGradientCard({
-  className,
-  children,
-  borderSize = 2,
-  borderRadius = 20,
-  neonColors = { firstColor: "#ff00aa", secondColor: "#00FFF1" },
-  ...props
-}: NeonGradientCardProps) {
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
-  const [blur, setBlur] = React.useState(24);
+export const NeonGradientCard: React.FC<NeonGradientCardProps> = ({
+	className,
+	children,
+	borderSize = 2,
+	borderRadius = 20,
+	neonColors = {
+		firstColor: "#ff00aa",
+		secondColor: "#00FFF1",
+	},
+	...props
+}) => {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  React.useEffect(() => {
-    const node = containerRef.current;
-    if (!node) return;
+	useEffect(() => {
+		const updateDimensions = () => {
+			if (containerRef.current) {
+				const { offsetWidth, offsetHeight } = containerRef.current;
+				setDimensions({ width: offsetWidth, height: offsetHeight });
+			}
+		};
 
-    const ro = new ResizeObserver(() => {
-      const w = node.offsetWidth || 0;
-      setBlur(Math.max(12, Math.floor(w / 3)));
-    });
+		updateDimensions();
+		window.addEventListener("resize", updateDimensions);
 
-    ro.observe(node);
-    return () => ro.disconnect();
-  }, []);
+		return () => {
+			window.removeEventListener("resize", updateDimensions);
+		};
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={cn(
-        "relative z-10 size-full rounded-[var(--border-radius)]",
-        className,
-      )}
-      style={
-        {
-          "--border-size": `${borderSize}px`,
-          "--border-radius": `${borderRadius}px`,
-          "--card-content-radius": `${Math.max(borderRadius - borderSize, 0)}px`,
-          "--neon-first-color": neonColors.firstColor,
-          "--neon-second-color": neonColors.secondColor,
-        } as React.CSSProperties
-      }
-      {...props}
-    >
-      <div
-        className={cn(
-          "relative size-full min-h-[inherit] overflow-hidden rounded-[var(--card-content-radius)] bg-gray-100 p-6 dark:bg-neutral-900",
-          "break-words",
-        )}
-      >
-        <div
-          aria-hidden
-          className="magicui-neon-gradient-spin pointer-events-none absolute inset-0 -z-20 rounded-[var(--border-radius)]"
-          style={{
-            backgroundImage:
-              "linear-gradient(0deg, var(--neon-first-color), var(--neon-second-color))",
-            transform: "scale(1.06)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="magicui-neon-gradient-spin pointer-events-none absolute inset-0 -z-30 rounded-[var(--border-radius)] opacity-80"
-          style={{
-            backgroundImage:
-              "linear-gradient(0deg, var(--neon-first-color), var(--neon-second-color))",
-            filter: `blur(${blur}px)`,
-            transform: "scale(1.06)",
-          }}
-        />
+	useEffect(() => {
+		if (containerRef.current) {
+			const { offsetWidth, offsetHeight } = containerRef.current;
+			setDimensions({ width: offsetWidth, height: offsetHeight });
+		}
+	}, [children]);
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 rounded-[var(--card-content-radius)]"
-          style={{
-            boxShadow: "inset 0 0 0 var(--border-size) rgba(255,255,255,0.4)",
-          }}
-        />
-
-        {children}
-      </div>
-    </div>
-  );
-}
+	return (
+		<div
+			ref={containerRef}
+			style={
+				{
+					"--border-size": `${borderSize}px`,
+					"--border-radius": `${borderRadius}px`,
+					"--neon-first-color": neonColors.firstColor,
+					"--neon-second-color": neonColors.secondColor,
+					"--card-width": `${dimensions.width}px`,
+					"--card-height": `${dimensions.height}px`,
+					"--card-content-radius": `${borderRadius - borderSize}px`,
+					"--pseudo-element-background-image": `linear-gradient(0deg, ${neonColors.firstColor}, ${neonColors.secondColor})`,
+					"--pseudo-element-width": `${dimensions.width + borderSize * 2}px`,
+					"--pseudo-element-height": `${dimensions.height + borderSize * 2}px`,
+					"--after-blur": `${dimensions.width / 3}px`,
+				} as CSSProperties
+			}
+			className={cn("relative z-10 size-full rounded-[var(--border-radius)]", className)}
+			{...props}
+		>
+			<div
+				className={cn(
+					"relative size-full min-h-[inherit] rounded-[var(--card-content-radius)] bg-gray-100 p-6",
+					"before:absolute before:-top-[var(--border-size)] before:-left-[var(--border-size)] before:-z-10 before:block",
+					"before:h-[var(--pseudo-element-height)] before:w-[var(--pseudo-element-width)] before:rounded-[var(--border-radius)] before:content-['']",
+					"before:bg-[linear-gradient(0deg,var(--neon-first-color),var(--neon-second-color))] before:bg-[length:100%_200%]",
+					"before:animate-background-position-spin",
+					"after:absolute after:-top-[var(--border-size)] after:-left-[var(--border-size)] after:-z-10 after:block",
+					"after:h-[var(--pseudo-element-height)] after:w-[var(--pseudo-element-width)] after:rounded-[var(--border-radius)] after:blur-[var(--after-blur)] after:content-['']",
+					"after:bg-[linear-gradient(0deg,var(--neon-first-color),var(--neon-second-color))] after:bg-[length:100%_200%] after:opacity-80",
+					"after:animate-background-position-spin",
+					"dark:bg-neutral-900",
+					"break-words",
+				)}
+			>
+				{children}
+			</div>
+		</div>
+	);
+};

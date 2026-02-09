@@ -1,103 +1,131 @@
 "use client";
 
-import * as React from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FileIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { codeToHtml } from "shiki";
 
 import { cn } from "@/lib/utils";
 
-export interface CodeComparisonProps {
-  beforeCode: string;
-  afterCode: string;
-  language?: string;
-  filename?: string;
-  highlightColor?: string;
-  className?: string;
+interface CodeComparisonProps {
+	beforeCode: string;
+	afterCode: string;
+	language: string;
+	filename: string;
+	lightTheme: string;
+	darkTheme: string;
+	highlightColor?: string;
 }
 
-function splitLines(code: string) {
-  return code.replace(/\r\n/g, "\n").split("\n");
-}
-
-export default function CodeComparison({
-  beforeCode,
-  afterCode,
-  filename = "example.ts",
-  highlightColor = "#ff3333",
-  className,
+export function CodeComparison({
+	beforeCode,
+	afterCode,
+	language,
+	filename,
+	lightTheme,
+	darkTheme,
+	highlightColor = "rgba(101, 117, 133, 0.16)",
 }: CodeComparisonProps) {
-  const beforeLines = React.useMemo(() => splitLines(beforeCode), [beforeCode]);
-  const afterLines = React.useMemo(() => splitLines(afterCode), [afterCode]);
-  const max = Math.max(beforeLines.length, afterLines.length);
+	const { theme, systemTheme } = useTheme();
+	const [highlightedBefore, setHighlightedBefore] = useState("");
+	const [highlightedAfter, setHighlightedAfter] = useState("");
 
-  return (
-    <div className={cn("mx-auto w-full max-w-5xl", className)}>
-      <div
-        className="border-border relative w-full overflow-hidden rounded-md border"
-        style={{ "--highlight-color": highlightColor } as React.CSSProperties}
-      >
-        <div className="relative grid md:grid-cols-2">
-          <div className="border-primary/20 md:border-r">
-            <div className="border-primary/20 bg-accent text-foreground flex items-center border-b p-2 text-sm">
-              <FileIcon className="mr-2 h-4 w-4" />
-              {filename}
-              <span className="ml-auto hidden md:block">before</span>
-            </div>
-            <pre className="bg-background h-full w-full overflow-auto font-mono text-xs">
-              {Array.from({ length: max }).map((_, i) => {
-                const line = beforeLines[i] ?? "";
-                const other = afterLines[i] ?? "";
-                const changed = line !== other;
-                return (
-                  <div
-                    key={i}
-                    className={cn(
-                      "flex px-4 py-0.5",
-                      changed &&
-                        "bg-[color-mix(in_oklab,var(--highlight-color)_20%,transparent)]",
-                    )}
-                  >
-                    <span className="mr-4 select-none text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <code className="whitespace-pre">{line}</code>
-                  </div>
-                );
-              })}
-            </pre>
-          </div>
-          <div className="border-primary/20 border-t md:border-t-0">
-            <div className="border-primary/20 bg-accent text-foreground flex items-center border-b p-2 text-sm">
-              <FileIcon className="mr-2 h-4 w-4" />
-              {filename}
-              <span className="ml-auto hidden md:block">after</span>
-            </div>
-            <pre className="bg-background h-full w-full overflow-auto font-mono text-xs">
-              {Array.from({ length: max }).map((_, i) => {
-                const line = afterLines[i] ?? "";
-                const other = beforeLines[i] ?? "";
-                const changed = line !== other;
-                return (
-                  <div
-                    key={i}
-                    className={cn(
-                      "flex px-4 py-0.5",
-                      changed && "bg-[rgba(16,185,129,.12)]",
-                    )}
-                  >
-                    <span className="mr-4 select-none text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <code className="whitespace-pre">{line}</code>
-                  </div>
-                );
-              })}
-            </pre>
-          </div>
-        </div>
-        <div className="border-primary/20 bg-accent text-foreground absolute left-1/2 top-1/2 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md border text-xs md:flex">
-          VS
-        </div>
-      </div>
-    </div>
-  );
+	const selectedTheme = useMemo(() => {
+		const currentTheme = theme === "system" ? systemTheme : theme;
+		return currentTheme === "dark" ? darkTheme : lightTheme;
+	}, [theme, systemTheme, darkTheme, lightTheme]);
+
+	useEffect(() => {
+		async function highlightCode() {
+			if (!selectedTheme) return;
+
+			try {
+				const { transformerNotationHighlight, transformerNotationDiff, transformerNotationFocus } =
+					await import("@shikijs/transformers");
+
+				const before = await codeToHtml(beforeCode, {
+					lang: language,
+					theme: selectedTheme,
+					transformers: [transformerNotationHighlight(), transformerNotationDiff(), transformerNotationFocus()],
+				});
+
+				const after = await codeToHtml(afterCode, {
+					lang: language,
+					theme: selectedTheme,
+					transformers: [transformerNotationHighlight(), transformerNotationDiff(), transformerNotationFocus()],
+				});
+
+				setHighlightedBefore(before);
+				setHighlightedAfter(after);
+			} catch (error) {
+				console.error("Error highlighting code:", error);
+				setHighlightedBefore(`<pre>${beforeCode}</pre>`);
+				setHighlightedAfter(`<pre>${afterCode}</pre>`);
+			}
+		}
+
+		highlightCode();
+	}, [beforeCode, afterCode, language, selectedTheme]);
+
+	const renderCode = (code: string, highlighted: string) => {
+		if (highlighted) {
+			return (
+				<div
+					className={cn(
+						"h-full w-full overflow-auto bg-background font-mono text-xs",
+						"[&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:p-4 [&>pre]:font-mono [&>pre]:text-sm",
+						"[&>pre]:!w-full [&>pre]:!min-w-full", // Ensure full width
+						"scrollbar-hide", // Hide scrollbar if desired, or keep standard
+					)}
+					dangerouslySetInnerHTML={{ __html: highlighted }}
+				/>
+			);
+		} else {
+			return (
+				<pre className="h-full overflow-auto bg-background p-4 font-mono text-xs break-all text-foreground">{code}</pre>
+			);
+		}
+	};
+
+	return (
+		<div className="mx-auto w-full max-w-5xl">
+			<div className="group relative w-full overflow-hidden rounded-xl border border-border bg-background">
+				<div className="grid md:grid-cols-2">
+					{/* Before Code Section */}
+					<div className="border-r border-border">
+						<div className="flex items-center border-b border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground">
+							<FileIcon className="mr-2 h-4 w-4 text-muted-foreground" />
+							{filename}
+							<span className="ml-auto text-xs text-muted-foreground">before</span>
+						</div>
+						<div className="h-[400px] overflow-auto">{renderCode(beforeCode, highlightedBefore)}</div>
+					</div>
+
+					{/* After Code Section */}
+					<div className="group/right relative">
+						<div className="flex items-center border-b border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground">
+							<FileIcon className="mr-2 h-4 w-4 text-muted-foreground" />
+							{filename}
+							<span className="ml-auto text-xs text-muted-foreground">after</span>
+						</div>
+
+						{/* Blur Effect Container */}
+						<div
+							className={cn(
+								"h-[400px] overflow-auto transition-all duration-300",
+								// Apply blur by default to code content, remove on hover
+								"[&_pre]:blur-sm group-hover/right:[&_pre]:blur-none transition-[filter]",
+							)}
+						>
+							{renderCode(afterCode, highlightedAfter)}
+						</div>
+					</div>
+				</div>
+
+				<div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg border border-border bg-muted px-2 py-1 text-xs font-medium text-foreground shadow-sm md:flex z-10">
+					VS
+				</div>
+			</div>
+		</div>
+	);
 }
