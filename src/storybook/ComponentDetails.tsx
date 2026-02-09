@@ -95,7 +95,7 @@ export function ComponentDetails(props: { component: ComponentItem }) {
   }, [props.component, doc?.api]);
 
   const [copied, setCopied] = useState(false);
-  const installText = props.component.url;
+  const installText = props.component.installCommand;
 
   const previewNode = useMemo(
     () => renderDemo(props.component, controlValues),
