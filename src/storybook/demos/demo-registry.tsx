@@ -105,12 +105,8 @@ import PieDonut from "@/components/shadcn/PieDonut";
 import RadarDots from "@/components/shadcn/RadarDots";
 import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
-import BorderBeam from "@/components/magicui/BorderBeam";
-import ShineBorder from "@/components/magicui/ShineBorder";
-import MagicCard from "@/components/magicui/MagicCard";
 import NeonGradientCard from "@/components/magicui/NeonGradientCard";
 import CircularProgressBar from "@/components/magicui/CircularProgressBar";
-import IconCloud from "@/components/magicui/IconCloud";
 import CompactConfetti, { type ConfettiRef } from "@/components/magicui/CompactConfetti";
 import VideoText from "@/components/magicui/VideoText";
 import TextReveal from "@/components/magicui/TextReveal";
@@ -132,7 +128,6 @@ import { RippleButton, RippleButtonRipples } from "@/components/animate-ui/compo
 
 import { FlipCard } from "@/components/animate-ui/components/community/flip-card";
 import { MotionCarousel } from "@/components/animate-ui/components/community/motion-carousel";
-import RadialMenu from "@/components/animateui/RadialMenu";
 import { HoleBackground } from "@/components/animate-ui/components/backgrounds/hole";
 import { ManagementBar } from "@/components/animate-ui/components/community/management-bar";
 import { PlayfulTodolist as PlayfulTodoList } from "@/components/animate-ui/components/community/playful-todolist";
@@ -283,7 +278,7 @@ import { HeroParallax } from "@/components/aceternityui/HeroParallax";
 import Orbs from "@/components/reactbits/Orbs";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
-import { Bot, Search, User, Zap } from "lucide-react";
+import { Bot, ClipboardPaste, Copy, Pin, Scissors, Search, Star, Trash2, User, Zap } from "lucide-react";
 import { SphereImageGrid } from "@/components/jolyui/ImageSphere";
 import {
 	Popover,
@@ -294,6 +289,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@base-ui/react";
 import { RadialIntro } from "@/components/animate-ui/components/community/radial-intro";
+import { RadialMenu } from "@/components/animate-ui/components/community/radial-menu";
+import { IconCloud } from "@/components/magicui/IconCloud";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { BorderBeam } from "@/components/magicui/BorderBeam";
+import { ShineBorder } from "@/components/magicui/ShineBorder";
+import { MagicCard } from "@/components/magicui/MagicCard";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
 	{
@@ -388,6 +390,48 @@ const RADIAL_ITEMS = [
 		name: "Matt Perry",
 		src: "https://pbs.twimg.com/profile_images/1690345911149375488/wfD0Ai9j_400x400.jpg",
 	},
+];
+
+const MENU_ITEMS = [
+	{ id: 1, label: "Copy", icon: Copy },
+	{ id: 2, label: "Cut", icon: Scissors },
+	{ id: 3, label: "Paste", icon: ClipboardPaste },
+	{ id: 4, label: "Favorite", icon: Star },
+	{ id: 5, label: "Pin", icon: Pin },
+	{ id: 6, label: "Delete", icon: Trash2 },
+];
+
+const slugs = [
+	"typescript",
+	"javascript",
+	"dart",
+	"java",
+	"react",
+	"flutter",
+	"android",
+	"html5",
+	"css3",
+	"nodedotjs",
+	"express",
+	"nextdotjs",
+	"prisma",
+	"amazonaws",
+	"postgresql",
+	"firebase",
+	"nginx",
+	"vercel",
+	"testinglibrary",
+	"jest",
+	"cypress",
+	"docker",
+	"git",
+	"jira",
+	"github",
+	"gitlab",
+	"visualstudiocode",
+	"androidstudio",
+	"sonarqube",
+	"figma",
 ];
 
 interface RadixPopoverDemoProps {
@@ -867,6 +911,15 @@ function RadixProgressDemo() {
 	}, [progress]);
 
 	return <Progress value={progress} className="w-[520px]" />;
+}
+
+function IconCloudDemo() {
+	const images = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`);
+	return (
+		<div className="relative flex size-full items-center justify-center overflow-hidden">
+			<IconCloud images={images} />
+		</div>
+	);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -2266,51 +2319,88 @@ export function renderDemo(component: ComponentItem, props?: any) {
 
 		case slug === "border-beam" || title.includes("border beam"):
 			return (
-				<div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
-					<BorderBeam
-						size={props?.size ?? 80}
-						duration={props?.duration ?? 6}
-						delay={props?.delay ?? 0}
-						reverse={props?.reverse ?? false}
-						initialOffset={props?.initialOffset ?? 0}
-						borderWidth={props?.borderWidth ?? 1}
-					/>
-					<div className="text-[18px] font-black text-(--sb-text-strong)">Border Beam</div>
-					<div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-						Animated beam traveling around the border.
-					</div>
-				</div>
+				<Card className="relative w-[350px] justify-self-center overflow-hidden">
+					<CardHeader>
+						<CardTitle>Login</CardTitle>
+						<CardDescription>Enter your credentials to access your account.</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<form>
+							<div className="grid w-full items-center gap-4">
+								<div className="flex flex-col space-y-1.5">
+									<Label htmlFor="email">Email</Label>
+									<Input id="email" type="email" placeholder="Enter your email" />
+								</div>
+								<div className="flex flex-col space-y-1.5">
+									<Label htmlFor="password">Password</Label>
+									<Input id="password" type="password" placeholder="Enter your password" />
+								</div>
+							</div>
+						</form>
+					</CardContent>
+					<CardFooter className="flex justify-between">
+						<Button variant="outline">Register</Button>
+						<Button>Login</Button>
+					</CardFooter>
+					<BorderBeam duration={8} size={100} />
+				</Card>
 			);
 
 		case slug === "shine-border" || title.includes("shine border"):
 			return (
-				<div className="relative w-full max-w-[620px] overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6">
-					<ShineBorder
-						borderWidth={props?.borderWidth ?? 1}
-						duration={props?.duration ?? 14}
-						shineColor={props?.shineColor ?? ["#A97CF8", "#F38CB8", "#FDCC92"]}
-					/>
-					<div className="text-[18px] font-black text-(--sb-text-strong)">Shine Border</div>
-					<div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-						Animated sheen effect around the card.
-					</div>
-				</div>
+				<Card className="relative w-full max-w-[350px] justify-self-center overflow-hidden">
+					<ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+					<CardHeader>
+						<CardTitle>Login</CardTitle>
+						<CardDescription>Enter your credentials to access your account</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<form>
+							<div className="grid gap-4">
+								<div className="grid gap-2">
+									<Label htmlFor="email">Email</Label>
+									<Input id="email" type="email" placeholder="name@example.com" />
+								</div>
+								<div className="grid gap-2">
+									<Label htmlFor="password">Password</Label>
+									<Input id="password" type="password" />
+								</div>
+							</div>
+						</form>
+					</CardContent>
+					<CardFooter>
+						<Button className="w-full">Sign In</Button>
+					</CardFooter>
+				</Card>
 			);
 
 		case slug === "magic-card" || title.includes("magic card"):
 			return (
-				<MagicCard
-					className="w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-card) p-6"
-					gradientSize={props?.gradientSize ?? 200}
-					gradientOpacity={props?.gradientOpacity ?? 0.8}
-					gradientFrom={props?.gradientFrom ?? "#9E7AFF"}
-					gradientTo={props?.gradientTo ?? "#FE8BBB"}
-				>
-					<div className="text-[18px] font-black text-(--sb-text-strong)">Magic Card</div>
-					<div className="mt-2 text-[13px] font-medium text-(--sb-text-muted)">
-						Hover to see the gradient follow your pointer.
-					</div>
-				</MagicCard>
+				<Card className="w-full max-w-sm border-none p-0 shadow-none">
+					<MagicCard gradientColor="#262626" className="p-0">
+						<CardHeader className="border-border border-b p-4 [.border-b]:pb-4">
+							<CardTitle>Login</CardTitle>
+							<CardDescription>Enter your credentials to access your account</CardDescription>
+						</CardHeader>
+						<CardContent className="p-4">
+							<form>
+								<div className="grid gap-4">
+									<div className="grid gap-2">
+										<Label htmlFor="email">Email</Label>
+										<Input id="email" type="email" placeholder="name@example.com" />
+									</div>
+									<div className="grid gap-2">
+										<Label htmlFor="password">Password</Label>
+										<Input id="password" type="password" />
+									</div>
+								</div>
+							</form>
+						</CardContent>
+						<CardFooter className="border-border border-t p-4 [.border-t]:pt-4">
+							<Button className="w-full">Sign In</Button>
+						</CardFooter>
+					</MagicCard>
+				</Card>
 			);
 
 		case slug === "neon-gradient-card" || title.includes("neon gradient"):
@@ -2337,14 +2427,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
 			);
 
 		case slug === "icon-cloud" || title.includes("icon cloud"):
-			return (
-				<div className="flex items-center justify-center" style={{ height: 420 }}>
-					<IconCloud
-						size={props?.size ?? 380}
-						images={(props?.images as string[] | undefined) ?? DEMO_IMAGES.slice(0, 10).map((i) => i.src)}
-					/>
-				</div>
-			);
+			return <IconCloudDemo />;
 
 		case slug === "compact-confetti" || title.includes("compact confetti"):
 			return <CompactConfettiDemo particleCount={props?.particleCount ?? 120} spread={props?.spread ?? 70} />;
@@ -2836,18 +2919,25 @@ console.log(fibonacci(10));`}
 
 		case slug === "radial-intro" || title.includes("radial intro"):
 			return (
-        <div className="flex justify-center items-center">
-          <RadialIntro orbitItems={RADIAL_ITEMS} />
-        </div>
-      );
+				<div className="flex justify-center items-center">
+					<RadialIntro orbitItems={RADIAL_ITEMS} />
+				</div>
+			);
 
 		case slug === "radial-menu" || title.includes("radial menu"):
 			return (
 				<div className="flex items-center justify-center" style={{ height: 340 }}>
 					<RadialMenu
-						radius={props?.radius ?? 90}
-						items={props?.items ?? [{ label: "Edit" }, { label: "Share" }, { label: "Archive" }, { label: "Delete" }]}
-					/>
+						menuItems={MENU_ITEMS}
+						onSelect={(item) => {
+							console.log(item);
+							// run your action here
+						}}
+					>
+						<div className="size-80 flex justify-center items-center border-2 border-dashed rounded-lg">
+							Right click to open the radial menu
+						</div>
+					</RadialMenu>
 				</div>
 			);
 
