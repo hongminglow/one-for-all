@@ -76,11 +76,13 @@ export function ComponentDetails(props: { component: ComponentItem }) {
 
   const codeSnippet = useMemo(() => {
     const raw =
-      doc?.code ??
       getDemoCode(props.component) ??
+      doc?.code ??
       `See official docs for code:\n${props.component.url}`;
-    return formatCodeForDisplay(raw);
+    return raw;
   }, [props.component, doc?.code]);
+
+  const [codeCopied, setCodeCopied] = useState(false);
 
   const apiReference = useMemo(() => {
     const fromDoc = doc?.api;
@@ -102,6 +104,26 @@ export function ComponentDetails(props: { component: ComponentItem }) {
     [props.component, controlValues],
   );
 
+  const copyToClipboard = async (
+    text: string,
+    setter: (v: boolean) => void,
+  ) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setter(true);
+    window.setTimeout(() => setter(false), 2000);
+  };
+
   return (
     <div>
       <h1 className="text-[28px] font-black tracking-tight text-[var(--sb-text-strong)]">
@@ -113,38 +135,76 @@ export function ComponentDetails(props: { component: ComponentItem }) {
 
       {/* Preview / Code */}
       <section className="mt-10 rounded-2xl border border-[var(--sb-border-2)] bg-[var(--sb-card)]">
-        <div className="px-6 pt-3">
-          <div className="text-[14px] font-black text-[var(--sb-text-strong)]">
-            {STORYBOOK.componentPage.previewTitle}
+        <div className="flex items-center justify-between px-6 pt-3">
+          <div className="flex items-center gap-4">
+            <div className="inline-flex overflow-hidden rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)] p-1">
+              <button
+                type="button"
+                onClick={() => setTab("preview")}
+                className={
+                  tab === "preview"
+                    ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-all shadow-sm"
+                    : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
+                }
+              >
+                {STORYBOOK.componentPage.tabs.preview}
+              </button>
+              <button
+                type="button"
+                onClick={() => setTab("code")}
+                className={
+                  tab === "code"
+                    ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-all shadow-sm"
+                    : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
+                }
+              >
+                {STORYBOOK.componentPage.tabs.code}
+              </button>
+            </div>
           </div>
-          <div className="mt-3 inline-flex overflow-hidden rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-bg)]">
+
+          {tab === "code" && (
             <button
               type="button"
-              onClick={() => setTab("preview")}
-              className={
-                tab === "preview"
-                  ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-colors"
-                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
-              }
+              onClick={() => copyToClipboard(codeSnippet, setCodeCopied)}
+              className="group flex h-9 items-center gap-2 rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-3 text-[12px] font-black text-[var(--sb-text-strong)] transition-all hover:border-[var(--sb-border-1)] active:scale-95"
             >
-              {STORYBOOK.componentPage.tabs.preview}
+              {codeCopied ? (
+                <>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4 transition-transform group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                </>
+              )}
             </button>
-            <button
-              type="button"
-              onClick={() => setTab("code")}
-              className={
-                tab === "code"
-                  ? "h-8 rounded-lg bg-[var(--sb-selected)] px-4 text-[13px] font-extrabold text-[var(--sb-text-strong)] transition-colors"
-                  : "h-8 px-4 text-[13px] font-bold text-[var(--sb-text-muted)] hover:text-[var(--sb-text-strong)] transition-colors"
-              }
-            >
-              {STORYBOOK.componentPage.tabs.code}
-            </button>
-          </div>
+          )}
         </div>
 
         <div className="px-6 pb-6 pt-4">
-          <div className="rounded-[16px] border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-6">
+          <div className="relative rounded-[16px] border border-[var(--sb-border-2)] bg-[var(--sb-panel)] p-6 transition-all duration-300">
             {tab === "preview" ? (
               <div
                 key={`${props.component.slug}-${JSON.stringify(controlValues)}`}
@@ -153,9 +213,12 @@ export function ComponentDetails(props: { component: ComponentItem }) {
                 <div className="w-full text-center">{previewNode}</div>
               </div>
             ) : (
-              <pre className="sb-scroll max-h-[520px] overflow-auto whitespace-pre text-[12px] font-semibold leading-5 text-[var(--sb-code)]">
-                {codeSnippet}
-              </pre>
+              <div className="relative">
+                <pre className="sb-scroll max-h-[520px] min-h-[350px] overflow-auto whitespace-pre text-[12px] font-semibold leading-relaxed tracking-tight text-[var(--sb-code)]">
+                  {codeSnippet}
+                </pre>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[var(--sb-panel)] to-transparent" />
+              </div>
             )}
           </div>
         </div>
@@ -296,7 +359,7 @@ export function ComponentDetails(props: { component: ComponentItem }) {
               setCopied(true);
               window.setTimeout(() => setCopied(false), 900);
             }}
-            className="h-11 rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-5 text-[12px] font-black text-[var(--sb-text-strong)]"
+            className="h-11 rounded-xl border border-[var(--sb-border-2)] bg-[var(--sb-selected)] px-3 text-[12px] font-black text-[var(--sb-text-strong)]"
           >
             <span className="inline-flex items-center gap-2">
               {copied ? (
@@ -327,7 +390,6 @@ export function ComponentDetails(props: { component: ComponentItem }) {
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                 </svg>
               )}
-              {copied ? "Copied" : "Copy"}
             </span>
           </button>
 

@@ -8,7 +8,7 @@ export type ComponentRegistryItem = {
   title: string;
   description: string;
   category: string;
-  tags: string[];
+  tags: readonly string[];
   library: string;
   docUrl: string;
   installCommand: string;
@@ -31,7 +31,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/split-text",
-    "installCommand": "npx shadcn@latest add @react-bits/SplitText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "2",
@@ -49,7 +49,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/circular-text",
-    "installCommand": "npx shadcn@latest add @react-bits/CircularText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "3",
@@ -67,7 +67,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/shiny-text",
-    "installCommand": "npx shadcn@latest add @react-bits/ShinyText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "4",
@@ -87,7 +87,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/curved-loop",
-    "installCommand": "npx shadcn@latest add @react-bits/CurvedMarquee-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "5",
@@ -105,7 +105,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/fuzzy-text",
-    "installCommand": "npx shadcn@latest add @react-bits/FuzzyText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "6",
@@ -123,7 +123,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/gradient-text",
-    "installCommand": "npx shadcn@latest add @react-bits/GradientText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "7",
@@ -141,7 +141,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/falling-text",
-    "installCommand": "npx shadcn@latest add @react-bits/FallingText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "8",
@@ -160,7 +160,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/text-cursor",
-    "installCommand": "npx shadcn@latest add @react-bits/TextCursor-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "9",
@@ -178,7 +178,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/decrypted-text",
-    "installCommand": "npx shadcn@latest add @react-bits/DecryptedText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "10",
@@ -197,7 +197,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/scroll-float",
-    "installCommand": "npx shadcn@latest add @react-bits/ScrollFloat-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "11",
@@ -216,7 +216,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/scroll-reveal",
-    "installCommand": "npx shadcn@latest add @react-bits/ScrollReveal-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "12",
@@ -234,7 +234,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/rotating-text",
-    "installCommand": "npx shadcn@latest add @react-bits/RotatingText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "13",
@@ -252,7 +252,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/glitch-text",
-    "installCommand": "npx shadcn@latest add @react-bits/GlitchText-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "14",
@@ -271,7 +271,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/scroll-velocity",
-    "installCommand": "npx shadcn@latest add @react-bits/ScrollVelocity-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "15",
@@ -290,7 +290,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/variable-proximity",
-    "installCommand": "npx shadcn@latest add @react-bits/VariableProximity-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "16",
@@ -309,7 +309,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/text-animations/count-up",
-    "installCommand": "npx shadcn@latest add @react-bits/CountUp-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "17",
@@ -325,7 +325,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/electric-border",
-    "installCommand": "npx shadcn@latest add @react-bits/ElectricBorder-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "18",
@@ -342,7 +342,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/antigravity",
-    "installCommand": "npx shadcn@latest add @react-bits/Antigravity-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "19",
@@ -360,7 +360,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/logo-loop",
-    "installCommand": "npx shadcn@latest add @react-bits/LogoLoop-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "20",
@@ -379,7 +379,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/target-cursor",
-    "installCommand": "npx shadcn@latest add @react-bits/TargetCursor-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "21",
@@ -397,7 +397,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/laser-flow",
-    "installCommand": "npx shadcn@latest add @react-bits/LaserFlow-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "22",
@@ -415,7 +415,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/magnet-lines",
-    "installCommand": "npx shadcn@latest add @react-bits/MagnetLines-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "23",
@@ -434,7 +434,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/ghost-cursor",
-    "installCommand": "npx shadcn@latest add @react-bits/GhostCursor-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "24",
@@ -452,7 +452,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/click-spark",
-    "installCommand": "npx shadcn@latest add @react-bits/ClickSpark-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "25",
@@ -468,7 +468,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/sticker-peel",
-    "installCommand": "npx shadcn@latest add @react-bits/StickerPeel-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "26",
@@ -487,7 +487,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/imawge-trail",
-    "installCommand": "npx shadcn@latest add @react-bits/ImageTrail-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "27",
@@ -506,7 +506,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/splash-cursor",
-    "installCommand": "npx shadcn@latest add @react-bits/SplashCursor-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "28",
@@ -524,7 +524,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/animations/star-border",
-    "installCommand": "npx shadcn@latest add @react-bits/StarBorder-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "29",
@@ -541,7 +541,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/animated-list",
-    "installCommand": "npx shadcn@latest add @react-bits/AnimatedList-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "30",
@@ -558,7 +558,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/scroll-stack",
-    "installCommand": "npx shadcn@latest add @react-bits/ScrollStack-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "31",
@@ -575,7 +575,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/magic-bento",
-    "installCommand": "npx shadcn@latest add @react-bits/MagicBento-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "32",
@@ -592,7 +592,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/circular-gallery",
-    "installCommand": "npx shadcn@latest add @react-bits/CircularGallery-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "33",
@@ -609,7 +609,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/stack",
-    "installCommand": "npx shadcn@latest add @react-bits/ImageStack-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "34",
@@ -626,7 +626,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/fluid-glass",
-    "installCommand": "npx shadcn@latest add @react-bits/FluidGlass-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "35",
@@ -642,7 +642,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/masonry",
-    "installCommand": "npx shadcn@latest add @react-bits/Masonry-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "36",
@@ -660,7 +660,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/model-viewer",
-    "installCommand": "npx shadcn@latest add @react-bits/ModalViewer-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "37",
@@ -676,7 +676,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/lanyard",
-    "installCommand": "npx shadcn@latest add @react-bits/Lanyard-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "38",
@@ -692,7 +692,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/dock",
-    "installCommand": "npx shadcn@latest add @react-bits/Dock-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "39",
@@ -709,7 +709,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/carousel",
-    "installCommand": "npx shadcn@latest add @react-bits/Carousel-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "40",
@@ -726,7 +726,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/spotlight-card",
-    "installCommand": "npx shadcn@latest add @react-bits/SpotlightCard-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "41",
@@ -744,7 +744,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/flowing-menu",
-    "installCommand": "npx shadcn@latest add @react-bits/FlowingMenu-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "42",
@@ -761,7 +761,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/elastic-slider",
-    "installCommand": "npx shadcn@latest add @react-bits/ElasticSlider-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "43",
@@ -777,7 +777,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/counter",
-    "installCommand": "npx shadcn@latest add @react-bits/Counter-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "44",
@@ -795,7 +795,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/infinite-menu",
-    "installCommand": "npx shadcn@latest add @react-bits/InfiniteMenu-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "45",
@@ -811,7 +811,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/components/stepper",
-    "installCommand": "npx shadcn@latest add @react-bits/Stepper-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "46",
@@ -829,7 +829,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/liquid-ether",
-    "installCommand": "npx shadcn@latest add @react-bits/LiquidEther-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "47",
@@ -846,7 +846,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/prism",
-    "installCommand": "npx shadcn@latest add @react-bits/Prism-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "48",
@@ -864,7 +864,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/dark-veil",
-    "installCommand": "npx shadcn@latest add @react-bits/DarkVeil-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "49",
@@ -882,7 +882,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/light-pillar",
-    "installCommand": "npx shadcn@latest add @react-bits/LightPillar-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "50",
@@ -900,7 +900,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/floating-lines",
-    "installCommand": "npx shadcn@latest add @react-bits/FloatingLines-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "51",
@@ -918,7 +918,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/light-rays",
-    "installCommand": "npx shadcn@latest add @react-bits/LightRays-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "52",
@@ -936,7 +936,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/color-bends",
-    "installCommand": "npx shadcn@latest add @react-bits/ColorBends-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "53",
@@ -953,7 +953,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/particles",
-    "installCommand": "npx shadcn@latest add @react-bits/Particles-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "54",
@@ -971,7 +971,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/grid-scan",
-    "installCommand": "npx shadcn@latest add @react-bits/GridScan-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "55",
@@ -988,7 +988,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/lightning",
-    "installCommand": "npx shadcn@latest add @react-bits/Lightning-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "56",
@@ -1005,7 +1005,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/galaxy",
-    "installCommand": "npx shadcn@latest add @react-bits/Galaxy-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "57",
@@ -1023,7 +1023,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/dot-grid",
-    "installCommand": "npx shadcn@latest add @react-bits/DotGrid-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "58",
@@ -1040,7 +1040,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/hyperspeed",
-    "installCommand": "npx shadcn@latest add @react-bits/Hyperspeed-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "59",
@@ -1057,7 +1057,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/ballpit",
-    "installCommand": "npx shadcn@latest add @react-bits/Ballpit-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "60",
@@ -1074,7 +1074,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/orbs",
-    "installCommand": "npx shadcn@latest add @react-bits/Orbs-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "61",
@@ -1092,7 +1092,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/letter-glitch",
-    "installCommand": "npx shadcn@latest add @react-bits/LetterGlitch-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "62",
@@ -1110,7 +1110,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "React-Bits",
     "docUrl": "https://reactbits.dev/backgrounds/grid-motion",
-    "installCommand": "npx shadcn@latest add @react-bits/GridMotion-TS-TW"
+    "installCommand": ""
   },
   {
     "id": "63",
@@ -1126,7 +1126,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/code-block",
-    "installCommand": "npx shadcn@latest add code-block"
+    "installCommand": ""
   },
   {
     "id": "64",
@@ -1142,7 +1142,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/code-editor",
-    "installCommand": "npx shadcn@latest add code-editor"
+    "installCommand": ""
   },
   {
     "id": "65",
@@ -1158,7 +1158,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/code-tabs",
-    "installCommand": "npx shadcn@latest add code-tabs"
+    "installCommand": ""
   },
   {
     "id": "66",
@@ -1173,7 +1173,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/sandbox",
-    "installCommand": "npx shadcn@latest add sandbox"
+    "installCommand": ""
   },
   {
     "id": "67",
@@ -1189,7 +1189,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/gantt",
-    "installCommand": "npx shadcn@latest add gantt"
+    "installCommand": ""
   },
   {
     "id": "68",
@@ -1204,7 +1204,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/kanban",
-    "installCommand": "npx shadcn@latest add kanban"
+    "installCommand": ""
   },
   {
     "id": "69",
@@ -1221,7 +1221,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/android",
-    "installCommand": "npx shadcn@latest add android"
+    "installCommand": ""
   },
   {
     "id": "70",
@@ -1241,7 +1241,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/iphone-15-pro",
-    "installCommand": "npx shadcn@latest add iphone-15-pro"
+    "installCommand": ""
   },
   {
     "id": "71",
@@ -1259,7 +1259,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/mac-os-dock",
-    "installCommand": "npx shadcn@latest add mac-os-dock"
+    "installCommand": ""
   },
   {
     "id": "72",
@@ -1274,7 +1274,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/rating",
-    "installCommand": "npx shadcn@latest add rating"
+    "installCommand": ""
   },
   {
     "id": "73",
@@ -1290,7 +1290,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/credit-card",
-    "installCommand": "npx shadcn@latest add credit-card"
+    "installCommand": ""
   },
   {
     "id": "74",
@@ -1306,7 +1306,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/color-picker",
-    "installCommand": "npx shadcn@latest add color-picker"
+    "installCommand": ""
   },
   {
     "id": "75",
@@ -1321,7 +1321,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/combobox",
-    "installCommand": "npx shadcn@latest add combobox"
+    "installCommand": ""
   },
   {
     "id": "76",
@@ -1336,7 +1336,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/dropzone",
-    "installCommand": "npx shadcn@latest add dropzone"
+    "installCommand": ""
   },
   {
     "id": "77",
@@ -1352,7 +1352,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/image-zoom",
-    "installCommand": "npx shadcn@latest add image-zoom"
+    "installCommand": ""
   },
   {
     "id": "78",
@@ -1368,7 +1368,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/image-crop",
-    "installCommand": "npx shadcn@latest add image-crop"
+    "installCommand": ""
   },
   {
     "id": "79",
@@ -1384,7 +1384,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/3d-card",
-    "installCommand": "npx shadcn@latest add 3d-card"
+    "installCommand": ""
   },
   {
     "id": "80",
@@ -1400,7 +1400,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/3d-marquee",
-    "installCommand": "npx shadcn@latest add 3d-marquee"
+    "installCommand": ""
   },
   {
     "id": "81",
@@ -1417,7 +1417,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/animated-cursor",
-    "installCommand": "npx shadcn@latest add animated-cursor"
+    "installCommand": ""
   },
   {
     "id": "82",
@@ -1433,7 +1433,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/animated-testimonials",
-    "installCommand": "npx shadcn@latest add animated-testimonials"
+    "installCommand": ""
   },
   {
     "id": "83",
@@ -1449,7 +1449,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/animated-tooltip",
-    "installCommand": "npx shadcn@latest add animated-tooltip"
+    "installCommand": ""
   },
   {
     "id": "84",
@@ -1464,7 +1464,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/glimpse",
-    "installCommand": "npx shadcn@latest add glimpse"
+    "installCommand": ""
   },
   {
     "id": "85",
@@ -1480,7 +1480,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/pin-list",
-    "installCommand": "npx shadcn@latest add pin-list"
+    "installCommand": ""
   },
   {
     "id": "86",
@@ -1495,7 +1495,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/spinner",
-    "installCommand": "npx shadcn@latest add spinner"
+    "installCommand": ""
   },
   {
     "id": "87",
@@ -1510,7 +1510,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/tabs",
-    "installCommand": "npx shadcn@latest add tabs"
+    "installCommand": ""
   },
   {
     "id": "88",
@@ -1525,7 +1525,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/banner",
-    "installCommand": "npx shadcn@latest add banner"
+    "installCommand": ""
   },
   {
     "id": "89",
@@ -1540,7 +1540,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/marquee",
-    "installCommand": "npx shadcn@latest add marquee"
+    "installCommand": ""
   },
   {
     "id": "90",
@@ -1556,7 +1556,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/avatar-group",
-    "installCommand": "npx shadcn@latest add avatar-group"
+    "installCommand": ""
   },
   {
     "id": "91",
@@ -1571,7 +1571,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/tags",
-    "installCommand": "npx shadcn@latest add tags"
+    "installCommand": ""
   },
   {
     "id": "92",
@@ -1587,7 +1587,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/calendar",
-    "installCommand": "npx shadcn@latest add calendar"
+    "installCommand": ""
   },
   {
     "id": "93",
@@ -1603,7 +1603,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/mini-calendar",
-    "installCommand": "npx shadcn@latest add mini-calendar"
+    "installCommand": ""
   },
   {
     "id": "94",
@@ -1619,7 +1619,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/comparison",
-    "installCommand": "npx shadcn@latest add comparison"
+    "installCommand": ""
   },
   {
     "id": "95",
@@ -1634,7 +1634,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/kbd",
-    "installCommand": "npx shadcn@latest add kbd"
+    "installCommand": ""
   },
   {
     "id": "96",
@@ -1650,7 +1650,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/qr-code",
-    "installCommand": "npx shadcn@latest add qr-code"
+    "installCommand": ""
   },
   {
     "id": "97",
@@ -1665,7 +1665,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/status",
-    "installCommand": "npx shadcn@latest add status"
+    "installCommand": ""
   },
   {
     "id": "98",
@@ -1680,7 +1680,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/terminal",
-    "installCommand": "npx shadcn@latest add terminal"
+    "installCommand": ""
   },
   {
     "id": "99",
@@ -1696,7 +1696,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/components/video-player",
-    "installCommand": "npx shadcn@latest add video-player"
+    "installCommand": ""
   },
   {
     "id": "100",
@@ -1714,7 +1714,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/beams-collision",
-    "installCommand": "npx shadcn@latest add beams-collision"
+    "installCommand": ""
   },
   {
     "id": "101",
@@ -1730,7 +1730,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/confetti",
-    "installCommand": "npx shadcn@latest add confetti"
+    "installCommand": ""
   },
   {
     "id": "102",
@@ -1746,7 +1746,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/fireworks",
-    "installCommand": "npx shadcn@latest add fireworks"
+    "installCommand": ""
   },
   {
     "id": "103",
@@ -1762,7 +1762,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/meteors",
-    "installCommand": "npx shadcn@latest add meteors"
+    "installCommand": ""
   },
   {
     "id": "104",
@@ -1778,7 +1778,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/orbits",
-    "installCommand": "npx shadcn@latest add orbits"
+    "installCommand": ""
   },
   {
     "id": "105",
@@ -1794,7 +1794,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/rain",
-    "installCommand": "npx shadcn@latest add rain"
+    "installCommand": ""
   },
   {
     "id": "106",
@@ -1810,7 +1810,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/snow",
-    "installCommand": "npx shadcn@latest add snow"
+    "installCommand": ""
   },
   {
     "id": "107",
@@ -1826,7 +1826,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/background/vortex",
-    "installCommand": "npx shadcn@latest add vortex"
+    "installCommand": ""
   },
   {
     "id": "108",
@@ -1844,7 +1844,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/charts/area-gradient",
-    "installCommand": "npx shadcn@latest add area-gradient"
+    "installCommand": ""
   },
   {
     "id": "109",
@@ -1861,7 +1861,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/charts/bar-horizontal",
-    "installCommand": "npx shadcn@latest add bar-horizontal"
+    "installCommand": ""
   },
   {
     "id": "110",
@@ -1878,7 +1878,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/charts/bar-interactive",
-    "installCommand": "npx shadcn@latest add bar-interactive"
+    "installCommand": ""
   },
   {
     "id": "111",
@@ -1895,7 +1895,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/charts/pie-donut",
-    "installCommand": "npx shadcn@latest add pie-donut"
+    "installCommand": ""
   },
   {
     "id": "112",
@@ -1913,7 +1913,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "shadcn",
     "docUrl": "https://www.shadcn.io/charts/radar-dots",
-    "installCommand": "npx shadcn@latest add radar-dots"
+    "installCommand": ""
   },
   {
     "id": "113",
@@ -1932,7 +1932,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/buttons/rainbow-button",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/rainbow-button\""
+    "installCommand": ""
   },
   {
     "id": "114",
@@ -1951,7 +1951,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/text-animations/gooey-text-morphing",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/gooey-text-morphing\""
+    "installCommand": ""
   },
   {
     "id": "115",
@@ -1969,7 +1969,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/text-animations/highlight-text",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/highlight-text\""
+    "installCommand": ""
   },
   {
     "id": "116",
@@ -1988,7 +1988,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/text-animations/number-counter",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/number-counter\""
+    "installCommand": ""
   },
   {
     "id": "117",
@@ -2006,7 +2006,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/text-animations/rotate-text",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/rotate-text\""
+    "installCommand": ""
   },
   {
     "id": "118",
@@ -2025,7 +2025,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/text-animations/typewritter-text",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/typewritter-text\""
+    "installCommand": ""
   },
   {
     "id": "119",
@@ -2044,7 +2044,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/inputs/ai-prompt-box",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/ai-prompt-box\""
+    "installCommand": ""
   },
   {
     "id": "120",
@@ -2063,7 +2063,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/inputs/animated-theme-toggle",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/animated-theme-toggle\""
+    "installCommand": ""
   },
   {
     "id": "121",
@@ -2081,7 +2081,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/inputs/calendar",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/calendar\""
+    "installCommand": ""
   },
   {
     "id": "122",
@@ -2100,7 +2100,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/inputs/date-wheel-picker",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/date-wheel-picker\""
+    "installCommand": ""
   },
   {
     "id": "123",
@@ -2118,7 +2118,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/inputs/feedback-widget",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/feedback-widget\""
+    "installCommand": ""
   },
   {
     "id": "124",
@@ -2136,7 +2136,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/navigation/file-tree",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/file-tree\""
+    "installCommand": ""
   },
   {
     "id": "125",
@@ -2154,7 +2154,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/creative/animated-beam",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/animated-beam\""
+    "installCommand": ""
   },
   {
     "id": "126",
@@ -2172,7 +2172,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/creative/expanded-map",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/expanded-map\""
+    "installCommand": ""
   },
   {
     "id": "127",
@@ -2190,7 +2190,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/creative/github-star",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/github-star\""
+    "installCommand": ""
   },
   {
     "id": "128",
@@ -2208,7 +2208,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/creative/hover-preview",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/hover-preview\""
+    "installCommand": ""
   },
   {
     "id": "129",
@@ -2226,7 +2226,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Joly UI",
     "docUrl": "https://www.jolyui.dev/docs/components/creative/image-sphere",
-    "installCommand": "npx shadcn@latest add \"https://jolyui.dev/r/image-sphere\""
+    "installCommand": ""
   },
   {
     "id": "130",
@@ -2243,7 +2243,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/radix/popover",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-radix-popover"
+    "installCommand": ""
   },
   {
     "id": "131",
@@ -2261,7 +2261,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/radix/progress",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-radix-progress"
+    "installCommand": ""
   },
   {
     "id": "132",
@@ -2278,7 +2278,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/radix/sheet",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-radix-sheet"
+    "installCommand": ""
   },
   {
     "id": "133",
@@ -2297,7 +2297,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/buttons/copy",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-buttons-copy"
+    "installCommand": ""
   },
   {
     "id": "134",
@@ -2316,7 +2316,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/buttons/flip",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-buttons-flip"
+    "installCommand": ""
   },
   {
     "id": "135",
@@ -2335,7 +2335,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/buttons/ripple",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-buttons-ripple"
+    "installCommand": ""
   },
   {
     "id": "136",
@@ -2354,7 +2354,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/backgrounds/hole",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-backgrounds-hole"
+    "installCommand": ""
   },
   {
     "id": "137",
@@ -2372,7 +2372,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/flip-card",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-flip-card"
+    "installCommand": ""
   },
   {
     "id": "138",
@@ -2390,7 +2390,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/management-bar",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-management-bar"
+    "installCommand": ""
   },
   {
     "id": "139",
@@ -2409,7 +2409,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/motion-carousel",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-motion-carousel"
+    "installCommand": ""
   },
   {
     "id": "140",
@@ -2427,7 +2427,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/playful-todolist",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-playful-todolist"
+    "installCommand": ""
   },
   {
     "id": "141",
@@ -2445,7 +2445,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/radial-intro",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-radial-intro"
+    "installCommand": ""
   },
   {
     "id": "142",
@@ -2464,7 +2464,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Animated UI",
     "docUrl": "https://animate-ui.com/docs/components/community/radial-menu",
-    "installCommand": "npx shadcn@latest add @animate-ui/components-community-radial-menu"
+    "installCommand": ""
   },
   {
     "id": "143",
@@ -2480,7 +2480,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/icon-cloud",
-    "installCommand": "npx shadcn@latest add @magicui/icon-cloud"
+    "installCommand": ""
   },
   {
     "id": "144",
@@ -2496,7 +2496,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/border-beam",
-    "installCommand": "npx shadcn@latest add @magicui/border-beam"
+    "installCommand": ""
   },
   {
     "id": "145",
@@ -2512,7 +2512,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/shine-border",
-    "installCommand": "npx shadcn@latest add @magicui/shine-border"
+    "installCommand": ""
   },
   {
     "id": "146",
@@ -2528,7 +2528,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/magic-card",
-    "installCommand": "npx shadcn@latest add @magicui/magic-card"
+    "installCommand": ""
   },
   {
     "id": "147",
@@ -2544,7 +2544,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/confetti",
-    "installCommand": "npx shadcn@latest add @magicui/confetti"
+    "installCommand": ""
   },
   {
     "id": "148",
@@ -2561,7 +2561,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/video-text",
-    "installCommand": "npx shadcn@latest add @magicui/video-text"
+    "installCommand": ""
   },
   {
     "id": "149",
@@ -2578,7 +2578,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/text-reveal",
-    "installCommand": "npx shadcn@latest add @magicui/text-reveal"
+    "installCommand": ""
   },
   {
     "id": "150",
@@ -2595,7 +2595,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/sparkles-text",
-    "installCommand": "npx shadcn@latest add @magicui/sparkles-text"
+    "installCommand": ""
   },
   {
     "id": "151",
@@ -2612,7 +2612,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/code-comparison",
-    "installCommand": "npx shadcn@latest add @magicui/code-comparison"
+    "installCommand": ""
   },
   {
     "id": "152",
@@ -2630,7 +2630,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/scroll-progress",
-    "installCommand": "npx shadcn@latest add @magicui/scroll-progress"
+    "installCommand": ""
   },
   {
     "id": "153",
@@ -2646,7 +2646,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/neon-gradient-card",
-    "installCommand": "npx shadcn@latest add @magicui/neon-gradient-card"
+    "installCommand": ""
   },
   {
     "id": "154",
@@ -2666,7 +2666,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Magic UI",
     "docUrl": "https://magicui.design/docs/components/animated-circular-progress-bar",
-    "installCommand": "npx shadcn@latest add @magicui/animated-circular-progress-bar"
+    "installCommand": ""
   },
   {
     "id": "155",
@@ -2682,7 +2682,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Aceternity UI",
     "docUrl": "https://ui.aceternity.com/components/draggable-card",
-    "installCommand": "npx shadcn@latest add @aceternity/draggable-card"
+    "installCommand": ""
   },
   {
     "id": "156",
@@ -2698,7 +2698,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Aceternity UI",
     "docUrl": "https://ui.aceternity.com/components/hero-parallax",
-    "installCommand": "npx shadcn@latest add @aceternity/hero-parallax"
+    "installCommand": ""
   },
   {
     "id": "157",
@@ -2714,7 +2714,7 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Aceternity UI",
     "docUrl": "https://ui.aceternity.com/components/compare",
-    "installCommand": "npx shadcn@latest add @aceternity/compare"
+    "installCommand": ""
   },
   {
     "id": "158",
@@ -2729,6 +2729,6 @@ export const COMPONENTS: ComponentRegistryItem[] = [
     ],
     "library": "Aceternity UI",
     "docUrl": "https://ui.aceternity.com/components/lens",
-    "installCommand": "npx shadcn@latest add @aceternity/lens"
+    "installCommand": ""
   }
 ];

@@ -148,117 +148,7 @@ import DecayCard from "@/components/tsdefault/DecayCard";
 import FadeContent from "@/components/tsdefault/FadeContent";
 import PixelCard from "@/components/tsdefault/PixelCard";
 import TrueFocus from "@/components/tsdefault/TrueFocus";
-import {
-  circularTextCode,
-  curvedLoopCode,
-  carouselCode,
-  dockCode,
-  spotlightCardCode,
-  flowingMenuCode,
-  elasticSliderCode,
-  counterCode,
-  infiniteMenuCode,
-  stepperCode,
-  fallingTextCode,
-  fuzzyTextCode,
-  gradientTextCode,
-  shinyTextCode,
-  splitTextCode,
-  textCursorCode,
-  decryptedTextCode,
-  scrollFloatCode,
-  scrollRevealCode,
-  rotatingTextCode,
-  glitchTextCode,
-  scrollVelocityCode,
-  variableProximityCode,
-  countUpCode,
-  liquidEtherCode,
-  prismCode,
-  darkVeilCode,
-  lightPillarCode,
-  floatingLinesCode,
-  lightRaysCode,
-  colorBendsCode,
-  particlesCode,
-  gridScanCode,
-  lightningCode,
-  galaxyCode,
-  dotGridCode,
-  hyperspeedCode,
-  ballpitCode,
-  orbCode,
-  letterGlitchCode,
-  gridMotionCode,
-  electricBorderCode,
-  antigravityCode,
-  logoLoopCode,
-  targetCursorCode,
-  laserFlowCode,
-  magnetLinesCode,
-  ghostCursorCode,
-  clickSparkCode,
-  stickerPeelCode,
-  splashCursorCode,
-  starBorderCode,
-  animatedListCode,
-  scrollStackCode,
-  magicBentoCode,
-  circularGalleryCode,
-  imageTrailCode,
-  stackCode,
-  fluidGlassCode,
-  masonryCode,
-  modelViewerCode,
-  rainbowButtonCode,
-  gooeyTextMorphingCode,
-  highlightTextCode,
-  numberCounterCode,
-  rotateTextCode,
-  typewriterTextJolyCode,
-  aiPromptBoxCode,
-  animatedThemeToggleCode,
-  dateWheelPickerCode,
-  feedbackWidgetCode,
-  fileTreeCode,
-  animatedBeamCode,
-  expandedMapCode,
-  githubStarCode,
-  hoverPreviewCode,
-  imageSphereCode,
-  shadcnCalendarCode,
-  borderBeamCode,
-  shineBorderCode,
-  magicCardCode,
-  neonGradientCardCode,
-  circularProgressBarCode,
-  iconCloudCode,
-  compactConfettiCode,
-  videoTextCode,
-  textRevealCode,
-  sparklesTextCode,
-  codeComparisonCode,
-  scrollProgressCode,
-  copyButtonCode,
-  flipButtonCode,
-  rippleButtonCode,
-  progressCode,
-  popoverCode,
-  sheetCode,
-  flipCardCode,
-  motionCarouselCode,
-  radialIntroCode,
-  radialMenuCode,
-  holeBackgroundCode,
-  managementBarCode,
-  playfulTodoListCode,
-  magnetCode,
-  crosshairCode,
-  decayCardCode,
-  fadeContentCode,
-  pixelCardCode,
-  trueFocusCode,
-} from "@/storybook/demos/code-snippets";
+
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 import SplashCursor from "@/components/reactbits/SplashCursor";
 import StarBorder from "@/components/reactbits/StarBorder";
@@ -335,6 +225,7 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { CodeComparison } from "@/components/ui/code-comparison";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+import * as snippets from "./code-snippets";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -618,7 +509,11 @@ interface RadixPopoverDemoProps {
   alignOffset?: number;
 }
 
-function AnimatedBeamDemo() {
+function AnimatedBeamDemo(props?: {
+  curvature?: number;
+  duration?: number;
+  reverse?: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
   const aiRef = useRef<HTMLDivElement>(null);
@@ -683,8 +578,9 @@ function AnimatedBeamDemo() {
         containerRef={containerRef}
         fromRef={userRef}
         toRef={aiRef}
-        duration={3}
-        curvature={0.2}
+        duration={props?.duration ?? 3}
+        curvature={props?.curvature ?? 0.2}
+        reverse={props?.reverse}
         gradientStartColor="#3b82f6"
         gradientStopColor="#8b5cf6"
       />
@@ -1202,7 +1098,6 @@ function AnimatedCircularProgressBarDemo() {
       }
       return prev + 10;
     };
-    setValue(handleIncrement);
     const interval = setInterval(() => setValue(handleIncrement), 2000);
     return () => clearInterval(interval);
   }, []);
@@ -3123,8 +3018,8 @@ export function renderDemo(component: ComponentItem, props?: any) {
         >
           <GooeyTextMorphing
             texts={["Joly UI", "One-for-all", "Storybook"]}
-            duration={props?.duration ?? 1.2}
-            pauseDuration={props?.pauseDuration ?? 1.2}
+            morphTime={props?.duration ?? 1.2}
+            cooldownTime={props?.pauseDuration ?? 1.2}
             className="text-foreground"
           />
         </div>
@@ -3210,7 +3105,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
           className="flex items-center justify-center"
           style={{ height: 270 }}
         >
-          <FeedbackWidget title={props?.title ?? "How was this demo?"} />
+          <FeedbackWidget label={props?.title ?? "How was this demo?"} />
         </div>
       );
 
@@ -3859,7 +3754,7 @@ console.log(fibonacci(10));`}
           className="flex items-center justify-center"
           style={{ height: 220 }}
         >
-          <CopyButton text={props?.text ?? "npm install one-for-all"} />
+          <CopyButton content={props?.text ?? "npm install one-for-all"} />
         </div>
       );
 
@@ -3992,7 +3887,7 @@ console.log(fibonacci(10));`}
           className="flex items-center justify-center"
           style={{ height: 260 }}
         >
-          <ManagementBar title={props?.title ?? "Management"} />
+          <ManagementBar />
         </div>
       );
 
@@ -7399,257 +7294,72 @@ export function getDemoControls(
   return null;
 }
 
-export function getDemoCode(component: ComponentItem) {
+export function getDemoCode(component: ComponentItem): string {
   const title = component.title.toLowerCase();
   const slug = component.slug.toLowerCase();
   const url = component.url;
 
+  // 1. Explicit overrides for cases where slug/title don't match export name perfectly
+  const overrides: Record<string, string | undefined> = {
+    "curved-marquee": snippets.curvedLoopCode,
+    "image-stack": snippets.stackCode,
+    status: snippets.statusIndicatorCode,
+    calendar: snippets.shadcnCalendarCode,
+    "typewriter-text": snippets.typewriterTextJolyCode,
+    "modal-viewer": snippets.modelViewerCode,
+    orbs: snippets.orbCode,
+    "3d-card": snippets.threeDCardCode,
+    "3d-marquee": snippets.threeDMarqueeCode,
+    "ai-prompt-box": snippets.aiPromptBoxCode,
+    kbd: snippets.kbdCode,
+    "github-star": snippets.githubStarCode,
+    "playful-todolist": snippets.playfulTodoListCode,
+    "circular-text": snippets.circularTextCode,
+    "split-text": snippets.splitTextCode,
+    "device-mock-android": snippets.deviceMockAndroidCode,
+    "device-mock-ios": snippets.deviceMockIOSCode,
+  };
+
+  if (overrides[slug]) return overrides[slug]!;
+
+  // 2. Try to match by camelCased slug
+  const camelSlug = slug.replace(/-([a-z0-9])/g, (_, g) => g.toUpperCase());
+  const nameFromSlug = `${camelSlug}Code`;
+  const snippetFromSlug = (snippets as Record<string, string | undefined>)[
+    nameFromSlug
+  ];
+  if (snippetFromSlug) return snippetFromSlug;
+
+  // 3. Try to match by camelCased title (handling numbers/acronyms)
+  const camelTitle = component.title
+    .replace(/^3D/i, "ThreeD")
+    .replace(/^AI/i, "ai")
+    .replace(/^KBD/i, "kbd")
+    .replace(/[^a-zA-Z0-9]+(.)/g, (_, g) => g.toUpperCase())
+    .replace(/^(.)/, (_, g) => g.toLowerCase())
+    .replace(/[^a-zA-Z0-9]/g, "");
+  const nameFromTitle = `${camelTitle}Code`;
+  const snippetFromTitle = (snippets as Record<string, string | undefined>)[
+    nameFromTitle
+  ];
+  if (snippetFromTitle) return snippetFromTitle;
+
+  // 4. Special cases for partial matches
   if (slug.includes("split-text") || title.includes("split text"))
-    return splitTextCode;
+    return snippets.splitTextCode;
   if (slug.includes("circular-text") || title.includes("circular text"))
-    return circularTextCode;
-  if (slug.includes("dock") || title.includes("dock")) return dockCode;
+    return snippets.circularTextCode;
+  if (slug.includes("dock") || title.includes("dock")) return snippets.dockCode;
   if (slug.includes("carousel") || title.includes("carousel"))
-    return carouselCode;
-  if (slug.includes("spotlight-card") || title.includes("spotlight"))
-    return spotlightCardCode;
-  if (slug.includes("flowing-menu") || title.includes("flowing menu"))
-    return flowingMenuCode;
-  if (slug.includes("elastic-slider") || title.includes("elastic slider"))
-    return elasticSliderCode;
-  if (slug.includes("counter") || title.includes("counter")) return counterCode;
-  if (slug.includes("infinite-menu") || title.includes("infinite menu"))
-    return infiniteMenuCode;
-  if (slug.includes("stepper") || title.includes("stepper")) return stepperCode;
-  if (slug.includes("shiny-text") || title.includes("shiny text"))
-    return shinyTextCode;
-  if (slug.includes("curved-marquee") || title.includes("curved marquee"))
-    return curvedLoopCode;
-  if (slug.includes("fuzzy-text") || title.includes("fuzzy text"))
-    return fuzzyTextCode;
-  if (slug.includes("gradient-text") || title.includes("gradient text"))
-    return gradientTextCode;
+    return snippets.carouselCode;
   if (slug.includes("falling-text") || title.includes("falling text"))
-    return fallingTextCode;
-  if (slug.includes("text-cursor") || title.includes("text cursor"))
-    return textCursorCode;
-  if (
-    slug.includes("decrypted-text") ||
-    title.includes("decrypted text") ||
-    title.includes("decrypted")
-  )
-    return decryptedTextCode;
-  if (slug.includes("scroll-float") || title.includes("scroll float"))
-    return scrollFloatCode;
-  if (slug.includes("scroll-reveal") || title.includes("scroll reveal"))
-    return scrollRevealCode;
-  if (slug.includes("rotating-text") || title.includes("rotating text"))
-    return rotatingTextCode;
-  if (slug.includes("glitch-text") || title.includes("glitch text"))
-    return glitchTextCode;
-  if (slug.includes("scroll-velocity") || title.includes("scroll velocity"))
-    return scrollVelocityCode;
-  if (
-    slug.includes("variable-proximity") ||
-    title.includes("variable proximity")
-  )
-    return variableProximityCode;
-  if (
-    slug.includes("count-up") ||
-    title.includes("count up") ||
-    title.includes("counter") ||
-    title.includes("number counter")
-  )
-    return countUpCode;
+    return snippets.fallingTextCode;
+  if (slug.includes("shiny-text") || title.includes("shiny text"))
+    return snippets.shinyTextCode;
+  if (slug.includes("gradient-text") || title.includes("gradient text"))
+    return snippets.gradientTextCode;
 
-  if (slug.includes("liquid-ether") || title.includes("liquid ether"))
-    return liquidEtherCode;
-  if (slug.includes("prism") || title.includes("prism")) return prismCode;
-  if (slug.includes("dark-veil") || title.includes("dark veil"))
-    return darkVeilCode;
-  if (slug.includes("light-pillar") || title.includes("light pillar"))
-    return lightPillarCode;
-  if (slug.includes("floating-lines") || title.includes("floating lines"))
-    return floatingLinesCode;
-  if (slug.includes("light-rays") || title.includes("light rays"))
-    return lightRaysCode;
-  if (slug.includes("color-bends") || title.includes("color bends"))
-    return colorBendsCode;
-
-  if (slug.includes("particles") || title.includes("particles"))
-    return particlesCode;
-  if (slug.includes("grid-scan") || title.includes("grid scan"))
-    return gridScanCode;
-  if (slug.includes("lightning") || title.includes("lightning"))
-    return lightningCode;
-  if (slug.includes("galaxy") || title.includes("galaxy")) return galaxyCode;
-  if (slug.includes("dot-grid") || title.includes("dot grid"))
-    return dotGridCode;
-  if (slug.includes("hyperspeed") || title.includes("hyperspeed"))
-    return hyperspeedCode;
-  if (slug.includes("ballpit") || title.includes("ballpit")) return ballpitCode;
-  if (slug.includes("orbs") || title.includes("orbs")) return orbCode;
-  if (slug.includes("letter-glitch") || title.includes("letter glitch"))
-    return letterGlitchCode;
-  if (slug.includes("grid-motion") || title.includes("grid motion"))
-    return gridMotionCode;
-
-  if (slug.includes("rainbow-button") || title.includes("rainbow button"))
-    return rainbowButtonCode;
-  if (slug.includes("gooey-text-morphing") || title.includes("gooey"))
-    return gooeyTextMorphingCode;
-  if (slug.includes("highlight-text") || title.includes("highlight text"))
-    return highlightTextCode;
-  if (slug.includes("number-counter") || title.includes("number counter"))
-    return numberCounterCode;
-  if (slug.includes("rotate-text") || title.includes("rotate text"))
-    return rotateTextCode;
-  if (slug.includes("typewriter-text") || title.includes("typewriter text"))
-    return typewriterTextJolyCode;
-  if (slug.includes("ai-prompt-box") || title.includes("ai prompt"))
-    return aiPromptBoxCode;
-  if (slug.includes("animated-theme-toggle") || title.includes("theme toggle"))
-    return animatedThemeToggleCode;
-  if (slug.includes("date-wheel-picker") || title.includes("date wheel"))
-    return dateWheelPickerCode;
-  if (slug.includes("feedback-widget") || title.includes("feedback"))
-    return feedbackWidgetCode;
-  if (slug.includes("file-tree") || title.includes("file tree"))
-    return fileTreeCode;
-  if (slug.includes("animated-beam") || title.includes("animated beam"))
-    return animatedBeamCode;
-  if (slug.includes("expanded-map") || title.includes("expanded map"))
-    return expandedMapCode;
-  if (slug.includes("github-star") || title.includes("github star"))
-    return githubStarCode;
-  if (slug.includes("hover-preview") || title.includes("hover preview"))
-    return hoverPreviewCode;
-  if (slug.includes("image-sphere") || title.includes("image sphere"))
-    return imageSphereCode;
-  if (slug === "border-beam" || title.includes("border beam"))
-    return borderBeamCode;
-  if (slug === "shine-border" || title.includes("shine border"))
-    return shineBorderCode;
-  if (slug === "magic-card" || title.includes("magic card"))
-    return magicCardCode;
-  if (slug === "neon-gradient-card" || title.includes("neon gradient"))
-    return neonGradientCardCode;
-  if (slug === "circular-progress-bar" || title.includes("circular progress"))
-    return circularProgressBarCode;
-  if (slug === "icon-cloud" || title.includes("icon cloud"))
-    return iconCloudCode;
-  if (slug === "compact-confetti" || title.includes("compact confetti"))
-    return compactConfettiCode;
-  if (slug === "video-text" || title.includes("video text"))
-    return videoTextCode;
-  if (slug === "text-reveal" || title.includes("text reveal"))
-    return textRevealCode;
-  if (slug === "sparkles-text" || title.includes("sparkles"))
-    return sparklesTextCode;
-  if (slug === "code-comparison" || title.includes("code comparison"))
-    return codeComparisonCode;
-  if (slug === "scroll-progress" || title.includes("scroll progress"))
-    return scrollProgressCode;
-  if (slug === "calendar") return shadcnCalendarCode;
-
-  if (slug === "copy-button" || title.includes("copy button"))
-    return copyButtonCode;
-  if (slug === "flip-button" || title.includes("flip button"))
-    return flipButtonCode;
-  if (slug === "ripple-button" || title.includes("ripple button"))
-    return rippleButtonCode;
-  if (slug === "progress" || title === "progress") return progressCode;
-  if (slug === "popover" || title.includes("popover")) return popoverCode;
-  if (slug === "sheet" || title.includes("sheet")) return sheetCode;
-  if (slug === "flip-card" || title.includes("flip card")) return flipCardCode;
-  if (slug === "motion-carousel" || title.includes("motion carousel"))
-    return motionCarouselCode;
-  if (slug === "radial-intro" || title.includes("radial intro"))
-    return radialIntroCode;
-  if (slug === "radial-menu" || title.includes("radial menu"))
-    return radialMenuCode;
-  if (slug === "hole-background" || title.includes("hole background"))
-    return holeBackgroundCode;
-  if (slug === "management-bar" || title.includes("management bar"))
-    return managementBarCode;
-  if (
-    slug === "playful-todolist" ||
-    title.includes("todolist") ||
-    title.includes("todo")
-  )
-    return playfulTodoListCode;
-  if (slug === "magnet" || title.includes("magnet")) return magnetCode;
-  if (slug === "crosshair" || title.includes("crosshair")) return crosshairCode;
-  if (slug === "decay-card" || title.includes("decay")) return decayCardCode;
-  if (slug === "fade-content" || title.includes("fade content"))
-    return fadeContentCode;
-  if (slug === "pixel-card" || title.includes("pixel card"))
-    return pixelCardCode;
-  if (slug === "true-focus" || title.includes("true focus"))
-    return trueFocusCode;
-
-  if (slug.includes("electric-border") || title.includes("electric border"))
-    return electricBorderCode;
-  if (slug.includes("antigravity") || title.includes("antigravity"))
-    return antigravityCode;
-  if (slug.includes("logo-loop") || title.includes("logo loop"))
-    return logoLoopCode;
-  if (slug.includes("target-cursor") || title.includes("target cursor"))
-    return targetCursorCode;
-  if (slug.includes("laser-flow") || title.includes("laser flow"))
-    return laserFlowCode;
-  if (slug.includes("magnet-lines") || title.includes("magnet lines"))
-    return magnetLinesCode;
-  if (slug.includes("ghost-cursor") || title.includes("ghost cursor"))
-    return ghostCursorCode;
-  if (slug.includes("click-spark") || title.includes("click spark"))
-    return clickSparkCode;
-  if (slug.includes("sticker-peel") || title.includes("sticker peel"))
-    return stickerPeelCode;
-
-  if (slug.includes("splash-cursor") || title.includes("splash cursor"))
-    return splashCursorCode;
-  if (slug.includes("star-border") || title.includes("star border"))
-    return starBorderCode;
-  if (slug.includes("animated-list") || title.includes("animated list"))
-    return animatedListCode;
-  if (slug.includes("scroll-stack") || title.includes("scroll stack"))
-    return scrollStackCode;
-  if (slug.includes("magic-bento") || title.includes("magic bento"))
-    return magicBentoCode;
-  if (slug.includes("circular-gallery") || title.includes("circular gallery"))
-    return circularGalleryCode;
-  if (slug.includes("image-trail") || title.includes("image trail"))
-    return imageTrailCode;
-  if (slug.includes("stack") || title.includes("stack")) return stackCode;
-  if (slug.includes("fluid-glass") || title.includes("fluid glass"))
-    return fluidGlassCode;
-  if (slug.includes("masonry") || title.includes("masonry")) return masonryCode;
-  if (slug.includes("model-viewer") || title.includes("model viewer"))
-    return modelViewerCode;
-
-  if (title.includes("typewriter")) {
-    return [
-      "// Typewriter text (local demo)",
-      "export function TypewriterDemo({ text }: { text: string }) {",
-      "  return (",
-      '    <span className="inline-block overflow-hidden whitespace-nowrap [border-right:2px_solid_var(--sb-accent)] [animation:type_2.2s_steps(28,end)_infinite]">',
-      "      {text}",
-      "    </span>",
-      "  );",
-      "}",
-    ].join("\n");
-  }
-
-  if (title.includes("carousel")) {
-    return [
-      "// Minimal carousel (local demo)",
-      "const items = ['One', 'Two', 'Three', 'Four'];",
-      "const [index, setIndex] = useState(0);",
-      "<button onClick={() => setIndex((i) => (i + 1) % items.length)}>Next</button>",
-    ].join("\n");
-  }
-
+  // 5. Fallback for background components or generic demos
   if (slug.includes("scroll") || title.includes("scroll")) {
     return [
       "// Scroll reveal (local demo)",
@@ -7659,10 +7369,7 @@ export function getDemoCode(component: ComponentItem) {
     ].join("\n");
   }
 
-  if (
-    component.url.toLowerCase().includes("/background") ||
-    component.url.toLowerCase().includes("/backgrounds")
-  ) {
+  if (url.toLowerCase().includes("/background")) {
     return [
       "// Background panel (local demo)",
       '<div className="[background:radial-gradient(...),radial-gradient(...)]" />',

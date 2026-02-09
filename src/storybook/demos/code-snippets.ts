@@ -1,988 +1,164 @@
-export const splitTextCode = `import SplitText from './SplitText';
-
-<SplitText
-  text="Elevate Your Web Experience"
-  className="text-2xl font-semibold text-center"
-  delay={50}
-  animationFrom={{ opacity: 0, transform: "translate3d(0,40px,0)" }}
-  animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-  easing="easeOutCubic"
-  threshold={0.1}
-  rootMargin="-100px"
-  textAlign="center"
-/>`;
-
-export const circularTextCode = `import CircularText from './CircularText';
-
-<CircularText
-  text="REACT*BITS*COMPONENTS*"
-  onHover="speedUp"
-  spinDuration={20}
-  className="custom-class"
-/>`;
-
-export const dockCode = `import Dock from './Dock';
-
-<Dock
-  items={[
-    { icon: '🏠', label: 'Home', onClick: () => {} },
-    { icon: '🔍', label: 'Search', onClick: () => {} },
-    { icon: '📁', label: 'Files', onClick: () => {} },
-    { icon: '⚙️', label: 'Settings', onClick: () => {} },
-  ]}
-  magnification={70}
-  distance={200}
-  panelHeight={68}
-  dockHeight={256}
-  baseItemSize={50}
-/>`;
-
-export const carouselCode = `import Carousel from './Carousel';
-
-<Carousel
-  baseWidth={320}
-  autoplay={false}
-  autoplayDelay={3000}
-  pauseOnHover={false}
-  loop={false}
-  round={false}
-/>`;
-
-export const spotlightCardCode = `import SpotlightCard from './SpotlightCard';
-
-<SpotlightCard spotlightColor="rgba(255, 255, 255, 0.25)">
-  <h3 style={{ margin: 0 }}>Spotlight Card</h3>
-  <p style={{ marginTop: 8, opacity: 0.8 }}>Move your mouse around.</p>
-</SpotlightCard>`;
-
-export const flowingMenuCode = `import FlowingMenu from './FlowingMenu';
-
-<FlowingMenu
-  items={[
-    {
-      link: '#',
-      text: 'React Bits',
-      image: 'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?q=80&w=800&auto=format',
-    },
-    {
-      link: '#',
-      text: 'Components',
-      image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format',
-    },
-    {
-      link: '#',
-      text: 'Backgrounds',
-      image: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=800&auto=format',
-    },
-  ]}
-  speed={15}
-/>`;
-
-export const elasticSliderCode = `import ElasticSlider from './ElasticSlider';
-
-<ElasticSlider
-  defaultValue={50}
-  startingValue={0}
-  maxValue={100}
-  isStepped={false}
-  stepSize={1}
-/>`;
-
-export const counterCode = `import Counter from './Counter';
-
-<Counter
-  value={1234.56}
-  fontSize={56}
-  padding={8}
-  gap={8}
-/>`;
-
-export const infiniteMenuCode = `import InfiniteMenu from './InfiniteMenu';
-
-<InfiniteMenu
-  items={[{ id: 1, title: 'Item 1' }, { id: 2, title: 'Item 2' }]}
-  scale={1.0}
-/>`;
-
-export const stepperCode = `import Stepper, { Step } from './Stepper';
-
-<Stepper initialStep={1}>
-  <Step>
-    <h3 style={{ margin: 0 }}>Step 1</h3>
-    <p style={{ marginTop: 8, opacity: 0.8 }}>Intro content.</p>
-  </Step>
-  <Step>
-    <h3 style={{ margin: 0 }}>Step 2</h3>
-    <p style={{ marginTop: 8, opacity: 0.8 }}>More details.</p>
-  </Step>
-  <Step>
-    <h3 style={{ margin: 0 }}>Step 3</h3>
-    <p style={{ marginTop: 8, opacity: 0.8 }}>Finish.</p>
-  </Step>
-</Stepper>`;
-
-export const liquidEtherCode = `import LiquidEther from './LiquidEther';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <LiquidEther resolution={1} />
-</div>`;
-
-export const prismCode = `import Prism from './Prism';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Prism animationType="rotate" glow={1} noise={0.5} />
-</div>`;
-
-export const darkVeilCode = `import DarkVeil from './DarkVeil';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={0.5} />
-</div>`;
-
-export const lightPillarCode = `import LightPillar from './LightPillar';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <LightPillar topColor="#5227FF" bottomColor="#FF9FFC" intensity={1} interactive={false} />
-</div>`;
-
-export const floatingLinesCode = `import FloatingLines from './FloatingLines';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <FloatingLines interactive animationSpeed={1} />
-</div>`;
-
-export const lightRaysCode = `import LightRays from './LightRays';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <LightRays raysOrigin="top-center" raysColor="#ffffff" followMouse mouseInfluence={0.1} />
-</div>`;
-
-export const colorBendsCode = `import ColorBends from './ColorBends';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <ColorBends rotation={45} speed={0.2} transparent={true} />
-</div>`;
-
-export const particlesCode = `import Particles from './Particles';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Particles count={70} speed={0.6} linkDistance={120} />
-</div>`;
-
-export const gridScanCode = `import GridScan from './GridScan';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <GridScan size={44} opacity={0.12} scanSpeed={2.2} />
-</div>`;
-
-export const lightningCode = `import Lightning from './Lightning';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Lightning frequency={1.1} speed={1} glow={10} />
-</div>`;
-
-export const galaxyCode = `import Galaxy from './Galaxy';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Galaxy stars={900} rotationSpeed={0.25} />
-</div>`;
-
-export const dotGridCode = `import DotGrid from './DotGrid';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <DotGrid spacing={22} dotSize={2} opacity={0.18} />
-</div>`;
-
-export const hyperspeedCode = `import Hyperspeed from './Hyperspeed';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Hyperspeed streaks={260} speed={1} />
-</div>`;
-
-export const ballpitCode = `import Ballpit from './Ballpit';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Ballpit balls={18} gravity={0.45} bounce={0.86} />
-</div>`;
-
-export const orbCode = `import Orb from './Orb';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <Orb speed={1} glow={0.85} />
-</div>`;
-
-export const letterGlitchCode = `import LetterGlitch from './LetterGlitch';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <LetterGlitch text="LETTER GLITCH" speed={22} glitchChance={0.18} />
-</div>`;
-
-export const gridMotionCode = `import GridMotion from './GridMotion';
-
-<div style={{ height: 220, width: '100%', position: 'relative' }}>
-  <GridMotion gridSize={28} speed={1} amplitude={8} />
-</div>`;
-
-export const rainbowButtonCode = `import RainbowButton from './RainbowButton';
-
-<RainbowButton duration={2} borderWidth={2}>
-  Rainbow Button
-</RainbowButton>`;
-
-export const gooeyTextMorphingCode = `import GooeyTextMorphing from './GooeyTextMorphing';
-
-<GooeyTextMorphing
-  texts={['Joly UI', 'One-for-all', 'Storybook']}
-  duration={1.2}
-  pauseDuration={1.2}
-/>`;
-
-export const highlightTextCode = `import HighlightText from './HighlightText';
-
-<HighlightText duration={0.5} delay={0.1}>
-  Highlight me
-</HighlightText>`;
-
-export const numberCounterCode = `import NumberCounter from './NumberCounter';
-
-<NumberCounter value={1234.56} precision={2} />`;
-
-export const rotateTextCode = `import RotateText from './RotateText';
-
-<RotateText words={['Fast', 'Simple', 'Polished']} pauseDuration={1.2} />`;
-
-export const typewriterTextJolyCode = `import TypewriterText from './TypewriterText';
-
-<TypewriterText
-  words={['Typewriter', 'Animation', 'Effect']}
-  typingSpeed={90}
-  deletingSpeed={50}
-  pauseDuration={1200}
-/>`;
-
-export const aiPromptBoxCode = `import AIPromptBox from './AIPromptBox';
-
-<AIPromptBox
-  placeholder="Ask me anything…"
-  onSubmit={(value) => console.log(value)}
-/>`;
-
-export const animatedThemeToggleCode = `import AnimatedThemeToggle from './AnimatedThemeToggle';
-
-<AnimatedThemeToggle />`;
-
-export const dateWheelPickerCode = `import DateWheelPicker from './DateWheelPicker';
-
-<DateWheelPicker
-  value={new Date()}
-  onChange={(d) => console.log(d)}
-  size="md"
-/>`;
-
-export const feedbackWidgetCode = `import FeedbackWidget from './FeedbackWidget';
-
-<FeedbackWidget title="How was this?" />`;
-
-export const fileTreeCode = `import FileTree from './FileTree';
-
-<FileTree
-  tree={[
-    { type: 'folder', name: 'src', children: [
-      { type: 'folder', name: 'components', children: [
-        { type: 'file', name: 'Button.tsx' },
-        { type: 'file', name: 'Card.tsx' },
-      ]},
-      { type: 'file', name: 'app.tsx' },
-    ]},
-  ]}
-/>`;
-
-export const animatedBeamCode = `import AnimatedBeam from './AnimatedBeam';
-
-// Use refs to connect two nodes inside a shared container.
-// See demo-registry for a working example.`;
-
-export const expandedMapCode = `import ExpandedMap from './ExpandedMap';
-
-<ExpandedMap
-  location="San Francisco, CA"
-  latitude={37.7749}
-  longitude={-122.4194}
-  tileProvider="carto-light"
-/>`;
-
-export const githubStarCode = `import GitHubStarButton from './GitHubStarButton';
-
-<GitHubStarButton owner="vercel" repo="next.js" />`;
-
-export const hoverPreviewCode = `import { HoverPreviewProvider, HoverPreviewLink } from './HoverPreview';
-
-<HoverPreviewProvider
-  data={{
-    one: { image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&auto=format&fit=crop&q=60', title: 'Preview', subtitle: 'Hover me' },
-  }}
->
-  <HoverPreviewLink previewKey="one">Hover Preview</HoverPreviewLink>
-</HoverPreviewProvider>`;
-
-export const imageSphereCode = `import ImageSphere from './ImageSphere';
-
-<ImageSphere
-  images={[
-    { id: '1', src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&auto=format&fit=crop&q=60', alt: 'One' },
-    { id: '2', src: 'https://images.unsplash.com/photo-1526481280695-3c687fd643ed?w=400&auto=format&fit=crop&q=60', alt: 'Two' },
-    { id: '3', src: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?w=400&auto=format&fit=crop&q=60', alt: 'Three' },
-  ]}
-/>`;
-
-export const shadcnCalendarCode = `import Calendar from './Calendar';
-
-<Calendar value={new Date()} onChange={(d) => console.log(d)} />`;
-
-export const shinyTextCode = `import ShinyText from './ShinyText';
-
-<ShinyText
-  text="✨ Shiny Text Effect"
-  speed={2}
-  delay={0}
-  color="#b5b5b5"
-  shineColor="#ffffff"
-  spread={120}
-  direction="left"
-  yoyo={false}
-  pauseOnHover={false}
-/>`;
-
-export const curvedLoopCode = `import CurvedLoop from './CurvedLoop';
-
-<CurvedLoop
-  marqueeText="CURVED LOOP • CURVED LOOP •"
-  curveAmount={400}
-  speed={2}
-  direction="left"
-  interactive={true}
-  className="text-[32px] font-black"
-/>`;
-
-export const fuzzyTextCode = `import FuzzyText from './FuzzyText';
-
-<FuzzyText
-  baseIntensity={0.2}
-  hoverIntensity={0.5}
-  enableHover
->
-  404
-</FuzzyText>`;
-
-export const gradientTextCode = `import GradientText from './GradientText'
-
-<GradientText
-  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-  animationSpeed={8}
-  showBorder={false}
-  className="custom-class"
->
-  Add a splash of color!
-</GradientText>`;
-
-export const fallingTextCode = `import FallingText from './FallingText';
-
-<FallingText
-  text="React Bits is a library of animated and interactive React components designed to streamline UI development and simplify your workflow."
-  highlightWords={["React", "Bits", "animated", "components", "simplify"]}
-  trigger="hover"
-  backgroundColor="transparent"
-  wireframes={false}
-  gravity={0.56}
-  fontSize="2rem"
-  mouseConstraintStiffness={0.9}
-/>`;
-
-export const textCursorCode = `import TextCursor from './TextCursor';
-
-<TextCursor
-  text="⚛️"
-  spacing={80}
-  followMouseDirection
-  randomFloat
-  exitDuration={0.3}
-  removalInterval={20}
-  maxPoints={10}
-/>`;
-
-export const decryptedTextCode = `import DecryptedText from './DecryptedText';
-
-<DecryptedText
-  text="Hover me!"
-  speed={60}
-  maxIterations={10}
-  characters="ABCD1234!?"
-  className="revealed"
-/>`;
-
-export const scrollFloatCode = `import ScrollFloat from './ScrollFloat';
-
-<ScrollFloat
-  animationDuration={1}
-  ease='back.inOut(2)'
-  scrollStart='center bottom+=50%'
-  scrollEnd='bottom bottom-=40%'
-  stagger={0.03}
->
-  React Bits
-</ScrollFloat>`;
-
-export const scrollRevealCode = `import ScrollReveal from './ScrollReveal';
-
-<ScrollReveal
-  baseOpacity={0.1}
-  enableBlur={true}
-  baseRotation={3}
-  blurStrength={10}
->
-  React Bits
-</ScrollReveal>`;
-
-export const rotatingTextCode = `import RotatingText from './RotatingText';
-
-<RotatingText
-  texts={['React', 'Bits', 'Animated']}
-  mainClassName="px-2 bg-cyan-300 text-black overflow-hidden py-0.5 justify-center rounded-lg"
-  staggerDuration={0.025}
-  rotationInterval={2000}
-/>`;
-
-export const glitchTextCode = `import GlitchText from './GlitchText';
-
-<GlitchText
-  text="GLITCH"
-  speed={1}
-  enableHover={true}
-  className="custom-class"
-/>`;
-
-export const scrollVelocityCode = `import ScrollVelocity from './ScrollVelocity';
-
-<ScrollVelocity
-  texts={['Scroll Velocity', 'React Bits']}
-  velocity={100}
-  className="custom-class"
-/>`;
-
-export const variableProximityCode = `import { useRef } from 'react';
-import VariableProximity from './VariableProximity';
-
-const containerRef = useRef(null);
-
-<div
-  ref={containerRef}
-  style={{position: 'relative'}}
->
-  <VariableProximity
-    label={'Hover me! And then star React Bits on GitHub, or else...'}
-    className={'variable-proximity-demo'}
-    fromFontVariationSettings="'wght' 400, 'opsz' 9"
-    toFontVariationSettings="'wght' 1000, 'opsz' 40"
-    containerRef={containerRef}
-    radius={100}
-    falloff='linear'
-  />
-</div>`;
-
-export const countUpCode = `import CountUp from './CountUp'
-
-<CountUp
-  from={0}
-  to={100}
-  separator=","
-  direction="up"
-  duration={1}
-  className="count-up-text"
-/>`;
-
-export const electricBorderCode = `import ElectricBorder from './ElectricBorder';
-
-<ElectricBorder
-  color="#7df9ff"
-  speed={1}
-  chaos={0.12}
-  borderRadius={16}
->
-  <div style={{ padding: '24px', background: '#111', color: '#fff' }}>
-    <p>A glowing, animated border wrapper.</p>
-  </div>
-</ElectricBorder>`;
-
-export const antigravityCode = `import Antigravity from './Antigravity';
-
-<div style={{ width: '100%', height: '400px', position: 'relative' }}>
-  <Antigravity
-    count={300}
-    magnetRadius={6}
-    ringRadius={7}
-    waveSpeed={0.4}
-    waveAmplitude={1}
-    particleSize={1.5}
-    lerpSpeed={0.05}
-    color="#5227FF"
-    autoAnimate
-    particleVariance={1}
-    rotationSpeed={0}
-    depthFactor={1}
-    pulseSpeed={3}
-    particleShape="capsule"
-    fieldStrength={10}
-  />
-</div>`;
-
-export const logoLoopCode = `import LogoLoop from './LogoLoop';
-
-const techLogos = [
-  { src: "https://reactbits.dev/logos/react.svg", alt: "React", href: "https://react.dev" },
-  { src: "https://reactbits.dev/logos/nextjs.svg", alt: "Next.js", href: "https://nextjs.org" },
-  { src: "https://reactbits.dev/logos/typescript.svg", alt: "TypeScript", href: "https://www.typescriptlang.org" },
-  { src: "https://reactbits.dev/logos/tailwindcss.svg", alt: "Tailwind CSS", href: "https://tailwindcss.com" },
-];
-
-<div style={{ height: '120px', width: '100%', position: 'relative' }}>
-  <LogoLoop
-    logos={techLogos}
-    speed={100}
-    direction="left"
-    logoHeight={40}
-    gap={40}
-    hoverSpeed={0}
-    scaleOnHover={true}
-    fadeOut={true}
-  />
-</div>`;
-
-export const targetCursorCode = `import TargetCursor from './TargetCursor';
-
-<TargetCursor
-  targetSelector=".cursor-target"
-  spinDuration={2}
-  hideDefaultCursor={true}
-  hoverDuration={0.2}
-  parallaxOn={true}
-/>
-
-<div
-  className="cursor-target"
-  style={{ padding: '2rem', border: '1px solid #ccc', borderRadius: '8px' }}
->
-  Hover over me to see the target cursor lock in!
-</div>`;
-
-export const laserFlowCode = `import LaserFlow from './LaserFlow';
-
-<div style={{ width: '100%', height: '400px', background: '#000', position: 'relative' }}>
-  <LaserFlow
-    color="#FF79C6"
-    wispDensity={1}
-    fogIntensity={0.45}
-    horizontalSizing={0.5}
-    verticalSizing={2.0}
-  />
-</div>`;
-
-export const magnetLinesCode = `import MagnetLines from './MagnetLines';
-
-<div style={{ width: '100%', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-  <MagnetLines
-    rows={9}
-    columns={9}
-    containerSize="40vmin"
-    lineColor="#efefef"
-    lineWidth="1vmin"
-    lineHeight="6vmin"
-    baseAngle={-10}
-  />
-</div>`;
-
-export const ghostCursorCode = `import GhostCursor from './GhostCursor';
-
-<div style={{ width: '100%', height: '400px', background: '#000', position: 'relative', overflow: 'hidden' }}>
-  <GhostCursor
-    color="#B19EEF"
-    brightness={2}
-    trailLength={50}
-    grainIntensity={0.05}
-  />
-  <div style={{ padding: '2rem', color: '#fff' }}>
-    Move your mouse to see the ghost cursor!
-  </div>
-</div>`;
-
-export const clickSparkCode = `import ClickSpark from './ClickSpark';
-
-<ClickSpark
-  sparkColor='#fff'
-  sparkSize={10}
-  sparkRadius={15}
-  sparkCount={8}
-  duration={400}
->
-  <div style={{ width: '100%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#111', borderRadius: '12px' }}>
-    <h2 style={{ color: '#fff' }}>Click anywhere!</h2>
-  </div>
-</ClickSpark>`;
-
-export const stickerPeelCode = `import StickerPeel from './StickerPeel';
-
-<div style={{ width: '100%', minHeight: '400px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-  <StickerPeel
-    imageSrc="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=60"
-    width={300}
-    rotate={15}
-    peelBackHoverPct={30}
-    peelBackActivePct={40}
-    shadowIntensity={0.6}
-    lightingIntensity={0.1}
-    peelDirection={0}
-  />
-</div>`;
-
-export const splashCursorCode = `import SplashCursor from './SplashCursor';
-
-<SplashCursor />`;
-
-export const starBorderCode = `import StarBorder from './StarBorder';
-
-<div style={{ padding: '20px', background: '#000', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
-  <StarBorder color="cyan" speed="3s">
-    <div style={{ color: 'white', padding: '1em 2em' }}>Hover Me</div>
-  </StarBorder>
-</div>`;
-
-export const animatedListCode = `import AnimatedList from './AnimatedList';
-
-<div style={{ width: '100%', height: '500px', display: 'flex', justifyContent: 'center' }}>
-  <AnimatedList
-    items={['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8']}
-    onItemSelect={(item, index) => console.log(item, index)}
-    showGradients={true}
-    enableArrowNavigation={true}
-    displayScrollbar={true}
-  />
-</div>`;
-
-export const scrollStackCode = `import ScrollStack, { ScrollStackItem } from './ScrollStack';
-
-<div style={{ width: '100%', height: '600px', position: 'relative' }}>
-  <ScrollStack itemDistance={50} itemScale={0.05} itemStackDistance={20}>
-    <ScrollStackItem
-      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
-    >
-      Item 1
-    </ScrollStackItem>
-    <ScrollStackItem
-      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
-    >
-      Item 2
-    </ScrollStackItem>
-    <ScrollStackItem
-      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
-    >
-      Item 3
-    </ScrollStackItem>
-    <ScrollStackItem
-      itemClassName="bg-[#111] text-white flex items-center justify-center text-xl font-bold border border-white/10"
-    >
-      Item 4
-    </ScrollStackItem>
-  </ScrollStack>
-</div>`;
-
-export const magicBentoCode = `import MagicBento from './MagicBento';
-
-<div style={{ width: '100%', minHeight: '600px', background: '#030014' }}>
-  <MagicBento
-    textAutoHide={true}
-    enableStars={true}
-    enableSpotlight={true}
-    enableBorderGlow={true}
-    enableTilt={true}
-    enableMagnetism={true}
-    clickEffect={true}
-  />
-</div>`;
-
-export const circularGalleryCode = `import CircularGallery from './CircularGallery';
-
-<div style={{ width: '100%', height: '600px', position: 'relative' }}>
-  <CircularGallery
-    bend={3}
-    textColor="#ffffff"
-    borderRadius={0.05}
-  />
-</div>`;
-
-export const imageTrailCode = `import ImageTrail from './ImageTrail';
-
-<div style={{ height: '500px', width: '100%', position: 'relative', overflow: 'hidden' }}>
-  <ImageTrail
-    items={[
-      "https://images.unsplash.com/photo-1653896775515-951b43021b3b?q=80&w=600&auto=format",
-      "https://images.unsplash.com/photo-1548021682-1720ed403a5b?q=80&w=600&auto=format",
-      "https://images.unsplash.com/photo-1696429380069-23dcf7a6e12e?q=80&w=600&auto=format",
-      "https://images.unsplash.com/photo-1655635643532-fa9ba2648cbe?q=80&w=600&auto=format",
-      "https://images.unsplash.com/photo-1655635643420-b9646b617bbd?q=80&w=600&auto=format",
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=600&auto=format"
-    ]}
-    variant={1}
-  />
-</div>`;
-
-export const stackCode = `import Stack from './Stack';
-
-<div style={{ position: 'relative', width: '300px', height: '400px' }}>
-  <Stack
-    randomRotation={true}
-    sensitivity={180}
-    sendToBackOnClick={false}
-    cards={[
-      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 1</div>,
-      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#d0d0d0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 2</div>,
-      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#b0b0b0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 3</div>,
-      <div style={{ width: '100%', height: '100%', borderRadius: '12px', background: '#909090', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Card 4</div>
-    ]}
-  />
-</div>`;
-
-export const fluidGlassCode = `import FluidGlass from './FluidGlass';
-
-<div style={{ height: '600px', width: '100%', position: 'relative' }}>
-  <FluidGlass mode="lens" />
-</div>`;
-
-export const masonryCode = `import Masonry from './Masonry';
-
-<div style={{ width: '100%', minHeight: '600px' }}>
-  <Masonry
-    items={[
-      { id: '1', img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?q=80&w=500&auto=format', url: '#', height: 400 },
-      { id: '2', img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?q=80&w=500&auto=format', url: '#', height: 300 },
-      { id: '3', img: 'https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?q=80&w=500&auto=format', url: '#', height: 500 },
-      { id: '4', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=500&auto=format', url: '#', height: 350 },
-      { id: '5', img: 'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=500&auto=format', url: '#', height: 450 },
-    ]}
-    stagger={0.05}
-    duration={0.5}
-  />
-</div>`;
-
-export const modelViewerCode = `import ModelViewer from './ModelViewer';
-
-<div style={{ width: '100%', height: '500px', position: 'relative' }}>
-  <ModelViewer
-    url="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-    environmentPreset="sunset"
-    autoRotate={true}
-  />
-</div>`;
-
-export const lanyardCode = `import Lanyard from './Lanyard';
-
-<div style={{ height: '500px', width: '100%', position: 'relative', overflow: 'hidden' }}>
-  <Lanyard
-    position={[0, 0, 20]}
-    gravity={[0, -40, 0]}
-    fov={20}
-    bandColor="#fff"
-    cardColor="#efefef"
-  />
-</div>`;
-
-export const borderBeamCode = `import BorderBeam from './BorderBeam';
-
-<div className="relative rounded-2xl border p-6 overflow-hidden">
-  <BorderBeam size={80} duration={6} borderWidth={1} />
-  <h3 className="text-lg font-bold">Border Beam</h3>
-  <p className="text-sm opacity-70">Animated beam around the border.</p>
-</div>`;
-
-export const shineBorderCode = `import ShineBorder from './ShineBorder';
-
-<div className="relative rounded-2xl border p-6 overflow-hidden">
-  <ShineBorder duration={14} shineColor={["#A97CF8", "#F38CB8", "#FDCC92"]} />
-  <h3 className="text-lg font-bold">Shine Border</h3>
-</div>`;
-
-export const magicCardCode = `import MagicCard from './MagicCard';
-
-<MagicCard className="rounded-2xl p-6">
-  <h3 className="text-lg font-bold">Magic Card</h3>
-  <p className="text-sm opacity-70">Hover to see the gradient follow.</p>
-</MagicCard>`;
-
-export const neonGradientCardCode = `import NeonGradientCard from './NeonGradientCard';
-
-<NeonGradientCard borderSize={2} borderRadius={20}>
-  <h3 className="text-lg font-bold">Neon Gradient Card</h3>
-  <p className="text-sm opacity-70">Animated neon gradient border.</p>
-</NeonGradientCard>`;
-
-export const circularProgressBarCode = `import CircularProgressBar from './CircularProgressBar';
-
-<CircularProgressBar
-  value={72}
-  gaugePrimaryColor="#A97CF8"
-  gaugeSecondaryColor="rgba(0,0,0,0.15)"
-/>`;
-
-export const iconCloudCode = `import IconCloud from './IconCloud';
-
-<IconCloud
-  size={400}
-  images={[
-    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=200&auto=format&fit=crop&q=60",
-    "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?w=200&auto=format&fit=crop&q=60",
-    "https://images.unsplash.com/photo-1519681393784-d8e5b5a45771?w=200&auto=format&fit=crop&q=60",
-  ]}
-/>`;
-
-export const compactConfettiCode = `import CompactConfetti from './CompactConfetti';
-
-<div className="relative h-64 w-full overflow-hidden rounded-xl border">
-  <CompactConfetti className="absolute inset-0 h-full w-full" manualStart />
-  <div className="absolute inset-0 flex items-center justify-center">
-    <button className="px-4 py-2 rounded-md border">Celebrate</button>
-  </div>
-</div>`;
-
-export const videoTextCode = `import VideoText from './VideoText';
-
-<div className="h-64 w-full">
-  <VideoText src="/sample.mp4" fontSize={22}>
-    VIDEO
-  </VideoText>
-</div>`;
-
-export const textRevealCode = `import TextReveal from './TextReveal';
-
-<TextReveal>
-  Scroll to reveal the words one by one.
-</TextReveal>`;
-
-export const sparklesTextCode = `import SparklesText from './SparklesText';
-
-<SparklesText sparklesCount={10}>
-  Sparkles
-</SparklesText>`;
-
-export const codeComparisonCode = `import CodeComparison from './CodeComparison';
-
-<CodeComparison
-  filename="example.ts"
-  beforeCode={"const a = 1;\nconsole.log(a);"}
-  afterCode={"const a = 2;\nconsole.log(a);"}
-/>`;
-
-export const scrollProgressCode = `import ScrollProgress from './ScrollProgress';
-
-<ScrollProgress />`;
-
-export const copyButtonCode = `import CopyButton from './CopyButton';
-
-<CopyButton text="npm install one-for-all" />`;
-
-export const flipButtonCode = `import FlipButton from './FlipButton';
-
-<FlipButton frontText="Hover me" backText="Nice" />`;
-
-export const rippleButtonCode = `import RippleButton from './RippleButton';
-
-<RippleButton>Click</RippleButton>`;
-
-export const progressCode = `import Progress from './Progress';
-
-<Progress value={64} />`;
-
-export const popoverCode = `import Popover from './Popover';
-
-<Popover
-  trigger={<button>Open</button>}
-  content={<div>Popover content</div>}
-/>`;
-
-export const sheetCode = `import Sheet from './Sheet';
-
-const [open, setOpen] = useState(false);
-
-<>
-  <button onClick={() => setOpen(true)}>Open</button>
-  <Sheet open={open} onOpenChange={setOpen} title="Sheet">
-    Sheet content
-  </Sheet>
-</>`;
-
-export const flipCardCode = `import FlipCard from './FlipCard';
-
-<FlipCard
-  front={<div>Front</div>}
-  back={<div>Back</div>}
-/>`;
-
-export const motionCarouselCode = `import MotionCarousel from './MotionCarousel';
-
-<MotionCarousel
-  autoplay
-  items={[
-    { id: '1', title: 'One', description: 'First slide' },
-    { id: '2', title: 'Two', description: 'Second slide' },
-  ]}
-/>`;
-
-export const radialIntroCode = `import RadialIntro from './RadialIntro';
-
-<RadialIntro
-  title="Radial Intro"
-  subtitle="A simple radial-gradient hero intro."
-/>`;
-
-export const radialMenuCode = `import RadialMenu from './RadialMenu';
-
-<RadialMenu
-  items={[{ label: 'Edit' }, { label: 'Share' }, { label: 'Delete' }]}
-/>`;
-
-export const holeBackgroundCode = `import HoleBackground from './HoleBackground';
-
-<HoleBackground holeSize={220} />`;
-
-export const managementBarCode = `import ManagementBar from './ManagementBar';
-
-<ManagementBar title="Management" />`;
-
-export const playfulTodoListCode = `import PlayfulTodoList from './PlayfulTodoList';
-
-<PlayfulTodoList />`;
-
-export const magnetCode = `import Magnet from './Magnet';
-
-<Magnet>
-  <button>Magnet</button>
-</Magnet>`;
-
-export const crosshairCode = `import Crosshair from './Crosshair';
-
-<Crosshair size={22} />`;
-
-export const decayCardCode = `import DecayCard from './DecayCard';
-
-<DecayCard>Content</DecayCard>`;
-
-export const fadeContentCode = `import FadeContent from './FadeContent';
-
-<FadeContent>
-  <div>Revealed on scroll</div>
-</FadeContent>`;
-
-export const pixelCardCode = `import PixelCard from './PixelCard';
-
-<PixelCard>Hover me</PixelCard>`;
-
-export const trueFocusCode = `import TrueFocus from './TrueFocus';
-
-<TrueFocus text="Focus moves across words" />`;
+export { code as aiPromptBoxCode } from "../code-snippets/ai-prompt-box";
+export { code as animatedBeamCode } from "../code-snippets/animated-beam";
+export { code as animatedCursorCode } from "../code-snippets/animated-cursor";
+export { code as animatedListCode } from "../code-snippets/animated-list";
+export { code as animatedTestimonialsCode } from "../code-snippets/animated-testimonials";
+export { code as animatedThemeToggleCode } from "../code-snippets/animated-theme-toggle";
+export { code as animatedTooltipCode } from "../code-snippets/animated-tooltip";
+export { code as antigravityCode } from "../code-snippets/antigravity";
+export { code as avatarGroupCode } from "../code-snippets/avatar-group";
+export { code as ballpitCode } from "../code-snippets/ballpit";
+export { code as bannerCode } from "../code-snippets/banner";
+export { code as beamCollisionCode } from "../code-snippets/beam-collision";
+export { code as borderBeamCode } from "../code-snippets/border-beam";
+export { code as calendarInputCode } from "../code-snippets/calendar-input";
+export { code as carouselCode } from "../code-snippets/carousel";
+export { code as circularGalleryCode } from "../code-snippets/circular-gallery";
+export { code as circularProgressBarCode } from "../code-snippets/circular-progress-bar";
+export { code as circularTextCode } from "../code-snippets/circular-text";
+export { code as clickSparkCode } from "../code-snippets/click-spark";
+export { code as codeBlockCode } from "../code-snippets/code-block";
+export { code as codeComparisonCode } from "../code-snippets/code-comparison";
+export { code as codeEditorCode } from "../code-snippets/code-editor";
+export { code as codeTabsCode } from "../code-snippets/code-tabs";
+export { code as colorBendsCode } from "../code-snippets/color-bends";
+export { code as colorPickerCode } from "../code-snippets/color-picker";
+export { code as comboboxCode } from "../code-snippets/combobox";
+export { code as compactConfettiCode } from "../code-snippets/compact-confetti";
+export { code as comparisonSliderCode } from "../code-snippets/comparison-slider";
+export { code as confettiCode } from "../code-snippets/confetti";
+export { code as copyButtonCode } from "../code-snippets/copy-button";
+export { code as countUpCode } from "../code-snippets/count-up";
+export { code as counterCode } from "../code-snippets/counter";
+export { code as creditCardCode } from "../code-snippets/credit-card";
+export { code as crosshairCode } from "../code-snippets/crosshair";
+export { code as curvedLoopCode } from "../code-snippets/curved-marquee";
+export { code as darkVeilCode } from "../code-snippets/dark-veil";
+export { code as dateWheelPickerCode } from "../code-snippets/date-wheel-picker";
+export { code as decayCardCode } from "../code-snippets/decay-card";
+export { code as decryptedTextCode } from "../code-snippets/decrypted-text";
+export { code as deviceMockAndroidCode } from "../code-snippets/device-mockandroid";
+export { code as deviceMockIOSCode } from "../code-snippets/device-mockios";
+export { code as dockCode } from "../code-snippets/dock";
+export { code as dotGridCode } from "../code-snippets/dot-grid";
+export { code as draggableCardCode } from "../code-snippets/draggable-card";
+export { code as dropzoneCode } from "../code-snippets/dropzone";
+export { code as elasticSliderCode } from "../code-snippets/elastic-slider";
+export { code as electricBorderCode } from "../code-snippets/electric-border";
+export { code as expandedMapCode } from "../code-snippets/expanded-map";
+export { code as fadeContentCode } from "../code-snippets/fade-content";
+export { code as fallingTextCode } from "../code-snippets/falling-text";
+export { code as feedbackWidgetCode } from "../code-snippets/feedback-widget";
+export { code as fileTreeCode } from "../code-snippets/file-tree";
+export { code as fireworksCode } from "../code-snippets/fireworks";
+export { code as flipButtonCode } from "../code-snippets/flip-button";
+export { code as flipCardCode } from "../code-snippets/flip-card";
+export { code as floatingLinesCode } from "../code-snippets/floating-lines";
+export { code as flowingMenuCode } from "../code-snippets/flowing-menu";
+export { code as fluidGlassCode } from "../code-snippets/fluid-glass";
+export { code as fuzzyTextCode } from "../code-snippets/fuzzy-text";
+export { code as galaxyCode } from "../code-snippets/galaxy";
+export { code as ganttChartCode } from "../code-snippets/ganttchart";
+export { code as ghostCursorCode } from "../code-snippets/ghost-cursor";
+export { code as githubStarCode } from "../code-snippets/github-star";
+export { code as glimpseCode } from "../code-snippets/glimpse";
+export { code as glitchTextCode } from "../code-snippets/glitch-text";
+export { code as gooeyTextMorphingCode } from "../code-snippets/gooey-text-morphing";
+export { code as gradientAreaChartCode } from "../code-snippets/gradient-area-chart";
+export { code as gradientTextCode } from "../code-snippets/gradient-text";
+export { code as gridMotionCode } from "../code-snippets/grid-motion";
+export { code as gridScanCode } from "../code-snippets/grid-scan";
+export { code as heroParallaxCode } from "../code-snippets/hero-parallax";
+export { code as highlightTextCode } from "../code-snippets/highlight-text";
+export { code as holeBackgroundCode } from "../code-snippets/hole-background";
+export { code as horizontalBarCode } from "../code-snippets/horizontal-bar";
+export { code as hoverPreviewCode } from "../code-snippets/hover-preview";
+export { code as hyperspeedCode } from "../code-snippets/hyperspeed";
+export { code as iconCloudCode } from "../code-snippets/icon-cloud";
+export { code as imageCompareCode } from "../code-snippets/image-compare";
+export { code as imageCropCode } from "../code-snippets/image-crop";
+export { code as imageSphereCode } from "../code-snippets/image-sphere";
+export { code as imageTrailCode } from "../code-snippets/image-trail";
+export { code as imageZoomCode } from "../code-snippets/image-zoom";
+export { code as infiniteMenuCode } from "../code-snippets/infinite-menu";
+export { code as interactiveBarCode } from "../code-snippets/interactive-bar";
+export { code as kanbanCode } from "../code-snippets/kanban";
+export { code as kbdCode } from "../code-snippets/kbd";
+export { code as lanyardCode } from "../code-snippets/lanyard";
+export { code as laserFlowCode } from "../code-snippets/laser-flow";
+export { code as lensCode } from "../code-snippets/lens";
+export { code as letterGlitchCode } from "../code-snippets/letter-glitch";
+export { code as lightPillarCode } from "../code-snippets/light-pillar";
+export { code as lightRaysCode } from "../code-snippets/light-rays";
+export { code as lightningCode } from "../code-snippets/lightning";
+export { code as liquidEtherCode } from "../code-snippets/liquid-ether";
+export { code as logoLoopCode } from "../code-snippets/logo-loop";
+export { code as macOSDockCode } from "../code-snippets/macos-dock";
+export { code as magicBentoCode } from "../code-snippets/magic-bento";
+export { code as magicCardCode } from "../code-snippets/magic-card";
+export { code as magnetCode } from "../code-snippets/magnet";
+export { code as magnetLinesCode } from "../code-snippets/magnet-lines";
+export { code as managementBarCode } from "../code-snippets/management-bar";
+export { code as marqueeCode } from "../code-snippets/marquee";
+export { code as masonryCode } from "../code-snippets/masonry";
+export { code as meteorsCode } from "../code-snippets/meteors";
+export { code as miniCalendarCode } from "../code-snippets/mini-calendar";
+export { code as modelViewerCode } from "../code-snippets/modal-viewer";
+export { code as motionCarouselCode } from "../code-snippets/motion-carousel";
+export { code as neonGradientCardCode } from "../code-snippets/neon-gradient-card";
+export { code as numberCounterCode } from "../code-snippets/number-counter";
+export { code as orbCode } from "../code-snippets/orbs";
+export { code as orbitsCode } from "../code-snippets/orbits";
+export { code as particlesCode } from "../code-snippets/particles";
+export { code as pieDonutCode } from "../code-snippets/pie-donut";
+export { code as pinListCode } from "../code-snippets/pin-list";
+export { code as pixelCardCode } from "../code-snippets/pixel-card";
+export { code as playfulTodoListCode } from "../code-snippets/playful-todolist";
+export { code as popoverCode } from "../code-snippets/popover";
+export { code as prismCode } from "../code-snippets/prism";
+export { code as progressCode } from "../code-snippets/progress";
+export { code as qrCodeCode } from "../code-snippets/qr-code";
+export { code as radarChartCode } from "../code-snippets/radar-chart";
+export { code as radialIntroCode } from "../code-snippets/radial-intro";
+export { code as radialMenuCode } from "../code-snippets/radial-menu";
+export { code as rainCode } from "../code-snippets/rain";
+export { code as rainbowButtonCode } from "../code-snippets/rainbow-button";
+export { code as ratingCode } from "../code-snippets/rating";
+export { code as rippleButtonCode } from "../code-snippets/ripple-button";
+export { code as rotateTextCode } from "../code-snippets/rotate-text";
+export { code as rotatingTextCode } from "../code-snippets/rotating-text";
+export { code as sandboxCode } from "../code-snippets/sandbox";
+export { code as scrollFloatCode } from "../code-snippets/scroll-float";
+export { code as scrollProgressCode } from "../code-snippets/scroll-progress";
+export { code as scrollRevealCode } from "../code-snippets/scroll-reveal";
+export { code as scrollStackCode } from "../code-snippets/scroll-stack";
+export { code as scrollVelocityCode } from "../code-snippets/scroll-velocity";
+export { code as shadcnCalendarCode } from "../code-snippets/calendar";
+export { code as sheetCode } from "../code-snippets/sheet";
+export { code as shineBorderCode } from "../code-snippets/shine-border";
+export { code as shinyTextCode } from "../code-snippets/shiny-text";
+export { code as snowCode } from "../code-snippets/snow";
+export { code as sparklesTextCode } from "../code-snippets/sparkles-text";
+export { code as spinnerCode } from "../code-snippets/spinner";
+export { code as splashCursorCode } from "../code-snippets/splash-cursor";
+export { code as splitTextCode } from "../code-snippets/split-text";
+export { code as spotlightCardCode } from "../code-snippets/spotlight-card";
+export { code as stackCode } from "../code-snippets/image-stack";
+export { code as starBorderCode } from "../code-snippets/star-border";
+export { code as statusIndicatorCode } from "../code-snippets/status";
+export { code as stepperCode } from "../code-snippets/stepper";
+export { code as stickerPeelCode } from "../code-snippets/sticker-peel";
+export { code as tabsCode } from "../code-snippets/tabs";
+export { code as tagsCode } from "../code-snippets/tags";
+export { code as targetCursorCode } from "../code-snippets/target-cursor";
+export { code as terminalCode } from "../code-snippets/terminal";
+export { code as textCursorCode } from "../code-snippets/text-cursor";
+export { code as textRevealCode } from "../code-snippets/text-reveal";
+export { code as threeDCardCode } from "../code-snippets/3d-card";
+export { code as threeDMarqueeCode } from "../code-snippets/3d-marquee";
+export { code as trueFocusCode } from "../code-snippets/true-focus";
+export { code as typewriterTextJolyCode } from "../code-snippets/typewriter-text";
+export { code as variableProximityCode } from "../code-snippets/variable-proximity";
+export { code as videoPlayerCode } from "../code-snippets/video-player";
+export { code as videoTextCode } from "../code-snippets/video-text";
+export { code as vortexCode } from "../code-snippets/vortex";
