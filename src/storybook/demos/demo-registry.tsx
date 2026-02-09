@@ -52,15 +52,15 @@ import AnimatedThemeToggle from "@/components/jolyui/AnimatedThemeToggle";
 import FeedbackWidget from "@/components/jolyui/FeedbackWidget";
 import FileTree, { type FileTreeNode } from "@/components/jolyui/FileTree";
 import {
-    AnimatedBeam,
-    BeamContainer,
-    BeamNode,
+  AnimatedBeam,
+  BeamContainer,
+  BeamNode,
 } from "@/components/jolyui/AnimatedBeam";
 import ExpandedMap from "@/components/jolyui/ExpandedMap";
 import GitHubStarButton from "@/components/jolyui/GitHubStarButton";
 import {
-    HoverPreviewLink,
-    HoverPreviewProvider,
+  HoverPreviewLink,
+  HoverPreviewProvider,
 } from "@/components/jolyui/HoverPreview";
 import CodeBlock from "@/components/shadcn/CodeBlock";
 import CodeEditor from "@/components/shadcn/CodeEditor";
@@ -114,27 +114,27 @@ import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
 import { AnimatedCircularProgressBar } from "@/components/magicui/CircularProgressBar";
 import CompactConfetti, {
-    type ConfettiRef,
+  type ConfettiRef,
 } from "@/components/magicui/CompactConfetti";
 import SparklesText from "@/components/magicui/SparklesText";
 import { Progress } from "@/components/animate-ui/components/radix/progress";
 import {
-    Sheet,
-    SheetTrigger,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetDescription,
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
 } from "@/components/animate-ui/components/radix/sheet";
 import { CopyButton } from "@/components/animate-ui/components/buttons/copy";
 import {
-    FlipButton,
-    FlipButtonFront,
-    FlipButtonBack,
+  FlipButton,
+  FlipButtonFront,
+  FlipButtonBack,
 } from "@/components/animate-ui/components/buttons/flip";
 import {
-    RippleButton,
-    RippleButtonRipples,
+  RippleButton,
+  RippleButtonRipples,
 } from "@/components/animate-ui/components/buttons/ripple";
 
 import { FlipCard } from "@/components/animate-ui/components/community/flip-card";
@@ -149,115 +149,115 @@ import FadeContent from "@/components/tsdefault/FadeContent";
 import PixelCard from "@/components/tsdefault/PixelCard";
 import TrueFocus from "@/components/tsdefault/TrueFocus";
 import {
-    circularTextCode,
-    curvedLoopCode,
-    carouselCode,
-    dockCode,
-    spotlightCardCode,
-    flowingMenuCode,
-    elasticSliderCode,
-    counterCode,
-    infiniteMenuCode,
-    stepperCode,
-    fallingTextCode,
-    fuzzyTextCode,
-    gradientTextCode,
-    shinyTextCode,
-    splitTextCode,
-    textCursorCode,
-    decryptedTextCode,
-    scrollFloatCode,
-    scrollRevealCode,
-    rotatingTextCode,
-    glitchTextCode,
-    scrollVelocityCode,
-    variableProximityCode,
-    countUpCode,
-    liquidEtherCode,
-    prismCode,
-    darkVeilCode,
-    lightPillarCode,
-    floatingLinesCode,
-    lightRaysCode,
-    colorBendsCode,
-    particlesCode,
-    gridScanCode,
-    lightningCode,
-    galaxyCode,
-    dotGridCode,
-    hyperspeedCode,
-    ballpitCode,
-    orbCode,
-    letterGlitchCode,
-    gridMotionCode,
-    electricBorderCode,
-    antigravityCode,
-    logoLoopCode,
-    targetCursorCode,
-    laserFlowCode,
-    magnetLinesCode,
-    ghostCursorCode,
-    clickSparkCode,
-    stickerPeelCode,
-    splashCursorCode,
-    starBorderCode,
-    animatedListCode,
-    scrollStackCode,
-    magicBentoCode,
-    circularGalleryCode,
-    imageTrailCode,
-    stackCode,
-    fluidGlassCode,
-    masonryCode,
-    modelViewerCode,
-    rainbowButtonCode,
-    gooeyTextMorphingCode,
-    highlightTextCode,
-    numberCounterCode,
-    rotateTextCode,
-    typewriterTextJolyCode,
-    aiPromptBoxCode,
-    animatedThemeToggleCode,
-    dateWheelPickerCode,
-    feedbackWidgetCode,
-    fileTreeCode,
-    animatedBeamCode,
-    expandedMapCode,
-    githubStarCode,
-    hoverPreviewCode,
-    imageSphereCode,
-    shadcnCalendarCode,
-    borderBeamCode,
-    shineBorderCode,
-    magicCardCode,
-    neonGradientCardCode,
-    circularProgressBarCode,
-    iconCloudCode,
-    compactConfettiCode,
-    videoTextCode,
-    textRevealCode,
-    sparklesTextCode,
-    codeComparisonCode,
-    scrollProgressCode,
-    copyButtonCode,
-    flipButtonCode,
-    rippleButtonCode,
-    progressCode,
-    popoverCode,
-    sheetCode,
-    flipCardCode,
-    motionCarouselCode,
-    radialIntroCode,
-    radialMenuCode,
-    holeBackgroundCode,
-    managementBarCode,
-    playfulTodoListCode,
-    magnetCode,
-    crosshairCode,
-    decayCardCode,
-    fadeContentCode,
-    pixelCardCode,
-    trueFocusCode,
+  circularTextCode,
+  curvedLoopCode,
+  carouselCode,
+  dockCode,
+  spotlightCardCode,
+  flowingMenuCode,
+  elasticSliderCode,
+  counterCode,
+  infiniteMenuCode,
+  stepperCode,
+  fallingTextCode,
+  fuzzyTextCode,
+  gradientTextCode,
+  shinyTextCode,
+  splitTextCode,
+  textCursorCode,
+  decryptedTextCode,
+  scrollFloatCode,
+  scrollRevealCode,
+  rotatingTextCode,
+  glitchTextCode,
+  scrollVelocityCode,
+  variableProximityCode,
+  countUpCode,
+  liquidEtherCode,
+  prismCode,
+  darkVeilCode,
+  lightPillarCode,
+  floatingLinesCode,
+  lightRaysCode,
+  colorBendsCode,
+  particlesCode,
+  gridScanCode,
+  lightningCode,
+  galaxyCode,
+  dotGridCode,
+  hyperspeedCode,
+  ballpitCode,
+  orbCode,
+  letterGlitchCode,
+  gridMotionCode,
+  electricBorderCode,
+  antigravityCode,
+  logoLoopCode,
+  targetCursorCode,
+  laserFlowCode,
+  magnetLinesCode,
+  ghostCursorCode,
+  clickSparkCode,
+  stickerPeelCode,
+  splashCursorCode,
+  starBorderCode,
+  animatedListCode,
+  scrollStackCode,
+  magicBentoCode,
+  circularGalleryCode,
+  imageTrailCode,
+  stackCode,
+  fluidGlassCode,
+  masonryCode,
+  modelViewerCode,
+  rainbowButtonCode,
+  gooeyTextMorphingCode,
+  highlightTextCode,
+  numberCounterCode,
+  rotateTextCode,
+  typewriterTextJolyCode,
+  aiPromptBoxCode,
+  animatedThemeToggleCode,
+  dateWheelPickerCode,
+  feedbackWidgetCode,
+  fileTreeCode,
+  animatedBeamCode,
+  expandedMapCode,
+  githubStarCode,
+  hoverPreviewCode,
+  imageSphereCode,
+  shadcnCalendarCode,
+  borderBeamCode,
+  shineBorderCode,
+  magicCardCode,
+  neonGradientCardCode,
+  circularProgressBarCode,
+  iconCloudCode,
+  compactConfettiCode,
+  videoTextCode,
+  textRevealCode,
+  sparklesTextCode,
+  codeComparisonCode,
+  scrollProgressCode,
+  copyButtonCode,
+  flipButtonCode,
+  rippleButtonCode,
+  progressCode,
+  popoverCode,
+  sheetCode,
+  flipCardCode,
+  motionCarouselCode,
+  radialIntroCode,
+  radialMenuCode,
+  holeBackgroundCode,
+  managementBarCode,
+  playfulTodoListCode,
+  magnetCode,
+  crosshairCode,
+  decayCardCode,
+  fadeContentCode,
+  pixelCardCode,
+  trueFocusCode,
 } from "@/storybook/demos/code-snippets";
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 import SplashCursor from "@/components/reactbits/SplashCursor";
@@ -286,23 +286,23 @@ import Orbs from "@/components/reactbits/Orbs";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
 import {
-    Bot,
-    ClipboardPaste,
-    Copy,
-    Pin,
-    Scissors,
-    Search,
-    Star,
-    Trash2,
-    User,
-    Zap,
+  Bot,
+  ClipboardPaste,
+  Copy,
+  Pin,
+  Scissors,
+  Search,
+  Star,
+  Trash2,
+  User,
+  Zap,
 } from "lucide-react";
 import { SphereImageGrid } from "@/components/jolyui/ImageSphere";
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverPortal,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverPortal,
 } from "@/components/animate-ui/primitives/radix/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@base-ui/react";
@@ -310,12 +310,12 @@ import { RadialIntro } from "@/components/animate-ui/components/community/radial
 import { RadialMenu } from "@/components/animate-ui/components/community/radial-menu";
 import { IconCloud } from "@/components/magicui/IconCloud";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { BorderBeam } from "@/components/magicui/BorderBeam";
@@ -326,15 +326,15 @@ import { TextReveal } from "@/components/magicui/TextReveal";
 import { ScrollProgress } from "@/components/magicui/ScrollProgress";
 import { NeonGradientCard } from "@/components/magicui/NeonGradientCard";
 import {
-    DraggableCardBody,
-    DraggableCardContainer,
+  DraggableCardBody,
+  DraggableCardContainer,
 } from "@/components/ui/draggable-card";
-import { HeroParallax } from "@/components/ui/hero-parallax";
 import { Compare } from "@/components/ui/compare";
 import { Lens } from "@/components/ui/lens";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { CodeComparison } from "@/components/ui/code-comparison";
+import { HeroParallax } from "@/components/ui/hero-parallax";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -3434,7 +3434,7 @@ export function renderDemo(component: ComponentItem, props?: any) {
       );
 
     case slug === "text-reveal" || title.includes("text reveal"):
-      return <TextReveal>Magic UI will change the way you design.</TextReveal>;
+      return <TextReveal>Magic UI will change the way you designs.</TextReveal>;
 
     case slug === "sparkles-text" || title.includes("sparkles"):
       return (
@@ -3844,7 +3844,14 @@ console.log(fibonacci(10));`}
       );
 
     case slug === "scroll-progress" || title.includes("scroll progress"):
-      return <ScrollProgress />;
+      return (
+        <div className="z-10 rounded-lg p-4">
+          <ScrollProgress className="top-[65px]" />
+          <h2 className="pb-4 font-bold">
+            Note: The scroll progress is shown below the navbar of the page.
+          </h2>
+        </div>
+      );
 
     case slug === "copy-button" || title.includes("copy button"):
       return (
@@ -4200,7 +4207,11 @@ console.log(fibonacci(10));`}
       return <DraggableCardDemo />;
 
     case slug.includes("hero-parallax") || title.includes("hero parallax"):
-      return <HeroParallax products={products} />;
+      return (
+        <div className="overflow-hidden preview relative flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-center">
+          <HeroParallax products={products} />
+        </div>
+      );
 
     case slug.includes("image-compare") || title.includes("image compare"):
       return (
