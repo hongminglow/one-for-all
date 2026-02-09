@@ -21,8 +21,22 @@ export const HeroParallax = ({
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
   const ref = React.useRef(null);
+  const containerRef = React.useRef<HTMLElement>(null);
+  const [isContainerSet, setIsContainerSet] = React.useState(false);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      const parent = getScrollParent(ref.current);
+      if (parent) {
+        containerRef.current = parent;
+        setIsContainerSet(true);
+      }
+    }
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
+    container: isContainerSet ? containerRef : undefined,
     offset: ["start start", "end start"],
   });
 
@@ -152,3 +166,19 @@ export const ProductCard = ({
     </motion.div>
   );
 };
+
+function getScrollParent(element: HTMLElement | null): HTMLElement | undefined {
+  if (!element) {
+    return undefined;
+  }
+
+  let parent = element.parentElement;
+  while (parent) {
+    const { overflowY } = window.getComputedStyle(parent);
+    if (overflowY === "scroll" || overflowY === "auto") {
+      return parent;
+    }
+    parent = parent.parentElement;
+  }
+  return undefined;
+}
