@@ -140,31 +140,31 @@
 128. Hover Preview : https://www.jolyui.dev/docs/components/creative/hover-preview
 129. Image Sphere : https://www.jolyui.dev/docs/components/creative/image-sphere
 130. Popover : https://animate-ui.com/docs/components/radix/popover
-131. [DONE] Progress : https://animate-ui.com/docs/components/radix/progress
-132. [DONE] Sheet : https://animate-ui.com/docs/components/radix/sheet
-133. [DONE] Copy Button : https://animate-ui.com/docs/components/buttons/copy
-134. [DONE] Flip Button : https://animate-ui.com/docs/components/buttons/flip
-135. [DONE] Ripple Button : https://animate-ui.com/docs/components/buttons/ripple
-136. [DONE] Hole Background : https://animate-ui.com/docs/components/backgrounds/hole
-137. [DONE] Flip Card : https://animate-ui.com/docs/components/community/flip-card
-138. [DONE] Management Bar : https://animate-ui.com/docs/components/community/management-bar
-139. [DONE] Motion Carousel : https://animate-ui.com/docs/components/community/motion-carousel
-140. [DONE] Playful TodoList : https://animate-ui.com/docs/components/community/playful-todolist
-141. [DONE] Radial Intro : https://animate-ui.com/docs/components/community/radial-intro
-142. [DONE] Radial Menu : https://animate-ui.com/docs/components/community/radial-menu
-143. [DONE] Icon Cloud : https://magicui.design/docs/components/icon-cloud
-144. [DONE] Border Beam : https://magicui.design/docs/components/border-beam
-145. [DONE] Shine Border : https://magicui.design/docs/components/shine-border
-146. [DONE] Magic Card : https://magicui.design/docs/components/magic-card
-147. [DONE] Compact Confetti : https://magicui.design/docs/components/confetti
-148. [DONE] Video Text : https://magicui.design/docs/components/video-text
-149. [DONE] Text Reveal : https://magicui.design/docs/components/text-reveal
-150. [DONE] Sparkles Text : https://magicui.design/docs/components/sparkles-text
-151. [DONE] Code Comparison : https://magicui.design/docs/components/code-comparison
-152. [DONE] Scroll Progress : https://magicui.design/docs/components/scroll-progress
-153. [DONE] Neon Gradient Card : https://magicui.design/docs/components/neon-gradient-card
-154. [DONE] Circular Progress Bar : https://magicui.design/docs/components/animated-circular-progress-bar
-155. [DONE] Draggable Card : https://ui.aceternity.com/components/draggable-card
-156. [DONE] Hero Parallax : https://ui.aceternity.com/components/hero-parallax
-157. [DONE] Image Compare : https://ui.aceternity.com/components/compare
-158. [DONE] Lens : https://ui.aceternity.com/components/lens
+131. Progress : https://animate-ui.com/docs/components/radix/progress
+132. Sheet : https://animate-ui.com/docs/components/radix/sheet
+133. Copy Button : https://animate-ui.com/docs/components/buttons/copy
+134. Flip Button : https://animate-ui.com/docs/components/buttons/flip
+135. Ripple Button : https://animate-ui.com/docs/components/buttons/ripple
+136. Hole Background : https://animate-ui.com/docs/components/backgrounds/hole
+137. Flip Card : https://animate-ui.com/docs/components/community/flip-card
+138. Management Bar : https://animate-ui.com/docs/components/community/management-bar
+139. Motion Carousel : https://animate-ui.com/docs/components/community/motion-carousel
+140. Playful TodoList : https://animate-ui.com/docs/components/community/playful-todolist
+141. Radial Intro : https://animate-ui.com/docs/components/community/radial-intro
+142. Radial Menu : https://animate-ui.com/docs/components/community/radial-menu
+143. Icon Cloud : https://magicui.design/docs/components/icon-cloud
+144. Border Beam : https://magicui.design/docs/components/border-beam
+145. Shine Border : https://magicui.design/docs/components/shine-border
+146. Magic Card : https://magicui.design/docs/components/magic-card
+147. Compact Confetti : https://magicui.design/docs/components/confetti
+148. Video Text : https://magicui.design/docs/components/video-text
+149. Text Reveal : https://magicui.design/docs/components/text-reveal
+150. Sparkles Text : https://magicui.design/docs/components/sparkles-text
+151. Code Comparison : https://magicui.design/docs/components/code-comparison
+152. Scroll Progress : https://magicui.design/docs/components/scroll-progress
+153. Neon Gradient Card : https://magicui.design/docs/components/neon-gradient-card
+154. Circular Progress Bar : https://magicui.design/docs/components/animated-circular-progress-bar
+155. Draggable Card : https://ui.aceternity.com/components/draggable-card
+156. Hero Parallax : https://ui.aceternity.com/components/hero-parallax
+157. Image Compare : https://ui.aceternity.com/components/compare
+158. Lens : https://ui.aceternity.com/components/lens
