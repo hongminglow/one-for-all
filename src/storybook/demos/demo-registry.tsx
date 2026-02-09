@@ -226,6 +226,7 @@ import { cn } from "@/lib/utils";
 import { CodeComparison } from "@/components/ui/code-comparison";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 import * as snippets from "./code-snippets";
+import { CODE_API_REFERENCE } from "./api-reference.from-code";
 
 const DEFAULT_FILE_TREE: FileTreeNode[] = [
   {
@@ -10240,6 +10241,29 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
     ];
   }
 
+  if (slug === "comparison-slider" || title.includes("comparison slider")) {
+    return [
+      {
+        prop: "beforeImg",
+        type: "string",
+        default: "",
+        description: "URL for the foreground image",
+      },
+      {
+        prop: "afterImg",
+        type: "string",
+        default: "",
+        description: "URL for the background image",
+      },
+      {
+        prop: "className",
+        type: "string",
+        default: "",
+        description: "Wrapper classes",
+      },
+    ];
+  }
+
   if (slug === "scroll-progress" || title.includes("scroll progress")) {
     return [
       {
@@ -13100,6 +13124,11 @@ export function getApiReference(component: ComponentItem): ApiProp[] | null {
         description: "Strength of the blur",
       },
     ];
+  }
+
+  const codeRef = CODE_API_REFERENCE[slug];
+  if (codeRef && codeRef.length > 0) {
+    return codeRef as unknown as ApiProp[];
   }
 
   return null;
