@@ -1,0 +1,11 @@
+import React from 'react';
+import * as Shared from '../shared-demos';
+import BarInteractive from "@/components/shadcn/BarInteractive";
+
+export default function Render(props: any) {
+  return (
+    <div className="w-full max-w-[600px] p-4">
+<BarInteractive />
+</div>
+  );
+}

@@ -1,0 +1,63 @@
+import { DemoControl } from "../types";
+
+export const controls: DemoControl[] = [
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#B19EEF",
+      },
+      {
+        type: "number",
+        param: "brightness",
+        label: "Brightness",
+        defaultValue: 2,
+        min: 0,
+        max: 5,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "trailLength",
+        label: "Trail Length",
+        defaultValue: 50,
+        min: 1,
+        max: 100,
+      },
+      {
+        type: "number",
+        param: "inertia",
+        label: "Inertia",
+        defaultValue: 0.5,
+        min: 0,
+        max: 0.95,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "grainIntensity",
+        label: "Grain Intensity",
+        defaultValue: 0.05,
+        min: 0,
+        max: 0.5,
+        step: 0.01,
+      },
+      {
+        type: "number",
+        param: "bloomStrength",
+        label: "Bloom Strength",
+        defaultValue: 0.1,
+        min: 0,
+        max: 1,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "bloomRadius",
+        label: "Bloom Radius",
+        defaultValue: 1.0,
+        min: 0,
+        max: 2,
+        step: 0.1,
+      },
+    ];

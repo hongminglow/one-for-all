@@ -1,0 +1,55 @@
+import { DemoControl } from "../types";
+
+export const controls: DemoControl[] = [
+      {
+        type: "color",
+        param: "color",
+        label: "Color",
+        defaultValue: "#FF79C6",
+      },
+      {
+        type: "number",
+        param: "wispDensity",
+        label: "Wisp Density",
+        defaultValue: 1,
+        min: 0,
+        max: 5,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "fogIntensity",
+        label: "Fog Intensity",
+        defaultValue: 0.45,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "horizontalSizing",
+        label: "Horizontal Sizing",
+        defaultValue: 0.5,
+        min: 0.1,
+        max: 2,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "verticalSizing",
+        label: "Vertical Sizing",
+        defaultValue: 2.0,
+        min: 0.5,
+        max: 5,
+        step: 0.1,
+      },
+      {
+        type: "number",
+        param: "wispSpeed",
+        label: "Wisp Speed",
+        defaultValue: 15.0,
+        min: 1,
+        max: 50,
+        step: 1,
+      },
+    ];

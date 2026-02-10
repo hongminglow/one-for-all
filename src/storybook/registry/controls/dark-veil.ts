@@ -1,0 +1,58 @@
+import { DemoControl } from "../types";
+
+export const controls: DemoControl[] = [
+      {
+        type: "number",
+        param: "hueShift",
+        label: "Hue Shift",
+        defaultValue: 0,
+        min: -180,
+        max: 180,
+        step: 1,
+      },
+      {
+        type: "number",
+        param: "speed",
+        label: "Speed",
+        defaultValue: 0.5,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "noiseIntensity",
+        label: "Noise",
+        defaultValue: 0,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+      {
+        type: "number",
+        param: "scanlineIntensity",
+        label: "Scanlines",
+        defaultValue: 0,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+      {
+        type: "number",
+        param: "warpAmount",
+        label: "Warp",
+        defaultValue: 0,
+        min: 0,
+        max: 2,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "resolutionScale",
+        label: "Resolution Scale",
+        defaultValue: 1,
+        min: 0.25,
+        max: 2,
+        step: 0.05,
+      },
+    ];

@@ -1,0 +1,65 @@
+import { DemoControl } from "../types";
+
+export const controls: DemoControl[] = [
+      {
+        type: "select",
+        param: "raysOrigin",
+        label: "Origin",
+        defaultValue: "top-center",
+        options: [
+          "top-center",
+          "top-left",
+          "top-right",
+          "left",
+          "right",
+          "bottom-center",
+          "bottom-left",
+          "bottom-right",
+        ],
+      },
+      {
+        type: "color",
+        param: "raysColor",
+        label: "Color",
+        defaultValue: "#ffffff",
+      },
+      {
+        type: "number",
+        param: "raysSpeed",
+        label: "Speed",
+        defaultValue: 1,
+        min: 0,
+        max: 5,
+        step: 0.05,
+      },
+      {
+        type: "number",
+        param: "lightSpread",
+        label: "Spread",
+        defaultValue: 1,
+        min: 0.1,
+        max: 3,
+        step: 0.05,
+      },
+      {
+        type: "boolean",
+        param: "pulsating",
+        label: "Pulsating",
+        defaultValue: false,
+      },
+      {
+        type: "boolean",
+        param: "followMouse",
+        label: "Follow Mouse",
+        defaultValue: true,
+      },
+      {
+        type: "number",
+        param: "mouseInfluence",
+        label: "Mouse Influence",
+        defaultValue: 0.1,
+        min: 0,
+        max: 1,
+        step: 0.02,
+      },
+    ];
