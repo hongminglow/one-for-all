@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import React from 'react';
-import * as Shared from '../shared-demos';
+import React from "react";
+import * as Shared from "../shared-demos";
 import CreditCard from "@/components/shadcn/CreditCard";
 
 type RenderProps = ComponentProps<typeof CreditCard>;
@@ -8,11 +8,11 @@ type RenderProps = ComponentProps<typeof CreditCard>;
 export default function Render(props: RenderProps) {
   return (
     <div className="w-full flex items-center justify-center">
-<CreditCard
-number={props?.number}
-name={props?.name}
-expiry={props?.expiry}
-/>
-</div>
+      <CreditCard
+        number={props?.number}
+        name={props?.name}
+        expiry={props?.expiry}
+      />
+    </div>
   );
 }

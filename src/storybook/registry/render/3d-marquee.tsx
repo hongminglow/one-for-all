@@ -1,14 +1,14 @@
-import React from 'react';
-import * as Shared from '../shared-demos';
-import { Demo as ThreeDMarquee } from "@/components/shadcn/ThreeDMarquee";
+import React from "react";
+import dynamic from "next/dynamic";
 
-type RenderProps = Record<string, unknown>;
+const ThreeDMarqueeDemo = dynamic(() => import("@/components/shadcn/ThreeDMarquee").then((mod) => mod.Demo), {
+	ssr: false,
+});
 
-
-export default function Render(props: RenderProps) {
-  return (
-    <div className="w-full overflow-hidden">
-<ThreeDMarquee />
-</div>
-  );
+export default function Render() {
+	return (
+		<div className="w-full overflow-hidden">
+			<ThreeDMarqueeDemo />
+		</div>
+	);
 }

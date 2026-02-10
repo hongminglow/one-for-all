@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion } from "motion/react";
 
 import { cn } from "@/lib/cn";
-import { getTheme } from "@/utils/theme";
+import { getInitialTheme } from "@/utils/theme";
 
 export interface AnimatedThemeToggleProps {
   className?: string;
@@ -18,7 +18,7 @@ export default function AnimatedThemeToggle({
 
   React.useEffect(() => {
     setMounted(true);
-    setTheme(getTheme());
+    setTheme(getInitialTheme());
   }, []);
 
   const toggle = () => {

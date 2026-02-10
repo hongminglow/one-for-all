@@ -39,20 +39,22 @@ interface DigitProps {
   digitStyle?: React.CSSProperties;
 }
 
-function Digit({ place, value, height, digitStyle }: DigitProps) {
-  // Decimal point digit
-  if (place === ".") {
-    return (
-      <span
-        className="relative inline-flex items-center justify-center"
-        style={{ height, width: "fit-content", ...digitStyle }}
-      >
-        .
-      </span>
-    );
-  }
+function DecimalDigit({ height, digitStyle }: Pick<DigitProps, "height" | "digitStyle">) {
+  return (
+    <span
+      className="relative inline-flex items-center justify-center"
+      style={{ height, width: "fit-content", ...digitStyle }}
+    >
+      .
+    </span>
+  );
+}
 
-  // Numeric digit
+interface NumericDigitProps extends Omit<DigitProps, "place"> {
+  place: number;
+}
+
+function NumericDigit({ place, value, height, digitStyle }: NumericDigitProps) {
   const valueRoundedToPlace = Math.floor(value / place);
   const animatedValue = useSpring(valueRoundedToPlace);
 
@@ -68,15 +70,20 @@ function Digit({ place, value, height, digitStyle }: DigitProps) {
   };
 
   return (
-    <span
-      className="relative inline-flex overflow-hidden"
-      style={{ ...defaultStyle, ...digitStyle }}
-    >
+    <span className="relative inline-flex overflow-hidden" style={{ ...defaultStyle, ...digitStyle }}>
       {Array.from({ length: 10 }, (_, i) => (
         <Number key={i} mv={animatedValue} number={i} height={height} />
       ))}
     </span>
   );
+}
+
+function Digit({ place, value, height, digitStyle }: DigitProps) {
+  if (place === ".") {
+    return <DecimalDigit height={height} digitStyle={digitStyle} />;
+  }
+
+  return <NumericDigit place={place} value={value} height={height} digitStyle={digitStyle} />;
 }
 
 interface CounterProps {
@@ -117,11 +124,7 @@ export default function Counter({
     const dotIndex = a.indexOf(".");
     const isInteger = dotIndex === -1;
 
-    const exponent = isInteger
-      ? a.length - i - 1
-      : i < dotIndex
-        ? dotIndex - i - 1
-        : -(i - dotIndex);
+    const exponent = isInteger ? a.length - i - 1 : i < dotIndex ? dotIndex - i - 1 : -(i - dotIndex);
 
     return 10 ** exponent;
   }),
@@ -182,13 +185,7 @@ export default function Counter({
     <span style={{ ...defaultContainerStyle, ...containerStyle }}>
       <span style={{ ...defaultCounterStyle, ...counterStyle }}>
         {places.map((place) => (
-          <Digit
-            key={place}
-            place={place}
-            value={value}
-            height={height}
-            digitStyle={digitStyle}
-          />
+          <Digit key={place} place={place} value={value} height={height} digitStyle={digitStyle} />
         ))}
       </span>
       <span style={gradientContainerStyle}>

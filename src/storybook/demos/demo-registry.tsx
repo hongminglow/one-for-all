@@ -1,6 +1,7 @@
 "use client";
 
 import { registry } from "../registry";
+import React from "react";
 import type { ComponentItem } from "@/storybook/components.generated";
 import type { ApiProp, DemoControl } from "../registry/types";
 
@@ -15,7 +16,8 @@ export function renderDemo(component: ComponentItem, props?: unknown) {
 	const slug = component.slug.toLowerCase();
 	const config = registry[slug];
 	if (config) {
-		return config.render(props);
+		const Render = config.render as React.ComponentType<any>;
+		return <Render {...(props ?? {})} />;
 	}
 	return null;
 }

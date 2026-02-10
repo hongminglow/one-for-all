@@ -4,7 +4,6 @@ import { RadialMenu } from "@/components/animate-ui/components/community/radial-
 
 type RenderProps = Record<string, unknown>;
 
-
 export default function Render(props: RenderProps) {
   return (
     <div className="flex items-center justify-center" style={{ height: 340 }}>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
 export type ApiProp = {
 	prop: string;
@@ -29,7 +29,7 @@ export type DemoControl =
 	| { type: "color"; param: string; label: string; defaultValue: string };
 
 export interface ComponentConfig {
-	render(props: unknown): ReactNode;
+	render: ComponentType<any> | ((props: unknown) => ReactNode);
 	controls?: DemoControl[];
 	api?: ApiProp[];
 	code?: string;

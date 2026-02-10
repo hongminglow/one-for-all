@@ -4,19 +4,18 @@ import CodeEditor from "@/components/shadcn/CodeEditor";
 
 type RenderProps = Record<string, unknown>;
 
-
 export default function Render(props: RenderProps) {
-  return (
-    <div className="w-full max-w-[620px]">
-      <CodeEditor
-        code={`function fibonacci(n) {
+	return (
+		<div className="w-full max-w-[620px] justify-self-center">
+			<CodeEditor
+				code={`function fibonacci(n) {
   if (n <= 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 `}
-        language="javascript"
-        filename="fibonacci.js"
-      />
-    </div>
-  );
+				language="javascript"
+				filename="fibonacci.js"
+			/>
+		</div>
+	);
 }

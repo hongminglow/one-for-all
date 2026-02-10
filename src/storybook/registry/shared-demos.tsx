@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -8,113 +8,16 @@ import { motion } from "motion/react";
 
 import { Bot, ClipboardPaste, Copy, Pin, Scissors, Search, Star, Trash2, User, Zap } from "lucide-react";
 
-import type { ComponentItem } from "@/storybook/components.generated";
-import SplitText from "@/components/reactbits/SplitText";
-import CircularText from "@/components/reactbits/CircularText";
-import Dock from "@/components/reactbits/Dock";
-import Carousel from "@/components/reactbits/Carousel";
-import SpotlightCard from "@/components/reactbits/SpotlightCard";
-import ModelViewer from "@/components/reactbits/ModelViewer";
-import FlowingMenu from "@/components/reactbits/FlowingMenu";
-import ElasticSlider from "@/components/reactbits/ElasticSlider";
-import Counter from "@/components/reactbits/Counter";
-import InfiniteMenu from "@/components/reactbits/InfiniteMenu";
-import Stepper, { Step } from "@/components/reactbits/Stepper";
-import ShinyText from "@/components/reactbits/ShinyText";
-import CurvedLoop from "@/components/reactbits/CurvedLoop";
-import FuzzyText from "@/components/reactbits/FuzzyText";
-import GradientText from "@/components/reactbits/GradientText";
-import FallingText from "@/components/reactbits/FallingText";
-import TextCursor from "@/components/reactbits/TextCursor";
-import DecryptedText from "@/components/reactbits/DecryptedText";
 import ScrollFloat from "@/components/reactbits/ScrollFloat";
 import ScrollReveal from "@/components/reactbits/ScrollReveal";
-import RotatingText from "@/components/reactbits/RotatingText";
-import GlitchText from "@/components/reactbits/GlitchText";
-import ScrollVelocity from "@/components/reactbits/ScrollVelocity";
 import VariableProximity from "@/components/reactbits/VariableProximity";
-import CountUp from "@/components/reactbits/CountUp";
-import LiquidEther from "@/components/reactbits/LiquidEther";
-import Prism from "@/components/reactbits/Prism";
-import DarkVeil from "@/components/reactbits/DarkVeil";
-import LightPillar from "@/components/reactbits/LightPillar";
-import FloatingLines from "@/components/reactbits/FloatingLines";
-import LightRays from "@/components/reactbits/LightRays";
-import ColorBends from "@/components/reactbits/ColorBends";
-import Particles from "@/components/reactbits/Particles";
-import Lightning from "@/components/reactbits/Lightning";
-import Galaxy from "@/components/reactbits/Galaxy";
-import DotGrid from "@/components/reactbits/DotGrid";
-import Hyperspeed from "@/components/reactbits/Hyperspeed";
-import Ballpit from "@/components/reactbits/Ballpit";
-import LetterGlitch from "@/components/reactbits/LetterGlitch";
-import GridMotion from "@/components/reactbits/GridMotion";
-import RainbowButton from "@/components/jolyui/RainbowButton";
-import GooeyTextMorphing from "@/components/jolyui/GooeyTextMorphing";
-import RotateText from "@/components/jolyui/RotateText";
-import TypewriterText from "@/components/jolyui/TypewriterText";
-import AIPromptBox from "@/components/jolyui/AIPromptBox";
-import AnimatedThemeToggle from "@/components/jolyui/AnimatedThemeToggle";
 import { DateWheelPicker } from "@/components/jolyui/DateWheelPicker";
-import FeedbackWidget from "@/components/jolyui/FeedbackWidget";
-import FileTree, { type FileTreeNode } from "@/components/jolyui/FileTree";
+import { type FileTreeNode } from "@/components/jolyui/FileTree";
 import { AnimatedBeam, BeamContainer, BeamNode } from "@/components/jolyui/AnimatedBeam";
-import ExpandedMap from "@/components/jolyui/ExpandedMap";
-import GitHubStarButton from "@/components/jolyui/GitHubStarButton";
 import { HoverPreviewLink, HoverPreviewProvider } from "@/components/jolyui/HoverPreview";
-import CodeBlock from "@/components/shadcn/CodeBlock";
-import CodeEditor from "@/components/shadcn/CodeEditor";
-import CodeTabs from "@/components/shadcn/CodeTabs";
-import Sandbox from "@/components/shadcn/Sandbox";
-import GanttChart from "@/components/shadcn/GanttChart";
-import Kanban from "@/components/shadcn/Kanban";
-import AndroidMock from "@/components/shadcn/AndroidMock";
-import IPhoneMock from "@/components/shadcn/IPhoneMock";
-import MacOSDock from "@/components/shadcn/MacOSDock";
-import Rating from "@/components/shadcn/Rating";
-import CreditCard from "@/components/shadcn/CreditCard";
-import ColorPicker from "@/components/shadcn/ColorPicker";
-import ComboboxDemo from "@/components/shadcn/ComboboxDemo";
-import Dropzone from "@/components/shadcn/Dropzone";
-import ImageZoom from "@/components/shadcn/ImageZoom";
-import { Demo as ImageCrop } from "@/components/shadcn/ImageCrop";
-import ThreeDCard from "@/components/shadcn/ThreeDCard";
-import { Demo as ThreeDMarquee } from "@/components/shadcn/ThreeDMarquee";
-import { Demo as AnimatedCursor } from "@/components/shadcn/AnimatedCursor";
-import { Demo as AnimatedTestimonials } from "@/components/shadcn/AnimatedTestimonials";
-import { Demo as AnimatedTooltip } from "@/components/shadcn/AnimatedTooltip";
-import { Demo as Glimpse } from "@/components/shadcn/Glimpse";
-import PinList from "@/components/shadcn/PinList";
-import { Demo as Spinner } from "@/components/shadcn/Spinner";
-import TabsPremium from "@/components/shadcn/TabsPremium";
-import Banner from "@/components/shadcn/Banner";
-import { Demo as Marquee } from "@/components/shadcn/Marquee";
-import AvatarGroup from "@/components/shadcn/AvatarGroup";
-import Tags from "@/components/shadcn/Tags";
-import MiniCalendar from "@/components/shadcn/MiniCalendar";
-import ComparisonSlider from "@/components/shadcn/ComparisonSlider";
-import Kbd from "@/components/shadcn/Kbd";
-import QrCode from "@/components/shadcn/QrCode";
-import StatusIndicator from "@/components/shadcn/StatusIndicator";
-import Terminal from "@/components/shadcn/Terminal";
-import { Demo as VideoPlayer } from "@/components/shadcn/VideoPlayer";
-import { Confetti } from "@/components/shadcn/Confetti";
-import { Fireworks } from "@/components/shadcn/Fireworks";
-import { Meteors } from "@/components/shadcn/Meteors";
-import { OrbitsBackground } from "@/components/shadcn/Orbits";
-import { Rain } from "@/components/shadcn/Rain";
-import { Snow } from "@/components/shadcn/Snow";
-import { Vortex } from "@/components/shadcn/Vortex";
-import AreaGradient from "@/components/shadcn/AreaGradient";
-import BarHorizontal from "@/components/shadcn/BarHorizontal";
-import BarInteractive from "@/components/shadcn/BarInteractive";
-import PieDonut from "@/components/shadcn/PieDonut";
-import RadarDots from "@/components/shadcn/RadarDots";
-import BeamCollision from "@/components/shadcn/BeamCollision";
 import Calendar from "@/components/shadcn/Calendar";
 import { AnimatedCircularProgressBar } from "@/components/magicui/CircularProgressBar";
 import CompactConfetti, { type ConfettiRef } from "@/components/magicui/CompactConfetti";
-import SparklesText from "@/components/magicui/SparklesText";
 import { IconCloud } from "@/components/magicui/IconCloud";
 import { Progress } from "@/components/animate-ui/components/radix/progress";
 import {
@@ -125,7 +28,6 @@ import {
 	SheetTitle,
 	SheetDescription,
 } from "@/components/animate-ui/components/radix/sheet";
-import { CopyButton } from "@/components/animate-ui/components/buttons/copy";
 import { FlipButton, FlipButtonFront, FlipButtonBack } from "@/components/animate-ui/components/buttons/flip";
 import { RippleButton, RippleButtonRipples } from "@/components/animate-ui/components/buttons/ripple";
 
@@ -142,32 +44,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 import { Lens } from "@/components/ui/lens";
-
-import { FlipCard } from "@/components/animate-ui/components/community/flip-card";
-import { MotionCarousel } from "@/components/animate-ui/components/community/motion-carousel";
-import { HoleBackground } from "@/components/animate-ui/components/backgrounds/hole";
-import { ManagementBar } from "@/components/animate-ui/components/community/management-bar";
-import { PlayfulTodolist as PlayfulTodoList } from "@/components/animate-ui/components/community/playful-todolist";
-import Magnet from "@/components/animateui/Magnet";
 import Crosshair from "@/components/tsdefault/Crosshair";
-import DecayCard from "@/components/tsdefault/DecayCard";
-import FadeContent from "@/components/tsdefault/FadeContent";
-import PixelCard from "@/components/tsdefault/PixelCard";
-import TrueFocus from "@/components/tsdefault/TrueFocus";
-
-import ElectricBorder from "@/components/reactbits/ElectricBorder";
-import SplashCursor from "@/components/reactbits/SplashCursor";
-import StarBorder from "@/components/reactbits/StarBorder";
-import AnimatedList from "@/components/reactbits/AnimatedList";
-import ScrollStack from "@/components/reactbits/ScrollStack";
-import MagicBento from "@/components/reactbits/MagicBento";
-import CircularGallery from "@/components/reactbits/CircularGallery";
-import LogoLoop from "@/components/reactbits/LogoLoop";
-import TargetCursor from "@/components/reactbits/TargetCursor";
-import MagnetLines from "@/components/reactbits/MagnetLines";
-import GhostCursor from "@/components/reactbits/GhostCursor";
-import ClickSpark from "@/components/reactbits/ClickSpark";
-import StickerPeel from "@/components/reactbits/StickerPeel";
+import { addDays } from "date-fns";
+import { GanttFeature, GanttProvider, GanttStatus } from "@/components/shadcn/GanttChart";
 
 export {
 	Card,
@@ -1004,7 +883,7 @@ export function DraggableCardDemo() {
 				If its your first day at Fight Club, you have to fight.
 			</p>
 			{items.map((item) => (
-				<DraggableCardBody className={item.className}>
+				<DraggableCardBody key={item.title} className={item.className}>
 					<img src={item.image} alt={item.title} className="pointer-events-none relative z-10 h-80 w-80 object-cover" />
 					<h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">{item.title}</h3>
 				</DraggableCardBody>

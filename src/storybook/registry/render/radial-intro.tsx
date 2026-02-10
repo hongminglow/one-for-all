@@ -1,9 +1,8 @@
-import React from 'react';
-import * as Shared from '../shared-demos';
+import React from "react";
+import * as Shared from "../shared-demos";
 import { RadialIntro } from "@/components/animate-ui/components/community/radial-intro";
 
 type RenderProps = Record<string, unknown>;
-
 
 export default function Render(props: RenderProps) {
   return (

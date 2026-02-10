@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
 import type { ComponentItem } from "@/storybook/components.generated";
 import { COMPONENT_DOCS } from "@/storybook/component-docs.generated";
@@ -91,7 +91,8 @@ export function ComponentDetails(props: { component: ComponentItem }) {
 	const previewNode = useMemo(() => {
 		const config = registry[props.component.slug];
 		if (config) {
-			return config.render(controlValues);
+			const Render = config.render as React.ComponentType<any>;
+			return <Render {...controlValues} />;
 		}
 		return null;
 	}, [props.component, controlValues]);
