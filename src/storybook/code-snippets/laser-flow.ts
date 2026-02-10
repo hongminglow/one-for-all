@@ -1,4 +1,6 @@
-export const code = `import React, { useEffect, useRef } from "react";
+export const code = `"use client";
+
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 
 type Props = {
@@ -294,7 +296,6 @@ export const LaserFlow: React.FC<Props> = ({
   const lastFpsCheckRef = useRef<number>(performance.now());
   const emaDtRef = useRef<number>(16.7); // ms
   const pausedRef = useRef<boolean>(false);
-  const inViewRef = useRef<boolean>(true);
 
   const hexToRGB = (hex: string) => {
     let c = hex.trim();
@@ -312,8 +313,10 @@ export const LaserFlow: React.FC<Props> = ({
     };
   };
 
-  useEffect(() => {
-    const mount = mountRef.current!;
+  useLayoutEffect(() => {
+    const mount = mountRef.current;
+    if (!mount) return;
+    const isDev = process.env.NODE_ENV !== "production";
     const renderer = new THREE.WebGLRenderer({
       antialias: false,
       alpha: false,
@@ -399,16 +402,39 @@ export const LaserFlow: React.FC<Props> = ({
     const mouseTarget = new THREE.Vector2(0, 0);
     const mouseSmooth = new THREE.Vector2(0, 0);
 
-    const setSizeNow = () => {
-      const w = mount.clientWidth || 1;
-      const h = mount.clientHeight || 1;
+    let forcedMinSize = false;
+    const getSize = () => {
+      const w = mount.clientWidth;
+      const h = mount.clientHeight;
+      if (w > 0 && h > 0) {
+        return { width: w, height: h };
+      }
+      if (!forcedMinSize) {
+        forcedMinSize = true;
+        mount.style.minWidth = "280px";
+        mount.style.minHeight = "180px";
+      }
+      const parent = mount.parentElement;
+      if (parent) {
+        const rect = parent.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          return { width: rect.width, height: rect.height };
+        }
+      }
+      return { width: 300, height: 150 };
+    };
+
+    const setSizeNow = (force = false) => {
+      const size = getSize();
+      const w = size.width || 1;
+      const h = size.height || 1;
       const pr = currentDprRef.current;
 
       const last = lastSizeRef.current;
       const sizeChanged =
         Math.abs(w - last.width) > 0.5 || Math.abs(h - last.height) > 0.5;
       const dprChanged = Math.abs(pr - last.dpr) > 0.01;
-      if (!sizeChanged && !dprChanged) {
+      if (!force && !sizeChanged && !dprChanged) {
         return;
       }
 
@@ -429,20 +455,37 @@ export const LaserFlow: React.FC<Props> = ({
       resizeRaf = requestAnimationFrame(setSizeNow);
     };
 
-    setSizeNow();
+    let sizeRaf = 0;
+    let sizeTimeout: number | null = null;
+    const ensureSize = () => {
+      if (mount.clientWidth > 0 && mount.clientHeight > 0) {
+        setSizeNow(true);
+        if (!document.hidden) {
+          renderer.render(scene, camera);
+        }
+        return;
+      }
+      sizeRaf = requestAnimationFrame(ensureSize);
+    };
+
+    ensureSize();
+    sizeTimeout = window.setTimeout(scheduleResize, 0);
+
+    let bootRaf = 0;
+    const bootStart = performance.now();
+    const bootLoop = () => {
+      if (performance.now() - bootStart > 2000) return;
+      setSizeNow(true);
+      bootRaf = requestAnimationFrame(bootLoop);
+    };
+    bootLoop();
     const ro = new ResizeObserver(scheduleResize);
     ro.observe(mount);
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        inViewRef.current = entries[0]?.isIntersecting ?? true;
-      },
-      { root: null, threshold: 0 },
-    );
-    io.observe(mount);
+    window.addEventListener("resize", scheduleResize, { passive: true });
 
     const onVis = () => {
-      pausedRef.current = document.hidden;
+      pausedRef.current = false;
+      scheduleResize();
     };
     document.addEventListener("visibilitychange", onVis, { passive: true });
 
@@ -519,7 +562,7 @@ export const LaserFlow: React.FC<Props> = ({
 
     const animate = () => {
       raf = requestAnimationFrame(animate);
-      if (pausedRef.current || !inViewRef.current) return;
+      if (pausedRef.current) return;
 
       const t = clock.getElapsedTime();
       const dt = Math.max(0, t - prevTime);
@@ -557,8 +600,12 @@ export const LaserFlow: React.FC<Props> = ({
 
     return () => {
       cancelAnimationFrame(raf);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      if (sizeRaf) cancelAnimationFrame(sizeRaf);
+      if (bootRaf) cancelAnimationFrame(bootRaf);
+      if (sizeTimeout) window.clearTimeout(sizeTimeout);
       ro.disconnect();
-      io.disconnect();
+      window.removeEventListener("resize", scheduleResize);
       document.removeEventListener("visibilitychange", onVis);
       canvas.removeEventListener("pointermove", onMove as any);
       canvas.removeEventListener("pointerdown", onMove as any);
