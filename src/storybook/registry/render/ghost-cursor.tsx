@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import GhostCursor from "@/components/reactbits/GhostCursor";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof GhostCursor>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="relative w-full h-[400px] bg-black overflow-hidden rounded-xl border border-(--sb-border)">
 <GhostCursor

@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import Antigravity from "@/components/reactbits/Antigravity";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Antigravity>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="relative w-full h-[400px] overflow-hidden rounded-2xl bg-black">
 <Antigravity

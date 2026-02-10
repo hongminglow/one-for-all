@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import FuzzyText from "@/components/reactbits/FuzzyText";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof FuzzyText>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <FuzzyText
 baseIntensity={0.18}

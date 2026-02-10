@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import FlowingMenu from "@/components/reactbits/FlowingMenu";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof FlowingMenu>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[360px] rounded-xl overflow-hidden border border-(--sb-border)">
 <FlowingMenu

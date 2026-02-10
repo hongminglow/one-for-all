@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import Galaxy from "@/components/reactbits/Galaxy";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Galaxy>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="relative h-[220px] w-full overflow-hidden rounded-2xl border border-[var(--sb-border-2)] bg-(--sb-bg)">
 <Galaxy

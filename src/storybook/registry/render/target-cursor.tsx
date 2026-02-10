@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import TargetCursor from "@/components/reactbits/TargetCursor";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof TargetCursor>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-[300px] p-8 space-y-8 bg-(--sb-bg)">
 <TargetCursor

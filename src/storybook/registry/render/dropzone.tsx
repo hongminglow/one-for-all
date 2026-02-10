@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import Dropzone from "@/components/shadcn/Dropzone";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full">
 <Dropzone />

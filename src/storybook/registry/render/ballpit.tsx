@@ -1,8 +1,11 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import Ballpit from "@/components/reactbits/Ballpit";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Ballpit>;
+
+export default function Render(props: RenderProps) {
   return (
     <div
 style={{

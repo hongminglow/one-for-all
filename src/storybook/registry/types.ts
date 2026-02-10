@@ -29,7 +29,7 @@ export type DemoControl =
 	| { type: "color"; param: string; label: string; defaultValue: string };
 
 export interface ComponentConfig {
-	render: (props: any) => ReactNode;
+	render(props: unknown): ReactNode;
 	controls?: DemoControl[];
 	api?: ApiProp[];
 	code?: string;

@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import CircularGallery from "@/components/reactbits/CircularGallery";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof CircularGallery>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[600px] position-relative bg-black rounded-xl border border-(--sb-border) overflow-hidden">
 <CircularGallery

@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import ScrollStack from "@/components/reactbits/ScrollStack";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof ScrollStack>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[600px] relative bg-[#060606] rounded-xl border border-(--sb-border) overflow-hidden">
 <ScrollStack

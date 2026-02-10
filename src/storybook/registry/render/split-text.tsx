@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import SplitText from "@/components/reactbits/SplitText";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof SplitText>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <SplitText
 text="Elevate Your Web Experience"

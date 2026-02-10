@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="flex items-center justify-center p-8 bg-black min-h-[400px] rounded-xl">
 <SpotlightCard

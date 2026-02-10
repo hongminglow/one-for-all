@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import Prism from "@/components/reactbits/Prism";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div style={{ width: "100%", height: "600px", position: "relative" }}>
 <Prism

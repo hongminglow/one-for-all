@@ -5,7 +5,10 @@ import { Input } from "@base-ui/react";
 import { Label } from "@/components/ui/label";
 import { ShineBorder } from "@/components/magicui/ShineBorder";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <Shared.Card className="relative w-full max-w-[350px] justify-self-center overflow-hidden">
 <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />

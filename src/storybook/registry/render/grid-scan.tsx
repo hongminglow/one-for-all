@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import { GridScan } from "@/components/reactbits/GridScan";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof GridScan>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div style={{ width: "100%", height: "600px", position: "relative" }}>
 <GridScan

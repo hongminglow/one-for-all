@@ -11,7 +11,7 @@ export type { ApiProp, DemoControl };
  * Delegated to the modular registry.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function renderDemo(component: ComponentItem, props?: any) {
+export function renderDemo(component: ComponentItem, props?: unknown) {
 	const slug = component.slug.toLowerCase();
 	const config = registry[slug];
 	if (config) {

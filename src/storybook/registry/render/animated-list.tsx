@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from "react";
 import * as Shared from "../shared-demos";
 import AnimatedList from "@/components/reactbits/AnimatedList";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof AnimatedList>;
+
+
+export default function Render(props: RenderProps) {
 	return (
 		<div className="w-full flex items-center justify-center min-h-[500px] bg-black rounded-xl border border-(--sb-border) overflow-hidden">
 			<AnimatedList

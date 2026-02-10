@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import { HoleBackground } from "@/components/animate-ui/components/backgrounds/hole";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="relative h-[400px] w-full overflow-hidden rounded-xl border">
 <HoleBackground strokeColor="#8b5cf6" fillColor="#1a0f2e" />

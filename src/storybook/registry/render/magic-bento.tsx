@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import MagicBento from "@/components/reactbits/MagicBento";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof MagicBento>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full min-h-[600px] bg-[#030014] rounded-xl border border-(--sb-border) overflow-hidden">
 <MagicBento

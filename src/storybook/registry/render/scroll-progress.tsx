@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import { ScrollProgress } from "@/components/magicui/ScrollProgress";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="z-10 rounded-lg p-4">
 <ScrollProgress className="top-[65px]" />

@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import StarBorder from "@/components/reactbits/StarBorder";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof StarBorder>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full flex items-center justify-center min-h-[300px] bg-black rounded-xl border border-(--sb-border)">
 <StarBorder

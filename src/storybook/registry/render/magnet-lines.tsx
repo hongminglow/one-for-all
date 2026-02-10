@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import MagnetLines from "@/components/reactbits/MagnetLines";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof MagnetLines>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="flex items-center justify-center w-full min-h-[400px] p-8 bg-(--sb-bg) rounded-xl border border-(--sb-border)">
 <MagnetLines

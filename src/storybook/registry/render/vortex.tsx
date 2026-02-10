@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import { Vortex } from "@/components/shadcn/Vortex";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Vortex>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <Vortex {...props} />
   );

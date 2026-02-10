@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import ModelViewer from "@/components/reactbits/ModelViewer";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <ModelViewer
 url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Duck/glTF-Binary/Duck.glb"

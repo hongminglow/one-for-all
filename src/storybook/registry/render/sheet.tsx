@@ -1,7 +1,10 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Shared.SheetDemo>;
+
+export default function Render(props: RenderProps) {
   return (
     <Shared.SheetDemo side={props?.side ?? "right"} />
   );

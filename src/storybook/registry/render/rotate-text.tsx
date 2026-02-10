@@ -1,8 +1,11 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import RotateText from "@/components/jolyui/RotateText";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof RotateText>;
+
+export default function Render(props: RenderProps) {
   return (
     <div
 className="flex items-center justify-center"

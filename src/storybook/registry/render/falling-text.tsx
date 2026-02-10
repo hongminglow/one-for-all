@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import FallingText from "@/components/reactbits/FallingText";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div
 className="w-full min-h-[320px] rounded-2xl bg-(--sb-panel) p-2 flex justify-center"

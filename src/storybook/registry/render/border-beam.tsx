@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@base-ui/react";
 import { Label } from "@/components/ui/label";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <Shared.Card className="relative w-[350px] justify-self-center overflow-hidden">
 <Shared.CardHeader>

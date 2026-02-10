@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import ImageTrail from "@/components/reactbits/ImageTrail";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof ImageTrail>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[500px] relative overflow-hidden bg-[#111] rounded-xl border border-(--sb-border)">
 <ImageTrail

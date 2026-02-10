@@ -5,7 +5,10 @@ import { Input } from "@base-ui/react";
 import { Label } from "@/components/ui/label";
 import { MagicCard } from "@/components/magicui/MagicCard";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <Shared.Card className="w-full max-w-sm justify-self-center border-none p-0 shadow-none">
 <MagicCard gradientColor="#262626" className="p-0">

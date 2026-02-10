@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import { NeonGradientCard } from "@/components/magicui/NeonGradientCard";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full flex justify-center justify-self-center max-w-[520px]">
 <NeonGradientCard className="max-w-sm items-center justify-center text-center">

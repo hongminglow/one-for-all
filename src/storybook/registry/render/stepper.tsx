@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import Stepper, { Step } from "@/components/reactbits/Stepper";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Stepper>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full">
 <Stepper

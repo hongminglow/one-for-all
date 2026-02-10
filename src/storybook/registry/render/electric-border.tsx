@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import ElectricBorder from "@/components/reactbits/ElectricBorder";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof ElectricBorder>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="flex items-center justify-center w-full h-full p-8">
 <ElectricBorder

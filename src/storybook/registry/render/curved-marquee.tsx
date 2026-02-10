@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import CurvedLoop from "@/components/reactbits/CurvedLoop";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof CurvedLoop>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[300px] relative overflow-hidden">
 <CurvedLoop

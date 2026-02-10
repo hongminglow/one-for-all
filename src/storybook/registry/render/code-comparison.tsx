@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import { CodeComparison } from "@/components/ui/code-comparison";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <CodeComparison
       beforeCode={Shared.beforeCode}

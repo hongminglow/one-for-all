@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import GradientText from "@/components/reactbits/GradientText";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof GradientText>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="text-[32px] font-black">
 <GradientText

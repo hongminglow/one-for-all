@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import FluidGlass from "@/components/reactbits/FluidGlass";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div style={{ height: "600px", position: "relative" }}>
 <FluidGlass

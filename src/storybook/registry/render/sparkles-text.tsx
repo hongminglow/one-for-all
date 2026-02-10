@@ -1,8 +1,11 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import SparklesText from "@/components/magicui/SparklesText";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof SparklesText>;
+
+export default function Render(props: RenderProps) {
   return (
     <div
 className="flex items-center justify-center"

@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import TextCursor from "@/components/reactbits/TextCursor";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof TextCursor>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[320px] rounded-2xl bg-(--sb-panel) overflow-hidden">
 <TextCursor

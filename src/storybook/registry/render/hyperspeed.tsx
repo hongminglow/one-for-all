@@ -2,7 +2,10 @@ import React from 'react';
 import * as Shared from '../shared-demos';
 import Hyperspeed from "@/components/reactbits/Hyperspeed";
 
-export default function Render(props: any) {
+type RenderProps = Record<string, unknown>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[600px] min-h-[600px] bg-black relative overflow-hidden rounded-xl">
 <Hyperspeed

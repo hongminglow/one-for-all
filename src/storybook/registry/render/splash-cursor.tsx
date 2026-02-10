@@ -1,8 +1,12 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 import SplashCursor from "@/components/reactbits/SplashCursor";
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof SplashCursor>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <div className="w-full h-[500px] bg-black relative overflow-hidden rounded-xl border border-(--sb-border)">
 <SplashCursor

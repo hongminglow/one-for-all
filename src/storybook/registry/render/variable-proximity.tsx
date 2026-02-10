@@ -1,7 +1,11 @@
+import type { ComponentProps } from "react";
 import React from 'react';
 import * as Shared from '../shared-demos';
 
-export default function Render(props: any) {
+type RenderProps = ComponentProps<typeof Shared.VariableProximityWrapper>;
+
+
+export default function Render(props: RenderProps) {
   return (
     <Shared.VariableProximityWrapper {...props} />
   );
