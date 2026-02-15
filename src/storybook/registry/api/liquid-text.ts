@@ -16,7 +16,7 @@ export const api: ApiProp[] = [
   {
     prop: "font",
     type: "string",
-    default: "Inter",
+    default: "Inter, sans-serif",
     description: "Font family",
   },
   {
@@ -36,5 +36,11 @@ export const api: ApiProp[] = [
     type: "string",
     default: "#ffffff",
     description: "Text color in dark mode",
+  },
+  {
+    prop: "className",
+    type: "string",
+    default: '""',
+    description: "Additional CSS classes",
   },
 ];

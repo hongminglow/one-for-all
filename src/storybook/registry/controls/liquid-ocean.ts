@@ -12,11 +12,20 @@ export const controls: DemoControl[] = [
   },
   {
     type: "number",
-    param: "oceanSize",
-    label: "Ocean Size",
-    defaultValue: 25,
-    min: 10,
+    param: "shipCount",
+    label: "Ship Count",
+    defaultValue: 20,
+    min: 0,
     max: 100,
+  },
+  {
+    type: "number",
+    param: "speed",
+    label: "Animation Speed",
+    defaultValue: 0.001,
+    min: 0.0001,
+    max: 0.01,
+    step: 0.0001,
   },
   {
     type: "boolean",
@@ -28,6 +37,12 @@ export const controls: DemoControl[] = [
     type: "boolean",
     param: "showWireframe",
     label: "Show Wireframe",
+    defaultValue: true,
+  },
+  {
+    type: "boolean",
+    param: "autoRotate",
+    label: "Auto Rotate",
     defaultValue: true,
   },
 ];

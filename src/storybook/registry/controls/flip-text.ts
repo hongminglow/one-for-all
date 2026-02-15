@@ -17,10 +17,10 @@ export const controls: DemoControl[] = [
     step: 0.1,
   },
   {
-    type: "boolean",
-    param: "together",
-    label: "Flip Together",
-    defaultValue: false,
+    type: "text",
+    param: "separator",
+    label: "Separator",
+    defaultValue: " ",
   },
   { type: "boolean", param: "loop", label: "Loop", defaultValue: true },
 ];

@@ -13,4 +13,20 @@ export const controls: DemoControl[] = [
     label: "Author",
     defaultValue: "AI Designer",
   },
+  {
+    type: "number",
+    param: "width",
+    label: "Width",
+    defaultValue: 350,
+    min: 200,
+    max: 800,
+  },
+  {
+    type: "number",
+    param: "height",
+    label: "Height",
+    defaultValue: 500,
+    min: 300,
+    max: 1000,
+  },
 ];
