@@ -16,7 +16,7 @@ This project serves as a central registry for diverse UI components from various
 ## Component List
 
 | ID  | Component Name        | Library       | Reference URL                                                                      |
-| --- | --------------------- | ------------- | ---------------------------------------------------------------------------------- | --- |
+| --- | --------------------- | ------------- | ---------------------------------------------------------------------------------- |
 | 1   | Split Text            | React Bits    | [Link](https://reactbits.dev/text-animations/split-text)                           |
 | 2   | Circular Text         | React Bits    | [Link](https://reactbits.dev/text-animations/circular-text)                        |
 | 3   | Shiny Text            | React Bits    | [Link](https://reactbits.dev/text-animations/shiny-text)                           |
@@ -177,9 +177,9 @@ This project serves as a central registry for diverse UI components from various
 | 158 | Lens                  | Aceternity UI | [Link](https://ui.aceternity.com/components/lens)                                  |
 | 159 | Liquid Text           | Vengeance UI  | [Link](https://www.vengenceui.com/docs/liquid-text)                                |
 | 160 | Liquid Ocean          | Vengeance UI  | [Link](https://www.vengenceui.com/docs/liquid-ocean)                               |
-| 161 | Flip Text             | Vengeance UI  | [Link](https://www.vengenceui.com/docs/flip-text)                                  |     |
+| 161 | Flip Text             | Vengeance UI  | [Link](https://www.vengenceui.com/docs/flip-text)                                  |
 | 162 | Perspective Grid      | Vengeance UI  | [Link](https://www.vengenceui.com/docs/perspective-grid)                           |
-| 163 | Interactive Book      | Vengeance UI  | [Link](https://www.vengenceui.com/docs/interactive-book)                           |     |
+| 163 | Interactive Book      | Vengeance UI  | [Link](https://www.vengenceui.com/docs/interactive-book)                           |
 | 164 | Reveal Loader         | Vengeance UI  | [Link](https://www.vengenceui.com/docs/reveal-loader)                              |
 
 ## Getting Started
