@@ -2,7 +2,7 @@ export const code = `/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Button } from "@/components/animate-ui/components/buttons/button";
-import { easeOut, motion } from "motion/react";
+import { easeOut, motion } from "framer-motion";
 import * as React from "react";
 import { Github, Linkedin, Twitter } from "lucide-react";
 
@@ -52,7 +52,7 @@ export function FlipCard({ data }: FlipCardProps) {
 
   return (
     <div
-      className="mt-2 relative w-40 h-60 md:w-60 md:h-80 perspective-1000 cursor-pointer mx-auto"
+      className="mt-2 relative w-40 h-60 md:w-60 md:h-80 perspective-[1000px] cursor-pointer mx-auto"
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

@@ -163,11 +163,9 @@ import { code as decrypted_textCode } from "../code-snippets/decrypted-text";
 import device_mockRender from "./render/device-mock";
 import { api as device_mockApi } from "./api/device-mock";
 import { controls as device_mockControls } from "./controls/device-mock";
-const device_mockCode = undefined;
 import device_mock_2Render from "./render/device-mock-2";
 import { api as device_mock_2Api } from "./api/device-mock-2";
 import { controls as device_mock_2Controls } from "./controls/device-mock-2";
-const device_mock_2Code = undefined;
 import dockRender from "./render/dock";
 import { api as dockApi } from "./api/dock";
 import { controls as dockControls } from "./controls/dock";
@@ -220,6 +218,10 @@ import flip_cardRender from "./render/flip-card";
 import { api as flip_cardApi } from "./api/flip-card";
 import { controls as flip_cardControls } from "./controls/flip-card";
 import { code as flip_cardCode } from "../code-snippets/flip-card";
+import flip_textRender from "./render/flip-text";
+import { api as flip_textApi } from "./api/flip-text";
+import { controls as flip_textControls } from "./controls/flip-text";
+import { code as flip_textCode } from "../code-snippets/flip-text";
 import floating_linesRender from "./render/floating-lines";
 import { api as floating_linesApi } from "./api/floating-lines";
 import { controls as floating_linesControls } from "./controls/floating-lines";
@@ -340,6 +342,10 @@ import interactive_barRender from "./render/interactive-bar";
 import { api as interactive_barApi } from "./api/interactive-bar";
 import { controls as interactive_barControls } from "./controls/interactive-bar";
 import { code as interactive_barCode } from "../code-snippets/interactive-bar";
+import interactive_bookRender from "./render/interactive-book";
+import { api as interactive_bookApi } from "./api/interactive-book";
+import { controls as interactive_bookControls } from "./controls/interactive-book";
+import { code as interactive_bookCode } from "../code-snippets/interactive-book";
 import kanbanRender from "./render/kanban";
 import { api as kanbanApi } from "./api/kanban";
 import { controls as kanbanControls } from "./controls/kanban";
@@ -380,6 +386,14 @@ import liquid_etherRender from "./render/liquid-ether";
 import { api as liquid_etherApi } from "./api/liquid-ether";
 import { controls as liquid_etherControls } from "./controls/liquid-ether";
 import { code as liquid_etherCode } from "../code-snippets/liquid-ether";
+import liquid_oceanRender from "./render/liquid-ocean";
+import { api as liquid_oceanApi } from "./api/liquid-ocean";
+import { controls as liquid_oceanControls } from "./controls/liquid-ocean";
+import { code as liquid_oceanCode } from "../code-snippets/liquid-ocean";
+import liquid_textRender from "./render/liquid-text";
+import { api as liquid_textApi } from "./api/liquid-text";
+import { controls as liquid_textControls } from "./controls/liquid-text";
+import { code as liquid_textCode } from "../code-snippets/liquid-text";
 import logo_loopRender from "./render/logo-loop";
 import { api as logo_loopApi } from "./api/logo-loop";
 import { controls as logo_loopControls } from "./controls/logo-loop";
@@ -448,6 +462,10 @@ import particlesRender from "./render/particles";
 import { api as particlesApi } from "./api/particles";
 import { controls as particlesControls } from "./controls/particles";
 import { code as particlesCode } from "../code-snippets/particles";
+import perspective_gridRender from "./render/perspective-grid";
+import { api as perspective_gridApi } from "./api/perspective-grid";
+import { controls as perspective_gridControls } from "./controls/perspective-grid";
+import { code as perspective_gridCode } from "../code-snippets/perspective-grid";
 import pie_donutRender from "./render/pie-donut";
 import { api as pie_donutApi } from "./api/pie-donut";
 import { controls as pie_donutControls } from "./controls/pie-donut";
@@ -500,6 +518,10 @@ import ratingRender from "./render/rating";
 import { api as ratingApi } from "./api/rating";
 import { controls as ratingControls } from "./controls/rating";
 import { code as ratingCode } from "../code-snippets/rating";
+import reveal_loaderRender from "./render/reveal-loader";
+import { api as reveal_loaderApi } from "./api/reveal-loader";
+import { controls as reveal_loaderControls } from "./controls/reveal-loader";
+import { code as reveal_loaderCode } from "../code-snippets/reveal-loader";
 import ripple_buttonRender from "./render/ripple-button";
 import { api as ripple_buttonApi } from "./api/ripple-button";
 import { controls as ripple_buttonControls } from "./controls/ripple-button";
@@ -632,6 +654,8 @@ import vortexRender from "./render/vortex";
 import { api as vortexApi } from "./api/vortex";
 import { controls as vortexControls } from "./controls/vortex";
 import { code as vortexCode } from "../code-snippets/vortex";
+const device_mockCode = undefined;
+const device_mock_2Code = undefined;
 
 export const registry: Record<string, ComponentConfig> = {
   "3d-card": {
@@ -688,7 +712,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: animated_tooltipControls,
     code: animated_tooltipCode,
   },
-  "antigravity": {
+  antigravity: {
     render: antigravityRender,
     api: antigravityApi,
     controls: antigravityControls,
@@ -700,13 +724,13 @@ export const registry: Record<string, ComponentConfig> = {
     controls: avatar_groupControls,
     code: avatar_groupCode,
   },
-  "ballpit": {
+  ballpit: {
     render: ballpitRender,
     api: ballpitApi,
     controls: ballpitControls,
     code: ballpitCode,
   },
-  "banner": {
+  banner: {
     render: bannerRender,
     api: bannerApi,
     controls: bannerControls,
@@ -724,7 +748,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: border_beamControls,
     code: border_beamCode,
   },
-  "calendar": {
+  calendar: {
     render: calendarRender,
     api: calendarApi,
     controls: calendarControls,
@@ -736,7 +760,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: calendar_inputControls,
     code: calendar_inputCode,
   },
-  "carousel": {
+  carousel: {
     render: carouselRender,
     api: carouselApi,
     controls: carouselControls,
@@ -802,7 +826,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: color_pickerControls,
     code: color_pickerCode,
   },
-  "combobox": {
+  combobox: {
     render: comboboxRender,
     api: comboboxApi,
     controls: comboboxControls,
@@ -820,7 +844,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: comparison_sliderControls,
     code: comparison_sliderCode,
   },
-  "confetti": {
+  confetti: {
     render: confettiRender,
     api: confettiApi,
     controls: confettiControls,
@@ -838,7 +862,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: count_upControls,
     code: count_upCode,
   },
-  "counter": {
+  counter: {
     render: counterRender,
     api: counterApi,
     controls: counterControls,
@@ -886,7 +910,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: device_mock_2Controls,
     code: device_mock_2Code,
   },
-  "dock": {
+  dock: {
     render: dockRender,
     api: dockApi,
     controls: dockControls,
@@ -904,7 +928,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: draggable_cardControls,
     code: draggable_cardCode,
   },
-  "dropzone": {
+  dropzone: {
     render: dropzoneRender,
     api: dropzoneApi,
     controls: dropzoneControls,
@@ -946,7 +970,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: file_treeControls,
     code: file_treeCode,
   },
-  "fireworks": {
+  fireworks: {
     render: fireworksRender,
     api: fireworksApi,
     controls: fireworksControls,
@@ -963,6 +987,12 @@ export const registry: Record<string, ComponentConfig> = {
     api: flip_cardApi,
     controls: flip_cardControls,
     code: flip_cardCode,
+  },
+  "flip-text": {
+    render: flip_textRender,
+    api: flip_textApi,
+    controls: flip_textControls,
+    code: flip_textCode,
   },
   "floating-lines": {
     render: floating_linesRender,
@@ -988,13 +1018,13 @@ export const registry: Record<string, ComponentConfig> = {
     controls: fuzzy_textControls,
     code: fuzzy_textCode,
   },
-  "galaxy": {
+  galaxy: {
     render: galaxyRender,
     api: galaxyApi,
     controls: galaxyControls,
     code: galaxyCode,
   },
-  "ganttchart": {
+  ganttchart: {
     render: ganttchartRender,
     api: ganttchartApi,
     controls: ganttchartControls,
@@ -1012,7 +1042,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: github_starControls,
     code: github_starCode,
   },
-  "glimpse": {
+  glimpse: {
     render: glimpseRender,
     api: glimpseApi,
     controls: glimpseControls,
@@ -1084,7 +1114,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: hover_previewControls,
     code: hover_previewCode,
   },
-  "hyperspeed": {
+  hyperspeed: {
     render: hyperspeedRender,
     api: hyperspeedApi,
     controls: hyperspeedControls,
@@ -1144,19 +1174,25 @@ export const registry: Record<string, ComponentConfig> = {
     controls: interactive_barControls,
     code: interactive_barCode,
   },
-  "kanban": {
+  "interactive-book": {
+    render: interactive_bookRender,
+    api: interactive_bookApi,
+    controls: interactive_bookControls,
+    code: interactive_bookCode,
+  },
+  kanban: {
     render: kanbanRender,
     api: kanbanApi,
     controls: kanbanControls,
     code: kanbanCode,
   },
-  "kbd": {
+  kbd: {
     render: kbdRender,
     api: kbdApi,
     controls: kbdControls,
     code: kbdCode,
   },
-  "lanyard": {
+  lanyard: {
     render: lanyardRender,
     api: lanyardApi,
     controls: lanyardControls,
@@ -1168,7 +1204,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: laser_flowControls,
     code: laser_flowCode,
   },
-  "lens": {
+  lens: {
     render: lensRender,
     api: lensApi,
     controls: lensControls,
@@ -1192,7 +1228,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: light_raysControls,
     code: light_raysCode,
   },
-  "lightning": {
+  lightning: {
     render: lightningRender,
     api: lightningApi,
     controls: lightningControls,
@@ -1203,6 +1239,18 @@ export const registry: Record<string, ComponentConfig> = {
     api: liquid_etherApi,
     controls: liquid_etherControls,
     code: liquid_etherCode,
+  },
+  "liquid-ocean": {
+    render: liquid_oceanRender,
+    api: liquid_oceanApi,
+    controls: liquid_oceanControls,
+    code: liquid_oceanCode,
+  },
+  "liquid-text": {
+    render: liquid_textRender,
+    api: liquid_textApi,
+    controls: liquid_textControls,
+    code: liquid_textCode,
   },
   "logo-loop": {
     render: logo_loopRender,
@@ -1240,19 +1288,19 @@ export const registry: Record<string, ComponentConfig> = {
     controls: management_barControls,
     code: management_barCode,
   },
-  "marquee": {
+  marquee: {
     render: marqueeRender,
     api: marqueeApi,
     controls: marqueeControls,
     code: marqueeCode,
   },
-  "masonry": {
+  masonry: {
     render: masonryRender,
     api: masonryApi,
     controls: masonryControls,
     code: masonryCode,
   },
-  "meteors": {
+  meteors: {
     render: meteorsRender,
     api: meteorsApi,
     controls: meteorsControls,
@@ -1288,23 +1336,29 @@ export const registry: Record<string, ComponentConfig> = {
     controls: number_counterControls,
     code: number_counterCode,
   },
-  "orbits": {
+  orbits: {
     render: orbitsRender,
     api: orbitsApi,
     controls: orbitsControls,
     code: orbitsCode,
   },
-  "orbs": {
+  orbs: {
     render: orbsRender,
     api: orbsApi,
     controls: orbsControls,
     code: orbsCode,
   },
-  "particles": {
+  particles: {
     render: particlesRender,
     api: particlesApi,
     controls: particlesControls,
     code: particlesCode,
+  },
+  "perspective-grid": {
+    render: perspective_gridRender,
+    api: perspective_gridApi,
+    controls: perspective_gridControls,
+    code: perspective_gridCode,
   },
   "pie-donut": {
     render: pie_donutRender,
@@ -1324,19 +1378,19 @@ export const registry: Record<string, ComponentConfig> = {
     controls: playful_todolistControls,
     code: playful_todolistCode,
   },
-  "popover": {
+  popover: {
     render: popoverRender,
     api: popoverApi,
     controls: popoverControls,
     code: popoverCode,
   },
-  "prism": {
+  prism: {
     render: prismRender,
     api: prismApi,
     controls: prismControls,
     code: prismCode,
   },
-  "progress": {
+  progress: {
     render: progressRender,
     api: progressApi,
     controls: progressControls,
@@ -1366,7 +1420,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: radial_menuControls,
     code: radial_menuCode,
   },
-  "rain": {
+  rain: {
     render: rainRender,
     api: rainApi,
     controls: rainControls,
@@ -1378,11 +1432,17 @@ export const registry: Record<string, ComponentConfig> = {
     controls: rainbow_buttonControls,
     code: rainbow_buttonCode,
   },
-  "rating": {
+  rating: {
     render: ratingRender,
     api: ratingApi,
     controls: ratingControls,
     code: ratingCode,
+  },
+  "reveal-loader": {
+    render: reveal_loaderRender,
+    api: reveal_loaderApi,
+    controls: reveal_loaderControls,
+    code: reveal_loaderCode,
   },
   "ripple-button": {
     render: ripple_buttonRender,
@@ -1402,7 +1462,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: rotating_textControls,
     code: rotating_textCode,
   },
-  "sandbox": {
+  sandbox: {
     render: sandboxRender,
     api: sandboxApi,
     controls: sandboxControls,
@@ -1438,7 +1498,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: scroll_velocityControls,
     code: scroll_velocityCode,
   },
-  "sheet": {
+  sheet: {
     render: sheetRender,
     api: sheetApi,
     controls: sheetControls,
@@ -1456,7 +1516,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: shiny_textControls,
     code: shiny_textCode,
   },
-  "snow": {
+  snow: {
     render: snowRender,
     api: snowApi,
     controls: snowControls,
@@ -1468,7 +1528,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: sparkles_textControls,
     code: sparkles_textCode,
   },
-  "spinner": {
+  spinner: {
     render: spinnerRender,
     api: spinnerApi,
     controls: spinnerControls,
@@ -1498,13 +1558,13 @@ export const registry: Record<string, ComponentConfig> = {
     controls: star_borderControls,
     code: star_borderCode,
   },
-  "status": {
+  status: {
     render: statusRender,
     api: statusApi,
     controls: statusControls,
     code: statusCode,
   },
-  "stepper": {
+  stepper: {
     render: stepperRender,
     api: stepperApi,
     controls: stepperControls,
@@ -1516,13 +1576,13 @@ export const registry: Record<string, ComponentConfig> = {
     controls: sticker_peelControls,
     code: sticker_peelCode,
   },
-  "tabs": {
+  tabs: {
     render: tabsRender,
     api: tabsApi,
     controls: tabsControls,
     code: tabsCode,
   },
-  "tags": {
+  tags: {
     render: tagsRender,
     api: tagsApi,
     controls: tagsControls,
@@ -1534,7 +1594,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: target_cursorControls,
     code: target_cursorCode,
   },
-  "terminal": {
+  terminal: {
     render: terminalRender,
     api: terminalApi,
     controls: terminalControls,
@@ -1576,7 +1636,7 @@ export const registry: Record<string, ComponentConfig> = {
     controls: video_textControls,
     code: video_textCode,
   },
-  "vortex": {
+  vortex: {
     render: vortexRender,
     api: vortexApi,
     controls: vortexControls,

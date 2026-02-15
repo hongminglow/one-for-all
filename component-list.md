@@ -168,3 +168,9 @@
 156. Hero Parallax : https://ui.aceternity.com/components/hero-parallax
 157. Image Compare : https://ui.aceternity.com/components/compare
 158. Lens : https://ui.aceternity.com/components/lens
+159. Liquid Text : https://www.vengenceui.com/docs/liquid-text
+160. Liquid Ocean : https://www.vengenceui.com/docs/liquid-ocean
+161. Flip Text : https://www.vengenceui.com/docs/flip-text
+162. Perspective Grid : https://www.vengenceui.com/docs/perspective-grid
+163. Interactive Book : https://www.vengenceui.com/docs/interactive-book
+164. Reveal Loader : https://www.vengenceui.com/docs/reveal-loader

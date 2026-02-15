@@ -4,11 +4,11 @@ A comprehensive collection of 158+ high-quality, animated, and interactive UI co
 
 ## Overview
 
-This project serves as a central registry for diverse UI components from various libraries, including React Bits, Shadcn UI, Joly UI, Animate UI, Magic UI, and Aceternity UI. It provides a consistent interface and easy integration for developers.
+This project serves as a central registry for diverse UI components from various libraries, including React Bits, Shadcn UI, Joly UI, Animate UI, Magic UI, Vengeance UI and Aceternity UI. It provides a consistent interface and easy integration for developers.
 
 ## Features
 
-- **158+ Components**: A vast array of components ranging from simple buttons to complex 3D animations.
+- **160+ Components**: A vast array of components ranging from simple buttons to complex 3D animations.
 - **Library Agnostic**: Integrates components from multiple sources.
 - **Storybook Ready**: Includes demos and documentation for each component.
 - **Easy Integration**: Follow our [Add New Component](ADD_NEW_COMPONENT.md) guide to add new components.
@@ -16,7 +16,7 @@ This project serves as a central registry for diverse UI components from various
 ## Component List
 
 | ID  | Component Name        | Library       | Reference URL                                                                      |
-| --- | --------------------- | ------------- | ---------------------------------------------------------------------------------- |
+| --- | --------------------- | ------------- | ---------------------------------------------------------------------------------- | --- |
 | 1   | Split Text            | React Bits    | [Link](https://reactbits.dev/text-animations/split-text)                           |
 | 2   | Circular Text         | React Bits    | [Link](https://reactbits.dev/text-animations/circular-text)                        |
 | 3   | Shiny Text            | React Bits    | [Link](https://reactbits.dev/text-animations/shiny-text)                           |
@@ -175,6 +175,12 @@ This project serves as a central registry for diverse UI components from various
 | 156 | Hero Parallax         | Aceternity UI | [Link](https://ui.aceternity.com/components/hero-parallax)                         |
 | 157 | Image Compare         | Aceternity UI | [Link](https://ui.aceternity.com/components/compare)                               |
 | 158 | Lens                  | Aceternity UI | [Link](https://ui.aceternity.com/components/lens)                                  |
+| 159 | Liquid Text           | Vengeance UI  | [Link](https://www.vengenceui.com/docs/liquid-text)                                |
+| 160 | Liquid Ocean          | Vengeance UI  | [Link](https://www.vengenceui.com/docs/liquid-ocean)                               |
+| 161 | Flip Text             | Vengeance UI  | [Link](https://www.vengenceui.com/docs/flip-text)                                  |     |
+| 162 | Perspective Grid      | Vengeance UI  | [Link](https://www.vengenceui.com/docs/perspective-grid)                           |
+| 163 | Interactive Book      | Vengeance UI  | [Link](https://www.vengenceui.com/docs/interactive-book)                           |     |
+| 164 | Reveal Loader         | Vengeance UI  | [Link](https://www.vengenceui.com/docs/reveal-loader)                              |
 
 ## Getting Started
 
